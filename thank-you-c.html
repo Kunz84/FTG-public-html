@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In — Welcome to GenAI | Fast Track GenAI</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2338;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+            --green: #00e676;
+            --gold: #ffd740;
+            --orange: #ff9100;
+            --purple: #b388ff;
+            --purple-dim: #7c4dff;
+            --purple-glow: rgba(179, 136, 255, 0.12);
+            --red-soft: #ff5252;
+            --white: #f0f4f8;
+            --white-dim: #b0bec5;
+            --white-muted: #78909c;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w: 760px;
+            --radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 56px 0; }
+
+        /* LOGO BAR */
+        .logo-bar {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .logo-bar span { font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+        .logo-bar span em { font-style: normal; color: var(--white); opacity: 0.7; }
+
+        /* CONFIRMATION BANNER */
+        .confirm-banner {
+            background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(0,229,255,0.06));
+            border-bottom: 1px solid rgba(0,230,118,0.15);
+            padding: 14px 0;
+            text-align: center;
+        }
+        .confirm-banner p {
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--green); letter-spacing: 1px;
+        }
+
+        /* HERO */
+        .hero { padding: 60px 0 20px; text-align: center; }
+        .celebration { font-size: 2.5rem; margin-bottom: 16px; }
+        h1 {
+            font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 800;
+            line-height: 1.2; color: var(--white); margin-bottom: 16px;
+        }
+        h1 .accent { color: var(--cyan); }
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.1rem); color: var(--white-dim);
+            max-width: 580px; margin: 0 auto 20px; line-height: 1.6;
+        }
+        .subtitle strong { color: var(--white); }
+        h2 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: var(--white); }
+        h2 .accent { color: var(--cyan); }
+        h3 { font-size: 1.05rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+        .section-lead { font-size: 1rem; color: var(--white-dim); margin-bottom: 32px; max-width: 620px; }
+        .centered { text-align: center; }
+        .centered .section-lead { margin-left: auto; margin-right: auto; }
+        .divider { width: 60px; height: 3px; background: var(--cyan); border-radius: 2px; margin: 48px auto; opacity: 0.4; }
+
+        /* STEPS */
+        .steps-section { margin: 32px 0; }
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 16px;
+            display: flex; gap: 20px; align-items: flex-start;
+        }
+        .step-num {
+            flex-shrink: 0; width: 44px; height: 44px;
+            background: rgba(0,229,255,0.08);
+            border: 2px solid rgba(0,229,255,0.25);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; font-weight: 800; color: var(--cyan);
+        }
+        .step-card.highlight {
+            border-color: rgba(0,229,255,0.2);
+            background: linear-gradient(135deg, var(--bg-card), rgba(0,229,255,0.03));
+        }
+        .step-content h4 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .step-content p { font-size: 0.9rem; color: var(--white-dim); line-height: 1.6; }
+        .step-content .spam-note {
+            display: inline-block; margin-top: 8px;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gold); background: rgba(255,215,64,0.08);
+            padding: 4px 12px; border-radius: 6px;
+        }
+
+        /* FREE RESOURCES */
+        .resources-section { margin: 32px 0; }
+        .resource-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 12px;
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+        .resource-icon {
+            flex-shrink: 0; width: 42px; height: 42px;
+            background: rgba(0,229,255,0.06);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .resource-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .resource-card p { font-size: 0.85rem; color: var(--white-muted); line-height: 1.5; }
+
+        /* TIPS GRID */
+        .tips-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin: 32px 0;
+        }
+        @media (max-width: 550px) { .tips-grid { grid-template-columns: 1fr; } }
+        .tip-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .tip-card .tip-num {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
+        }
+        .tip-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .tip-card p { font-size: 0.82rem; color: var(--white-muted); line-height: 1.5; }
+
+        /* SOFT INVITE */
+        .soft-invite {
+            background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(179,136,255,0.03));
+            border: 1px solid rgba(0,229,255,0.1);
+            border-radius: 16px;
+            padding: 36px 32px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .soft-invite h3 {
+            font-size: 1.15rem; font-weight: 800; color: var(--white);
+            margin-bottom: 10px;
+        }
+        .soft-invite p {
+            font-size: 0.95rem; color: var(--white-dim);
+            max-width: 500px; margin: 0 auto 20px; line-height: 1.6;
+        }
+        .soft-invite .note {
+            font-size: 0.82rem; color: var(--white-muted);
+            font-style: italic; margin-top: 12px;
+        }
+
+        /* STAY CONNECTED */
+        .connect-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; margin: 32px 0;
+        }
+        @media (max-width: 550px) { .connect-grid { grid-template-columns: 1fr; } }
+        .connect-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px; text-align: center;
+            transition: var(--transition);
+            cursor: pointer; text-decoration: none;
+            display: block;
+        }
+        .connect-card:hover {
+            border-color: rgba(0,229,255,0.15);
+            background: var(--bg-card-hover);
+        }
+        .connect-card .c-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .connect-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .connect-card p { font-size: 0.78rem; color: var(--white-muted); }
+
+        /* WEEKLY CALL */
+        .call-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,229,255,0.12);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .call-section .call-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .call-section h3 { color: var(--cyan); margin-bottom: 8px; }
+        .call-section p {
+            font-size: 0.9rem; color: var(--white-dim);
+            max-width: 480px; margin: 0 auto 20px;
+        }
+        .cta-call {
+            display: inline-block;
+            background: rgba(0,229,255,0.08);
+            border: 1px solid rgba(0,229,255,0.2);
+            color: var(--cyan);
+            font-size: 0.88rem; font-weight: 700;
+            padding: 12px 28px; border-radius: 100px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .cta-call:hover { background: rgba(0,229,255,0.15); }
+
+        /* ORDER SUMMARY */
+        .order-summary {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px; margin: 32px 0;
+        }
+        .order-summary h3 { margin-bottom: 16px; }
+        .order-table { width: 100%; border-collapse: collapse; }
+        .order-table th {
+            text-align: left; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--white-muted); padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .order-table td {
+            font-size: 0.9rem; color: var(--white-dim); padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .order-table .total td {
+            font-weight: 700; color: var(--white);
+            border-bottom: none; padding-top: 14px;
+        }
+
+        /* CLOSING */
+        .closing-message {
+            text-align: center; padding: 40px 0;
+        }
+        .closing-message p {
+            font-size: 1rem; color: var(--white-dim);
+            max-width: 540px; margin: 0 auto; line-height: 1.7;
+        }
+        .closing-message strong { color: var(--white); }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 0; text-align: center;
+        }
+        footer p { font-size: 0.75rem; color: var(--white-muted); margin-bottom: 8px; }
+        footer a { color: var(--white-muted); }
+        footer a:hover { color: var(--cyan); }
+        .disclaimer {
+            max-width: 600px; margin: 20px auto 0;
+            font-size: 0.72rem; color: var(--white-muted); line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+    <div class="container">
+        <span>Fast Track <em>GenAI</em></span>
+    </div>
+</div>
+
+<!-- CONFIRMATION BANNER -->
+<div class="confirm-banner">
+    <div class="container">
+        <p>✅ Your Order Is Confirmed!</p>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container centered">
+        <div class="celebration">👋</div>
+        <h1>Welcome to <span class="accent">GenAI</span></h1>
+        <p class="subtitle">
+            You've taken the first step. Your Business Launchpad is ready. 
+            <strong>Let's make sure you get the most out of what you have.</strong>
+        </p>
+    </div>
+</section>
+
+<!-- 4-STEP ONBOARDING -->
+<section style="padding: 20px 0 40px;">
+    <div class="container centered">
+        <h2>Here's What <span class="accent">Happens Now</span></h2>
+
+        <div class="steps-section">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Check Your Email</h4>
+                    <p>
+                        Your login details and access instructions are on the way. You'll get links to 
+                        your Quick Start Guide, AI Agent access, and the 240-prompt library.
+                    </p>
+                    <span class="spam-note">⚠️ Check your spam/promotions folder too</span>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Access Your System</h4>
+                    <p>
+                        Click the link in your email to log in. Inside: Quick Start Guide, AI Agents, 
+                        prompt library, and your full implementation pathway.
+                    </p>
+                </div>
+            </div>
+            <div class="step-card highlight">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Join the Next Implementation Success Call</h4>
+                    <p>
+                        Weekly live sessions where you can get clear on the best place to start, 
+                        choose your most useful first use case, and avoid common mistakes that slow people down.
+                    </p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Get Your First Result Today</h4>
+                    <p>
+                        Open the Quick Start Guide. Launch an agent. Use a <strong>real</strong> business idea — not a test. 
+                        Produce something usable in your first session.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WEEKLY CALL -->
+<section style="padding: 0 0 40px;">
+    <div class="container">
+        <div class="call-section">
+            <div class="call-icon">📞</div>
+            <h3>Weekly Implementation Success Call</h3>
+            <p>
+                Live sessions to help you get clear on where to start, choose the right first use case, 
+                and map your next steps for a quick win.
+            </p>
+            <a href="#" class="cta-call">Join the Next Call →</a>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FREE VALUE: TIPS -->
+<section>
+    <div class="container centered">
+        <h2>3 Tips to <span class="accent">Start Strong</span></h2>
+        <p class="section-lead">Make the most of your Launchpad from day one.</p>
+
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-num">Tip 01</div>
+                <h4>Start With a Real Task</h4>
+                <p>Don't experiment with toy examples. Pick a real business challenge and run it through the system.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">Tip 02</div>
+                <h4>Use the Prompts Library</h4>
+                <p>240 industry-specific prompts are ready to go. Find your industry, pick one, and run it.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">Tip 03</div>
+                <h4>Don't Study — Produce</h4>
+                <p>Your goal isn't to read everything. It's to produce something real in your first session.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">Tip 04</div>
+                <h4>Join the Weekly Call</h4>
+                <p>The fastest way to get unstuck. Live guidance, real examples, immediate clarity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FREE RESOURCES -->
+<section>
+    <div class="container centered">
+        <h2>Free Resources to <span class="accent">Keep Growing</span></h2>
+        <p class="section-lead">We want you to succeed — here's some extra value to help.</p>
+
+        <div class="resources-section">
+            <div class="resource-card">
+                <div class="resource-icon">📧</div>
+                <div>
+                    <h4>Weekly AI Implementation Tips</h4>
+                    <p>Short, actionable emails with strategies to get more from AI tools. Already on the list from your purchase.</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">🎥</div>
+                <div>
+                    <h4>Free Training Library</h4>
+                    <p>Quick-start videos and walkthroughs to help you implement faster.</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">📘</div>
+                <div>
+                    <h4>AI Quick Wins Blog</h4>
+                    <p>Real-world case studies and implementation shortcuts from the Fast Track GenAI community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOFT INVITE -->
+<section style="padding: 20px 0;">
+    <div class="container">
+        <div class="soft-invite">
+            <h3>When You're Ready for More…</h3>
+            <p>
+                The Business Accelerator and Builders Club are always available if you decide you want 
+                the execution engine or ongoing coaching. There's no pressure and no expiring countdown. 
+                Focus on getting wins with what you have first.
+            </p>
+            <p class="note">
+                We'll send you details about upgrade options in a few days — only after you've had time to use the Launchpad.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- STAY CONNECTED -->
+<section>
+    <div class="container centered">
+        <h2>Stay <span class="accent">Connected</span></h2>
+        <div class="connect-grid">
+            <a href="#" class="connect-card">
+                <div class="c-icon">📧</div>
+                <h4>Email Updates</h4>
+                <p>Weekly tips and strategies</p>
+            </a>
+            <a href="#" class="connect-card">
+                <div class="c-icon">🌐</div>
+                <h4>Community</h4>
+                <p>Connect with other founders</p>
+            </a>
+            <a href="#" class="connect-card">
+                <div class="c-icon">📱</div>
+                <h4>Social</h4>
+                <p>Follow for daily AI insights</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ORDER SUMMARY -->
+<section style="padding: 20px 0;">
+    <div class="container">
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <table class="order-table">
+                <thead>
+                    <tr><th>Product</th><th style="text-align:right;">Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Business Launchpad</td><td style="text-align:right;">$37</td></tr>
+                    <tr class="total"><td>Total</td><td style="text-align:right;">$37</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing-message">
+    <div class="container">
+        <p>
+            Do not make your goal to study everything. <strong>Make your goal to produce something real 
+            in your first session.</strong> That first win matters. The faster you use the system in a real way, 
+            the faster it starts becoming part of your workflow.
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p class="disclaimer">
+            Results vary based on individual effort and implementation. The tools and training provided are designed to support 
+            your business goals but do not guarantee specific outcomes. 30-day refund policy applies to initial purchase.
+        </p>
+        <p style="margin-top: 16px;"><a href="#">Terms & Conditions</a> · <a href="#">Privacy Policy</a></p>
+        <p>© 2026 Fast Track GenAI. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

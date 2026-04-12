@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Accelerator — Flex Pay Option | Fast Track GenAI</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2338;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+            --green: #00e676;
+            --gold: #ffd740;
+            --orange: #ff9100;
+            --white: #f0f4f8;
+            --white-dim: #b0bec5;
+            --white-muted: #78909c;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w: 680px;
+            --radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 48px 0; }
+
+        /* LOGO BAR */
+        .logo-bar {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .logo-bar span {
+            font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; color: var(--cyan);
+        }
+        .logo-bar span em { font-style: normal; color: var(--white); opacity: 0.7; }
+
+        /* HERO */
+        .hero { padding: 60px 0 32px; text-align: center; }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--orange);
+            background: rgba(255,145,0,0.1);
+            padding: 6px 18px; border-radius: 100px; margin-bottom: 20px;
+        }
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800; line-height: 1.25;
+            color: var(--white); margin-bottom: 16px;
+        }
+        h1 .accent { color: var(--cyan); }
+        .subtitle {
+            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+            color: var(--white-dim); max-width: 560px;
+            margin: 0 auto 28px; line-height: 1.6;
+        }
+        h2 { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
+        h2 .accent { color: var(--cyan); }
+
+        .centered { text-align: center; }
+        .divider { width: 60px; height: 3px; background: var(--cyan); border-radius: 2px; margin: 40px auto; opacity: 0.4; }
+
+        /* EMPATHY BLOCK */
+        .empathy-block {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--cyan);
+        }
+        .empathy-block p {
+            font-size: 0.95rem; color: var(--white-dim); margin-bottom: 10px;
+        }
+        .empathy-block p:last-child { margin-bottom: 0; }
+        .empathy-block strong { color: var(--white); }
+
+        /* PAYMENT TIMELINE */
+        .payment-timeline {
+            margin: 32px 0;
+            position: relative;
+        }
+        .payment-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .payment-step::before {
+            content: '';
+            position: absolute;
+            left: 39px; top: 48px;
+            width: 2px; height: calc(100% + 24px);
+            background: rgba(0,229,255,0.15);
+        }
+        .payment-step:last-child::before { display: none; }
+        .step-marker {
+            width: 80px; height: 80px;
+            background: var(--bg-card);
+            border: 2px solid rgba(0,229,255,0.25);
+            border-radius: var(--radius);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            position: relative; z-index: 1;
+        }
+        .step-marker.today { border-color: var(--green); background: linear-gradient(135deg, var(--bg-card), rgba(0,230,118,0.06)); }
+        .step-marker .amount {
+            font-size: 1.2rem; font-weight: 800; color: var(--white);
+        }
+        .step-marker .when {
+            font-size: 0.65rem; letter-spacing: 1px;
+            text-transform: uppercase; color: var(--white-muted);
+        }
+        .step-marker.today .when { color: var(--green); }
+        .step-detail h3 {
+            font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px;
+        }
+        .step-detail p {
+            font-size: 0.88rem; color: var(--white-dim);
+        }
+        .step-detail .highlight {
+            display: inline-block; margin-top: 8px;
+            background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.15);
+            border-radius: 6px; padding: 4px 10px;
+            font-size: 0.78rem; color: var(--green); font-weight: 600;
+        }
+
+        /* COMPARISON BOX */
+        .compare-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,229,255,0.1);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin: 32px 0;
+        }
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row.header {
+            background: rgba(0,229,255,0.05);
+        }
+        .compare-cell {
+            padding: 14px 18px;
+            font-size: 0.88rem;
+            color: var(--white-dim);
+        }
+        .compare-cell:first-child {
+            border-right: 1px solid rgba(255,255,255,0.04);
+        }
+        .compare-row.header .compare-cell {
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--cyan-dim);
+        }
+        .compare-cell .val {
+            font-weight: 700; color: var(--white);
+        }
+        .compare-cell .recommended {
+            display: inline-block;
+            font-size: 0.65rem; font-weight: 700;
+            background: var(--cyan-glow); color: var(--cyan);
+            padding: 2px 8px; border-radius: 4px;
+            margin-left: 6px;
+        }
+
+        /* VALUE CHECKLIST */
+        .value-checklist {
+            margin: 28px 0;
+        }
+        .value-checklist .vc-title {
+            font-size: 0.72rem; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--cyan-dim);
+            margin-bottom: 14px;
+        }
+        .vc-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 8px 0;
+            font-size: 0.9rem; color: var(--white-dim);
+        }
+        .vc-item .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+        /* RESULTS PREVIEW */
+        .results-box {
+            background: linear-gradient(135deg, var(--bg-card), rgba(0,229,255,0.03));
+            border: 1px solid rgba(0,229,255,0.1);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 28px 0;
+        }
+        .results-box .rb-title {
+            font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--cyan-dim); margin-bottom: 14px;
+        }
+        .results-list {
+            list-style: none; padding: 0;
+        }
+        .results-list li {
+            padding: 8px 0; padding-left: 22px;
+            position: relative;
+            font-size: 0.9rem; color: var(--white-dim);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .results-list li:last-child { border-bottom: none; }
+        .results-list li::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--cyan); font-weight: 700;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, var(--bg-card), rgba(0,229,255,0.04));
+            border: 2px solid rgba(0,229,255,0.2);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+        }
+        .cta-primary {
+            display: block; width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dim));
+            color: var(--bg-primary);
+            font-size: 1rem; font-weight: 800;
+            text-align: center; border: none;
+            border-radius: 10px; cursor: pointer;
+            transition: var(--transition); text-decoration: none;
+        }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,229,255,0.3); }
+        .cta-sub {
+            text-align: center; margin-top: 10px;
+            font-size: 0.78rem; color: var(--white-muted);
+        }
+        .cta-decline {
+            display: block; text-align: center; margin-top: 20px;
+            font-size: 0.82rem; color: var(--white-muted);
+            text-decoration: underline; opacity: 0.6;
+            transition: var(--transition);
+        }
+        .cta-decline:hover { opacity: 1; }
+
+        /* GUARANTEE */
+        .guarantee-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,230,118,0.15);
+            border-radius: var(--radius);
+            padding: 24px; text-align: center;
+            margin: 28px 0;
+        }
+        .guarantee-box .gi { font-size: 2rem; margin-bottom: 10px; }
+        .guarantee-box h3 { color: var(--green); font-size: 1rem; margin-bottom: 8px; }
+        .guarantee-box p { font-size: 0.85rem; color: var(--white-dim); }
+
+        /* FOOTER */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+        }
+        footer p { font-size: 0.72rem; color: var(--white-muted); margin-bottom: 6px; }
+        footer a { color: var(--white-muted); text-decoration: underline; }
+
+        @media (max-width: 500px) {
+            .payment-step { grid-template-columns: 60px 1fr; gap: 14px; }
+            .step-marker { width: 60px; height: 60px; }
+            .step-marker .amount { font-size: 1rem; }
+            .compare-cell { padding: 10px 12px; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+    <div class="container">
+        <span>Fast Track <em>GenAI</em></span>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO — EMPATHETIC RE-ENGAGEMENT
+     ══════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="container centered">
+        <div class="eyebrow">⏸️ Wait — Before You Go</div>
+        <h1>You Don't Need a Different Solution.<br>You May Just Need <span class="accent">an Easier Way In.</span></h1>
+        <p class="subtitle">
+            If the only reason you're hesitating is that $197 all at once doesn't feel ideal today — we have a flexible option that gives you <strong>everything, immediately</strong>.
+        </p>
+    </div>
+</section>
+
+<!-- EMPATHY BLOCK -->
+<section style="padding: 0 0 40px;">
+    <div class="container">
+        <div class="empathy-block">
+            <p>We get it. You just invested in the Business Launchpad. Adding $197 on top might feel like a lot in one sitting.</p>
+            <p>But here's what we don't want to happen: <strong>you go back to your Launchpad strategy and realize you have no execution system to actually move on it.</strong></p>
+            <p>So instead of asking you to skip the execution engine entirely, here's a way to step into it on your terms:</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     PAYMENT TIMELINE
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="centered">3 Simple Payments. <span class="accent">Full Access Today.</span></h2>
+
+        <div class="payment-timeline">
+            <div class="payment-step">
+                <div class="step-marker today">
+                    <div class="amount">$77</div>
+                    <div class="when">Today</div>
+                </div>
+                <div class="step-detail">
+                    <h3>Immediate Full Access</h3>
+                    <p>All 7 agents unlocked instantly. Not partial access. Not a stripped-down version. The entire execution engine — today.</p>
+                    <span class="highlight">✓ Full access starts now</span>
+                </div>
+            </div>
+
+            <div class="payment-step">
+                <div class="step-marker">
+                    <div class="amount">$77</div>
+                    <div class="when">Day 30</div>
+                </div>
+                <div class="step-detail">
+                    <h3>You're Already Getting Results</h3>
+                    <p>By now you've converted strategies into concrete plans, built financial projections, and solved productivity-blocking problems. The system is working before your second payment.</p>
+                </div>
+            </div>
+
+            <div class="payment-step">
+                <div class="step-marker">
+                    <div class="amount">$77</div>
+                    <div class="when">Day 60</div>
+                </div>
+                <div class="step-detail">
+                    <h3>Final Payment — Lifetime Access</h3>
+                    <p>After your third payment, you own the Workforce Suite permanently. No more payments, no subscriptions, no renewals. It's yours forever.</p>
+                    <span class="highlight">✓ Lifetime ownership complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     COMPARISON: ONE-TIME vs FLEX PAY
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="centered">Two Ways to <span class="accent">Same Full Access</span></h2>
+
+        <div class="compare-box">
+            <div class="compare-row header">
+                <div class="compare-cell">One-Time Payment <span class="recommended">Best Value</span></div>
+                <div class="compare-cell">Flex Pay (3 Payments)</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell"><span class="val">$197</span> one-time</div>
+                <div class="compare-cell"><span class="val">$77</span> × 3 = $231 total</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">Save $34</div>
+                <div class="compare-cell">Spread over 60 days</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">Full access immediately</div>
+                <div class="compare-cell">Full access immediately</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">All 7 agents + bonus</div>
+                <div class="compare-cell">All 7 agents + bonus</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">Lifetime access</div>
+                <div class="compare-cell">Lifetime access</div>
+            </div>
+        </div>
+
+        <p style="text-align:center; font-size:0.85rem; color:var(--white-muted); margin-top:16px;">
+            Both options give you identical access. The only difference is <strong style="color:var(--white)">when you pay</strong>, not <em>what you get</em>.
+        </p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     WHAT YOU GET + RESULTS PREVIEW
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <div class="value-checklist">
+            <div class="vc-title">Included — Full Access From Today</div>
+            <div class="vc-item"><span class="check">✓</span> Strategy Master AI Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> Project Execution Planner Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> Daily Scheduler Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> Financial Advisor Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> Problem Solving Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> Business Plan Builder Agent ($97 value)</div>
+            <div class="vc-item"><span class="check">✓</span> 🎁 Style Guide Wizard — Bonus ($149 value)</div>
+        </div>
+
+        <div class="results-box">
+            <div class="rb-title">By Your Second Payment (Day 30), You Can Already:</div>
+            <ul class="results-list">
+                <li>Convert Launchpad strategies into concrete project plans with milestones</li>
+                <li>Build financial projections for new opportunities and existing operations</li>
+                <li>Solve productivity-blocking problems with root-cause analysis</li>
+                <li>Maintain consistent daily priorities without decision fatigue</li>
+                <li>Generate investor-ready business plans and pitch decks</li>
+            </ul>
+        </div>
+
+        <p style="text-align:center; font-size:0.9rem; color:var(--white-dim); margin-top:20px;">
+            In other words, the system can already be helping you move <strong style="color:var(--cyan)">before you're even done paying for it</strong>.
+        </p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     CTA + GUARANTEE
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <div class="cta-box">
+            <h2>Start With <span class="accent">Just $77 Today</span></h2>
+            <p style="font-size:0.9rem; color:var(--white-dim); margin-bottom:24px;">
+                Full access to all 7 agents + bonus. Three easy payments. Zero restrictions.
+            </p>
+
+            <a href="#" class="cta-primary">YES! Give Me the 3-Pay Option — Just $77 Today →</a>
+            <p class="cta-sub">Then $77 in 30 days, and $77 in 60 days &nbsp;•&nbsp; Total: $231</p>
+        </div>
+
+        <div class="guarantee-box">
+            <div class="gi">🛡️</div>
+            <h3>30-Day Money-Back Guarantee</h3>
+            <p>Your guarantee covers the full first payment period. If you're not satisfied within 30 days, we'll refund your first payment and cancel the remaining two. No questions asked.</p>
+        </div>
+
+        <div style="text-align:center; margin-top:8px;">
+            <span style="font-size:0.75rem; color:var(--white-muted);">🔒 256-bit SSL &nbsp;•&nbsp; ⚡ Instant Access &nbsp;•&nbsp; 📱 All Devices</span>
+        </div>
+
+        <a href="#" class="cta-decline">No thanks, I'll handle execution myself.</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>© 2025 Fast Track GenAI. All rights reserved.</p>
+        <p>Contact: Dave Kunzelman — mail@fasttrackgenai.com</p>
+        <p><a href="#">Terms & Conditions</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

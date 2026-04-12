@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Accelerator — The Execution Engine | Fast Track GenAI</title>
+    <style>
+        /* ═══════════════════════════════════════════
+           DESIGN TOKENS
+           ═══════════════════════════════════════════ */
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2338;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+            --green: #00e676;
+            --gold: #ffd740;
+            --red-soft: #ff5252;
+            --orange: #ff9100;
+            --white: #f0f4f8;
+            --white-dim: #b0bec5;
+            --white-muted: #78909c;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w: 760px;
+            --radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 56px 0; }
+
+        /* LOGO BAR */
+        .logo-bar {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .logo-bar span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+        .logo-bar span em { font-style: normal; color: var(--white); opacity: 0.7; }
+
+        /* ORDER STATUS BAR */
+        .order-status {
+            background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(0,229,255,0.02));
+            border-bottom: 1px solid rgba(0,229,255,0.15);
+            padding: 14px 0;
+            text-align: center;
+        }
+        .order-status p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+        .order-status p span { color: var(--green); }
+
+        /* HERO */
+        .hero { padding: 60px 0 40px; text-align: center; }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: var(--cyan-glow);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        h1 .accent { color: var(--cyan); }
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--white-dim);
+            max-width: 620px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+        .subtitle strong { color: var(--white); }
+
+        /* VIDEO PLACEHOLDER */
+        .vsl-wrapper {
+            background: #000;
+            border-radius: var(--radius);
+            border: 1px solid rgba(0,229,255,0.15);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .vsl-wrapper .play-btn {
+            width: 72px; height: 72px;
+            background: rgba(0,229,255,0.2);
+            border: 2px solid var(--cyan);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .vsl-wrapper .play-btn:hover { background: rgba(0,229,255,0.35); transform: scale(1.08); }
+        .play-btn svg { width: 28px; height: 28px; fill: var(--cyan); margin-left: 4px; }
+        .vsl-caption {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--white-muted);
+            margin-bottom: 32px;
+        }
+
+        /* SECTION HEADERS */
+        h2 {
+            font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+        h2 .accent { color: var(--cyan); }
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+        .section-lead {
+            font-size: 1rem;
+            color: var(--white-dim);
+            margin-bottom: 32px;
+            max-width: 620px;
+        }
+        .centered { text-align: center; }
+        .centered .section-lead { margin-left: auto; margin-right: auto; }
+
+        /* DIVIDER */
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--cyan);
+            border-radius: 2px;
+            margin: 48px auto;
+            opacity: 0.5;
+        }
+
+        /* BRIDGE SECTION */
+        .bridge-visual {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .bridge-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+        }
+        .bridge-box.strategy { border-color: rgba(0,229,255,0.2); }
+        .bridge-box.execution { border-color: rgba(0,230,118,0.3); background: linear-gradient(135deg, var(--bg-card), rgba(0,230,118,0.05)); }
+        .bridge-box .label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white-muted);
+            margin-bottom: 8px;
+        }
+        .bridge-box .title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .bridge-box .price { font-size: 0.85rem; color: var(--cyan-dim); margin-top: 4px; }
+        .bridge-arrow {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            animation: pulse-right 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-right {
+            0%, 100% { transform: translateX(0); opacity: 0.6; }
+            50% { transform: translateX(4px); opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            .bridge-visual { grid-template-columns: 1fr; gap: 12px; }
+            .bridge-arrow { transform: rotate(90deg); margin: 0 auto; }
+        }
+
+        /* OUTCOME CARDS */
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .outcome-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--cyan);
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+        .outcome-card:hover::before { opacity: 1; }
+        .outcome-card:hover { border-color: rgba(0,229,255,0.15); }
+        .outcome-card .agent-name {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan-dim);
+            margin-bottom: 6px;
+        }
+        .outcome-card h3 {
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .outcome-card .pain {
+            font-size: 0.88rem;
+            color: var(--white-muted);
+            font-style: italic;
+            margin-bottom: 12px;
+            padding-left: 14px;
+            border-left: 2px solid rgba(255,82,82,0.3);
+        }
+        .outcome-card .outcome {
+            font-size: 0.92rem;
+            color: var(--white-dim);
+        }
+        .outcome-card .outcome strong { color: var(--green); font-weight: 600; }
+
+        /* VISUAL PROOF STRIP */
+        .proof-strip {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,229,255,0.1);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 32px 0;
+        }
+        .proof-strip .proof-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan-dim);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .proof-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(0,229,255,0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(0,229,255,0.06);
+        }
+        .proof-item .metric {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--cyan);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .proof-item .metric-label {
+            font-size: 0.78rem;
+            color: var(--white-muted);
+        }
+        .proof-item .metric-source {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.25);
+            margin-top: 4px;
+        }
+
+        /* TRANSFORMATION TABLE */
+        .transform-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        .transform-table thead th {
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-bottom: 2px solid rgba(0,229,255,0.2);
+        }
+        .transform-table thead th:first-child { color: var(--red-soft); }
+        .transform-table thead th:last-child { color: var(--green); }
+        .transform-table tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+        }
+        .transform-table tbody td:first-child { color: var(--white-muted); }
+        .transform-table tbody td:last-child { color: var(--white-dim); }
+        .transform-table tbody td:last-child strong { color: var(--green); }
+        @media (max-width: 500px) {
+            .transform-table { font-size: 0.82rem; }
+            .transform-table thead th, .transform-table tbody td { padding: 10px 8px; }
+        }
+
+        /* INSIDE THE TOOL */
+        .tool-preview {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,229,255,0.12);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin: 28px 0;
+        }
+        .tool-preview-header {
+            background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(0,229,255,0.02));
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(0,229,255,0.1);
+        }
+        .tool-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .tool-dot.red { background: #ff5f57; }
+        .tool-dot.yellow { background: #febc2e; }
+        .tool-dot.green { background: #28c840; }
+        .tool-preview-title {
+            font-size: 0.78rem;
+            color: var(--white-muted);
+            margin-left: 8px;
+        }
+        .tool-preview-body {
+            padding: 20px;
+        }
+        .tool-preview-body .tool-prompt {
+            background: rgba(0,229,255,0.05);
+            border-left: 3px solid var(--cyan);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            color: var(--white-dim);
+        }
+        .tool-preview-body .tool-prompt .tag {
+            font-size: 0.68rem;
+            color: var(--cyan-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .tool-preview-body .tool-response {
+            background: rgba(0,230,118,0.04);
+            border-left: 3px solid var(--green);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: var(--white-dim);
+        }
+        .tool-preview-body .tool-response .tag {
+            font-size: 0.68rem;
+            color: var(--green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .tool-response ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tool-response ul li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .tool-response ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* TESTIMONIALS */
+        .testimonial {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .testimonial .quote {
+            font-size: 0.95rem;
+            color: var(--white-dim);
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .testimonial .author {
+            font-size: 0.82rem;
+            color: var(--cyan-dim);
+            font-weight: 600;
+        }
+        .testimonial .role {
+            font-size: 0.75rem;
+            color: var(--white-muted);
+        }
+        .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 10px; }
+
+        /* PRICING */
+        .pricing-section { padding: 56px 0; }
+        .pricing-box {
+            background: linear-gradient(135deg, var(--bg-card), rgba(0,229,255,0.04));
+            border: 2px solid rgba(0,229,255,0.25);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dim));
+            color: var(--bg-primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .price-original {
+            font-size: 1.2rem;
+            color: var(--white-muted);
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+        .price-current {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .price-current .dollar { font-size: 0.5em; vertical-align: super; }
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        /* VALUE STACK */
+        .value-stack {
+            text-align: left;
+            margin: 24px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .value-stack .vs-title {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan-dim);
+            margin-bottom: 12px;
+        }
+        .value-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.88rem;
+        }
+        .value-item:last-child { border-bottom: none; }
+        .value-item .name { color: var(--white-dim); }
+        .value-item .val { color: var(--white-muted); font-weight: 600; }
+        .value-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 0;
+            margin-top: 8px;
+            border-top: 2px solid rgba(0,229,255,0.2);
+            font-weight: 800;
+        }
+        .value-total .val { color: var(--cyan); font-size: 1.1rem; }
+
+        /* CTA BUTTONS */
+        .cta-primary {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dim));
+            color: var(--bg-primary);
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,229,255,0.3); }
+        .cta-sub {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: var(--white-muted);
+        }
+        .cta-decline {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.82rem;
+            color: var(--white-muted);
+            text-decoration: underline;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .cta-decline:hover { opacity: 1; color: var(--white-dim); }
+
+        /* GUARANTEE */
+        .guarantee-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,230,118,0.15);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .guarantee-icon { font-size: 2.2rem; margin-bottom: 12px; }
+        .guarantee-box h3 { color: var(--green); margin-bottom: 10px; }
+        .guarantee-box p { font-size: 0.9rem; color: var(--white-dim); }
+
+        /* FAQ */
+        .faq-section { padding: 48px 0; }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 20px 0;
+        }
+        .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.06); }
+        .faq-q {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .faq-q .toggle {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+        .faq-a .inner {
+            padding-top: 14px;
+            font-size: 0.88rem;
+            color: var(--white-dim);
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-a { max-height: 500px; }
+        .faq-item.open .toggle { transform: rotate(45deg); }
+
+        /* URGENCY BAR */
+        .urgency-bar {
+            background: linear-gradient(135deg, rgba(255,145,0,0.12), rgba(255,82,82,0.08));
+            border: 1px solid rgba(255,145,0,0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .urgency-bar p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--orange);
+        }
+
+        /* SECURITY BADGES */
+        .security-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .security-badge {
+            font-size: 0.72rem;
+            color: var(--white-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .security-badge .icon { font-size: 0.9rem; }
+
+        /* FOOTER */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+        }
+        footer p { font-size: 0.72rem; color: var(--white-muted); margin-bottom: 6px; }
+        footer a { color: var(--white-muted); text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+    <div class="container">
+        <span>Fast Track <em>GenAI</em></span>
+    </div>
+</div>
+
+<!-- ORDER STATUS BAR -->
+<div class="order-status">
+    <div class="container">
+        <p>✅ Business Launchpad — <span>Confirmed</span> &nbsp;|&nbsp; Step 2 of 3</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1: BRIDGE — STRATEGY → EXECUTION
+     ══════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="container centered">
+        <div class="eyebrow">🚀 Special Offer — This Page Only</div>
+        <h1>You Got the Strategy.<br><span class="accent">Now Get the Execution Engine.</span></h1>
+        <p class="subtitle">
+            Business Launchpad showed you <strong>what to build</strong>. Business Accelerator helps you turn that strategy into <strong>projects, priorities, and daily execution</strong> with the Workforce Suite.
+        </p>
+
+        <!-- VSL Video Embed -->
+        <div class="vsl-wrapper">
+            <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+            </div>
+        </div>
+        <p class="vsl-caption">🔊 Turn on sound — 4 min overview</p>
+
+        <!-- Strategy → Execution Bridge Visual -->
+        <div class="bridge-visual">
+            <div class="bridge-box strategy">
+                <div class="label">✅ You Have This</div>
+                <div class="title">Business Launchpad</div>
+                <div class="price">Strategy & Blueprint — $37</div>
+            </div>
+            <div class="bridge-arrow">→</div>
+            <div class="bridge-box execution">
+                <div class="label">🔓 Add This Now</div>
+                <div class="title">Business Accelerator</div>
+                <div class="price">Execution Engine — $197</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2: THE GAP — OUTCOME-FOCUSED
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="centered">Strategy Alone <span class="accent">Doesn't Move the Business</span></h2>
+        <p class="section-lead centered">
+            You have the blueprint. But without an execution system, strategy becomes a document that sits in a folder. Here's the gap most founders hit right after planning:
+        </p>
+
+        <table class="transform-table">
+            <thead>
+                <tr>
+                    <th>❌ Strategy Without Execution</th>
+                    <th>✅ Strategy + Accelerator</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Business plan exists but nothing gets scheduled</td>
+                    <td><strong>Plan auto-converts</strong> into daily task priorities</td>
+                </tr>
+                <tr>
+                    <td>Financial projections sit in a spreadsheet</td>
+                    <td><strong>Cash flow modeled</strong> and profit leaks flagged weekly</td>
+                </tr>
+                <tr>
+                    <td>Strategic ideas pile up with no project structure</td>
+                    <td><strong>Goals decomposed</strong> into milestones, dependencies, and deadlines</td>
+                </tr>
+                <tr>
+                    <td>You're the bottleneck for every decision</td>
+                    <td><strong>AI agents handle</strong> analysis, scheduling, and problem-solving</td>
+                </tr>
+                <tr>
+                    <td>Brand voice inconsistent across outputs</td>
+                    <td><strong>Style Guide Wizard</strong> enforces your voice across all AI work</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="text-align:center; font-size: 0.88rem; color: var(--white-muted); margin-top: 16px;">
+            Think of Launchpad as the <strong style="color:var(--cyan)">architect</strong>. It gave you the blueprint.<br>
+            Business Accelerator is the <strong style="color:var(--green)">execution engine</strong> that builds it.
+        </p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3: THE 7 AGENTS — OUTCOME-FIRST
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="centered">7 AI Agents. <span class="accent">7 Execution Outcomes.</span></h2>
+        <p class="section-lead centered">
+            Each agent solves a specific execution bottleneck. Not features — results you can measure in your first week.
+        </p>
+
+        <div class="outcome-grid">
+            <div class="outcome-card">
+                <div class="agent-name">Agent 01 — Strategy Master</div>
+                <h3>Turn Uncertainty Into Confident Next Moves</h3>
+                <div class="pain">"I've got three options and no idea which one to pursue first."</div>
+                <div class="outcome">Get data-driven strategic guidance on demand. <strong>Decision-making goes from days to minutes.</strong></div>
+            </div>
+
+            <div class="outcome-card">
+                <div class="agent-name">Agent 02 — Project Execution Planner</div>
+                <h3>Transform Big Goals Into Actionable Roadmaps</h3>
+                <div class="pain">"I have a massive goal but no idea where to even start."</div>
+                <div class="outcome">Goals decompose into milestones, dependencies, and deliverables. <strong>Your first 90-day plan built in one session.</strong></div>
+            </div>
+
+            <div class="outcome-card">
+                <div class="agent-name">Agent 03 — Daily Scheduler</div>
+                <h3>Stop Letting Urgent Tasks Crowd Out Important Ones</h3>
+                <div class="pain">"I end every day exhausted but feel like I made zero progress."</div>
+                <div class="outcome">AI-powered chief of staff that prioritizes what matters. <strong>Reclaim 2+ hours of focused work daily.</strong></div>
+            </div>
+
+            <div class="outcome-card">
+                <div class="agent-name">Agent 04 — Financial Advisor</div>
+                <h3>See Where Your Money Goes Before It Disappears</h3>
+                <div class="pain">"I know I should track finances but don't have a CFO budget."</div>
+                <div class="outcome">Cash flow forecasting, profit leak identification, and scenario modeling. <strong>CFO-level insight without the six-figure salary.</strong></div>
+            </div>
+
+            <div class="outcome-card">
+                <div class="agent-name">Agent 05 — Problem Solver</div>
+                <h3>Stop Spinning Wheels on Problems Already Solved</h3>
+                <div class="pain">"I keep hitting the same roadblocks and wasting weeks figuring them out."</div>
+                <div class="outcome">Root cause analysis, solution generation, and option stress-testing. <strong>Problems that took weeks now solved in a conversation.</strong></div>
+            </div>
+
+            <div class="outcome-card">
+                <div class="agent-name">Agent 06 — Business Plan Builder</div>
+                <h3>Create Investor-Ready Documents in Hours, Not Months</h3>
+                <div class="pain">"I need professional business plans but can't afford a consultant."</div>
+                <div class="outcome">Comprehensive business plans, pitch decks, and strategic docs. <strong>First draft produced in under 2 hours.</strong></div>
+            </div>
+
+            <div class="outcome-card" style="border-color: rgba(255,215,64,0.15); background: linear-gradient(135deg, var(--bg-card), rgba(255,215,64,0.03));">
+                <div class="agent-name" style="color: var(--gold);">🎁 Bonus — Style Guide Wizard</div>
+                <h3>Every AI Output Sounds Authentically You</h3>
+                <div class="pain">"My AI content sounds generic and nothing like my actual brand."</div>
+                <div class="outcome">Brand voice enforcer that ensures consistency across all outputs. <strong>Never edit AI copy for tone again.</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     INSIDE THE TOOL — VISUAL PROOF
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="centered">Inside the <span class="accent">Execution Engine</span></h2>
+        <p class="section-lead centered">
+            Here's what it actually looks like when you hand off execution to your AI Workforce:
+        </p>
+
+        <!-- Tool Preview 1: Project Planner -->
+        <div class="tool-preview">
+            <div class="tool-preview-header">
+                <span class="tool-dot red"></span>
+                <span class="tool-dot yellow"></span>
+                <span class="tool-dot green"></span>
+                <span class="tool-preview-title">Project Execution Planner Agent — Active Session</span>
+            </div>
+            <div class="tool-preview-body">
+                <div class="tool-prompt">
+                    <div class="tag">Your Input</div>
+                    "I want to launch a SaaS product for small business invoicing. I have the concept validated. Break this into an execution plan I can start this week."
+                </div>
+                <div class="tool-response">
+                    <div class="tag">Agent Output</div>
+                    <ul>
+                        <li>Phase 1 (Week 1-2): MVP scope definition — 5 core features identified, tech stack recommended</li>
+                        <li>Phase 2 (Week 3-4): Landing page + waitlist — conversion copy drafted, email sequence mapped</li>
+                        <li>Phase 3 (Month 2): Beta launch — 12 milestone checkpoints with dependency tracking</li>
+                        <li>Phase 4 (Month 3): Revenue model — pricing tiers validated against 3 market scenarios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool Preview 2: Financial Advisor -->
+        <div class="tool-preview">
+            <div class="tool-preview-header">
+                <span class="tool-dot red"></span>
+                <span class="tool-dot yellow"></span>
+                <span class="tool-dot green"></span>
+                <span class="tool-preview-title">Financial Advisor Agent — Active Session</span>
+            </div>
+            <div class="tool-preview-body">
+                <div class="tool-prompt">
+                    <div class="tag">Your Input</div>
+                    "Here's my monthly spend and revenue. Where am I leaking money and what's my runway at current burn rate?"
+                </div>
+                <div class="tool-response">
+                    <div class="tag">Agent Output</div>
+                    <ul>
+                        <li>Identified 3 redundant SaaS subscriptions totaling $340/mo in savings</li>
+                        <li>Cash flow forecast: 8.2 months runway at current rate, 14.1 months with recommended cuts</li>
+                        <li>Revenue gap analysis: $2,100/mo needed from next product tier to reach break-even</li>
+                        <li>Scenario model: Conservative vs. aggressive growth paths with quarterly milestones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     PROOF ELEMENTS — BENCHMARKS & TESTIMONIALS
+     ══════════════════════════════════════════════ -->
+<section>
+    <div class="container">
+        <div class="proof-strip">
+            <div class="proof-label">Nielsen Norman & Industry Benchmarks</div>
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <div class="metric">40%</div>
+                    <div class="metric-label">Faster Task Completion</div>
+                    <div class="metric-source">Nielsen Norman Group, 2024</div>
+                </div>
+                <div class="proof-item">
+                    <div class="metric">18%</div>
+                    <div class="metric-label">Higher Output Quality</div>
+                    <div class="metric-source">Nielsen Norman Group, 2024</div>
+                </div>
+                <div class="proof-item">
+                    <div class="metric">59%</div>
+                    <div class="metric-label">More Docs Per Hour</div>
+                    <div class="metric-source">MIT Sloan Working Paper</div>
+                </div>
+                <div class="proof-item">
+                    <div class="metric">4hrs→15m</div>
+                    <div class="metric-label">With Agent Architecture</div>
+                    <div class="metric-source">Harvard Business Review</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="centered" style="margin-top:40px;">What Builders Are <span class="accent">Actually Saying</span></h2>
+
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"David's methodology transformed my AI use from basic tasks to complex marketing automation with measurable ROI improvements. The structured agent approach changed everything about how I operate."</div>
+            <div class="author">Shahzaib Tariq</div>
+            <div class="role">Social Media Marketing Manager</div>
+        </div>
+
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"AI integration into development workflows has increased our productivity 300%. His guidance has multiplied the speed and quality of what I can deliver to clients."</div>
+            <div class="author">Hamad Imran</div>
+            <div class="role">GHL Expert &amp; Web Developer</div>
+        </div>
+
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"Enabled rapid concept iteration and stress-testing of business ideas through structured AI guidance. What used to take weeks of second-guessing now happens in one focused session."</div>
+            <div class="author">Sonali</div>
+            <div class="role">Startup Founder</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     PRICING & CTA
+     ══════════════════════════════════════════════ -->
+<section class="pricing-section">
+    <div class="container">
+        <h2 class="centered">Add the Complete <span class="accent">Workforce Suite</span></h2>
+
+        <div class="pricing-box">
+            <div class="pricing-badge">One-Time Investment</div>
+            <p class="price-original">$497</p>
+            <p class="price-current"><span class="dollar">$</span>197</p>
+            <p class="price-note">You're saving $300 today</p>
+
+            <div class="value-stack">
+                <div class="vs-title">Everything Included</div>
+                <div class="value-item">
+                    <span class="name">Strategy Master AI Agent</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">Project Execution Planner</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">Daily Scheduler Agent</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">Financial Advisor Agent</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">Problem Solving Agent</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">Business Plan Builder</span>
+                    <span class="val">$97</span>
+                </div>
+                <div class="value-item">
+                    <span class="name">🎁 Style Guide Wizard (Bonus)</span>
+                    <span class="val">$149</span>
+                </div>
+                <div class="value-total">
+                    <span class="name">Total Value</span>
+                    <span class="val">$731</span>
+                </div>
+            </div>
+
+            <a href="#" class="cta-primary">YES! Add Business Accelerator for Just $197 →</a>
+            <p class="cta-sub">🔒 256-bit SSL encryption &nbsp;•&nbsp; Instant access &nbsp;•&nbsp; One-time payment</p>
+        </div>
+
+        <div class="urgency-bar">
+            <p>⚡ This offer is available only on this page. If you leave, this specific pricing disappears.</p>
+        </div>
+
+        <!-- Guarantee -->
+        <div class="guarantee-box">
+            <div class="guarantee-icon">🛡️</div>
+            <h3>30-Day Unconditional Money-Back Guarantee</h3>
+            <p>Use the entire Workforce Suite for 30 days. If you don't feel like you've gained back at least 10× the investment in time saved, email us for a complete refund. No questions. No hoops. No hard feelings.</p>
+        </div>
+
+        <div class="security-row">
+            <span class="security-badge"><span class="icon">🔒</span> 256-bit SSL</span>
+            <span class="security-badge"><span class="icon">⚡</span> Instant Delivery</span>
+            <span class="security-badge"><span class="icon">💳</span> One-Time Payment</span>
+            <span class="security-badge"><span class="icon">📱</span> All Devices</span>
+        </div>
+
+        <a href="#" class="cta-decline">No thanks, I'll handle execution myself. Take me to my purchase.</a>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     FAQ SECTION
+     ══════════════════════════════════════════════ -->
+<section class="faq-section">
+    <div class="container">
+        <h2 class="centered"><span class="accent">Questions?</span> We've Got Answers.</h2>
+        <p class="section-lead centered" style="margin-bottom:32px;">
+            If you're wondering whether the Workforce Suite is right for you, these should help:
+        </p>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I already bought the Launchpad. Why do I need this too?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                The Launchpad gives you the blueprint — it tells you <em>what</em> to build and <em>why</em>. The Workforce Suite gives you the execution engine — it helps you actually <em>do</em> the work. Strategy without execution is a document in a folder. This turns that document into daily actions, financial projections, and project milestones.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Is $197 worth it if I'm just getting started?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                That's actually the <em>best</em> time to get it. Early-stage founders waste the most time on execution bottlenecks — manually scheduling, guessing on finances, and struggling to turn ideas into plans. The Workforce Suite handles all of that from day one. One financial insight that catches a profit leak or one project plan that saves you a month of misdirection pays for itself many times over.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Do the agents work for my specific industry?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                Yes. These agents are designed around universal business functions — strategy, project management, scheduling, finance, problem-solving, and planning. Whether you're in SaaS, consulting, e-commerce, real estate, or creative services, the agents adapt to your context. Plus, the Style Guide Wizard ensures all output matches your brand and industry terminology.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Do I need technical skills to use these agents?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                No. Each agent is built to accept natural-language instructions — you type what you need in plain English, and the agent delivers structured output. If you can have a conversation, you can use these agents. No coding, no prompting expertise, no technical setup required.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>What if it doesn't work for me?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                You're covered by our 30-Day Unconditional Money-Back Guarantee. Use the entire Workforce Suite for a full month. If you don't feel like you've gained back at least 10× the investment in time saved, email us for a complete refund. No questions, no hoops, no hard feelings.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Can I buy this later if I change my mind?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                This pricing is only available on this page, right now. If you leave and come back, the Workforce Suite will be available at its regular price of $497. The $300 savings and the bonus Style Guide Wizard are exclusive to this one-time offer.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>How quickly can I start getting results?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                Access is instant. Most users generate their first actionable output within 15 minutes — whether that's a project plan, a daily schedule, or a financial projection. Your Launchpad strategy gives you the context; the Workforce agents turn that context into execution immediately.
+            </div></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Is this a subscription or a one-time payment?</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-a"><div class="inner">
+                One-time payment. You pay $197 today and get lifetime access to all 7 agents plus the bonus Style Guide Wizard. No recurring charges, no hidden fees, no surprise renewals. It's yours to keep.
+            </div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="padding: 40px 0 56px;">
+    <div class="container centered">
+        <h2>Ready to Turn Strategy Into <span class="accent">Execution?</span></h2>
+        <p class="section-lead centered" style="margin-bottom:24px;">
+            You've already got the blueprint. Now add the engine that makes it real.
+        </p>
+        <a href="#" class="cta-primary" style="max-width:500px; margin: 0 auto;">YES! Add Business Accelerator for Just $197 →</a>
+        <p class="cta-sub">🛡️ 30-Day Money-Back Guarantee &nbsp;•&nbsp; Instant Access &nbsp;•&nbsp; One-Time Payment</p>
+        <a href="#" class="cta-decline">No thanks, I'll handle execution myself.</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>© 2025 Fast Track GenAI. All rights reserved.</p>
+        <p>Contact: Dave Kunzelman — mail@fasttrackgenai.com</p>
+        <p><a href="#">Terms & Conditions</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+        <p style="margin-top:12px; font-size:0.65rem; max-width:500px; margin-left:auto; margin-right:auto;">
+            Results vary based on individual effort, industry, and implementation. Testimonials reflect individual experiences and are not guaranteed outcomes. AI tools enhance productivity but do not replace professional judgment.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

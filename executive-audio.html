@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Audio — Learn While You Move | Fast Track GenAI</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2338;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+            --green: #00e676;
+            --gold: #ffd740;
+            --orange: #ff9100;
+            --purple: #b388ff;
+            --purple-dim: #7c4dff;
+            --purple-glow: rgba(179, 136, 255, 0.12);
+            --red-soft: #ff5252;
+            --white: #f0f4f8;
+            --white-dim: #b0bec5;
+            --white-muted: #78909c;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w: 760px;
+            --radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 56px 0; }
+
+        /* LOGO BAR */
+        .logo-bar {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .logo-bar span { font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+        .logo-bar span em { font-style: normal; color: var(--white); opacity: 0.7; }
+
+        /* HERO */
+        .hero { padding: 60px 0 20px; text-align: center; }
+        .eyebrow {
+            display: inline-block; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--orange); background: rgba(255,145,0,0.1);
+            padding: 6px 18px; border-radius: 100px; margin-bottom: 20px;
+        }
+        h1 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 800; line-height: 1.2; color: var(--white); margin-bottom: 16px; }
+        h1 .accent { color: var(--cyan); }
+        .subtitle { font-size: clamp(1rem, 2.5vw, 1.1rem); color: var(--white-dim); max-width: 600px; margin: 0 auto 28px; line-height: 1.6; }
+        .subtitle strong { color: var(--white); }
+        h2 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); font-weight: 800; line-height: 1.25; margin-bottom: 16px; }
+        h2 .accent { color: var(--cyan); }
+        h3 { font-size: 1.05rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+        .section-lead { font-size: 1rem; color: var(--white-dim); margin-bottom: 32px; max-width: 620px; }
+        .centered { text-align: center; }
+        .centered .section-lead { margin-left: auto; margin-right: auto; }
+        .divider { width: 60px; height: 3px; background: var(--cyan); border-radius: 2px; margin: 48px auto; opacity: 0.4; }
+
+        /* CONTEXT BRIDGE */
+        .context-bridge {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .context-bridge p { font-size: 1rem; color: var(--white-dim); line-height: 1.7; }
+        .context-bridge strong { color: var(--white); }
+
+        /* AUDIO VISUAL */
+        .audio-hero {
+            background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(179,136,255,0.03));
+            border: 1px solid rgba(0,229,255,0.12);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .audio-icon {
+            width: 80px; height: 80px;
+            background: rgba(0,229,255,0.08);
+            border: 2px solid rgba(0,229,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.2rem;
+        }
+        .audio-tagline {
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--cyan); margin-bottom: 8px;
+        }
+        .audio-sub { font-size: 0.95rem; color: var(--white-dim); }
+
+        /* WHEN GRID */
+        .when-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; margin: 32px 0;
+        }
+        @media (max-width: 550px) { .when-grid { grid-template-columns: 1fr; } }
+        .when-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px; text-align: center;
+        }
+        .when-card .emoji { font-size: 2rem; margin-bottom: 10px; }
+        .when-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .when-card p { font-size: 0.82rem; color: var(--white-muted); }
+
+        /* CONTENT LIST */
+        .content-section { margin: 32px 0; }
+        .content-block {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .content-block h4 {
+            font-size: 1rem; font-weight: 700; color: var(--cyan);
+            margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+        }
+        .content-block h4 .icon { font-size: 1.2rem; }
+        .content-block ul { list-style: none; }
+        .content-block ul li {
+            font-size: 0.9rem; color: var(--white-dim);
+            padding: 6px 0; padding-left: 18px; position: relative;
+        }
+        .content-block ul li::before {
+            content: '▸'; position: absolute; left: 0; color: var(--cyan-dim); font-size: 0.8rem;
+        }
+
+        /* TWO PATHS */
+        .paths-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin: 32px 0;
+        }
+        @media (max-width: 550px) { .paths-grid { grid-template-columns: 1fr; } }
+        .path-card {
+            border-radius: var(--radius); padding: 24px;
+        }
+        .path-card.without {
+            background: var(--bg-card); border: 1px solid rgba(255,82,82,0.12);
+        }
+        .path-card.with {
+            background: linear-gradient(135deg, var(--bg-card), rgba(0,229,255,0.03));
+            border: 1px solid rgba(0,229,255,0.15);
+        }
+        .path-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 12px;
+        }
+        .path-card.without .path-label { color: var(--red-soft); }
+        .path-card.with .path-label { color: var(--cyan); }
+        .path-card ul { list-style: none; }
+        .path-card ul li {
+            font-size: 0.88rem; color: var(--white-dim);
+            padding: 5px 0; display: flex; align-items: flex-start; gap: 8px;
+        }
+        .path-card ul li .sym { flex-shrink: 0; font-size: 0.8rem; margin-top: 2px; }
+        .path-card.without ul li .sym { color: var(--red-soft); }
+        .path-card.with ul li .sym { color: var(--green); }
+
+        /* PRICING BOX */
+        .pricing-box {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(179,136,255,0.04));
+            border: 2px solid rgba(0,229,255,0.2);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+        }
+        .price-original {
+            font-size: 1.1rem; color: var(--white-muted);
+            text-decoration: line-through; margin-bottom: 4px;
+        }
+        .price-current {
+            font-size: clamp(2.5rem, 7vw, 3.5rem);
+            font-weight: 900; color: var(--green); line-height: 1;
+            margin-bottom: 4px;
+        }
+        .price-type {
+            font-size: 0.9rem; color: var(--white-dim); margin-bottom: 24px;
+        }
+        .price-savings {
+            display: inline-block;
+            background: rgba(0,230,118,0.08);
+            border: 1px solid rgba(0,230,118,0.2);
+            color: var(--green);
+            font-size: 0.82rem; font-weight: 700;
+            padding: 6px 16px; border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        /* CTAs */
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--green), #00c853);
+            color: var(--bg-primary);
+            font-size: 1.05rem; font-weight: 800;
+            padding: 18px 44px; border-radius: 100px;
+            text-transform: uppercase; letter-spacing: 1px;
+            border: none; cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 24px rgba(0,230,118,0.25);
+            text-decoration: none;
+            width: 100%; max-width: 480px;
+        }
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,230,118,0.35);
+        }
+        .cta-sub {
+            display: block; margin-top: 8px;
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--white-muted);
+        }
+        .cta-decline {
+            display: block; margin-top: 20px;
+            font-size: 0.85rem; color: var(--white-muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .cta-decline:hover { color: var(--white-dim); }
+
+        /* GUARANTEE */
+        .guarantee-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,230,118,0.15);
+            border-radius: var(--radius);
+            padding: 24px; text-align: center;
+            margin: 32px 0;
+        }
+        .guarantee-box .shield { font-size: 1.8rem; margin-bottom: 8px; }
+        .guarantee-box h4 { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+        .guarantee-box p { font-size: 0.88rem; color: var(--white-dim); max-width: 480px; margin: 0 auto; }
+
+        /* NO-PRESSURE */
+        .no-pressure {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: var(--radius);
+            padding: 28px; text-align: center;
+            margin: 32px 0;
+        }
+        .no-pressure p { font-size: 0.95rem; color: var(--white-dim); line-height: 1.7; max-width: 540px; margin: 0 auto; }
+        .no-pressure strong { color: var(--white); }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 0; text-align: center;
+        }
+        footer p { font-size: 0.75rem; color: var(--white-muted); margin-bottom: 8px; }
+        footer a { color: var(--white-muted); }
+        footer a:hover { color: var(--cyan); }
+    </style>
+</head>
+<body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+    <div class="container">
+        <span>Fast Track <em>GenAI</em></span>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container centered">
+        <div class="eyebrow">Before You Go — One Last Thing</div>
+        <h1>Master Your AI Toolkit <span class="accent">Without Adding Another Thing</span> to Your Calendar</h1>
+        <p class="subtitle">
+            You may not be ready to join the Builders Club right now. <strong>And that's completely okay.</strong> 
+            But you still have tools that work better when you know how to sequence them.
+        </p>
+    </div>
+</section>
+
+<!-- CONTEXT BRIDGE -->
+<section style="padding: 0 0 16px;">
+    <div class="container">
+        <div class="context-bridge">
+            <p>
+                The difference between average results and strong results usually isn't access — 
+                it's knowing <strong>how to sequence the tools, manage handoffs, and catch quality issues early</strong>. 
+                Executive Audio gives you that knowledge in a format that doesn't steal more screen time.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- AUDIO HERO -->
+<section style="padding: 20px 0;">
+    <div class="container">
+        <div class="audio-hero">
+            <div class="audio-icon">🎧</div>
+            <div class="audio-tagline">Dead Time Becomes Growth Time</div>
+            <p class="audio-sub">Learn how to manage your AI tools while you commute, exercise, or do chores.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHEN TO LISTEN -->
+<section>
+    <div class="container centered">
+        <h2>Listen <span class="accent">Anywhere</span></h2>
+        <p class="section-lead">No extra screen time. No long training videos. Just plug in your earbuds.</p>
+        <div class="when-grid">
+            <div class="when-card">
+                <div class="emoji">🚗</div>
+                <h4>On Your Commute</h4>
+                <p>Turn drive time into implementation time</p>
+            </div>
+            <div class="when-card">
+                <div class="emoji">🏋️</div>
+                <h4>At the Gym</h4>
+                <p>Build muscle and business strategy simultaneously</p>
+            </div>
+            <div class="when-card">
+                <div class="emoji">🏠</div>
+                <h4>During Chores</h4>
+                <p>Absorb proven approaches while handling daily tasks</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT'S INCLUDED -->
+<section>
+    <div class="container centered">
+        <h2>What's <span class="accent">Inside</span></h2>
+        <p class="section-lead">Three audio programs designed to accelerate your implementation.</p>
+
+        <div class="content-section">
+            <div class="content-block">
+                <h4><span class="icon">📋</span> Executive Briefings — AI Management Training</h4>
+                <ul>
+                    <li>How to sequence agents for maximum impact</li>
+                    <li>Handoff protocols to maintain context across agents</li>
+                    <li>Quality control techniques to catch issues early</li>
+                    <li>Advanced prompting patterns for each agent type</li>
+                    <li>When to use which agent for different challenges</li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <h4><span class="icon">📖</span> Future-Proof Audiobook — AI Fundamentals</h4>
+                <ul>
+                    <li>Core concepts that won't expire with the next model update</li>
+                    <li>Frameworks for evaluating and adopting new AI tools</li>
+                    <li>Strategic thinking patterns for AI-augmented work</li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <h4><span class="icon">🎯</span> Master Prompt Creation Audiobook</h4>
+                <ul>
+                    <li>Consistent, high-quality prompt architecture</li>
+                    <li>Patterns that work across any AI model or agent</li>
+                    <li>Advanced techniques for complex multi-step outputs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TWO PATHS -->
+<section>
+    <div class="container centered">
+        <h2>Your Two Options</h2>
+        <div class="paths-grid">
+            <div class="path-card without">
+                <div class="path-label">Option A: Figure It Out</div>
+                <ul>
+                    <li><span class="sym">✕</span><span>Trial and error with tool sequencing</span></li>
+                    <li><span class="sym">✕</span><span>Inconsistent results from prompts</span></li>
+                    <li><span class="sym">✕</span><span>Context lost between agent handoffs</span></li>
+                    <li><span class="sym">✕</span><span>Quality issues caught too late</span></li>
+                </ul>
+            </div>
+            <div class="path-card with">
+                <div class="path-label">Option B: Plug In & Learn</div>
+                <ul>
+                    <li><span class="sym">✓</span><span>Proven sequencing strategies from day one</span></li>
+                    <li><span class="sym">✓</span><span>Consistent, reliable prompt architecture</span></li>
+                    <li><span class="sym">✓</span><span>Clean handoff protocols that preserve context</span></li>
+                    <li><span class="sym">✓</span><span>Quality control baked into your workflow</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section>
+    <div class="container">
+        <div class="pricing-box">
+            <p class="price-original">$97</p>
+            <div class="price-current">$27</div>
+            <p class="price-type">One-Time Payment — Instant Download</p>
+            <div class="price-savings">Save $70 — Available on This Page Only</div>
+
+            <a href="#" class="cta-primary">Yes! Add Executive Audio — $27 →</a>
+            <span class="cta-sub">One-time payment · Instant delivery · 30-day guarantee</span>
+            <a href="#" class="cta-decline">No thanks, I'll skip this and continue.</a>
+        </div>
+    </div>
+</section>
+
+<!-- GUARANTEE -->
+<section style="padding: 32px 0;">
+    <div class="container">
+        <div class="guarantee-box">
+            <div class="shield">🛡️</div>
+            <h4>30-Day Money-Back Guarantee</h4>
+            <p>
+                Audio files are delivered instantly. If you don't feel the content improves how you use your AI tools, 
+                email us within 30 days for a complete refund.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- NO PRESSURE -->
+<section style="padding: 0 0 48px;">
+    <div class="container">
+        <div class="no-pressure">
+            <p>
+                No membership. No extra screen time. No long training videos added to your calendar. 
+                <strong>Just practical knowledge you absorb during time you're already spending on something else.</strong>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p><a href="#">Terms & Conditions</a> · <a href="#">Privacy Policy</a></p>
+        <p>© 2026 Fast Track GenAI. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

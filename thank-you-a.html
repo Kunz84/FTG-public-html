@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Builders Club — Your Order Is Confirmed | Fast Track GenAI</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1a2338;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --cyan-glow-strong: rgba(0, 229, 255, 0.3);
+            --green: #00e676;
+            --gold: #ffd740;
+            --orange: #ff9100;
+            --purple: #b388ff;
+            --purple-dim: #7c4dff;
+            --purple-glow: rgba(179, 136, 255, 0.12);
+            --red-soft: #ff5252;
+            --white: #f0f4f8;
+            --white-dim: #b0bec5;
+            --white-muted: #78909c;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w: 760px;
+            --radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 56px 0; }
+
+        /* LOGO BAR */
+        .logo-bar {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .logo-bar span { font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+        .logo-bar span em { font-style: normal; color: var(--white); opacity: 0.7; }
+
+        /* CONFIRMATION BANNER */
+        .confirm-banner {
+            background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(0,229,255,0.06));
+            border-bottom: 1px solid rgba(0,230,118,0.15);
+            padding: 14px 0;
+            text-align: center;
+        }
+        .confirm-banner p {
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--green); letter-spacing: 1px;
+        }
+        .confirm-banner p .icon { margin-right: 6px; }
+
+        /* HERO */
+        .hero { padding: 60px 0 20px; text-align: center; }
+        .celebration { font-size: 3rem; margin-bottom: 16px; }
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800;
+            line-height: 1.15; margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.1rem); color: var(--white-dim);
+            max-width: 600px; margin: 0 auto 20px; line-height: 1.6;
+        }
+        .subtitle strong { color: var(--white); }
+        h2 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: var(--white); }
+        h2 .accent { color: var(--cyan); }
+        h3 { font-size: 1.05rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+        .section-lead { font-size: 1rem; color: var(--white-dim); margin-bottom: 32px; max-width: 620px; }
+        .centered { text-align: center; }
+        .centered .section-lead { margin-left: auto; margin-right: auto; }
+        .divider { width: 60px; height: 3px; background: var(--cyan); border-radius: 2px; margin: 48px auto; opacity: 0.4; }
+
+        /* MEMBER BADGE */
+        .member-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(179,136,255,0.15), rgba(0,229,255,0.1));
+            border: 1px solid rgba(179,136,255,0.3);
+            border-radius: 100px;
+            padding: 8px 24px;
+            font-size: 0.82rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+
+        /* STEPS */
+        .steps-section { margin: 32px 0; }
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 16px;
+            display: flex; gap: 20px; align-items: flex-start;
+        }
+        .step-num {
+            flex-shrink: 0; width: 44px; height: 44px;
+            background: rgba(0,229,255,0.08);
+            border: 2px solid rgba(0,229,255,0.25);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; font-weight: 800; color: var(--cyan);
+        }
+        .step-card.highlight {
+            border-color: rgba(179,136,255,0.25);
+            background: linear-gradient(135deg, var(--bg-card), rgba(179,136,255,0.04));
+        }
+        .step-card.highlight .step-num {
+            background: rgba(179,136,255,0.12);
+            border-color: rgba(179,136,255,0.3);
+            color: var(--purple);
+        }
+        .step-content h4 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .step-content p { font-size: 0.9rem; color: var(--white-dim); line-height: 1.6; }
+        .step-content .spam-note {
+            display: inline-block; margin-top: 8px;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gold); background: rgba(255,215,64,0.08);
+            padding: 4px 12px; border-radius: 6px;
+        }
+
+        /* CALENDAR BOOKING */
+        .calendar-section {
+            background: linear-gradient(135deg, rgba(179,136,255,0.06), rgba(0,229,255,0.04));
+            border: 2px solid rgba(179,136,255,0.2);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .calendar-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .calendar-section h3 {
+            font-size: 1.3rem; font-weight: 800; color: var(--purple);
+            margin-bottom: 8px;
+        }
+        .calendar-section p {
+            font-size: 0.95rem; color: var(--white-dim);
+            max-width: 500px; margin: 0 auto 24px; line-height: 1.6;
+        }
+        .calendar-topics { list-style: none; text-align: left; max-width: 440px; margin: 0 auto 28px; }
+        .calendar-topics li {
+            font-size: 0.9rem; color: var(--white-dim);
+            padding: 6px 0; display: flex; align-items: flex-start; gap: 10px;
+        }
+        .calendar-topics li .bullet { color: var(--purple); flex-shrink: 0; }
+        .cta-calendar {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dim));
+            color: var(--white);
+            font-size: 1rem; font-weight: 700;
+            padding: 16px 40px; border-radius: 100px;
+            text-transform: uppercase; letter-spacing: 1px;
+            border: none; cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(179,136,255,0.25);
+            text-decoration: none;
+        }
+        .cta-calendar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(179,136,255,0.35);
+        }
+
+        /* WHAT TO EXPECT */
+        .timeline-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; margin: 32px 0;
+        }
+        @media (max-width: 600px) { .timeline-grid { grid-template-columns: 1fr; } }
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 24px; text-align: center;
+        }
+        .timeline-card .period {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--cyan); margin-bottom: 10px;
+        }
+        .timeline-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .timeline-card p { font-size: 0.82rem; color: var(--white-muted); line-height: 1.5; }
+
+        /* COMMUNITY ACCESS */
+        .community-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,229,255,0.12);
+            border-radius: var(--radius);
+            padding: 28px; text-align: center;
+            margin: 32px 0;
+        }
+        .community-box .comm-icon { font-size: 2rem; margin-bottom: 12px; }
+        .community-box h3 { color: var(--cyan); margin-bottom: 8px; }
+        .community-box p { font-size: 0.9rem; color: var(--white-dim); max-width: 480px; margin: 0 auto 20px; }
+        .cta-community {
+            display: inline-block;
+            background: rgba(0,229,255,0.08);
+            border: 1px solid rgba(0,229,255,0.25);
+            color: var(--cyan);
+            font-size: 0.9rem; font-weight: 700;
+            padding: 12px 32px; border-radius: 100px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .cta-community:hover {
+            background: rgba(0,229,255,0.15);
+        }
+
+        /* ORDER SUMMARY */
+        .order-summary {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px; margin: 32px 0;
+        }
+        .order-summary h3 { margin-bottom: 16px; }
+        .order-table { width: 100%; border-collapse: collapse; }
+        .order-table th {
+            text-align: left; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--white-muted); padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .order-table td {
+            font-size: 0.9rem; color: var(--white-dim); padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .order-table .total td {
+            font-weight: 700; color: var(--white);
+            border-bottom: none; padding-top: 14px;
+        }
+
+        /* CLOSING */
+        .closing-message {
+            text-align: center; padding: 40px 0;
+        }
+        .closing-message p {
+            font-size: 1.05rem; color: var(--white-dim);
+            max-width: 540px; margin: 0 auto; line-height: 1.7;
+        }
+        .closing-message strong { color: var(--white); }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 0; text-align: center;
+        }
+        footer p { font-size: 0.75rem; color: var(--white-muted); margin-bottom: 8px; }
+        footer a { color: var(--white-muted); }
+        footer a:hover { color: var(--cyan); }
+        .disclaimer {
+            max-width: 600px; margin: 20px auto 0;
+            font-size: 0.72rem; color: var(--white-muted); line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+    <div class="container">
+        <span>Fast Track <em>GenAI</em></span>
+    </div>
+</div>
+
+<!-- CONFIRMATION BANNER -->
+<div class="confirm-banner">
+    <div class="container">
+        <p><span class="icon">✅</span> Your Order Is Confirmed!</p>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container centered">
+        <div class="celebration">🎉</div>
+        <div class="member-badge">GenAI Builders Club Member</div>
+        <h1>Welcome to the Builders Club</h1>
+        <p class="subtitle">
+            You are now part of the GenAI Builders Club. You've got better tools. You've got a better path. 
+            <strong>You've got an environment built to help you keep building.</strong>
+        </p>
+    </div>
+</section>
+
+<!-- 4-STEP ONBOARDING -->
+<section style="padding: 20px 0 40px;">
+    <div class="container centered">
+        <h2>Here's What <span class="accent">Happens Now</span></h2>
+        <p class="section-lead">Four steps to get you building with momentum.</p>
+
+        <div class="steps-section">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Check Your Email</h4>
+                    <p>
+                        Your login details and full access instructions are being sent right now. 
+                        You'll get links to your Quick Start Guide, AI Agent access, prompt library, 
+                        and the complete Builders Club platform.
+                    </p>
+                    <span class="spam-note">⚠️ Check your spam/promotions folder too</span>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Access Your Full System</h4>
+                    <p>
+                        Click the link in your email to log in. Inside you'll find everything: AI Agent Builder, 
+                        Business Automation Blueprint, community access, and all your purchased tools ready to use.
+                    </p>
+                </div>
+            </div>
+            <div class="step-card highlight">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Book Your 1:1 Onboarding Call</h4>
+                    <p>
+                        As a Builders Club member, you get a <strong>30-minute private onboarding call</strong>. 
+                        This is your personal session to map out your first project, clarify your path, 
+                        and make sure you're building the right thing first.
+                    </p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Get Your First Result Today</h4>
+                    <p>
+                        Start with the Quick Start Guide. Launch your first AI Agent. Use a real business idea or task. 
+                        <strong>Your goal is not to study — your goal is to produce something real in your first session.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALENDAR BOOKING -->
+<section style="padding: 0 0 40px;">
+    <div class="container">
+        <div class="calendar-section">
+            <div class="calendar-icon">📅</div>
+            <h3>Schedule Your 1:1 Onboarding Call</h3>
+            <p>This 30-minute session is designed to get you building with direction, not guesswork.</p>
+            <ul class="calendar-topics">
+                <li><span class="bullet">▸</span> Get clear on the best place for you to start</li>
+                <li><span class="bullet">▸</span> Choose the most useful first use case for your business</li>
+                <li><span class="bullet">▸</span> Avoid common mistakes that slow people down</li>
+                <li><span class="bullet">▸</span> Map your next steps for a quick win</li>
+                <li><span class="bullet">▸</span> Talk through any support options that may be a fit for where you're going</li>
+            </ul>
+            <a href="#" class="cta-calendar">Book Your Onboarding Call →</a>
+        </div>
+    </div>
+</section>
+
+<!-- COMMUNITY ACCESS -->
+<section style="padding: 0 0 40px;">
+    <div class="container">
+        <div class="community-box">
+            <div class="comm-icon">👥</div>
+            <h3>Join the Private Community</h3>
+            <p>
+                Connect with other builders. Share your wins. Get feedback on your projects. 
+                The community is active and waiting for you.
+            </p>
+            <a href="#" class="cta-community">Access the Community →</a>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT TO EXPECT -->
+<section>
+    <div class="container centered">
+        <h2>Your First <span class="accent">30 Days</span></h2>
+        <p class="section-lead">Here's what your journey looks like from here.</p>
+        <div class="timeline-grid">
+            <div class="timeline-card">
+                <div class="period">Today</div>
+                <h4>Get Access & Produce</h4>
+                <p>Log in, explore your tools, and generate your first AI-powered output in 15–60 minutes.</p>
+            </div>
+            <div class="timeline-card">
+                <div class="period">This Week</div>
+                <h4>Onboard & Customize</h4>
+                <p>Complete your 1:1 onboarding call. Begin customizing the system for your specific business.</p>
+            </div>
+            <div class="timeline-card">
+                <div class="period">30 Days</div>
+                <h4>Build With Support</h4>
+                <p>GenAI becomes part of your daily workflow — with coaching, community, and support along the way.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ORDER SUMMARY -->
+<section style="padding: 20px 0;">
+    <div class="container">
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <table class="order-table">
+                <thead>
+                    <tr><th>Product</th><th style="text-align:right;">Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Business Launchpad</td><td style="text-align:right;">$37</td></tr>
+                    <tr><td>Business Accelerator (Workforce Suite)</td><td style="text-align:right;">$197</td></tr>
+                    <tr><td>GenAI Builders Club — Founder's Pass</td><td style="text-align:right;">$297</td></tr>
+                    <tr class="total"><td>Total</td><td style="text-align:right;">$531</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- CLOSING MESSAGE -->
+<div class="closing-message">
+    <div class="container">
+        <p>
+            That first win matters. The faster you use the system in a real way, 
+            the faster it becomes part of how you work. <strong>Book your onboarding call, 
+            join the community, and start building today.</strong>
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p class="disclaimer">
+            Results vary based on individual effort and implementation. The tools and training provided are designed to support 
+            your business goals but do not guarantee specific outcomes. 30-day refund policy applies to initial purchase.
+        </p>
+        <p style="margin-top: 16px;"><a href="#">Terms & Conditions</a> · <a href="#">Privacy Policy</a></p>
+        <p>© 2026 Fast Track GenAI. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
