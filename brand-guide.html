@@ -368,13 +368,27 @@
             <h2>🎨 Color Palette</h2>
             <p style="margin-bottom: 30px; font-size: 1.1em;">Our colors communicate trust, innovation, and energy. Click any hex code to copy.</p>
             
+            <div style="background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <strong style="color: #3B82F6; display: block; margin-bottom: 8px;">📐 Background Alternation Pattern</strong>
+                <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                    <li><strong>Hero Section:</strong> Pure Black (#000000) - Maximum drama and focus</li>
+                    <li><strong>Section 1:</strong> Deep Navy (#0F172A)</li>
+                    <li><strong>Section 2:</strong> Charcoal (#374151)</li>
+                    <li><strong>Section 3:</strong> Deep Navy (#0F172A)</li>
+                    <li><strong>Continue alternating:</strong> Navy → Charcoal → Navy → Charcoal</li>
+                </ul>
+                <p style="margin-top: 15px; font-weight: 600; color: #374151;">
+                    <strong>Key Rule:</strong> If the primary page background is Deep Navy, the hero MUST be Pure Black to create visual separation.
+                </p>
+            </div>
+            
             <div class="color-grid">
                 <div class="color-card" onclick="copyToClipboard('#0F172A', this)">
-                    <div class="color-swatch" style="background: #0F172A; color: white;">Dark Navy</div>
+                    <div class="color-swatch" style="background: #0F172A; color: white;">Deep Navy</div>
                     <div class="color-info">
-                        <div class="color-name">Dark Navy</div>
+                        <div class="color-name">Deep Navy</div>
                         <div class="color-hex">#0F172A</div>
-                        <div class="color-usage">Primary brand color, headers, text</div>
+                        <div class="color-usage">Primary section backgrounds (alternate with Charcoal)</div>
                     </div>
                 </div>
                 
@@ -383,7 +397,7 @@
                     <div class="color-info">
                         <div class="color-name">Pure Black</div>
                         <div class="color-hex">#000000</div>
-                        <div class="color-usage">Body text, high contrast elements</div>
+                        <div class="color-usage">Hero sections, maximum contrast elements</div>
                     </div>
                 </div>
                 
@@ -392,7 +406,7 @@
                     <div class="color-info">
                         <div class="color-name">Charcoal</div>
                         <div class="color-hex">#374151</div>
-                        <div class="color-usage">Secondary text, subtle elements</div>
+                        <div class="color-usage">Secondary section backgrounds (alternate with Navy)</div>
                     </div>
                 </div>
                 
@@ -440,6 +454,78 @@
                         <div class="color-usage">Section backgrounds, cards</div>
                     </div>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Background Pattern Implementation Section -->
+        <section>
+            <h2>🎬 Background Pattern Implementation</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Creating visual hierarchy and rhythm through background variation.</p>
+            
+            <h3>Why This Pattern Works</h3>
+            <div style="background: #F9FAFB; padding: 25px; border-radius: 8px; margin: 20px 0;">
+                <ul style="line-height: 1.8; margin-left: 20px;">
+                    <li><strong>Visual Hierarchy:</strong> Pure Black hero creates immediate separation from Deep Navy content sections</li>
+                    <li><strong>Prevents Monotony:</strong> Alternating Navy/Charcoal prevents the "all one color" problem</li>
+                    <li><strong>Creates Rhythm:</strong> Consistent alternation guides the eye through content naturally</li>
+                    <li><strong>Maximum Impact:</strong> Black hero section commands attention and sets the stage</li>
+                </ul>
+            </div>
+            
+            <h3>Visual Flow Example</h3>
+            <div style="margin: 30px 0;">
+                <div style="background: #000000; color: white; padding: 40px; text-align: center; border-radius: 8px; margin-bottom: 3px;">
+                    <h3 style="margin: 0; color: white;">HERO SECTION</h3>
+                    <p style="margin: 10px 0 0 0; opacity: 0.9;">Pure Black (#000000) - Maximum Drama & Focus</p>
+                </div>
+                <div style="background: #0F172A; color: white; padding: 30px; text-align: center; border-radius: 8px; margin-bottom: 3px;">
+                    <h4 style="margin: 0; color: white;">Section 1: Features/Content</h4>
+                    <p style="margin: 10px 0 0 0; opacity: 0.8;">Deep Navy (#0F172A)</p>
+                </div>
+                <div style="background: #374151; color: white; padding: 30px; text-align: center; border-radius: 8px; margin-bottom: 3px;">
+                    <h4 style="margin: 0; color: white;">Section 2: Features/Content</h4>
+                    <p style="margin: 10px 0 0 0; opacity: 0.8;">Charcoal (#374151)</p>
+                </div>
+                <div style="background: #0F172A; color: white; padding: 30px; text-align: center; border-radius: 8px; margin-bottom: 3px;">
+                    <h4 style="margin: 0; color: white;">Section 3: Features/Content</h4>
+                    <p style="margin: 10px 0 0 0; opacity: 0.8;">Deep Navy (#0F172A)</p>
+                </div>
+                <div style="background: #374151; color: white; padding: 30px; text-align: center; border-radius: 8px;">
+                    <h4 style="margin: 0; color: white;">Section 4: Features/Content</h4>
+                    <p style="margin: 10px 0 0 0; opacity: 0.8;">Charcoal (#374151)</p>
+                </div>
+            </div>
+            
+            <div style="background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 30px 0;">
+                <strong style="color: #F59E0B; display: block; margin-bottom: 8px;">⚠️ Critical Rule</strong>
+                <p style="margin: 0; color: #374151;">
+                    <strong>Hero section MUST always be Pure Black (#000000)</strong> when using Deep Navy as the primary page background. This creates the essential visual separation that prevents monotony and establishes clear hierarchy.
+                </p>
+            </div>
+            
+            <h3>CSS Pattern Implementation</h3>
+            <div style="background: #0F172A; color: #81D8D0; padding: 25px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9em; line-height: 1.8; overflow-x: auto; margin: 20px 0;">
+                <div style="color: #6B7280;">/* Hero Section - Always Pure Black */</div>
+                <div>.hero-section {</div>
+                <div>&nbsp;&nbsp;background-color: <span style="color: #10B981;">#000000</span>;</div>
+                <div>}</div>
+                <div style="margin-top: 15px;"></div>
+                <div style="color: #6B7280;">/* Section Alternation Pattern */</div>
+                <div>.section-1 {</div>
+                <div>&nbsp;&nbsp;background-color: <span style="color: #10B981;">#0F172A</span>; <span style="color: #6B7280;">/* Deep Navy */</span></div>
+                <div>}</div>
+                <div style="margin-top: 10px;"></div>
+                <div>.section-2 {</div>
+                <div>&nbsp;&nbsp;background-color: <span style="color: #10B981;">#374151</span>; <span style="color: #6B7280;">/* Charcoal */</span></div>
+                <div>}</div>
+                <div style="margin-top: 10px;"></div>
+                <div>.section-3 {</div>
+                <div>&nbsp;&nbsp;background-color: <span style="color: #10B981;">#0F172A</span>; <span style="color: #6B7280;">/* Deep Navy */</span></div>
+                <div>}</div>
+                <div style="margin-top: 10px;"></div>
+                <div>.section-4 {</div>
+                <div>&nbsp;&nbsp;background-color: <span style="color: #10B981;">#374151</span>; <span style="color: #6B7280;">/* Charcoal */</span></div>
+                <div>}</div>
             </div>
         </section>
         

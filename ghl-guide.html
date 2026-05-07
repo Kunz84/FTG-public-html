@@ -422,14 +422,14 @@
                 <div class="color-chip" onclick="copyText('#0F172A')">
                     <div class="color-chip-swatch" style="background: #0F172A;"></div>
                     <div class="color-chip-info">
-                        <span class="color-chip-name">Dark Navy</span>
+                        <span class="color-chip-name">Deep Navy</span>
                         <span class="color-chip-hex">#0F172A</span>
                     </div>
                 </div>
                 <div class="color-chip" onclick="copyText('#000000')">
                     <div class="color-chip-swatch" style="background: #000000;"></div>
                     <div class="color-chip-info">
-                        <span class="color-chip-name">Pure Black</span>
+                        <span class="color-chip-name">Pure Black (Hero)</span>
                         <span class="color-chip-hex">#000000</span>
                     </div>
                 </div>
@@ -477,6 +477,196 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Background Alternation Pattern -->
+        <section>
+            <h2>🎨 Background Alternation Pattern</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;"><strong>CRITICAL:</strong> Proper background usage creates visual hierarchy and prevents monotony.</p>
+            
+            <div class="warning">
+                <strong>⚠️ Key Rule to Remember</strong>
+                <p>If the primary page background is Deep Navy, the hero section MUST be Pure Black to create visual separation. Never use the same background color for both hero and primary content sections.</p>
+            </div>
+            
+            <h3>The Pattern: Hero → Navy → Charcoal → Repeat</h3>
+            <div class="flowchart">
+                <div class="flow-step" style="background: #000000; color: white; border-color: #000000;">
+                    <strong>HERO SECTION</strong><br>
+                    Pure Black (#000000)<br>
+                    Maximum drama and focus
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background: #0F172A; color: white; border-color: #0F172A;">
+                    <strong>SECTION 1</strong><br>
+                    Deep Navy (#0F172A)<br>
+                    Primary content/features
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background: #374151; color: white; border-color: #374151;">
+                    <strong>SECTION 2</strong><br>
+                    Charcoal (#374151)<br>
+                    Secondary content/features
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background: #0F172A; color: white; border-color: #0F172A;">
+                    <strong>SECTION 3</strong><br>
+                    Deep Navy (#0F172A)<br>
+                    Continues alternation
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background: #374151; color: white; border-color: #374151;">
+                    <strong>SECTION 4</strong><br>
+                    Charcoal (#374151)<br>
+                    Continues alternation
+                </div>
+            </div>
+            
+            <h3>Why This Pattern Works</h3>
+            <div class="comparison">
+                <div class="before">
+                    <div class="comparison-header">❌ WRONG - Monotonous</div>
+                    <div class="comparison-content">
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Hero: Deep Navy</div>
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 1: Deep Navy</div>
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 2: Deep Navy</div>
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 3: Deep Navy</div>
+                        <p style="margin-top: 15px; color: #EF4444; font-weight: 600;">Problems:</p>
+                        <ul style="color: #374151; font-size: 0.9em;">
+                            <li>No visual separation</li>
+                            <li>Monotonous, boring</li>
+                            <li>No hierarchy</li>
+                            <li>Poor user experience</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="after">
+                    <div class="comparison-header">✓ CORRECT - Dynamic</div>
+                    <div class="comparison-content">
+                        <div style="background: #000000; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Hero: Pure Black</div>
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 1: Deep Navy</div>
+                        <div style="background: #374151; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 2: Charcoal</div>
+                        <div style="background: #0F172A; color: white; padding: 15px; margin: 5px 0; text-align: center; border-radius: 4px;">Section 3: Deep Navy</div>
+                        <p style="margin-top: 15px; color: #10B981; font-weight: 600;">Benefits:</p>
+                        <ul style="color: #374151; font-size: 0.9em;">
+                            <li>Clear visual separation</li>
+                            <li>Dynamic and engaging</li>
+                            <li>Strong hierarchy</li>
+                            <li>Professional appearance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>GHL CSS Implementation</h3>
+            <div class="tip">
+                <strong>💡 Implementation Tip</strong>
+                <p>In GoHighLevel, use the Custom CSS section or the Advanced Settings of each section to apply these background colors.</p>
+            </div>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+<span style="color: #6B7280;">/* =================================
+   FAST TRACK GENAI BACKGROUND PATTERN
+   ================================= */</span>
+
+<span style="color: #6B7280;">/* Hero Section - Always Pure Black */</span>
+.hero-section {
+  background-color: <span style="color: #10B981;">#000000</span> !important;
+  color: <span style="color: #10B981;">#FFFFFF</span>;
+}
+
+<span style="color: #6B7280;">/* Section Alternation Pattern */</span>
+.section-1,
+.section-3,
+.section-5,
+.section-7 {
+  background-color: <span style="color: #10B981;">#0F172A</span> !important; <span style="color: #6B7280;">/* Deep Navy */</span>
+  color: <span style="color: #10B981;">#FFFFFF</span>;
+}
+
+.section-2,
+.section-4,
+.section-6,
+.section-8 {
+  background-color: <span style="color: #10B981;">#374151</span> !important; <span style="color: #6B7280;">/* Charcoal */</span>
+  color: <span style="color: #10B981;">#FFFFFF</span>;
+}
+
+<span style="color: #6B7280;">/* Alternative: Use nth-child for automatic alternation */</span>
+.content-sections > div:nth-child(odd) {
+  background-color: <span style="color: #10B981;">#0F172A</span>;
+}
+
+.content-sections > div:nth-child(even) {
+  background-color: <span style="color: #10B981;">#374151</span>;
+}
+            </div>
+            
+            <h3>Step-by-Step GHL Implementation</h3>
+            <div class="checklist">
+                <h3>Implementation Checklist</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step1">
+                    <label for="step1">Create hero section with Pure Black (#000000) background</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step2">
+                    <label for="step2">Set first content section to Deep Navy (#0F172A)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step3">
+                    <label for="step3">Set second content section to Charcoal (#374151)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step4">
+                    <label for="step4">Continue alternating Navy → Charcoal for remaining sections</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step5">
+                    <label for="step5">Verify hero section stands out from content sections</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step6">
+                    <label for="step6">Test on mobile to ensure pattern is visible</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="step7">
+                    <label for="step7">Confirm white text is readable on all backgrounds</label>
+                </div>
+            </div>
+            
+            <h3>Color Usage Reference</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Color</th>
+                        <th>Hex Code</th>
+                        <th>Usage</th>
+                        <th>When to Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div style="width: 40px; height: 20px; background: #000000; border-radius: 4px;"></div></td>
+                        <td><code>#000000</code></td>
+                        <td><strong>Pure Black</strong></td>
+                        <td>Hero sections ONLY - Creates maximum impact and separation</td>
+                    </tr>
+                    <tr>
+                        <td><div style="width: 40px; height: 20px; background: #0F172A; border-radius: 4px;"></div></td>
+                        <td><code>#0F172A</code></td>
+                        <td><strong>Deep Navy</strong></td>
+                        <td>Primary section backgrounds - Odd-numbered sections (1, 3, 5, 7)</td>
+                    </tr>
+                    <tr>
+                        <td><div style="width: 40px; height: 20px; background: #374151; border-radius: 4px;"></div></td>
+                        <td><code>#374151</code></td>
+                        <td><strong>Charcoal</strong></td>
+                        <td>Secondary section backgrounds - Even-numbered sections (2, 4, 6, 8)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
         
         <!-- Logo Decision Flowchart -->
         <section>
