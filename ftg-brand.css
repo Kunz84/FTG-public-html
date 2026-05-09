@@ -101,8 +101,13 @@ section { padding: 60px 0; position: relative; }
   background: var(--bg-primary);
 }
 .logo-bar img {
-  max-height: 50px;
+  max-height: 70px;
   margin: 0 auto;
+}
+.logo-bar img:hover {
+  filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(748%) hue-rotate(126deg) brightness(96%) contrast(86%);
+  transition: filter 0.3s ease;
+  cursor: pointer;
 }
 
 /* ── SOCIAL PROOF BADGE ── */

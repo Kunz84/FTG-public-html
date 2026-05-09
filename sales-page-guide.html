@@ -434,11 +434,14 @@
             header h1 { font-size: 2em; }
             .color-chips { flex-direction: column; }
         }
+        .header-logo:hover {
+            filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(748%) hue-rotate(126deg) brightness(96%) contrast(86%);
+        }
     </style>
 </head>
 <body>
     <header>
-        <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" style="height: 50px; margin-bottom: 15px;">
+        <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="header-logo" style="height: 70px; margin-bottom: 15px; transition: filter 0.3s ease; cursor: pointer;">
         <h1>⚡ Fast Track GenAI</h1>
         <p>Sales Page Framework Guide</p>
         <p style="font-size:1em; opacity:0.7; margin-top:8px;">VSL · Lead Magnets · OTOs · Countdowns · Proof Stacking</p>

@@ -167,6 +167,10 @@
             color: #6BC5BD;
         }
         
+        .header-logo:hover {
+            filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(748%) hue-rotate(126deg) brightness(96%) contrast(86%);
+        }
+        
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5em;
@@ -185,7 +189,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" style="height: 50px; margin-bottom: 15px;">
+            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="header-logo" style="height: 70px; margin-bottom: 15px; transition: filter 0.3s ease; cursor: pointer;">
             <h1>🚀 Fast Track GenAI</h1>
             <p>Brand Resource Center</p>
         </div>
@@ -220,6 +224,21 @@
                 </ul>
                 <a href="ghl-guide.html" class="btn btn-secondary">View GHL Guide</a>
             </div>
+            
+            <div class="card">
+                <div class="card-icon">📄</div>
+                <h2>Sales Page Guide</h2>
+                <p>Framework for high-converting sales pages</p>
+                <ul>
+                    <li>Sales page structure</li>
+                    <li>Headline formulas</li>
+                    <li>CTA placement strategy</li>
+                    <li>Proof & credibility elements</li>
+                    <li>Objection handling</li>
+                    <li>Conversion optimization</li>
+                </ul>
+                <a href="sales-page-guide.html" class="btn" style="background: #F59E0B; color: #000;">View Sales Guide</a>
+            </div>
         </div>
         
         <div class="footer">
@@ -229,6 +248,8 @@
                 <a href="brand-guide.html" class="footer-link">Brand Guide</a>
                 <span style="color: #E5E7EB;">•</span>
                 <a href="ghl-guide.html" class="footer-link">GHL Guide</a>
+                <span style="color: #E5E7EB;">•</span>
+                <a href="sales-page-guide.html" class="footer-link">Sales Page Guide</a>
                 <span style="color: #E5E7EB;">•</span>
                 <span class="footer-link" style="cursor: default;">Fast Track GenAI © 2026</span>
             </div>
