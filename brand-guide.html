@@ -517,7 +517,7 @@
 </head>
 <body>
     <header>
-        <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="header-logo" style="height: 70px; margin-bottom: 15px; transition: filter 0.3s ease; cursor: pointer;">
+        <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="header-logo" style="height: 90px; margin-bottom: 15px; transition: filter 0.3s ease; cursor: pointer;">
         <h1>🚀 Fast Track GenAI</h1>
         <p>Brand Style Guide</p>
     </header>
@@ -531,7 +531,7 @@
             <h3>Hero Navigation Visual Preview</h3>
             <div style="margin-bottom: 30px;">
                 <div style="background: linear-gradient(90deg, #000000 0%, #0F172A 100%); padding: 30px 40px; border-radius: 12px; border-bottom: 2px solid #81D8D0; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" style="height: 40px; cursor: pointer; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="nav-preview-logo" style="height: 90px; cursor: pointer; transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(748%) hue-rotate(126deg) brightness(96%) contrast(86%)'" onmouseout="this.style.filter='none'">
                     <div style="display: flex; gap: 40px; align-items: center;">
                         <a style="color: #FFFFFF; text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#81D8D0'" onmouseout="this.style.color='#FFFFFF'">About</a>
                         <a style="color: #FFFFFF; text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#81D8D0'" onmouseout="this.style.color='#FFFFFF'">Services</a>
@@ -648,36 +648,40 @@
             </div>
 
             <div style="margin-bottom: 30px;">
-                <h4 style="color: #1F2937; margin-bottom: 15px; font-size: 1.05em;">Logo Styling</h4>
+                <h4 style="color: #1F2937; margin-bottom: 15px; font-size: 1.05em;">Logo Styling (Image-Based)</h4>
                 <div style="background: #1F2937; padding: 20px; border-radius: 8px; position: relative; margin-bottom: 15px;">
-                    <button class="gradient-copy-btn" onclick="copyToClipboard('.hero-nav .logo { color: #FFFFFF; font-weight: 700; font-size: 28px; letter-spacing: -0.5px; }', this)">Copy</button>
+                    <button class="gradient-copy-btn" onclick="copyToClipboard('.hero-nav .logo {\n  height: 90px;    /* Match or exceed CTA button height */\n  width: auto;\n  display: block;\n  cursor: pointer;\n}', this)">Copy</button>
                     <pre style="color: #F9FAFB; font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; overflow-x: auto; font-size: 13px;"><code>.hero-nav .logo {
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 28px;
-  letter-spacing: -0.5px;
+  height: 90px;    /* Match or exceed CTA button height */
+  width: auto;
+  display: block;
+  cursor: pointer;
 }</code></pre>
                 </div>
                 <div style="background: rgba(129, 216, 208, 0.1); border-left: 4px solid #81D8D0; padding: 15px; border-radius: 4px; font-size: 13px; color: #374151; line-height: 1.7;">
-                    <strong style="color: #0F172A;">Contrast Note:</strong> Pure white (#FFFFFF) on the black-to-navy gradient achieves 21:1 contrast ratio at the left edge (against #000000), exceeding WCAG AAA standards. This ensures maximum visibility and premium appearance.
+                    <strong style="color: #0F172A;">Sizing Rule:</strong> The logo height (90px) should match or exceed the "Get Started" CTA button's rendered height (~48px) for proper brand hierarchy. The logo is the dominant brand element and must command visual authority in the navigation bar. Use <code>width: auto</code> to maintain aspect ratio.
                 </div>
             </div>
 
             <div style="margin-bottom: 30px;">
-                <h4 style="color: #1F2937; margin-bottom: 15px; font-size: 1.05em;">Logo Hover State</h4>
+                <h4 style="color: #1F2937; margin-bottom: 15px; font-size: 1.05em;">Logo Hover State (Tiffany Turquoise Tint)</h4>
                 <div style="background: #1F2937; padding: 20px; border-radius: 8px; position: relative; margin-bottom: 15px;">
-                    <button class="gradient-copy-btn" onclick="copyToClipboard('.hero-nav .logo { transition: color 0.3s ease; cursor: pointer; } .hero-nav .logo:hover { color: #81D8D0; }', this)">Copy</button>
+                    <button class="gradient-copy-btn" onclick="copyToClipboard('.hero-nav .logo {\n  transition: filter 0.3s ease;\n  cursor: pointer;\n}\n\n.hero-nav .logo:hover {\n  /* CSS filter to tint white PNG → Tiffany Turquoise #81D8D0 */\n  filter: brightness(0) saturate(100%)\n          invert(84%) sepia(14%) saturate(748%)\n          hue-rotate(126deg) brightness(96%)\n          contrast(86%);\n}', this)">Copy</button>
                     <pre style="color: #F9FAFB; font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; overflow-x: auto; font-size: 13px;"><code>.hero-nav .logo {
-  transition: color 0.3s ease;
+  transition: filter 0.3s ease;
   cursor: pointer;
 }
 
 .hero-nav .logo:hover {
-  color: #81D8D0;
+  /* CSS filter to tint white PNG → Tiffany Turquoise #81D8D0 */
+  filter: brightness(0) saturate(100%)
+          invert(84%) sepia(14%) saturate(748%)
+          hue-rotate(126deg) brightness(96%)
+          contrast(86%);
 }</code></pre>
                 </div>
                 <div style="background: rgba(129, 216, 208, 0.1); border-left: 4px solid #81D8D0; padding: 15px; border-radius: 4px; font-size: 13px; color: #374151; line-height: 1.7;">
-                    <strong style="color: #0F172A;">Logo Hover Consistency:</strong> The logo transitions to Tiffany Turquoise (#81D8D0) on hover, matching the navigation link hover state. This creates visual consistency across all interactive elements in the hero navigation and signals to users that the logo is clickable (linking to the home page). The 0.3s ease transition matches the navigation link timing for a cohesive interactive experience. The cursor changes to pointer to further indicate interactivity.
+                    <strong style="color: #0F172A;">Image Logo Hover:</strong> Since the logo is an image (not text), we use CSS <code>filter</code> to recolor the white PNG to Tiffany Turquoise (#81D8D0) on hover. The filter chain works by first converting to black (<code>brightness(0)</code>), then inverting and shifting hue to match the target color. This creates visual consistency with the nav link hover state. The 0.3s ease transition provides a smooth color shift. <strong>Alternative:</strong> Use a separate Tiffany-colored logo SVG and swap on hover with CSS <code>content</code> or JavaScript <code>src</code> swap for pixel-perfect accuracy.
                 </div>
             </div>
 
@@ -862,7 +866,7 @@
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <input type="checkbox" style="margin-right: 15px; width: 18px; height: 18px; cursor: pointer;">
-                        <span style="color: #374151;">Logo color: #FFFFFF (Pure White)</span>
+                        <span style="color: #374151;">Logo: #FFFFFF (Pure White), height 90px (match/exceed CTA button)</span>
                     </div>
                     <div style="display: flex; align-items: center; margin-bottom: 12px;">
                         <input type="checkbox" style="margin-right: 15px; width: 18px; height: 18px; cursor: pointer;">
@@ -907,6 +911,179 @@
                 </div>
             </div>
         </section>
+
+        <!-- Logo Sizing Guidelines Section -->
+        <section>
+            <h2>📐 Logo Sizing Guidelines</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Consistent logo sizing across all touchpoints reinforces brand recognition. The logo must always maintain its aspect ratio — only set <code>height</code> and use <code>width: auto</code>.</p>
+
+            <div style="background: linear-gradient(135deg, rgba(129, 216, 208, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); border: 2px solid #81D8D0; border-radius: 12px; padding: 30px; margin-bottom: 40px;">
+                <h3 style="margin-top: 0; color: #0F172A;">🔑 Golden Rule</h3>
+                <p style="font-size: 1.1em; color: #374151; margin-bottom: 0;">The logo must <strong>always be at least as tall as the primary CTA button</strong> in any layout. The logo represents brand authority and should never be visually subordinate to action elements.</p>
+            </div>
+
+            <h3>Sizing Reference Table</h3>
+            <div style="overflow-x: auto; margin-bottom: 30px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                    <thead>
+                        <tr style="background: #0F172A; color: #FFFFFF;">
+                            <th style="padding: 14px 20px; text-align: left; border-bottom: 3px solid #81D8D0;">Context</th>
+                            <th style="padding: 14px 20px; text-align: center; border-bottom: 3px solid #81D8D0;">Height (px)</th>
+                            <th style="padding: 14px 20px; text-align: center; border-bottom: 3px solid #81D8D0;">Min Height</th>
+                            <th style="padding: 14px 20px; text-align: center; border-bottom: 3px solid #81D8D0;">Max Height</th>
+                            <th style="padding: 14px 20px; text-align: left; border-bottom: 3px solid #81D8D0;">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E5E7EB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">🧭 Hero / Main Navigation</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">90px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">80px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">100px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Must match or exceed CTA button height</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB; background: #F9FAFB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">📌 Sticky / Scrolled Navigation</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">50px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">40px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">60px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Compact nav after scroll; animate transition</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">🦶 Footer Navigation</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">45px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">40px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">50px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Subtle but recognizable; lighter weight</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB; background: #F9FAFB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">🌟 Hero Section / Standalone</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">160px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">120px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">200px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Landing page hero, splash screens</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">✉️ Email Signatures</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">35px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">30px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">40px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Keep compact; works in all email clients</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB; background: #F9FAFB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">📧 Email Headers / Banners</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">60px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">50px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">80px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Prominent but not overwhelming</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">🔗 Favicon</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">32px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">16px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">48px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Use simplified icon mark; multi-size .ico</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E5E7EB; background: #F9FAFB;">
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">📱 Social Media Profile</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">400px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">320px</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">512px</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Square crop; 1:1 aspect ratio; centered</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 14px 20px; font-weight: 600; color: #0F172A;">🖨️ Print / PDF</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace; font-weight: 700; color: #81D8D0; font-size: 1.1em;">1 inch</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">0.75 in</td>
+                            <td style="padding: 14px 20px; text-align: center; font-family: 'Courier New', monospace;">2 in</td>
+                            <td style="padding: 14px 20px; color: #6B7280;">Use vector SVG; 300 DPI minimum</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Visual Size Comparison</h3>
+            <div style="background: linear-gradient(90deg, #000000 0%, #0F172A 100%); padding: 40px; border-radius: 12px; margin-bottom: 30px;">
+                <div style="display: flex; align-items: flex-end; gap: 40px; flex-wrap: wrap; justify-content: center;">
+                    <div style="text-align: center;">
+                        <img src="images/ftg-logo-light.png" alt="Favicon size" style="height: 32px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #9CA3AF; font-size: 0.75em; display: block;">Favicon<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">32px</span></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="images/ftg-logo-light.png" alt="Email sig size" style="height: 35px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #9CA3AF; font-size: 0.75em; display: block;">Email Sig<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">35px</span></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="images/ftg-logo-light.png" alt="Footer size" style="height: 45px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #9CA3AF; font-size: 0.75em; display: block;">Footer<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">45px</span></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="images/ftg-logo-light.png" alt="Sticky nav size" style="height: 50px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #9CA3AF; font-size: 0.75em; display: block;">Sticky Nav<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">50px</span></span>
+                    </div>
+                    <div style="text-align: center; border: 2px solid #81D8D0; border-radius: 8px; padding: 15px; background: rgba(129, 216, 208, 0.1);">
+                        <img src="images/ftg-logo-light.png" alt="Hero nav size" style="height: 90px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #FFFFFF; font-size: 0.85em; font-weight: 700; display: block;">Hero Nav ★<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">90px</span></span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="images/ftg-logo-light.png" alt="Standalone hero size" style="height: 160px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+                        <span style="color: #9CA3AF; font-size: 0.75em; display: block;">Standalone<br><span style="color: #81D8D0; font-family: 'Courier New', monospace;">160px</span></span>
+                    </div>
+                </div>
+                <p style="color: #9CA3AF; font-size: 0.85em; text-align: center; margin-top: 20px;">★ Recommended primary navigation size — matches/exceeds CTA button prominence</p>
+            </div>
+
+            <h3>CSS Implementation</h3>
+            <div style="background: #1F2937; padding: 20px; border-radius: 8px; position: relative; margin-bottom: 15px;">
+                <button class="gradient-copy-btn" onclick="copyToClipboard('/* Logo sizing by context */\n.logo-hero-nav    { height: 90px;  width: auto; }  /* 80-100px */\n.logo-sticky-nav  { height: 50px;  width: auto; }  /* 40-60px  */\n.logo-footer      { height: 45px;  width: auto; }  /* 40-50px  */\n.logo-standalone  { height: 160px; width: auto; }  /* 120-200px */\n.logo-email-sig   { height: 35px;  width: auto; }  /* 30-40px  */\n.logo-email-header{ height: 60px;  width: auto; }  /* 50-80px  */\n\n/* Scroll transition (hero → sticky) */\n.hero-nav .logo {\n  height: 90px;\n  transition: height 0.3s ease;\n}\n.hero-nav.scrolled .logo {\n  height: 50px;\n}', this)">Copy</button>
+                <pre style="color: #F9FAFB; font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; overflow-x: auto; font-size: 13px;"><code>/* Logo sizing by context */
+.logo-hero-nav    { height: 90px;  width: auto; }  /* 80-100px */
+.logo-sticky-nav  { height: 50px;  width: auto; }  /* 40-60px  */
+.logo-footer      { height: 45px;  width: auto; }  /* 40-50px  */
+.logo-standalone  { height: 160px; width: auto; }  /* 120-200px */
+.logo-email-sig   { height: 35px;  width: auto; }  /* 30-40px  */
+.logo-email-header{ height: 60px;  width: auto; }  /* 50-80px  */
+
+/* Scroll transition (hero → sticky) */
+.hero-nav .logo {
+  height: 90px;
+  transition: height 0.3s ease;
+}
+.hero-nav.scrolled .logo {
+  height: 50px;
+}</code></pre>
+            </div>
+            <div style="background: rgba(129, 216, 208, 0.1); border-left: 4px solid #81D8D0; padding: 15px; border-radius: 4px; font-size: 13px; color: #374151; line-height: 1.7; margin-bottom: 30px;">
+                <strong style="color: #0F172A;">Always use <code>width: auto</code></strong> to preserve the logo's original aspect ratio. Never set both width and height simultaneously, as this will distort the logo.
+            </div>
+
+            <h3>Do's and Don'ts</h3>
+            <div class="dos-donts">
+                <div class="do-card">
+                    <h4>✅ Do</h4>
+                    <ul>
+                        <li>Set height only, let width auto-scale</li>
+                        <li>Keep logo ≥ CTA button height in navigation</li>
+                        <li>Use SVG for scalable contexts (hero, print)</li>
+                        <li>Maintain clear space equal to logo height / 4</li>
+                        <li>Animate size transitions when scrolling</li>
+                        <li>Use the 90px hero nav size as the default</li>
+                    </ul>
+                </div>
+                <div class="dont-card">
+                    <h4>❌ Don't</h4>
+                    <ul>
+                        <li>Set both width AND height (causes distortion)</li>
+                        <li>Make the logo smaller than the CTA button</li>
+                        <li>Use logos below 16px height (illegible)</li>
+                        <li>Scale up raster logos beyond 2x original size</li>
+                        <li>Remove clear space around the logo</li>
+                        <li>Use the standalone size (160px) in navigation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Color Palette Section -->
         <section>
             <h2>🎨 Color Palette</h2>
