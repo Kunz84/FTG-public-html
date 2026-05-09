@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Track GenAI - Sales Page Framework Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #0F172A;
+            background: #F9FAFB;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            background: linear-gradient(135deg, #000000 0%, #0F172A 60%, #374151 100%);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+        header p { font-size: 1.3em; opacity: 0.9; }
+        header .accent-bar {
+            width: 120px; height: 4px;
+            background: linear-gradient(90deg, #81D8D0, #10B981);
+            margin: 25px auto 0; border-radius: 2px;
+        }
+        nav.sub-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+        }
+        nav.sub-nav a {
+            color: #0F172A; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 6px; font-size: 0.95em;
+            transition: all 0.2s;
+        }
+        nav.sub-nav a:hover { background: #81D8D0; color: #000; }
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #0F172A;
+            border-bottom: 4px solid #81D8D0;
+            padding-bottom: 10px;
+        }
+        h3 { font-size: 1.6em; margin: 30px 0 15px 0; color: #374151; }
+        h4 { font-size: 1.3em; margin: 20px 0 10px 0; color: #0F172A; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 12px 0 12px 24px; }
+        li { margin-bottom: 6px; }
+        .quick-ref {
+            background: linear-gradient(135deg, #81D8D0 0%, #10B981 100%);
+            color: #000000;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .quick-ref h3 { color: #000000; margin-top: 0; }
+        .color-chips { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+        .color-chip {
+            display: flex; align-items: center;
+            background: white;
+            padding: 10px 15px; border-radius: 8px;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .color-chip:hover { transform: scale(1.05); }
+        .color-chip-swatch {
+            width: 40px; height: 40px;
+            border-radius: 6px; margin-right: 12px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .color-chip-info { display: flex; flex-direction: column; }
+        .color-chip-name { font-weight: 700; font-size: 0.9em; }
+        .color-chip-hex { font-family: 'Courier New', monospace; font-size: 0.85em; color: #374151; }
+        .flowchart {
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: white;
+            border: 3px solid #81D8D0;
+            border-radius: 8px;
+            padding: 20px; margin: 15px 0;
+            text-align: center; font-weight: 600; font-size: 1.1em;
+        }
+        .flow-arrow { text-align: center; font-size: 2em; color: #81D8D0; margin: 10px 0; }
+        .flow-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; }
+        .flow-branch { text-align: center; }
+        .flow-result { background: #10B981; color: white; border-radius: 8px; padding: 20px; font-weight: 600; margin-top: 15px; }
+        .code-block {
+            background: #0F172A;
+            color: #81D8D0;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+            white-space: pre;
+        }
+        .code-block .copy-btn {
+            position: absolute; top: 15px; right: 15px;
+            background: #81D8D0; color: #000;
+            border: none; padding: 8px 16px; border-radius: 6px;
+            cursor: pointer; font-weight: 600; font-size: 0.85em;
+            transition: background 0.2s;
+        }
+        .code-block .copy-btn:hover { background: #6BC5BD; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; }
+        .before, .after { border-radius: 12px; overflow: hidden; border: 3px solid #E5E7EB; }
+        .before { border-color: #EF4444; }
+        .after { border-color: #10B981; }
+        .comparison-header { padding: 15px; font-weight: 700; font-size: 1.2em; text-align: center; color: white; }
+        .before .comparison-header { background: #EF4444; }
+        .after .comparison-header { background: #10B981; }
+        .comparison-content { padding: 25px; background: white; }
+        .example-section {
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .example-preview {
+            background: white;
+            border: 2px solid #81D8D0;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 20px 0;
+        }
+        .checklist {
+            background: #ECFDF5;
+            border: 2px solid #10B981;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .checklist h3 { color: #10B981; margin-top: 0; }
+        .checklist-item {
+            padding: 15px; background: white; border-radius: 6px;
+            margin: 10px 0; display: flex; align-items: center;
+            border-left: 4px solid #10B981;
+        }
+        .checklist-item input[type="checkbox"] { width: 22px; height: 22px; margin-right: 15px; cursor: pointer; }
+        .checklist-item label { font-size: 1.05em; cursor: pointer; flex: 1; }
+        .tip { background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .tip strong { color: #3B82F6; display: block; margin-bottom: 8px; }
+        .warning { background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .warning strong { color: #F59E0B; display: block; margin-bottom: 8px; }
+        .psych-note {
+            background: linear-gradient(135deg, #1E1B4B 0%, #4338CA 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .psych-note strong { display: block; margin-bottom: 8px; color: #C7D2FE; font-size: 1.1em; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 14px; text-align: left; border-bottom: 2px solid #E5E7EB; }
+        th { background: #0F172A; color: white; font-weight: 600; }
+        tr:hover { background: #F9FAFB; }
+        .toast {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #10B981; color: white;
+            padding: 16px 24px; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: none; z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* ===== Visual mockups ===== */
+        .mock-vsl {
+            background: #000; color: #fff; padding: 40px 30px;
+            border-radius: 12px; text-align: center;
+        }
+        .mock-vsl .video-frame {
+            background: #0F172A; border: 2px solid #81D8D0;
+            aspect-ratio: 16 / 9; max-width: 720px; margin: 20px auto;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-size: 3em; color: #81D8D0;
+        }
+        .mock-vsl .cta-button {
+            display: inline-block; background: #10B981; color: white;
+            padding: 18px 40px; font-size: 1.15em; font-weight: 700;
+            border-radius: 8px; margin-top: 20px; text-decoration: none;
+        }
+        .mock-optin {
+            background: #FAFAFA; padding: 40px; border-radius: 12px;
+            text-align: center; border: 2px solid #E5E7EB;
+        }
+        .mock-optin .form-box {
+            background: white; max-width: 480px; margin: 20px auto;
+            padding: 30px; border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-top: 4px solid #81D8D0;
+        }
+        .mock-optin input {
+            width: 100%; padding: 14px 16px;
+            border: 2px solid #E5E7EB; border-radius: 8px;
+            font-size: 1em; margin: 8px 0;
+        }
+        .mock-optin button {
+            width: 100%; background: #10B981; color: white;
+            border: none; padding: 16px; font-size: 1.1em;
+            font-weight: 700; border-radius: 8px; margin-top: 12px; cursor: pointer;
+        }
+        .mock-countdown {
+            background: #000; color: white; text-align: center;
+            padding: 24px; border-radius: 12px; margin: 20px 0;
+            border: 2px solid #81D8D0;
+        }
+        .mock-countdown .timer {
+            display: inline-flex; gap: 12px; margin-top: 12px; font-family: 'Courier New', monospace;
+        }
+        .mock-countdown .timer-block {
+            background: #0F172A; border: 1px solid #81D8D0;
+            padding: 14px 18px; border-radius: 8px; min-width: 70px;
+        }
+        .mock-countdown .timer-num { font-size: 1.8em; font-weight: 700; color: #81D8D0; display: block; }
+        .mock-countdown .timer-label { font-size: 0.75em; color: #E5E7EB; text-transform: uppercase; letter-spacing: 1px; }
+        .mock-oto {
+            background: #FAFAFA; padding: 40px; border-radius: 12px;
+            border: 2px solid #E5E7EB;
+        }
+        .mock-oto .badge {
+            display: inline-block; background: #EF4444; color: white;
+            padding: 6px 14px; border-radius: 999px; font-size: 0.85em;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .mock-oto h3 { color: #0F172A; margin: 12px 0; font-size: 1.8em; }
+        .mock-oto .price-box {
+            display: flex; gap: 16px; align-items: baseline; margin: 16px 0;
+        }
+        .mock-oto .price-old { color: #9CA3AF; text-decoration: line-through; font-size: 1.4em; }
+        .mock-oto .price-new { color: #10B981; font-size: 2.2em; font-weight: 800; }
+        .mock-oto .yes-btn, .mock-oto .no-btn {
+            display: block; padding: 16px 24px; border-radius: 8px;
+            font-weight: 700; text-decoration: none; margin: 8px 0;
+        }
+        .mock-oto .yes-btn { background: #10B981; color: white; font-size: 1.15em; text-align: center; }
+        .mock-oto .no-btn { color: #6B7280; font-size: 0.85em; text-align: center; }
+
+        .stack-row {
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px; margin: 20px 0;
+        }
+        .stack-card {
+            background: white; border: 2px solid #E5E7EB;
+            border-radius: 10px; padding: 20px; text-align: center;
+        }
+        .stack-card .stack-num {
+            display: inline-flex; width: 40px; height: 40px;
+            background: #81D8D0; color: #000; border-radius: 50%;
+            align-items: center; justify-content: center; font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 968px) {
+            .comparison, .flow-branches, .stack-row { grid-template-columns: 1fr; }
+            header h1 { font-size: 2em; }
+            .color-chips { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ Fast Track GenAI</h1>
+        <p>Sales Page Framework Guide</p>
+        <p style="font-size:1em; opacity:0.7; margin-top:8px;">VSL · Lead Magnets · OTOs · Countdowns · Proof Stacking</p>
+        <div class="accent-bar"></div>
+    </header>
+
+    <div class="container">
+        <nav class="sub-nav">
+            <a href="#palette">🎨 Palette</a>
+            <a href="#strategy">🌗 Hybrid Strategy</a>
+            <a href="#layout">📐 Layout System</a>
+            <a href="#vsl">🎬 VSL Sections</a>
+            <a href="#optin">📥 Lead Magnet Opt-In</a>
+            <a href="#oto">🎯 OTO Pages</a>
+            <a href="#countdown">⏱️ Countdown Timers</a>
+            <a href="#proof">🏆 Proof Stacking</a>
+            <a href="#mobile">📱 Mobile</a>
+            <a href="#checklist">✅ Checklist</a>
+        </nav>
+
+        <!-- ===================== PALETTE ===================== -->
+        <div class="quick-ref" id="palette">
+            <h3>🎯 Quick Reference Color Palette</h3>
+            <p>Click any color to copy hex code</p>
+            <div class="color-chips">
+                <div class="color-chip" onclick="copyText('#000000')">
+                    <div class="color-chip-swatch" style="background:#000000;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Pure Black (Hero / Final CTA)</span><span class="color-chip-hex">#000000</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#0F172A')">
+                    <div class="color-chip-swatch" style="background:#0F172A;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Deep Navy (Features / VSL)</span><span class="color-chip-hex">#0F172A</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#FAFAFA')">
+                    <div class="color-chip-swatch" style="background:#FAFAFA;border:2px solid #000;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Off-White (Conversion BG)</span><span class="color-chip-hex">#FAFAFA</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#81D8D0')">
+                    <div class="color-chip-swatch" style="background:#81D8D0;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Tiffany Turquoise (Accent)</span><span class="color-chip-hex">#81D8D0</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#10B981')">
+                    <div class="color-chip-swatch" style="background:#10B981;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Emerald Green (Primary CTA)</span><span class="color-chip-hex">#10B981</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#374151')">
+                    <div class="color-chip-swatch" style="background:#374151;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Charcoal (Body Text)</span><span class="color-chip-hex">#374151</span></div>
+                </div>
+                <div class="color-chip" onclick="copyText('#EF4444')">
+                    <div class="color-chip-swatch" style="background:#EF4444;"></div>
+                    <div class="color-chip-info"><span class="color-chip-name">Alert Red (Scarcity)</span><span class="color-chip-hex">#EF4444</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== HYBRID STRATEGY ===================== -->
+        <section id="strategy">
+            <h2>🌗 Hybrid Dark/Light Conversion Strategy</h2>
+            <p style="font-size:1.1em;">Sales pages convert best when section backgrounds <strong>alternate intentionally</strong>. Dark sections create premium emotion. Light sections maximize <em>form</em> and <em>price</em> conversion. Below is the canonical Fast Track GenAI long-form sales page rhythm.</p>
+
+            <div class="flowchart">
+                <div class="flow-step" style="background:#000;color:#fff;border-color:#000;">HERO + VSL — <code>#000000</code> (Pure Black)<br><small>Maximum drama, attention focus on video</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA;color:#0F172A;border-color:#81D8D0;">LEAD MAGNET OPT-IN — <code>#FAFAFA</code> (Off-White)<br><small>Highest form-fill conversion background</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#0F172A;color:#fff;border-color:#0F172A;">PROBLEM / AGITATION — <code>#0F172A</code> (Deep Navy)<br><small>Emotional weight, pain framing</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA;color:#0F172A;border-color:#81D8D0;">PROOF STACK + TESTIMONIALS — <code>#FAFAFA</code><br><small>Trust elements always read better on light</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#0F172A;color:#fff;border-color:#0F172A;">OFFER STACK / WHAT'S INCLUDED — <code>#0F172A</code><br><small>Premium dark stack creates value perception</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA;color:#0F172A;border-color:#10B981;">PRICING + GUARANTEE — <code>#FAFAFA</code><br><small>Light bg = numbers feel honest, transparent</small></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#000;color:#fff;border-color:#000;">FINAL CTA + COUNTDOWN — <code>#000000</code><br><small>Black returns to compress urgency</small></div>
+            </div>
+
+            <div class="psych-note">
+                <strong>🧠 Conversion Psychology</strong>
+                Dark backgrounds increase perceived premium value (+22% in luxury A/B tests) but <em>decrease</em> form completion by ~8–12% vs light. The hybrid pattern uses dark to <strong>sell emotion</strong> and light to <strong>capture action</strong>.
+            </div>
+        </section>
+
+        <!-- ===================== LAYOUT SYSTEM ===================== -->
+        <section id="layout">
+            <h2>📐 Single-Column Long-Form Layout System</h2>
+            <p>Every Fast Track GenAI sales page uses a <strong>single-column flow</strong> at a max content width of <code>720px</code> (text) and <code>1140px</code> (visual sections). This forces linear reading and removes sidebar distractions.</p>
+
+            <h3>Section Wrapper — Copy/Paste Boilerplate</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('layout-1')">Copy</button><span id="layout-1">/* ===== FTG Sales Page Section System ===== */
+.ftg-section { padding: 80px 24px; }
+.ftg-section--dark { background:#0F172A; color:#FAFAFA; }
+.ftg-section--black { background:#000000; color:#FAFAFA; }
+.ftg-section--light { background:#FAFAFA; color:#0F172A; }
+
+.ftg-wrap     { max-width:1140px; margin:0 auto; }
+.ftg-wrap--narrow { max-width:720px; margin:0 auto; }
+
+.ftg-h1 { font-size:clamp(2rem, 5vw, 3.6rem); font-weight:800; line-height:1.1; }
+.ftg-h2 { font-size:clamp(1.6rem, 4vw, 2.6rem); font-weight:700; line-height:1.2; }
+.ftg-lead { font-size:1.25rem; color:#374151; line-height:1.55; }
+
+.ftg-cta {
+  display:inline-block; background:#10B981; color:#fff;
+  padding:18px 36px; border-radius:10px;
+  font-weight:700; font-size:1.15rem;
+  text-decoration:none; box-shadow:0 6px 18px rgba(16,185,129,.35);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.ftg-cta:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(16,185,129,.5); }
+.ftg-cta--accent { background:#81D8D0; color:#000; box-shadow:0 6px 18px rgba(129,216,208,.4); }
+</span></div>
+
+            <div class="tip">
+                <strong>📏 Width Rule</strong>
+                Body copy never exceeds <code>720px</code>. Hero/visual blocks may go up to <code>1140px</code>. Beyond that, eye-tracking studies show readers drop off mid-line.
+            </div>
+        </section>
+
+        <!-- ===================== VSL ===================== -->
+        <section id="vsl">
+            <h2>🎬 VSL (Video Sales Letter) Sections</h2>
+            <p>The VSL is the <strong>emotional centerpiece</strong> of the sales page. The video itself does the persuasion — surrounding elements only frame, focus, and convert.</p>
+
+            <h3>Anatomy of a Converting VSL Section</h3>
+            <ol>
+                <li><strong>Eyebrow line</strong> — small accent label (Tiffany Turquoise) above the headline</li>
+                <li><strong>Curiosity headline</strong> — 6–14 word benefit hook, never reveals the mechanism</li>
+                <li><strong>Sub-headline</strong> — 1 sentence, addresses the hidden objection</li>
+                <li><strong>Video player</strong> — 16:9, autoplay muted with manual unmute button</li>
+                <li><strong>Below-video CTA</strong> — only appears after 30–60s of watch time (or as a fallback)</li>
+                <li><strong>Trust micro-row</strong> — "As seen in" or featured logos in soft grayscale</li>
+            </ol>
+
+            <h4>Visual Mock</h4>
+            <div class="mock-vsl">
+                <p style="color:#81D8D0; letter-spacing:2px; font-size:0.85em; text-transform:uppercase;">— Watch The Free Training —</p>
+                <h2 style="color:#fff; border:none; margin:14px 0;">How We Built A 6-Figure GenAI Business In 90 Days (Without Coding)</h2>
+                <p style="opacity:0.85;">The 3-step framework most agencies will never share with you.</p>
+                <div class="video-frame">▶</div>
+                <a href="#" class="cta-button">Yes — Show Me The Framework →</a>
+                <p style="margin-top:14px; font-size:0.8em; opacity:0.6;">Featured in: Forbes · TechCrunch · Inc. · Entrepreneur</p>
+            </div>
+
+            <h3>GHL Implementation Code</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('vsl-1')">Copy</button><span id="vsl-1">&lt;section class="ftg-section ftg-section--black"&gt;
+  &lt;div class="ftg-wrap--narrow" style="text-align:center;"&gt;
+    &lt;p style="color:#81D8D0; letter-spacing:2px; font-size:.85em; text-transform:uppercase;"&gt;
+      — Watch The Free Training —
+    &lt;/p&gt;
+    &lt;h1 class="ftg-h1" style="color:#fff;"&gt;
+      How We Built A 6-Figure GenAI Business In 90 Days
+    &lt;/h1&gt;
+    &lt;p class="ftg-lead" style="color:#E5E7EB;"&gt;
+      The 3-step framework most agencies will never share with you.
+    &lt;/p&gt;
+
+    &lt;!-- VSL Player Wrapper (responsive 16:9) --&gt;
+    &lt;div style="position:relative; padding-top:56.25%; margin:32px 0;
+                border:2px solid #81D8D0; border-radius:12px; overflow:hidden;"&gt;
+      &lt;iframe src="https://player.vimeo.com/video/VIDEO_ID?autoplay=1&amp;muted=1"
+              style="position:absolute; inset:0; width:100%; height:100%;"
+              frameborder="0" allow="autoplay; fullscreen"&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+    &lt;a href="#offer" class="ftg-cta"&gt;Yes — Show Me The Framework →&lt;/a&gt;
+    &lt;p style="margin-top:14px; font-size:.8em; opacity:.6; color:#fff;"&gt;
+      Featured in: Forbes · TechCrunch · Inc. · Entrepreneur
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</span></div>
+
+            <h3>Delayed CTA Reveal (Wistia / Vimeo Trigger)</h3>
+            <p>The "Add To Cart" button below the VSL should be hidden until the video reaches the pitch moment. This prevents premature exits.</p>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('vsl-2')">Copy</button><span id="vsl-2">&lt;!-- Hidden CTA, revealed at 90s --&gt;
+&lt;div id="ftg-vsl-cta" style="display:none; text-align:center; margin-top:32px;"&gt;
+  &lt;a href="#order" class="ftg-cta"&gt;Get Instant Access →&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // Wistia API: reveal at 90 seconds
+  window._wq = window._wq || [];
+  _wq.push({ id: 'WISTIA_ID', onReady: function(video) {
+    video.bind('secondchange', function(s) {
+      if (s &gt;= 90) document.getElementById('ftg-vsl-cta').style.display = 'block';
+    });
+  }});
+&lt;/script&gt;</span></div>
+
+            <h3>Before / After</h3>
+            <div class="comparison">
+                <div class="before">
+                    <div class="comparison-header">❌ Before</div>
+                    <div class="comparison-content">
+                        <ul>
+                            <li>Multi-column hero with sidebar form</li>
+                            <li>Headline reveals the mechanism (kills curiosity)</li>
+                            <li>Generic "Watch Now" button always visible</li>
+                            <li>Stock image instead of video</li>
+                            <li>Light background — no premium feel</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="after">
+                    <div class="comparison-header">✅ After</div>
+                    <div class="comparison-content">
+                        <ul>
+                            <li>Single-column, full-width Pure Black</li>
+                            <li>Curiosity headline — promises outcome only</li>
+                            <li>Specific micro-CTA below video</li>
+                            <li>16:9 player with Tiffany Turquoise frame</li>
+                            <li>Delayed reveal — CTA appears at pitch point</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="psych-note">
+                <strong>🧠 The Open Loop</strong>
+                The VSL headline must <em>imply</em> a result without revealing the method. The brain craves closure — the only way to close the loop is to watch.
+            </div>
+        </section>
+
+        <!-- ===================== LEAD MAGNET OPT-IN ===================== -->
+        <section id="optin">
+            <h2>📥 Lead Magnet Opt-In Boxes</h2>
+            <p>The opt-in is where curiosity converts into a contact. Every element should reduce friction and amplify perceived value.</p>
+
+            <h3>The 7 Required Elements</h3>
+            <ol>
+                <li><strong>Magnet visual</strong> — book/PDF/checklist mockup (3D rendered)</li>
+                <li><strong>Outcome headline</strong> — "Get the [thing] that helps you [result]"</li>
+                <li><strong>3-bullet promise</strong> — what they'll learn / get / save</li>
+                <li><strong>Email field</strong> — single field is highest converting</li>
+                <li><strong>CTA button</strong> — Emerald Green, action-verb first</li>
+                <li><strong>Privacy reassurance</strong> — "No spam. Unsubscribe anytime."</li>
+                <li><strong>Social proof line</strong> — "Joined by 12,400+ founders"</li>
+            </ol>
+
+            <h4>Visual Mock</h4>
+            <div class="mock-optin">
+                <p style="color:#10B981; font-weight:700; letter-spacing:2px; font-size:0.85em; text-transform:uppercase;">Free Download</p>
+                <h3 style="color:#0F172A; margin:8px 0;">The 7-Figure GenAI Offer Stack Template</h3>
+                <p style="color:#374151;">Steal the exact stack we use for $4,997 offers. Used by 800+ agencies.</p>
+                <div class="form-box">
+                    <input type="email" placeholder="Your best email…">
+                    <button>📥 Send Me The Template</button>
+                    <p style="font-size:0.8em; color:#6B7280; margin-top:10px;">No spam. Unsubscribe anytime. 12,400+ subscribers.</p>
+                </div>
+            </div>
+
+            <h3>GHL Implementation — Single-Field Opt-In</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('opt-1')">Copy</button><span id="opt-1">&lt;section class="ftg-section ftg-section--light"&gt;
+  &lt;div class="ftg-wrap--narrow" style="text-align:center;"&gt;
+    &lt;p style="color:#10B981; font-weight:700; letter-spacing:2px;
+              text-transform:uppercase; font-size:.85em;"&gt;
+      Free Download
+    &lt;/p&gt;
+    &lt;h2 class="ftg-h2"&gt;The 7-Figure GenAI Offer Stack Template&lt;/h2&gt;
+    &lt;p class="ftg-lead"&gt;
+      Steal the exact stack we use for $4,997 offers. Used by 800+ agencies.
+    &lt;/p&gt;
+
+    &lt;!-- GHL Form Embed Wrapper --&gt;
+    &lt;div style="background:#fff; max-width:480px; margin:24px auto;
+                padding:30px; border-radius:12px;
+                box-shadow:0 8px 24px rgba(0,0,0,.08);
+                border-top:4px solid #81D8D0;"&gt;
+      &lt;iframe src="https://api.leadconnectorhq.com/widget/form/FORM_ID"
+              style="width:100%; height:260px; border:none;"&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+    &lt;p style="font-size:.8em; color:#6B7280;"&gt;
+      No spam. Unsubscribe anytime. 12,400+ subscribers.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</span></div>
+
+            <h3>GHL Custom CSS — Style The Embedded Form</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('opt-2')">Copy</button><span id="opt-2">/* Paste in GHL Form Builder &gt; Custom CSS */
+.form-builder--input {
+  border: 2px solid #E5E7EB !important;
+  border-radius: 8px !important;
+  padding: 14px 16px !important;
+  font-size: 1rem !important;
+  transition: border .2s;
+}
+.form-builder--input:focus {
+  border-color: #81D8D0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(129,216,208,.2);
+}
+.form-builder--btn {
+  background: #10B981 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 16px 24px !important;
+  border-radius: 8px !important;
+  font-size: 1.1rem !important;
+  width: 100% !important;
+  border: none !important;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.form-builder--btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16,185,129,.4);
+}</span></div>
+
+            <h3>Inline vs Modal vs Two-Step Opt-In</h3>
+            <table>
+                <thead><tr><th>Pattern</th><th>Best For</th><th>Avg Conversion</th><th>FTG Recommendation</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Inline</strong> (visible on page)</td><td>Cold traffic blogs / SEO pages</td><td>3–8%</td><td>Default for top-of-funnel</td></tr>
+                    <tr><td><strong>Two-Step</strong> (button → modal)</td><td>Paid ads / VSL pages</td><td>15–35%</td><td>Use after VSL pitch moment</td></tr>
+                    <tr><td><strong>Exit Intent Modal</strong></td><td>Recovery / abandonment</td><td>5–12%</td><td>Always layer on top of any funnel</td></tr>
+                    <tr><td><strong>Sticky Footer Bar</strong></td><td>Long-form articles</td><td>2–4%</td><td>Use sparingly — Tiffany Turquoise bg</td></tr>
+                </tbody>
+            </table>
+
+            <div class="psych-note">
+                <strong>🧠 Single-Field Magic</strong>
+                Each additional form field reduces conversion by ~7–11%. Capture only email at first contact. Use post-opt-in pages and email enrichment for the rest.
+            </div>
+        </section>
+
+        <!-- ===================== OTO ===================== -->
+        <section id="oto">
+            <h2>🎯 OTO (One-Time Offer) Page Structures</h2>
+            <p>OTOs run between the order confirmation and the thank-you page. They are <strong>impulse purchases</strong> stacked on a buyer's existing momentum. Structure matters more than copy length.</p>
+
+            <h3>The 9-Block OTO Page Anatomy</h3>
+            <div class="stack-row">
+                <div class="stack-card"><span class="stack-num">1</span><strong>Wait Headline</strong><br><small>"Wait — Your Order Isn't Complete"</small></div>
+                <div class="stack-card"><span class="stack-num">2</span><strong>Pattern Interrupt</strong><br><small>Bright bar / countdown / red banner</small></div>
+                <div class="stack-card"><span class="stack-num">3</span><strong>Continuation Hook</strong><br><small>"Since you just got X, you'll need Y"</small></div>
+            </div>
+            <div class="stack-row">
+                <div class="stack-card"><span class="stack-num">4</span><strong>Benefit Bullets</strong><br><small>3–5 outcome-focused promises</small></div>
+                <div class="stack-card"><span class="stack-num">5</span><strong>Demo / Visual Proof</strong><br><small>Screenshot, GIF, or 60s VSL</small></div>
+                <div class="stack-card"><span class="stack-num">6</span><strong>Stack-and-Save Pricing</strong><br><small>Crossed-out "regular" price</small></div>
+            </div>
+            <div class="stack-row">
+                <div class="stack-card"><span class="stack-num">7</span><strong>YES Button</strong><br><small>Big Emerald — "Yes, Add To My Order"</small></div>
+                <div class="stack-card"><span class="stack-num">8</span><strong>NO Link</strong><br><small>Tiny gray — "No thanks, I'll pass…"</small></div>
+                <div class="stack-card"><span class="stack-num">9</span><strong>Guarantee Reaffirmation</strong><br><small>"Same 30-day guarantee"</small></div>
+            </div>
+
+            <h4>Visual Mock</h4>
+            <div class="mock-oto">
+                <span class="badge">⚠ Wait — Your Order Isn't Complete</span>
+                <h3>Add The Done-For-You Funnel Templates To Your Order — Today Only</h3>
+                <p style="color:#374151;">Since you just unlocked the GenAI Framework, add the <strong>10 high-converting funnel templates</strong> we used to generate $1.2M in 2025. Normally $497 — yours for one-time only:</p>
+                <div class="price-box">
+                    <span class="price-old">$497</span>
+                    <span class="price-new">$47</span>
+                </div>
+                <a href="#" class="yes-btn">✅ YES — Add Templates To My Order ($47)</a>
+                <a href="#" class="no-btn">No thanks, I understand I'll never see this offer again.</a>
+            </div>
+
+            <h3>GHL Implementation — Full OTO Page</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('oto-1')">Copy</button><span id="oto-1">&lt;section class="ftg-section ftg-section--light"&gt;
+  &lt;div class="ftg-wrap--narrow"&gt;
+
+    &lt;!-- 1. Pattern interrupt badge --&gt;
+    &lt;div style="background:#EF4444; color:#fff; padding:10px 18px;
+                border-radius:999px; display:inline-block;
+                font-size:.85em; font-weight:700; letter-spacing:1px;
+                text-transform:uppercase;"&gt;
+      ⚠ Wait — Your Order Isn't Complete
+    &lt;/div&gt;
+
+    &lt;!-- 2. Continuation headline --&gt;
+    &lt;h1 class="ftg-h1" style="margin-top:16px;"&gt;
+      Add The Done-For-You Funnel Templates Today Only
+    &lt;/h1&gt;
+    &lt;p class="ftg-lead"&gt;
+      Since you just unlocked the GenAI Framework, add the
+      &lt;strong&gt;10 high-converting funnel templates&lt;/strong&gt;
+      we used to generate $1.2M in 2025.
+    &lt;/p&gt;
+
+    &lt;!-- 3. Stack-and-save price --&gt;
+    &lt;div style="display:flex; gap:16px; align-items:baseline; margin:20px 0;"&gt;
+      &lt;span style="color:#9CA3AF; text-decoration:line-through; font-size:1.4em;"&gt;$497&lt;/span&gt;
+      &lt;span style="color:#10B981; font-size:2.4em; font-weight:800;"&gt;$47&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 4. YES button --&gt;
+    &lt;a href="UPSELL_LINK" class="ftg-cta" style="display:block; text-align:center; font-size:1.2em;"&gt;
+      ✅ YES — Add Templates To My Order ($47)
+    &lt;/a&gt;
+
+    &lt;!-- 5. Tiny NO link --&gt;
+    &lt;p style="text-align:center; margin-top:14px;"&gt;
+      &lt;a href="DOWNSELL_LINK" style="color:#6B7280; font-size:.85em;"&gt;
+        No thanks, I understand I'll never see this offer again.
+      &lt;/a&gt;
+    &lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;</span></div>
+
+            <h3>OTO Stack Routing Logic (GHL Workflow)</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('oto-2')">Copy</button><span id="oto-2">FRONT-END PURCHASE ($27 lead magnet upgrade)
+  ├── YES → OTO 1 ($47 templates)
+  │     ├── YES → OTO 2 ($97 coaching call)
+  │     │     ├── YES → Thank-You + Onboarding
+  │     │     └── NO  → Downsell ($47 group call) → Thank-You
+  │     └── NO  → Downsell 1 ($27 templates lite) → OTO 2
+  └── NO  → Downsell ($17 single template) → Thank-You</span></div>
+
+            <div class="warning">
+                <strong>⚠ Never Show Two Yes Buttons</strong>
+                If the user accepts OTO 1, the NEXT page is OTO 2 (different offer). Never present the same offer twice on the same page — this destroys decisive momentum.
+            </div>
+
+            <div class="psych-note">
+                <strong>🧠 The Buyer's High</strong>
+                A customer is 4–7× more likely to buy in the 90 seconds after their first purchase than at any other moment. OTOs exist to harvest that window.
+            </div>
+        </section>
+
+        <!-- ===================== COUNTDOWN ===================== -->
+        <section id="countdown">
+            <h2>⏱️ Countdown Timers</h2>
+            <p>Countdowns translate <strong>abstract scarcity</strong> into a felt urgency. Three flavors exist; pick the right one for the right page.</p>
+
+            <h3>The 3 Timer Types</h3>
+            <table>
+                <thead><tr><th>Type</th><th>When To Use</th><th>Honesty Risk</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Evergreen (per-visitor)</strong></td><td>OTO pages, expiring lead-magnet bonuses</td><td>Medium — must actually expire the link</td></tr>
+                    <tr><td><strong>Fixed Date</strong></td><td>Cohort launches, webinar replay windows</td><td>Low — universally honest</td></tr>
+                    <tr><td><strong>Daily Reset</strong></td><td>Limited daily seats, "today's bonus"</td><td>High — only use if truly daily</td></tr>
+                </tbody>
+            </table>
+
+            <h4>Visual Mock</h4>
+            <div class="mock-countdown">
+                <p style="letter-spacing:2px; font-size:0.85em; text-transform:uppercase; color:#81D8D0;">⚠ Offer Expires In:</p>
+                <div class="timer">
+                    <div class="timer-block"><span class="timer-num">00</span><span class="timer-label">Days</span></div>
+                    <div class="timer-block"><span class="timer-num">14</span><span class="timer-label">Hours</span></div>
+                    <div class="timer-block"><span class="timer-num">37</span><span class="timer-label">Mins</span></div>
+                    <div class="timer-block"><span class="timer-num">02</span><span class="timer-label">Secs</span></div>
+                </div>
+            </div>
+
+            <h3>Vanilla JS Evergreen Timer (15-min OTO Lock)</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('cd-1')">Copy</button><span id="cd-1">&lt;div id="ftg-timer" class="mock-countdown"&gt;
+  &lt;p style="letter-spacing:2px; font-size:.85em;
+            text-transform:uppercase; color:#81D8D0;"&gt;
+    ⚠ Offer Expires In:
+  &lt;/p&gt;
+  &lt;div class="timer"&gt;
+    &lt;div class="timer-block"&gt;&lt;span id="d" class="timer-num"&gt;00&lt;/span&gt;&lt;span class="timer-label"&gt;Days&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="timer-block"&gt;&lt;span id="h" class="timer-num"&gt;00&lt;/span&gt;&lt;span class="timer-label"&gt;Hours&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="timer-block"&gt;&lt;span id="m" class="timer-num"&gt;15&lt;/span&gt;&lt;span class="timer-label"&gt;Mins&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="timer-block"&gt;&lt;span id="s" class="timer-num"&gt;00&lt;/span&gt;&lt;span class="timer-label"&gt;Secs&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function(){
+  var KEY = 'ftg_oto_deadline';
+  var deadline = localStorage.getItem(KEY);
+  if (!deadline) {
+    deadline = Date.now() + 15 * 60 * 1000; // 15 min
+    localStorage.setItem(KEY, deadline);
+  }
+  function pad(n){ return n &lt; 10 ? '0'+n : n; }
+  function tick(){
+    var diff = deadline - Date.now();
+    if (diff &lt;= 0) {
+      window.location.href = '/offer-expired'; return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    document.getElementById('d').textContent = pad(d);
+    document.getElementById('h').textContent = pad(h);
+    document.getElementById('m').textContent = pad(m);
+    document.getElementById('s').textContent = pad(s);
+  }
+  setInterval(tick, 1000); tick();
+})();
+&lt;/script&gt;</span></div>
+
+            <h3>Fixed-Date Launch Countdown</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('cd-2')">Copy</button><span id="cd-2">&lt;script&gt;
+  var DEADLINE = new Date('2026-06-01T23:59:00-07:00').getTime();
+  // Reuse tick() above, replace `deadline` with DEADLINE.
+&lt;/script&gt;</span></div>
+
+            <h3>GHL Native Countdown Element</h3>
+            <p>GHL's drag-and-drop builder includes a Countdown element. Style it via Custom CSS:</p>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('cd-3')">Copy</button><span id="cd-3">/* Paste in GHL Funnel/Page &gt; Custom CSS */
+.c-countdown {
+  background: #000 !important;
+  border: 2px solid #81D8D0 !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+}
+.c-countdown__digit {
+  background: #0F172A !important;
+  color: #81D8D0 !important;
+  border: 1px solid #81D8D0 !important;
+  border-radius: 8px !important;
+  font-family: 'Courier New', monospace !important;
+}
+.c-countdown__label {
+  color: #FAFAFA !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}</span></div>
+
+            <div class="warning">
+                <strong>⚠ The Honesty Imperative</strong>
+                If your timer says it expires, it MUST expire. Server-side enforcement (redirect link to `/offer-expired`) is non-negotiable for FTG brands. Fake countdowns kill long-term LTV.
+            </div>
+
+            <div class="psych-note">
+                <strong>🧠 Loss Aversion</strong>
+                Humans feel losses ~2× more intensely than gains. A countdown converts an "I might miss out" feeling into a measurable, ticking bar. That's why a 15-min OTO timer outperforms a "limited time only" badge by 30–80%.
+            </div>
+        </section>
+
+        <!-- ===================== PROOF STACKING ===================== -->
+        <section id="proof">
+            <h2>🏆 Proof Stacking Patterns</h2>
+            <p>One testimonial is a story. Three is a pattern. Twelve is a movement. Proof stacking is the discipline of <strong>layering proof types</strong> so each one ratchets credibility one notch higher.</p>
+
+            <h3>The 7 Proof Types (Stack At Least 4)</h3>
+            <ol>
+                <li><strong>Direct Testimonial</strong> — quote + photo + name + result</li>
+                <li><strong>Case Study</strong> — before / process / after with numbers</li>
+                <li><strong>Screenshot Proof</strong> — Stripe dashboard, analytics, DM screenshots</li>
+                <li><strong>Logo Proof</strong> — "As featured in" or "Used by" client logos</li>
+                <li><strong>Numerical Proof</strong> — "$1.2M generated · 12,400+ users · 4.9★ avg"</li>
+                <li><strong>Video Testimonial</strong> — 60–90s talking head, builds 3× trust vs text</li>
+                <li><strong>Authority Proof</strong> — endorsement from named expert / publication</li>
+            </ol>
+
+            <h3>The Canonical FTG Proof Stack Order</h3>
+            <div class="flowchart">
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">① Numerical Proof Bar (top of section, dark text on light)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">② Logo Strip ("As Featured In") — soft grayscale</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">③ Anchor Video Testimonial (largest, centered)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">④ 3-Column Text Testimonial Grid</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">⑤ Stripe / Result Screenshot Wall</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="background:#FAFAFA; border-color:#81D8D0;">⑥ Featured Case Study (long-form, single column)</div>
+            </div>
+
+            <h3>Numerical Proof Bar — Copy/Paste</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('proof-1')">Copy</button><span id="proof-1">&lt;section class="ftg-section ftg-section--light"&gt;
+  &lt;div class="ftg-wrap" style="display:grid; grid-template-columns:repeat(4,1fr);
+                                gap:24px; text-align:center;"&gt;
+    &lt;div&gt;
+      &lt;div style="font-size:2.6em; font-weight:800; color:#10B981;"&gt;$1.2M&lt;/div&gt;
+      &lt;div style="color:#374151;"&gt;Revenue Generated&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div style="font-size:2.6em; font-weight:800; color:#10B981;"&gt;12,400+&lt;/div&gt;
+      &lt;div style="color:#374151;"&gt;Active Users&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div style="font-size:2.6em; font-weight:800; color:#10B981;"&gt;4.9★&lt;/div&gt;
+      &lt;div style="color:#374151;"&gt;Avg Rating&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div style="font-size:2.6em; font-weight:800; color:#10B981;"&gt;90 Days&lt;/div&gt;
+      &lt;div style="color:#374151;"&gt;Avg Time To Result&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</span></div>
+
+            <h3>Testimonial Card — Copy/Paste</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('proof-2')">Copy</button><span id="proof-2">&lt;article style="background:#fff; border:1px solid #E5E7EB;
+                border-radius:12px; padding:24px;
+                box-shadow:0 4px 12px rgba(0,0,0,.06);"&gt;
+  &lt;div style="color:#F59E0B; font-size:1.2em; margin-bottom:8px;"&gt;★★★★★&lt;/div&gt;
+  &lt;p style="color:#0F172A; font-size:1.05em; line-height:1.5;"&gt;
+    "I went from $0 to $14,200 in my first 60 days using the
+    Fast Track GenAI framework. The OTO stack alone paid for itself 3×."
+  &lt;/p&gt;
+  &lt;div style="display:flex; align-items:center; margin-top:18px; gap:12px;"&gt;
+    &lt;img src="AVATAR_URL" alt="" style="width:48px; height:48px; border-radius:50%;"&gt;
+    &lt;div&gt;
+      &lt;div style="font-weight:700; color:#0F172A;"&gt;Sarah K.&lt;/div&gt;
+      &lt;div style="color:#6B7280; font-size:.9em;"&gt;Founder, Loomly Agency&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</span></div>
+
+            <h3>Before / After — Proof Section Quality</h3>
+            <div class="comparison">
+                <div class="before">
+                    <div class="comparison-header">❌ Weak Proof</div>
+                    <div class="comparison-content">
+                        <ul>
+                            <li>One vague testimonial: "Great course!"</li>
+                            <li>No name, no photo, no result</li>
+                            <li>All testimonials sound the same</li>
+                            <li>Buried at bottom of page</li>
+                            <li>No numbers or specifics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="after">
+                    <div class="comparison-header">✅ Stacked Proof</div>
+                    <div class="comparison-content">
+                        <ul>
+                            <li>4+ proof types layered (numbers, logos, video, text)</li>
+                            <li>Every testimonial has name + photo + role + result</li>
+                            <li>Each tells a different story (skeptic, beginner, advanced)</li>
+                            <li>Featured 3× — after VSL, after offer, near guarantee</li>
+                            <li>Specific numbers: "$14,200 in 60 days"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="psych-note">
+                <strong>🧠 Cumulative Credibility</strong>
+                Each proof type triggers a different objection-killing pathway: numbers neutralize "is this real?", videos neutralize "is this fake?", screenshots neutralize "did this actually pay?", and logos neutralize "are these people legit?". Stacking 4+ types fires all gates simultaneously.
+            </div>
+        </section>
+
+        <!-- ===================== MOBILE ===================== -->
+        <section id="mobile">
+            <h2>📱 Mobile-Responsive Considerations</h2>
+            <p>60–80% of FTG sales page traffic is mobile. The desktop layout is the <em>derivative</em>, not the source.</p>
+
+            <h3>Mobile Rules</h3>
+            <ul>
+                <li><strong>Tap targets ≥ 48px</strong> — every CTA, link, and icon</li>
+                <li><strong>Headlines clamp(2rem, 7vw, 3.6rem)</strong> — never overflow</li>
+                <li><strong>Stacked vertical layouts</strong> — no horizontal scroll, ever</li>
+                <li><strong>Sticky bottom CTA</strong> — appears below the fold on mobile only</li>
+                <li><strong>Compress VSL load</strong> — autoplay muted, lazy-load Vimeo</li>
+                <li><strong>Single-column forms</strong> — never side-by-side fields</li>
+                <li><strong>Reduce padding</strong> — sections at <code>48px</code> not <code>80px</code> on mobile</li>
+            </ul>
+
+            <h3>Mobile-Only Sticky CTA</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('mob-1')">Copy</button><span id="mob-1">&lt;a href="#order" class="ftg-mobile-cta"&gt;Get Instant Access — $47&lt;/a&gt;
+
+&lt;style&gt;
+.ftg-mobile-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #10B981; color: #fff;
+  padding: 18px; text-align: center;
+  font-weight: 700; text-decoration: none;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.2);
+  z-index: 999;
+}
+@media (max-width: 768px) {
+  .ftg-mobile-cta { display: block; }
+  body { padding-bottom: 70px; } /* avoid overlap */
+}
+&lt;/style&gt;</span></div>
+
+            <h3>Responsive Section Padding</h3>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode('mob-2')">Copy</button><span id="mob-2">.ftg-section { padding: 80px 24px; }
+@media (max-width: 768px) {
+  .ftg-section { padding: 48px 16px; }
+  .ftg-h1 { font-size: 2rem; }
+  .ftg-h2 { font-size: 1.6rem; }
+  .ftg-cta { width: 100%; padding: 18px; }
+}</span></div>
+        </section>
+
+        <!-- ===================== CHECKLIST ===================== -->
+        <section id="checklist">
+            <div class="checklist">
+                <h3>✅ Sales Page Implementation Checklist</h3>
+
+                <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1">Hero section uses Pure Black <code>#000000</code> with VSL embedded</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2">VSL headline implies outcome only — does NOT reveal the mechanism</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3">CTA below VSL is hidden until 60–90s of watch time</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4">Lead magnet opt-in section uses Off-White <code>#FAFAFA</code></label></div>
+                <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5">Opt-in form requests email only (single field)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6">Opt-in CTA button uses Emerald Green <code>#10B981</code></label></div>
+                <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7">Privacy reassurance line under every form</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c8"><label for="c8">OTO page begins with "Wait — Your Order Isn't Complete" pattern interrupt</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c9"><label for="c9">OTO uses single big YES button + tiny gray NO link (asymmetric)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c10"><label for="c10">OTO has crossed-out anchor price next to discounted price</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c11"><label for="c11">Countdown timer is server-enforced (link actually expires)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c12"><label for="c12">Evergreen timer uses localStorage to persist per-visitor</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c13"><label for="c13">Proof section stacks at least 4 different proof types</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c14"><label for="c14">Every testimonial has name + photo + role + specific result</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c15"><label for="c15">Numerical proof bar appears at the top of proof section</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c16"><label for="c16">Hybrid pattern enforced: Black → Light → Navy → Light → Navy → Light → Black</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c17"><label for="c17">Single-column body, max width 720px text / 1140px visuals</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c18"><label for="c18">Mobile sticky bottom CTA appears under 768px viewport</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c19"><label for="c19">All tap targets ≥ 48px on mobile</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c20"><label for="c20">Contrast verified WCAG AA on every text/background combo</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c21"><label for="c21">Page Speed: Lighthouse score ≥ 90 mobile</label></div>
+                <div class="checklist-item"><input type="checkbox" id="c22"><label for="c22">Cross-device test: iPhone SE, iPhone 14 Pro Max, iPad, desktop</label></div>
+            </div>
+        </section>
+
+        <!-- ===================== TIPS ===================== -->
+        <section>
+            <h2>💡 Pro Tips & Common Mistakes</h2>
+
+            <div class="tip">
+                <strong>Headline Formula That Always Works</strong>
+                "How [target] [achieve outcome] in [time] without [pain]." Example: "How agencies hit $20K MRR in 60 days without hiring anyone."
+            </div>
+            <div class="tip">
+                <strong>Stack Bonuses, Don't Discount</strong>
+                Adding bonuses raises perceived value. Discounting alone trains buyers to wait. Stack 3+ bonuses with their own dollar values, then reveal the price.
+            </div>
+            <div class="tip">
+                <strong>Test The First 5 Seconds</strong>
+                Record your screen scrolling the page in 5 seconds. Can a stranger tell what you're selling, who it's for, and what to do? If not, simplify the hero.
+            </div>
+            <div class="warning">
+                <strong>The "Three Buttons" Mistake</strong>
+                Never put more than ONE primary CTA on a single screen-height. Multiple "Get Started", "Buy Now", "Learn More" buttons fragment decision energy.
+            </div>
+            <div class="warning">
+                <strong>Fake Countdowns Kill Brands</strong>
+                If a returning visitor sees the timer reset, you've broken trust permanently. Always enforce the deadline with a real redirect.
+            </div>
+            <div class="tip">
+                <strong>A/B Test Order, Not Words</strong>
+                Reordering proof → offer → guarantee vs offer → proof → guarantee swings conversions 15–40%. Word changes rarely move more than 5%.
+            </div>
+        </section>
+
+        <p style="text-align:center; color:#6B7280; padding:40px 0;">
+            ← Back to <a href="index.html" style="color:#0F172A; font-weight:700;">Brand Resource Center</a> ·
+            <a href="brand-guide.html" style="color:#0F172A; font-weight:700;">Brand Guide</a> ·
+            <a href="ghl-guide.html" style="color:#0F172A; font-weight:700;">GHL Guide</a>
+        </p>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(showToast).catch(function(e){console.error(e);});
+        }
+        function copyCode(elementId) {
+            var el = document.getElementById(elementId);
+            navigator.clipboard.writeText(el.textContent).then(showToast).catch(function(e){console.error(e);});
+        }
+        function showToast() {
+            var t = document.getElementById('toast');
+            t.style.display = 'block';
+            setTimeout(function(){ t.style.display = 'none'; }, 2000);
+        }
+    </script>
+</body>
+</html>
