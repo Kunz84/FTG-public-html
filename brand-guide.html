@@ -527,7 +527,7 @@
             <h3>Hero Navigation Visual Preview</h3>
             <div style="margin-bottom: 30px;">
                 <div style="background: linear-gradient(90deg, #000000 0%, #0F172A 100%); padding: 30px 40px; border-radius: 12px; border-bottom: 2px solid #81D8D0; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    <div style="color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">FTG</div>
+                    <div style="color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; cursor: pointer; transition: color 0.3s ease;" onmouseover="this.style.color='#81D8D0'" onmouseout="this.style.color='#FFFFFF'">FTG</div>
                     <div style="display: flex; gap: 40px; align-items: center;">
                         <a style="color: #FFFFFF; text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#81D8D0'" onmouseout="this.style.color='#FFFFFF'">About</a>
                         <a style="color: #FFFFFF; text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#81D8D0'" onmouseout="this.style.color='#FFFFFF'">Services</a>
@@ -535,7 +535,7 @@
                     </div>
                     <button style="background: #81D8D0; color: #000000; border: none; padding: 12px 28px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(129, 216, 208, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(129, 216, 208, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(129, 216, 208, 0.3)'">Get Started</button>
                 </div>
-                <p style="color: #666; font-size: 0.9em; margin-top: 15px; text-align: center;">↑ Hover over navigation links to see Tiffany color transition. Active page shows underline.</p>
+                <p style="color: #666; font-size: 0.9em; margin-top: 15px; text-align: center;">↑ Hover over logo and navigation links to see Tiffany color transition. Active page shows underline.</p>
             </div>
 
             <h3>Complete Color & Design Specifications</h3>
@@ -656,6 +656,24 @@
                 </div>
                 <div style="background: rgba(129, 216, 208, 0.1); border-left: 4px solid #81D8D0; padding: 15px; border-radius: 4px; font-size: 13px; color: #374151; line-height: 1.7;">
                     <strong style="color: #0F172A;">Contrast Note:</strong> Pure white (#FFFFFF) on the black-to-navy gradient achieves 21:1 contrast ratio at the left edge (against #000000), exceeding WCAG AAA standards. This ensures maximum visibility and premium appearance.
+                </div>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: #1F2937; margin-bottom: 15px; font-size: 1.05em;">Logo Hover State</h4>
+                <div style="background: #1F2937; padding: 20px; border-radius: 8px; position: relative; margin-bottom: 15px;">
+                    <button class="gradient-copy-btn" onclick="copyToClipboard('.hero-nav .logo { transition: color 0.3s ease; cursor: pointer; } .hero-nav .logo:hover { color: #81D8D0; }', this)">Copy</button>
+                    <pre style="color: #F9FAFB; font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; overflow-x: auto; font-size: 13px;"><code>.hero-nav .logo {
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-nav .logo:hover {
+  color: #81D8D0;
+}</code></pre>
+                </div>
+                <div style="background: rgba(129, 216, 208, 0.1); border-left: 4px solid #81D8D0; padding: 15px; border-radius: 4px; font-size: 13px; color: #374151; line-height: 1.7;">
+                    <strong style="color: #0F172A;">Logo Hover Consistency:</strong> The logo transitions to Tiffany Turquoise (#81D8D0) on hover, matching the navigation link hover state. This creates visual consistency across all interactive elements in the hero navigation and signals to users that the logo is clickable (linking to the home page). The 0.3s ease transition matches the navigation link timing for a cohesive interactive experience. The cursor changes to pointer to further indicate interactivity.
                 </div>
             </div>
 
