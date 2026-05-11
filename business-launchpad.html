@@ -1,13 +1,1081 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=business-launchpad-vsl.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting to Business Launchpad VSL...</title>
-  <script>window.location.replace('business-launchpad-vsl.html');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Turn Your Business Idea Into A Clear Action Plan In 5 Minutes. End decision paralysis with the GenAI Business Launchpad.">
+<title>GenAI Business Launchpad — Turn Your Idea Into an Action Plan</title>
+
+<style>
+/* ════════════════════════════════════════════════
+   FTG Brand Variables (canonical)
+   ════════════════════════════════════════════════ */
+:root {
+  --ftg-black: #000000;
+  --ftg-navy: #0F172A;
+  --ftg-charcoal: #374151;
+  --ftg-tiffany: #81D8D0;
+  --ftg-tiffany-border: #0ABAB5;
+  --ftg-emerald: #10B981;
+  --ftg-offwhite: #FAFAFA;
+  --ftg-silver: #E5E7EB;
+  --ftg-lightgray: #F9FAFB;
+  --ftg-alert: #EF4444;
+  --ftg-white: #FFFFFF;
+  --ftg-hero-gradient: linear-gradient(90deg, #000000 0%, #0F172A 100%);
+  --ftg-cta-yellow: #FFD60A;
+  --ftg-body-max: 720px;
+  --ftg-section-max: 1140px;
+  --ftg-radius: 12px;
+  --ftg-section-pad: 80px 24px;
+}
+
+/* ════════════════════════════════════════════════
+   Reset & Base
+   ════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--ftg-charcoal);
+  background: var(--ftg-lightgray);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ════════════════════════════════════════════════
+   Layout Helpers
+   ════════════════════════════════════════════════ */
+.ftg-section { padding: var(--ftg-section-pad); }
+.ftg-section--black { background: var(--ftg-black); color: var(--ftg-offwhite); }
+.ftg-section--dark { background: var(--ftg-navy); color: var(--ftg-offwhite); }
+.ftg-section--light { background: var(--ftg-offwhite); color: var(--ftg-navy); }
+.ftg-section--lightgray { background: var(--ftg-lightgray); color: var(--ftg-navy); }
+.ftg-wrap { max-width: var(--ftg-section-max); margin: 0 auto; }
+.ftg-wrap--narrow { max-width: var(--ftg-body-max); margin: 0 auto; }
+.text-center { text-align: center; }
+
+/* ════════════════════════════════════════════════
+   Typography
+   ════════════════════════════════════════════════ */
+h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.1; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
+h4 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
+.lead { font-size: 1.25rem; color: var(--ftg-charcoal); line-height: 1.55; }
+.lead--light { color: rgba(250,250,250,0.85); }
+.eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--ftg-tiffany);
+  margin-bottom: 12px;
+  text-transform: none;
+}
+.accent { color: var(--ftg-tiffany); }
+.bold { font-weight: 700; }
+.muted { opacity: 0.7; font-size: 0.85rem; }
+
+/* ════════════════════════════════════════════════
+   Navigation Bar
+   ════════════════════════════════════════════════ */
+.nav {
+  background: var(--ftg-hero-gradient);
+  border-bottom: 2px solid var(--ftg-tiffany);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ftg-white);
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--ftg-tiffany); }
+.nav-cta {
+  background: var(--ftg-tiffany);
+  color: var(--ftg-black);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(129,216,208,0.35); }
+
+/* ════════════════════════════════════════════════
+   CTA Buttons
+   ════════════════════════════════════════════════ */
+.cta-primary {
+  display: inline-block;
+  background: var(--ftg-cta-yellow);
+  color: #0A0A0A;
+  font-weight: 900;
+  font-size: 1.15rem;
+  padding: 20px 40px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: -0.3px;
+  width: 100%;
+  max-width: 500px;
+}
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255,214,10,0.35);
+}
+.cta-primary .cta-sub {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+.cta-emerald {
+  background: var(--ftg-emerald);
+  color: var(--ftg-white);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.35);
+}
+.cta-emerald:hover { box-shadow: 0 12px 28px rgba(16,185,129,0.45); }
+
+.cta-block { text-align: center; padding: 32px 0; }
+
+/* Trust row */
+.trust-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.trust-row span { white-space: nowrap; }
+
+/* Decline link */
+.decline-link {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+}
+.ftg-section--light .decline-link { color: rgba(15,23,42,0.35); }
+
+/* ════════════════════════════════════════════════
+   Micro-Proof Strip
+   ════════════════════════════════════════════════ */
+.proof-strip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(129,216,208,0.15);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(250,250,250,0.9);
+}
+.proof-strip .stars { color: var(--ftg-cta-yellow); margin-bottom: 6px; display: block; font-size: 1.1rem; }
+.proof-strip .attribution {
+  font-weight: 700;
+  color: var(--ftg-tiffany);
+  margin-top: 8px;
+  display: block;
+  font-size: 0.85rem;
+}
+
+/* ════════════════════════════════════════════════
+   Video Section
+   ════════════════════════════════════════════════ */
+.video-container {
+  border: 2px solid var(--ftg-cta-yellow);
+  border-radius: 14px;
+  padding: 24px;
+  background: rgba(0,0,0,0.4);
+  margin: 32px 0;
+}
+.video-placeholder {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.play-btn {
+  width: 72px; height: 72px;
+  background: var(--ftg-cta-yellow);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(255,214,10,0.4);
+}
+.play-btn::after {
+  content: '';
+  border-style: solid;
+  border-width: 14px 0 14px 24px;
+  border-color: transparent transparent transparent #0A0A0A;
+  margin-left: 4px;
+}
+.video-bullets { list-style: none; }
+.video-bullets li {
+  padding: 6px 0;
+  font-size: 0.95rem;
+  color: rgba(250,250,250,0.8);
+}
+.video-bullets li::before { content: '✦ '; color: var(--ftg-cta-yellow); }
+
+/* ════════════════════════════════════════════════
+   Comparison Table (With/Without)
+   ════════════════════════════════════════════════ */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+.comparison-col { border-radius: var(--ftg-radius); padding: 24px; }
+.comparison-col--without {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.15);
+}
+.comparison-col--with {
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.2);
+}
+.comparison-col h4 { margin-bottom: 16px; }
+.comparison-col ul { list-style: none; }
+.comparison-col ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.comparison-col ul li:last-child { border-bottom: none; }
+.comparison-col--without ul li::before { content: '✕ '; color: var(--ftg-alert); font-weight: 700; }
+.comparison-col--with ul li::before { content: '✓ '; color: var(--ftg-emerald); font-weight: 700; }
+
+/* ════════════════════════════════════════════════
+   DiscoverBot Image
+   ════════════════════════════════════════════════ */
+.discoverbot-img {
+  border-radius: 12px;
+  border: 1px solid rgba(129,216,208,0.15);
+  margin: 32px auto;
+  max-width: 900px;
+}
+
+/* ════════════════════════════════════════════════
+   Testimonials
+   ════════════════════════════════════════════════ */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+.testimonial-card {
+  background: var(--ftg-white);
+  border: 1px solid var(--ftg-silver);
+  border-radius: var(--ftg-radius);
+  padding: 24px;
+}
+.testimonial-card .stars { color: var(--ftg-cta-yellow); margin-bottom: 10px; font-size: 1rem; }
+.testimonial-card blockquote {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ftg-charcoal);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.testimonial-card .author {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ftg-navy);
+}
+.testimonial-card .role {
+  font-size: 0.8rem;
+  color: var(--ftg-charcoal);
+  opacity: 0.7;
+}
+
+/* ════════════════════════════════════════════════
+   Benefits List (checkmark)
+   ════════════════════════════════════════════════ */
+.benefits-list { list-style: none; max-width: var(--ftg-body-max); margin: 0 auto; }
+.benefits-list li {
+  padding: 12px 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(250,250,250,0.06);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.benefits-list li:last-child { border-bottom: none; }
+.benefits-list .check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  background: rgba(16,185,129,0.15);
+  color: var(--ftg-emerald);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* ════════════════════════════════════════════════
+   Value Stack Table
+   ════════════════════════════════════════════════ */
+.value-stack {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--ftg-radius);
+  overflow: hidden;
+  margin: 32px 0;
+  font-size: 0.95rem;
+}
+.value-stack thead th {
+  background: var(--ftg-navy);
+  color: var(--ftg-white);
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.value-stack thead th:last-child { text-align: right; }
+.value-stack tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ftg-silver);
+  background: var(--ftg-white);
+}
+.value-stack tbody td:last-child { text-align: right; font-weight: 700; color: var(--ftg-navy); }
+.value-stack tbody tr:last-child td { border-bottom: none; }
+.value-stack .component-name { font-weight: 700; color: var(--ftg-navy); }
+.value-stack .component-desc { font-size: 0.85rem; color: var(--ftg-charcoal); margin-top: 2px; }
+.value-stack-total {
+  background: var(--ftg-navy) !important;
+  color: var(--ftg-white) !important;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.value-stack-total td { background: var(--ftg-navy) !important; color: var(--ftg-white) !important; }
+
+/* ════════════════════════════════════════════════
+   OTO Warning
+   ════════════════════════════════════════════════ */
+.oto-warning {
+  background: rgba(239,68,68,0.06);
+  border-left: 4px solid var(--ftg-alert);
+  border-radius: 0 var(--ftg-radius) var(--ftg-radius) 0;
+  padding: 20px 24px;
+  margin: 32px 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.oto-warning strong { color: var(--ftg-alert); }
+.ftg-section--dark .oto-warning {
+  background: rgba(239,68,68,0.1);
+  border-left-color: var(--ftg-alert);
+}
+
+/* ════════════════════════════════════════════════
+   Price Reveal
+   ════════════════════════════════════════════════ */
+.price-reveal { text-align: center; padding: 40px 0; }
+.price-old {
+  font-size: 2rem;
+  color: var(--ftg-charcoal);
+  text-decoration: line-through;
+  opacity: 0.5;
+  font-weight: 600;
+}
+.price-new {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  color: var(--ftg-emerald);
+  line-height: 1;
+  margin: 8px 0;
+}
+.price-context {
+  font-size: 1.05rem;
+  color: var(--ftg-charcoal);
+  max-width: 600px;
+  margin: 16px auto 0;
+}
+
+/* ════════════════════════════════════════════════
+   Guarantee
+   ════════════════════════════════════════════════ */
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+.guarantee-card {
+  background: var(--ftg-white);
+  border: 1px solid var(--ftg-silver);
+  border-radius: var(--ftg-radius);
+  padding: 28px;
+}
+.guarantee-card .icon {
+  width: 48px; height: 48px;
+  background: rgba(16,185,129,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+.guarantee-card h4 { color: var(--ftg-navy); margin-bottom: 10px; }
+.guarantee-card p { font-size: 0.95rem; color: var(--ftg-charcoal); line-height: 1.55; }
+
+/* ════════════════════════════════════════════════
+   Best / Worst Case
+   ════════════════════════════════════════════════ */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+.scenario-card {
+  border-radius: var(--ftg-radius);
+  padding: 28px;
+}
+.scenario-card--worst {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.scenario-card--best {
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.2);
+}
+.scenario-card h4 { margin-bottom: 12px; }
+.scenario-card p { font-size: 0.95rem; line-height: 1.55; }
+
+/* ════════════════════════════════════════════════
+   FAQ
+   ════════════════════════════════════════════════ */
+.faq-list { max-width: var(--ftg-body-max); margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--ftg-silver);
+  padding: 20px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ftg-navy);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 1.4rem; color: var(--ftg-tiffany); transition: transform 0.2s; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  font-size: 0.95rem;
+  color: var(--ftg-charcoal);
+  line-height: 1.6;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+/* ════════════════════════════════════════════════
+   Checkout Placeholder
+   ════════════════════════════════════════════════ */
+.checkout-box {
+  background: var(--ftg-white);
+  border: 2px solid var(--ftg-silver);
+  border-radius: var(--ftg-radius);
+  padding: 32px;
+  max-width: 520px;
+  margin: 32px auto;
+}
+.checkout-box h3 { text-align: center; margin-bottom: 24px; color: var(--ftg-navy); }
+.checkout-field {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--ftg-silver);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  background: var(--ftg-lightgray);
+  color: var(--ftg-charcoal);
+}
+.checkout-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.checkout-price-summary {
+  text-align: center;
+  padding: 16px;
+  background: var(--ftg-lightgray);
+  border-radius: 8px;
+  margin: 16px 0;
+}
+.checkout-price-summary .total {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--ftg-emerald);
+}
+
+/* Security badges */
+.security-badges {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--ftg-charcoal);
+  opacity: 0.7;
+}
+.security-badges span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════
+   Footer
+   ════════════════════════════════════════════════ */
+.footer {
+  background: var(--ftg-navy);
+  color: rgba(250,250,250,0.5);
+  padding: 48px 24px;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+.footer a { color: var(--ftg-tiffany); }
+.footer-disclaimers { max-width: var(--ftg-body-max); margin: 0 auto; }
+.footer-disclaimers h5 { color: rgba(250,250,250,0.7); font-size: 0.8rem; margin-top: 20px; margin-bottom: 4px; }
+.footer-disclaimers p { margin-bottom: 12px; }
+.footer-bottom {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: rgba(250,250,250,0.35);
+}
+
+/* ════════════════════════════════════════════════
+   Mobile Responsive
+   ════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  :root { --ftg-section-pad: 60px 20px; }
+}
+@media (max-width: 768px) {
+  :root { --ftg-section-pad: 48px 16px; }
+  .comparison-grid,
+  .guarantee-grid,
+  .scenario-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .checkout-row { grid-template-columns: 1fr; }
+  .nav { padding: 12px 16px; }
+  .nav-logo { font-size: 1.1rem; }
+  .cta-primary { font-size: 1rem; padding: 18px 24px; }
+  .value-stack { font-size: 0.85rem; }
+  .value-stack thead th,
+  .value-stack tbody td { padding: 10px 12px; }
+}
+</style>
 </head>
 <body>
-  <p>Redirecting to <a href="business-launchpad-vsl.html">Business Launchpad VSL</a>...</p>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-logo">Fast Track <span>GenAI</span></div>
+  <a href="#checkout" class="nav-cta">Get Access →</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO — BLACK (#000)
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--black" style="padding-top:40px;">
+  <div class="ftg-wrap ftg-wrap--narrow text-center">
+
+    <!-- Bridge Line -->
+    <p class="muted" style="margin-bottom:24px;">Your free AI Strike Team is on the way to your inbox. While that arrives, watch this short video to see how to turn your business idea into a clear action plan — in the next 5 minutes.</p>
+
+    <!-- Micro-proof strip -->
+    <div class="proof-strip">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      "We started with a rough idea. Inside 4 months we had a working app, a team built around it, and a pitch deck we're now using to raise $2.5M in VC funding."
+      <span class="attribution">— John &amp; Sonali, App Founders (currently in active fundraise)</span>
+    </div>
+
+    <!-- Eyebrow -->
+    <p class="eyebrow">For Founders With A Business Idea — No Technical Skills Required</p>
+
+    <!-- H1 -->
+    <h1 style="margin-bottom:20px;">Turn Your Business Idea Into A Clear Action Plan In 5 Minutes.</h1>
+
+    <!-- Subheadline -->
+    <p class="lead lead--light" style="margin-bottom:36px;">End decision paralysis and launch your business idea this week — using a connected AI system that helps you evaluate the opportunity, sharpen the idea, and walk out with the first real steps to build it.</p>
+
+    <!-- CTA #1 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary">🔒 LOCK IN $37 PRICING →
+        <span class="cta-sub">Price is shown once, after the full value stack. This button reserves your access at today's rate.</span>
+      </a>
+      <div class="trust-row" style="color:rgba(250,250,250,0.5);">
+        <span>🔒 Secure Checkout</span>
+        <span>💳 Stripe &amp; PayPal</span>
+        <span>🛡️ 256-bit SSL</span>
+        <span>✅ 30-Day Dual Guarantee</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DECISION PARALYSIS — DEEP NAVY
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--dark">
+  <div class="ftg-wrap ftg-wrap--narrow">
+    <h2>You don't have an idea problem. You have a <span class="accent">decision</span> problem.</h2>
+
+    <p style="margin-bottom:16px;">You've sat with the same business idea for weeks. Maybe months.</p>
+    <p style="margin-bottom:16px;">You've opened ChatGPT. You've read the threads. You've watched the gurus. You've made notes you can't find anymore.</p>
+    <p style="margin-bottom:20px;">And every time you sit down to actually <em>do something</em> with the idea, you hit the same wall:</p>
+
+    <ul style="list-style:none; margin-bottom:20px;">
+      <li style="padding:6px 0;">— Is this the right opportunity, or is something else better?</li>
+      <li style="padding:6px 0;">— Where do I even start — the offer, the audience, the product, the funnel?</li>
+      <li style="padding:6px 0;">— What's step one <em>today</em>, not step one in some 90-day course?</li>
+    </ul>
+
+    <p style="margin-bottom:16px;">That's not laziness. That's not lack of vision. <strong style="color:var(--ftg-white);">That's decision paralysis.</strong></p>
+    <p style="margin-bottom:16px;">It's the gap between <em>having</em> an idea and <em>committing</em> to a plan you can actually execute on.</p>
+    <p style="margin-bottom:20px;">And it doesn't close by adding more videos, more prompts, or more frameworks. It closes when you have a system that:</p>
+
+    <ol style="margin-left:20px; margin-bottom:24px; line-height:2;">
+      <li><strong style="color:var(--ftg-white);">Evaluates the opportunity</strong> against your situation, your skills, and the market.</li>
+      <li><strong style="color:var(--ftg-white);">Sharpens the idea</strong> into a specific, build-able version of itself.</li>
+      <li><strong style="color:var(--ftg-white);">Gives you the first real steps</strong> — not a 47-page strategy doc.</li>
+    </ol>
+
+    <p>That system is <strong style="color:var(--ftg-tiffany);">Business Launchpad.</strong> It's what John &amp; Sonali used to go from "we have an idea" to "we're raising $2.5M" — and it's what 5 minutes inside this page will start for you.</p>
+
+    <!-- CTA #2 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary">🔒 LOCK IN $37 PRICING →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WITH/WITHOUT COMPARISON — OFF-WHITE
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light">
+  <div class="ftg-wrap">
+    <h2 class="text-center">What you have right now vs. what you walk out with in 5 minutes.</h2>
+
+    <div class="comparison-grid">
+      <div class="comparison-col comparison-col--without">
+        <h4 style="color:var(--ftg-alert);">❌ WITHOUT Business Launchpad</h4>
+        <ul>
+          <li>A blank ChatGPT prompt and a vague idea in your head.</li>
+          <li>Outputs that sound generic and could belong to anyone.</li>
+          <li>"I'll think about it more this weekend."</li>
+          <li>Months of circling. No movement.</li>
+        </ul>
+      </div>
+      <div class="comparison-col comparison-col--with">
+        <h4 style="color:var(--ftg-emerald);">✅ WITH Business Launchpad</h4>
+        <ul>
+          <li>A connected AI system that already knows the right questions to ask you.</li>
+          <li>An action plan written <em>for your specific idea, market, and starting point.</em></li>
+          <li>Three concrete next steps you can begin the same day.</li>
+          <li>From idea → evaluated → planned → in motion, this week.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DiscoverBot Comparison Image -->
+    <img src="images/discoverbot_comparison.png" alt="DiscoverBot — Opportunity Analyst: Generic ChatGPT vs DiscoverBot comparison" class="discoverbot-img" loading="lazy">
+
+    <p class="text-center" style="margin-top:16px;">
+      <a href="#" style="color:var(--ftg-tiffany); font-weight:600;">📄 Download the One-Page Sample Plan (PDF) →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     9-MINUTE VIDEO — BLACK
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--black">
+  <div class="ftg-wrap ftg-wrap--narrow">
+    <div class="video-container">
+      <h3 class="text-center" style="margin-bottom:20px;">▶ Watch: How Business Launchpad Ends Decision Paralysis In One Session <span class="muted">(9 minutes)</span></h3>
+      <div class="video-placeholder">
+        <div class="play-btn"></div>
+      </div>
+      <ul class="video-bullets">
+        <li>The exact reason ChatGPT alone keeps you stuck (it's not the prompts)</li>
+        <li>How the connected system evaluates an opportunity in under 5 minutes</li>
+        <li>The "First Three Steps" output every user gets — live demo</li>
+        <li>Why this works whether your idea is digital, physical, service, or AI-based</li>
+      </ul>
+    </div>
+
+    <!-- CTA #3 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary">🔒 LOCK IN $37 PRICING →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BENEFITS — DEEP NAVY
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--dark">
+  <div class="ftg-wrap">
+    <h2 class="text-center">Inside Business Launchpad, you get the system to:</h2>
+
+    <ul class="benefits-list">
+      <li><span class="check">✓</span> <span><strong>Turn your idea into an action plan</strong> — not another framework you'll forget by Friday.</span></li>
+      <li><span class="check">✓</span> <span><strong>Find the BEST opportunities in your new industry</strong> — before you sink time into the wrong one.</span></li>
+      <li><span class="check">✓</span> <span><strong>Create all your brand content in minutes</strong> — voice, positioning, messaging, hooks.</span></li>
+      <li><span class="check">✓</span> <span><strong>Build delegation instructions</strong> — so when you hire (or use an agent), the brief is already done.</span></li>
+      <li><span class="check">✓</span> <span><strong>Go from no business to fully launched</strong> — with a connected path, not scattered tools.</span></li>
+      <li><span class="check">✓</span> <span><strong>Stay on the cutting edge of the AI revolution</strong> — because the system updates as the models do.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WHY BUILT DIFFERENTLY — OFF-WHITE
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light">
+  <div class="ftg-wrap ftg-wrap--narrow">
+    <h2>Why This System Was Built Differently</h2>
+
+    <p style="margin-bottom:16px;">Most AI products hand you a tool and walk away. A prompt pack. A GPT. A course.</p>
+    <p style="margin-bottom:16px;">Business Launchpad was built on the opposite premise: the problem isn't <em>access</em> to AI — it's the <strong>decision paralysis</strong> that hits the moment a founder tries to use AI on their own real business.</p>
+    <p style="margin-bottom:16px;">So the system was engineered to do what a tool can't: ask the right questions in the right order, hold the context across sessions, and convert your raw idea into a sequence you can actually execute.</p>
+    <p>That's why founders who've tried "everything" — courses, prompt libraries, custom GPTs — say this is the first thing that actually moved them off the starting line.</p>
+
+    <!-- CTA #4 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary cta-emerald">🔒 LOCK IN $37 PRICING →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TESTIMONIALS — DEEP NAVY
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--dark">
+  <div class="ftg-wrap">
+    <h2 class="text-center">What Founders Are Saying</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"I started with an idea, and this course and toolkit instantly jump-started my creative process, turning that idea into something I could actually build."</blockquote>
+        <div class="author">Sonali</div>
+        <div class="role">App Founder</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"Structured methodology for complex marketing strategies. The custom automation pieces alone produce high-quality content in a fraction of the time I used to spend."</blockquote>
+        <div class="author">Shahzaib Tariq</div>
+        <div class="role">Social Media Marketing Manager</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"Integrating these agents into my daily development workflow multiplied both my speed and the quality of what I ship."</blockquote>
+        <div class="author">Hamad Imran</div>
+        <div class="role">GHL Expert &amp; Web Developer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     VALUE STACK — OFF-WHITE
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light">
+  <div class="ftg-wrap">
+    <h2 class="text-center">Everything Inside Business Launchpad</h2>
+
+    <table class="value-stack">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Component</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><div class="component-name">DiscoverBot — Opportunity Analyst</div><div class="component-desc">Evaluates your idea against your situation and the market</div></td>
+          <td>$197</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="component-name">AI Solution Mapper</div><div class="component-desc">Translates the evaluated idea into a buildable plan</div></td>
+          <td>$147</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="component-name">Venture Potential Explorer</div><div class="component-desc">Stress-tests the opportunity before you commit time/money</div></td>
+          <td>$147</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="component-name">First-Steps Action Sequencer</div><div class="component-desc">Outputs the exact 3 next moves for this week</div></td>
+          <td>$97</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="component-name">Brand-Content Quickstart Pack</div><div class="component-desc">Voice, positioning, hooks — built around your idea</div></td>
+          <td>$147</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="component-name">Delegation-Brief Builder</div><div class="component-desc">Hand-off instructions for any human or AI agent</div></td>
+          <td>$97</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="component-name">Lifetime Updates</div><div class="component-desc">Stay current as models evolve — without re-buying</div></td>
+          <td>$198</td>
+        </tr>
+        <tr class="value-stack-total">
+          <td></td>
+          <td>TOTAL REAL-WORLD VALUE</td>
+          <td>$1,030</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- OTO WARNING #1 -->
+    <div class="oto-warning">
+      ⚠️ <strong>This $37 price is only on this page.</strong> It is not on the checkout. It is not on any retargeting ad. It is not on the email follow-up. Close this page and the price resets to the regular rate.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PRICE REVEAL — OFF-WHITE (continuation)
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light" style="padding-top:0;">
+  <div class="ftg-wrap">
+    <div class="price-reveal">
+      <h2 style="margin-bottom:24px;">Today, on this page only:</h2>
+      <div class="price-old">$1,030</div>
+      <div class="price-new">$37</div>
+      <p class="price-context">That's the entire Business Launchpad system — every component above — for one payment of thirty-seven dollars.</p>
+    </div>
+
+    <!-- CTA #5 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary cta-emerald" style="font-size:1.25rem;">🔒 LOCK IN $37 PRICING →
+        <span class="cta-sub" style="color:rgba(255,255,255,0.7);">One-time payment. Instant access. No subscription.</span>
+      </a>
+      <div class="trust-row">
+        <span>🔒 256-bit SSL</span>
+        <span>💳 Stripe / PayPal / Apple Pay</span>
+        <span>🛡️ PCI-DSS Compliant</span>
+        <span>✅ Dual 30-Day Guarantee</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DUAL GUARANTEE — OFF-WHITE
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light" style="padding-top:0;">
+  <div class="ftg-wrap">
+    <h2 class="text-center">Your Dual 30-Day Guarantee</h2>
+
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="icon">🔄</div>
+        <h4>Guarantee #1 — Full 30-Day Refund</h4>
+        <p>If, within 30 days, you can honestly say Business Launchpad did <em>not</em> help you move your idea forward, email us and we refund every cent. No "prove it" hoops. No exit survey gauntlet.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="icon">🎁</div>
+        <h4>Guarantee #2 — Keep $335 In Resources Even If You Refund</h4>
+        <p>The Opportunity Analyst output, the Solution Map, and the First-Steps Sequencer ($335 in standalone value) stay yours — even if you take the refund. That way, you literally cannot lose on this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BEST / WORST CASE — DEEP NAVY
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--dark">
+  <div class="ftg-wrap">
+    <h2 class="text-center">Think About It This Way…</h2>
+
+    <div class="scenario-grid">
+      <div class="scenario-card scenario-card--worst">
+        <h4>Worst Case:</h4>
+        <p>You spend $37, decide it isn't for you, refund inside 30 days, and walk away <strong style="color:var(--ftg-tiffany);">$335 in resources richer</strong> than you started.</p>
+      </div>
+      <div class="scenario-card scenario-card--best">
+        <h4 style="color:var(--ftg-emerald);">Best Case:</h4>
+        <p>You stop circling. You make the decision. You take the first three steps this week. And six months from now, like John &amp; Sonali, you're not asking "should I start?" — you're asking <strong>"how fast can we scale?"</strong></p>
+      </div>
+    </div>
+
+    <!-- CTA #6 -->
+    <div class="cta-block">
+      <a href="#checkout" class="cta-primary">🔒 LOCK IN $37 PRICING →</a>
+    </div>
+
+    <!-- OTO WARNING #2 -->
+    <div class="oto-warning">
+      ⚠️ <strong>After checkout you'll be invited to an essential onboarding call</strong> where we map your specific plan with you live. That call is included — but the call slot is not on this page. If you leave and come back, the slot may be gone.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ — OFF-WHITE
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--light">
+  <div class="ftg-wrap">
+    <h2 class="text-center">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need any technical skills?</div>
+        <div class="faq-a">No. The system is designed around natural conversation. If you can describe your idea in plain English, you can use it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this different from buying a prompt pack or another course?</div>
+        <div class="faq-a">Prompt packs and courses give you parts. Business Launchpad is a connected system that does the evaluation, planning, and first-steps work <em>in sequence</em> — for your specific idea.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if my idea isn't fully formed yet?</div>
+        <div class="faq-a">That's actually the ideal state. The Opportunity Analyst is built for rough ideas. It's the sharpening that's the value.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long until I see something usable?</div>
+        <div class="faq-a">First action plan in roughly 5 minutes. First three real-world steps the same session.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a subscription?</div>
+        <div class="faq-a">No. $37 is a one-time payment. Lifetime updates included.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the essential onboarding call?</div>
+        <div class="faq-a">A live working session where we map your specific plan with you. Included with your purchase. Booking link is on the next page after checkout.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I want a refund?</div>
+        <div class="faq-a">Email us inside 30 days. Full refund. You keep $335 in resources regardless.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CHECKOUT + FINAL CTA — BLACK
+     ═══════════════════════════════════════════════ -->
+<section class="ftg-section ftg-section--black" id="checkout">
+  <div class="ftg-wrap ftg-wrap--narrow">
+    <h2 class="text-center" style="margin-bottom:8px;">Secure Your Access Now</h2>
+    <p class="text-center muted" style="margin-bottom:32px;">Complete your order below to get instant access to Business Launchpad.</p>
+
+    <!-- Checkout Form Placeholder -->
+    <div class="checkout-box">
+      <h3>Order Summary</h3>
+      <div class="checkout-price-summary">
+        <div style="font-size:0.85rem; color:var(--ftg-charcoal); text-decoration:line-through;">$1,030 total value</div>
+        <div class="total">$37</div>
+        <div style="font-size:0.8rem; color:var(--ftg-charcoal);">One-time payment</div>
+      </div>
+
+      <input type="text" class="checkout-field" placeholder="Full Name" disabled>
+      <input type="email" class="checkout-field" placeholder="Email Address" disabled>
+      <input type="text" class="checkout-field" placeholder="Card Number" disabled>
+      <div class="checkout-row">
+        <input type="text" class="checkout-field" placeholder="MM / YY" disabled>
+        <input type="text" class="checkout-field" placeholder="CVC" disabled>
+      </div>
+
+      <a href="#" class="cta-primary cta-emerald" style="display:block; margin-top:16px; text-decoration:none;">🔒 COMPLETE MY ORDER — $37 →</a>
+
+      <div class="security-badges">
+        <span>🔒 256-bit SSL</span>
+        <span>💳 Stripe</span>
+        <span>🛡️ PCI-DSS</span>
+      </div>
+    </div>
+
+    <!-- CTA #7 -->
+    <div class="cta-block" style="margin-top:32px;">
+      <a href="#checkout" class="cta-primary" style="font-size:1.2rem;">🔒 LOCK IN $37 PRICING →</a>
+      <div class="decline-link">No thanks, I'll figure out decision paralysis on my own.</div>
+    </div>
+
+    <!-- OTO WARNING #3 -->
+    <div class="oto-warning" style="margin-top:32px;">
+      ⚠️ <strong>This is the only page this price appears on.</strong> $37 is not the regular rate. The onboarding call slot is not guaranteed if you leave. Once this tab closes, the next time you see Business Launchpad it will be at the standard price.
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-disclaimers">
+    <h5>General Disclaimer</h5>
+    <p>Results vary based on effort, situation, and execution. Nothing on this page is a guarantee of business success.</p>
+
+    <h5>Earnings Disclaimer</h5>
+    <p>No income claim is made or implied. The testimonials on this page reflect individual experiences and are not typical. This is not a get-rich-quick offer.</p>
+
+    <h5>Testimonial Disclaimer</h5>
+    <p>John &amp; Sonali, Sonali, Shahzaib Tariq, and Hamad Imran shared their experiences voluntarily. Individual results will differ.</p>
+
+    <h5>Security &amp; Privacy</h5>
+    <p>Checkout is processed over a 256-bit SSL encrypted connection. We do not store card data. Stripe and PayPal are PCI-DSS Level 1 compliant.</p>
+
+    <p>Questions before purchase? <a href="mailto:mail@fasttrackgenai.com">mail@fasttrackgenai.com</a></p>
+  </div>
+  <div class="footer-bottom">
+    © 2026 GenAI Business Launchpad. All rights reserved.
+  </div>
+</footer>
+
 </body>
 </html>
