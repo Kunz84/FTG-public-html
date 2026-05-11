@@ -1,266 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Track GenAI | Site Directory</title>
+    <meta name="description" content="Fast Track GenAI directory for brand resources and funnel pages.">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <meta name="theme-color" content="#000000">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Track GenAI - Brand Resources</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ftg-black: #000000;
+            --ftg-navy: #0F172A;
+            --ftg-charcoal: #374151;
+            --ftg-tiffany: #81D8D0;
+            --ftg-tiffany-border: #0ABAB5;
+            --ftg-emerald: #10B981;
+            --ftg-offwhite: #FAFAFA;
+            --ftg-silver: #E5E7EB;
+            --ftg-white: #FFFFFF;
+            --ftg-hero-gradient: linear-gradient(90deg, #000000 0%, #0F172A 100%);
         }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #374151 50%, #0F172A 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .header h1 {
-            font-size: 4em;
-            color: #81D8D0;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(129, 216, 208, 0.3);
-        }
-        
-        .header p {
-            font-size: 1.5em;
-            color: #E5E7EB;
-            opacity: 0.9;
-        }
-        
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(129, 216, 208, 0.4);
-        }
-        
-        .card-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
-        }
-        
-        .card h2 {
-            font-size: 2em;
-            color: #0F172A;
-            margin-bottom: 15px;
-        }
-        
-        .card p {
-            font-size: 1.1em;
-            color: #374151;
-            margin-bottom: 30px;
+            background: var(--ftg-offwhite);
+            color: var(--ftg-navy);
             line-height: 1.6;
         }
-        
-        .card ul {
-            text-align: left;
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
+
+        .hero {
+            background: var(--ftg-hero-gradient);
+            border-bottom: 2px solid var(--ftg-tiffany);
+            color: var(--ftg-white);
+            padding: 56px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        
-        .card li {
-            padding: 8px 0;
-            color: #374151;
-            padding-left: 25px;
-            position: relative;
+
+        .wrap {
+            max-width: 1140px;
+            margin: 0 auto;
         }
-        
-        .card li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #10B981;
-            font-weight: bold;
+
+        .hero-logo {
+            height: 58px;
+            margin-bottom: 16px;
         }
-        
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            max-width: 780px;
+            font-size: 1.1rem;
+            color: #E5E7EB;
+        }
+
+        .section {
+            padding: 44px 24px;
+        }
+
+        .section h2 {
+            font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .cards {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            margin-top: 24px;
+        }
+
+        .card {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            line-height: 1.25;
+        }
+
+        .card p {
+            color: var(--ftg-charcoal);
+            font-size: 0.98rem;
+            flex: 1;
+        }
+
         .btn {
             display: inline-block;
-            background: #81D8D0;
-            color: #000000;
-            padding: 18px 36px;
-            font-size: 1.2em;
-            font-weight: 600;
-            border-radius: 8px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 12px 18px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-        
-        .btn:hover {
-            background: #6BC5BD;
+
+        .btn-primary {
+            background: var(--ftg-emerald);
+            color: var(--ftg-white);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(129, 216, 208, 0.4);
+            box-shadow: 0 10px 22px rgba(16, 185, 129, 0.5);
         }
-        
-        .btn-secondary {
-            background: #10B981;
-            color: white;
+
+        .btn-accent {
+            background: var(--ftg-tiffany);
+            color: var(--ftg-black);
+            border: 1px solid var(--ftg-tiffany-border);
+            box-shadow: 0 6px 18px rgba(129, 216, 208, 0.35);
         }
-        
-        .btn-secondary:hover {
-            background: #059669;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(129, 216, 208, 0.45);
         }
-        
+
         .footer {
+            background: var(--ftg-navy);
+            color: var(--ftg-white);
+            padding: 24px;
+            font-size: 0.95rem;
             text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
         }
-        
-        .footer p {
-            color: #E5E7EB;
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .footer-link {
-            color: #81D8D0;
+
+        .footer a {
+            color: var(--ftg-tiffany);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s;
         }
-        
-        .footer-link:hover {
-            color: #6BC5BD;
-        }
-        
-        .header-logo:hover {
-            filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(748%) hue-rotate(126deg) brightness(96%) contrast(86%);
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
-            }
-            
-            .header p {
-                font-size: 1.2em;
-            }
-            
-            .cards {
-                grid-template-columns: 1fr;
-            }
+
+        .footer a:hover { color: var(--ftg-white); }
+
+        @media (max-width: 640px) {
+            .hero, .section { padding-left: 18px; padding-right: 18px; }
+            .hero-logo { height: 48px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="header-logo" style="height: 70px; margin-bottom: 15px; transition: filter 0.3s ease; cursor: pointer;">
-            <h1>🚀 Fast Track GenAI</h1>
-            <p>Brand Resource Center</p>
+    <header class="hero">
+        <div class="wrap">
+            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="hero-logo">
+            <h1>Fast Track GenAI Site Directory</h1>
+            <p>Choose where you want to go: the Brand Resource Center for implementation documentation, or the live funnel pages for VSLs, checkouts, downsells, and thank-you flows.</p>
         </div>
-        
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h2>Brand Style Guide</h2>
-                <p>Your complete visual identity reference</p>
-                <ul>
-                    <li>Color palette with hex codes</li>
-                    <li>Logo usage guidelines</li>
-                    <li>Typography specifications</li>
-                    <li>Button styles & examples</li>
-                    <li>Brand voice & tone</li>
-                    <li>Do's and Don'ts</li>
-                </ul>
-                <a href="brand-guide.html" class="btn">View Brand Guide</a>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <h2>Core Destinations</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3>🎨 Brand Resource Center</h3>
+                        <p>Access the Brand Style Guide, GHL Implementation Guide, and Sales Page Framework Guide in the new structured location.</p>
+                        <a class="btn btn-accent" href="brand-resource-center/">Open Brand Resource Center</a>
+                    </article>
+                    <article class="card">
+                        <h3>🚀 Business Launchpad VSL</h3>
+                        <p>Main Business Launchpad sales page experience.</p>
+                        <a class="btn btn-primary" href="business-launchpad.html">Open Business Launchpad VSL</a>
+                    </article>
+                </div>
             </div>
-            
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h2>GHL Implementation</h2>
-                <p>Step-by-step developer guide</p>
-                <ul>
-                    <li>Quick reference colors</li>
-                    <li>Logo decision flowchart</li>
-                    <li>Copy-paste CSS code</li>
-                    <li>Before/After examples</li>
-                    <li>Section patterns</li>
-                    <li>Implementation checklist</li>
-                </ul>
-                <a href="ghl-guide.html" class="btn btn-secondary">View GHL Guide</a>
+        </section>
+
+        <section class="section" style="background:#FFFFFF; border-top: 1px solid #E5E7EB;">
+            <div class="wrap">
+                <h2>Other Funnel Pages</h2>
+                <div class="cards">
+                    <article class="card"><h3>Business Launchpad Checkout</h3><a class="btn btn-primary" href="business-launchpad-checkout.html">Open</a></article>
+                    <article class="card"><h3>Business Accelerator VSL</h3><a class="btn btn-primary" href="business-accelerator-vsl.html">Open</a></article>
+                    <article class="card"><h3>GenAI Builders Club VSL</h3><a class="btn btn-primary" href="genai-builders-club-vsl.html">Open</a></article>
+                    <article class="card"><h3>AI Strike Team</h3><a class="btn btn-primary" href="ai-strike-team.html">Open</a></article>
+                    <article class="card"><h3>Executive Audio</h3><a class="btn btn-primary" href="executive-audio.html">Open</a></article>
+                    <article class="card"><h3>Builders Club Downsell</h3><a class="btn btn-primary" href="builders-club-downsell.html">Open</a></article>
+                    <article class="card"><h3>Workforce Suite Downsell</h3><a class="btn btn-primary" href="workforce-suite-downsell.html">Open</a></article>
+                    <article class="card"><h3>Thank You A</h3><a class="btn btn-primary" href="thank-you-a.html">Open</a></article>
+                    <article class="card"><h3>Thank You B</h3><a class="btn btn-primary" href="thank-you-b.html">Open</a></article>
+                    <article class="card"><h3>Thank You C</h3><a class="btn btn-primary" href="thank-you-c.html">Open</a></article>
+                </div>
             </div>
-            
-            <div class="card">
-                <div class="card-icon">📄</div>
-                <h2>Sales Page Guide</h2>
-                <p>Framework for high-converting sales pages</p>
-                <ul>
-                    <li>Sales page structure</li>
-                    <li>Headline formulas</li>
-                    <li>CTA placement strategy</li>
-                    <li>Proof & credibility elements</li>
-                    <li>Objection handling</li>
-                    <li>Conversion optimization</li>
-                </ul>
-                <a href="sales-page-guide.html" class="btn" style="background: #F59E0B; color: #000;">View Sales Guide</a>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p><strong>📱 Share These Guides</strong></p>
-            <p>These pages are fully self-contained and can be shared with your team, developers, and partners.</p>
-            <div class="footer-links">
-                <a href="brand-guide.html" class="footer-link">Brand Guide</a>
-                <span style="color: #E5E7EB;">•</span>
-                <a href="ghl-guide.html" class="footer-link">GHL Guide</a>
-                <span style="color: #E5E7EB;">•</span>
-                <a href="sales-page-guide.html" class="footer-link">Sales Page Guide</a>
-                <span style="color: #E5E7EB;">•</span>
-                <span class="footer-link" style="cursor: default;">Fast Track GenAI © 2026</span>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Fast Track GenAI © 2026 · <a href="brand-resource-center/">Brand Resource Center</a></p>
+    </footer>
 </body>
 </html>
