@@ -32,7 +32,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #0F172A 0%, #374151 100%);
+            background: linear-gradient(135deg, #000000 0%, #0a1f44 50%, #2d5a8a 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -593,40 +593,51 @@
    (Conversion-Optimized)
    ========================================== */</span>
 
-<span style="color: #6B7280;">/* Hero Section - Always Pure Black */</span>
+<span style="color: #6B7280;">/* §1 Hero Section - 3-Tier Cinematic Gradient */</span>
 .hero-section {
-  background-color: <span style="color: #10B981;">#000000</span> !important;
+  background: <span style="color: #10B981;">linear-gradient(135deg, #000000 0%, #0a1f44 50%, #2d5a8a 100%)</span> !important;
   color: <span style="color: #10B981;">#FFFFFF</span>;
 }
 
-<span style="color: #6B7280;">/* Feature / Social Proof / Video Sections - Deep Navy */</span>
+<span style="color: #6B7280;">/* §3, §5 Dark Sections - Navy Depth Gradient */</span>
 .features,
-.social-proof,
-.video-section,
-.testimonials {
-  background-color: <span style="color: #10B981;">#0F172A</span> !important;
+.problem-agitation,
+.offer-stack {
+  background: <span style="color: #10B981;">linear-gradient(180deg, #0F172A 0%, #1E293B 100%)</span> !important;
   color: <span style="color: #10B981;">#FFFFFF</span>;
 }
 
-<span style="color: #6B7280;">/* Conversion Sections - Off-White (CRITICAL for forms/pricing) */</span>
-.pricing,
-.order-form,
-.faq,
-.benefits,
-.long-copy {
-  background-color: <span style="color: #10B981;">#FAFAFA</span> !important;
+<span style="color: #6B7280;">/* §4 Proof Stack - Trust Spotlight Light (ALWAYS light) */</span>
+.social-proof,
+.testimonials {
+  background: <span style="color: #10B981;">radial-gradient(ellipse at center top, #FFFFFF 0%, #FAFAFA 60%, #F1F5F9 100%)</span> !important;
   color: <span style="color: #10B981;">#0F172A</span>;
 }
 
-<span style="color: #6B7280;">/* Final CTA - Pure Black */</span>
+<span style="color: #6B7280;">/* §2, §6 Light Sections - Clean Conversion (CRITICAL for forms/pricing) */</span>
+.pricing,
+.order-form,
+.benefits,
+.long-copy {
+  background: <span style="color: #10B981;">linear-gradient(180deg, #FAFAFA 0%, #F1F5F9 100%)</span> !important;
+  color: <span style="color: #10B981;">#0F172A</span>;
+}
+
+<span style="color: #6B7280;">/* §6.5 FAQ - Light Utility Gradient (diagonal) */</span>
+.faq {
+  background: <span style="color: #10B981;">linear-gradient(135deg, #FAFAFA 0%, #F9FAFB 50%, #F1F5F9 100%)</span> !important;
+  color: <span style="color: #10B981;">#0F172A</span>;
+}
+
+<span style="color: #6B7280;">/* §7 Final CTA - Reversed Hero Gradient */</span>
 .final-cta {
-  background-color: <span style="color: #10B981;">#000000</span> !important;
+  background: <span style="color: #10B981;">linear-gradient(315deg, #000000 0%, #0a1f44 50%, #2d5a8a 100%)</span> !important;
   color: <span style="color: #10B981;">#FFFFFF</span>;
 }
 
-<span style="color: #6B7280;">/* CTA Button on Dark Backgrounds */</span>
+<span style="color: #6B7280;">/* PRIMARY CTA on Dark Backgrounds - Turquoise */</span>
 .cta-button-dark-bg {
-  background-color: <span style="color: #10B981;">#07E6DE</span>;
+  background-color: <span style="color: #10B981;">#06b6d4</span>; <span style="color: #6B7280;">/* Turquoise - PRIMARY */</span>
   color: <span style="color: #10B981;">#000000</span>;
   border: <span style="color: #10B981;">none</span>;
   padding: 16px 32px;
@@ -634,11 +645,11 @@
   font-weight: 600;
 }
 
-<span style="color: #6B7280;">/* CTA Button on Light Backgrounds - NEEDS BORDER */</span>
+<span style="color: #6B7280;">/* PRIMARY CTA on Light Backgrounds - NEEDS BORDER */</span>
 .cta-button-light-bg {
-  background-color: <span style="color: #10B981;">#07E6DE</span>;
+  background-color: <span style="color: #10B981;">#06b6d4</span>; <span style="color: #6B7280;">/* Turquoise - PRIMARY */</span>
   color: <span style="color: #10B981;">#000000</span>;
-  border: <span style="color: #EF4444;">1px solid #0ABAB5</span>; <span style="color: #6B7280;">/* darker teal border */</span>
+  border: <span style="color: #EF4444;">1px solid #0891b2</span>; <span style="color: #6B7280;">/* Cyan 600 edge definition */</span>
   padding: 16px 32px;
   border-radius: 8px;
   font-weight: 600;
@@ -650,35 +661,35 @@
                 <h3>Implementation Checklist</h3>
                 <div class="checklist-item">
                     <input type="checkbox" id="step1">
-                    <label for="step1">Hero section: Pure Black (#000000) background</label>
+                    <label for="step1">§1 Hero: 3-tier gradient (135deg: #000000 → #0a1f44 → #2d5a8a)</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step2">
-                    <label for="step2">Feature sections: Deep Navy (#0F172A)</label>
+                    <label for="step2">§3, §5 Dark sections: Navy Depth gradient (#0F172A → #1E293B)</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step3">
-                    <label for="step3"><strong style="color: #EF4444;">Pricing/form sections: Off-White (#FAFAFA) — CRITICAL for conversion</strong></label>
+                    <label for="step3"><strong style="color: #EF4444;">§2, §6 Light sections: gradient (#FAFAFA → #F1F5F9) — CRITICAL for conversion</strong></label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step4">
-                    <label for="step4">FAQ sections: Off-White (#FAFAFA) or Light Gray (#F9FAFB)</label>
+                    <label for="step4">FAQ: diagonal light gradient (135deg: #FAFAFA → #F9FAFB → #F1F5F9)</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step5">
-                    <label for="step5">Final CTA: Pure Black (#000000)</label>
+                    <label for="step5">§7 Final CTA: Reversed hero gradient (315deg)</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step6">
-                    <label for="step6">CTA buttons on light backgrounds: Add 1px solid #0ABAB5 border</label>
+                    <label for="step6">PRIMARY CTA: Turquoise #06b6d4 on ALL pages. Add 1px #0891b2 border on light bg</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step7">
-                    <label for="step7">CTA buttons on dark backgrounds: No border</label>
+                    <label for="step7">CHECKOUT ONLY: Emerald #10b981 for purchase buttons only</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step8">
-                    <label for="step8">Test alternation: Dark → Light → Dark for visual rhythm</label>
+                    <label for="step8">All sections use gradients (no flat colors). Pattern: Black → Light → Navy → Light → Navy → Light → Black(reversed)</label>
                 </div>
                 <div class="checklist-item">
                     <input type="checkbox" id="step9">
@@ -701,25 +712,25 @@
                         <td><div style="width: 40px; height: 20px; background: #000000; border-radius: 4px;"></div></td>
                         <td><code>#000000</code></td>
                         <td><strong>Pure Black</strong></td>
-                        <td>Hero (always) + Final CTA — Maximum drama and emotional impact</td>
+                        <td>Hero gradient (135deg) + Final CTA gradient (315deg reversed) — Cinematic depth</td>
                     </tr>
                     <tr>
                         <td><div style="width: 40px; height: 20px; background: #0F172A; border-radius: 4px;"></div></td>
                         <td><code>#0F172A</code></td>
                         <td><strong>Deep Navy</strong></td>
-                        <td>Features, social proof, video sections — Authority & premium</td>
+                        <td>Dark sections (§3, §5): gradient to #1E293B — Authority & premium</td>
                     </tr>
                     <tr>
                         <td><div style="width: 40px; height: 20px; background: #FAFAFA; border-radius: 4px; border: 1px solid #E5E7EB;"></div></td>
                         <td><code>#FAFAFA</code></td>
                         <td><strong>Off-White</strong></td>
-                        <td>Forms, pricing, FAQ, long text — <strong>15-25% higher conversion</strong></td>
+                        <td>Light sections (§2, §6): gradient to #F1F5F9 — <strong>15-25% higher conversion</strong></td>
                     </tr>
                     <tr>
                         <td><div style="width: 40px; height: 20px; background: #07E6DE; border-radius: 4px;"></div></td>
                         <td><code>#07E6DE</code></td>
                         <td><strong>Bright Turquoise</strong></td>
-                        <td>CTA buttons — Add 1px #0ABAB5 border on light backgrounds</td>
+                        <td>Brand accent (hover, borders, nav). CTAs use #06b6d4. Add 1px #0891b2 border on light bg</td>
                     </tr>
                 </tbody>
             </table>
@@ -848,7 +859,9 @@
 
 /* Hero Section Navigation Container */
 .hero-nav {
-  background-color: #000000; /* Pure Black */
+  background: linear-gradient(135deg, #000000 0%, #0a1f44 50%, #2d5a8a 100%);
+  border-bottom: 2px solid #07E6DE;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Full nav spec */
   padding: 20px 40px;
   display: flex;
   align-items: center;
@@ -1226,7 +1239,7 @@
             <h3>Hero Section Code</h3>
             <div class="code-block">
                 <button class="copy-btn" onclick="copyCode('hero-section')">Copy Code</button>
-                <div id="hero-section">&lt;section style="background: #000000; color: white; padding: 80px 20px; text-align: center;"&gt;
+                <div id="hero-section">&lt;section style="background: linear-gradient(135deg, #000000 0%, #0a1f44 50%, #2d5a8a 100%); color: white; padding: 80px 20px; text-align: center;"&gt;
   &lt;h1 style="font-size: 48px; font-weight: 700; margin-bottom: 20px; color: #07E6DE;"&gt;
     Launch Your AI Business in 7 Days
   &lt;/h1&gt;
