@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Welcome &amp; Onboarding — Fast Track GenAI</title>
+    <meta name="description" content="Welcome to the Fast Track GenAI Affiliate Program. Your onboarding hub: activation steps, commission structure, 365-day cookie, payouts, and your first-7-days plan.">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <meta name="theme-color" content="#000000">
+    <style>
+        :root {
+            --ftg-black: #000000;
+            --ftg-navy: #0F172A;
+            --ftg-medium-blue: #012b6e;
+            --ftg-dark-navy: #011d4a;
+            --ftg-charcoal: #374151;
+            --ftg-turquoise: #07E6DE;
+            --ftg-turquoise-border: #0891b2;
+            --ftg-emerald: #10B981;
+            --ftg-cta-yellow: #FFD24C;
+            --ftg-offwhite: #FAFAFA;
+            --ftg-silver: #E5E7EB;
+            --ftg-white: #FFFFFF;
+            --ftg-hero-gradient: linear-gradient(135deg, #000000 0%, #012b6e 70%, #011d4a 100%);
+            --ftg-navy-gradient: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+            --ftg-light-gradient: linear-gradient(180deg, #FAFAFA 0%, #F1F5F9 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--ftg-navy);
+            background: var(--ftg-offwhite);
+        }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        .inner-narrow { max-width: 960px; margin: 0 auto; }
+
+        /* ===== Hero Navigation ===== */
+        .hero-nav {
+            background: var(--ftg-hero-gradient);
+            border-bottom: 2px solid var(--ftg-turquoise);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .hero-nav .nav-logo { height: 50px; width: auto; }
+        .hero-nav .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .hero-nav .nav-links a {
+            color: var(--ftg-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .hero-nav .nav-links a:hover { color: var(--ftg-turquoise); }
+        .hero-nav .nav-links a.nav-cta {
+            background: var(--ftg-turquoise);
+            color: var(--ftg-black);
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        .hero-nav .nav-links a.nav-cta:hover { color: var(--ftg-black); transform: translateY(-1px); }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            background: var(--ftg-hero-gradient);
+            color: var(--ftg-white);
+            padding: 72px 20px 64px;
+            text-align: center;
+        }
+        .hero .eyebrow {
+            display: inline-block;
+            background: rgba(255, 210, 76, 0.12);
+            border: 1px solid var(--ftg-cta-yellow);
+            color: var(--ftg-cta-yellow);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 50px);
+            font-weight: 800;
+            color: var(--ftg-white);
+            margin-bottom: 22px;
+            line-height: 1.12;
+        }
+        .hero h1 .accent { color: var(--ftg-turquoise); }
+        .hero .subheadline {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: #D6E2F5;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+            max-width: 860px;
+        }
+
+        /* ===== Stat strip ===== */
+        .stat-strip {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 0 auto 44px;
+            max-width: 900px;
+        }
+        .stat-strip .stat { text-align: center; }
+        .stat-strip .stat .num {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            color: var(--ftg-turquoise);
+            line-height: 1;
+        }
+        .stat-strip .stat .label {
+            font-size: 14px;
+            color: #9FB3D1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* ===== CTA Buttons ===== */
+        .cta-button {
+            display: inline-block;
+            background: var(--ftg-turquoise);
+            color: var(--ftg-black);
+            padding: 18px 48px;
+            font-size: 19px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(7, 230, 222, 0.35);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(7, 230, 222, 0.55);
+        }
+        .cta-button.yellow {
+            background: var(--ftg-cta-yellow);
+            box-shadow: 0 2px 8px rgba(255, 210, 76, 0.4);
+        }
+        .cta-button.yellow:hover { box-shadow: 0 6px 16px rgba(255, 210, 76, 0.6); }
+        .section-light .cta-button { border: 1px solid var(--ftg-turquoise-border); }
+        .cta-sub { margin-top: 14px; font-size: 15px; color: #9FB3D1; }
+
+        /* ===== Sections ===== */
+        .section { padding: 68px 20px; }
+        .section .inner { max-width: 960px; margin: 0 auto; }
+
+        .section-dark { background: var(--ftg-navy-gradient); color: var(--ftg-white); }
+        .section-dark h2, .section-dark h3 { color: var(--ftg-white); }
+        .section-dark p { color: #CBD5E1; }
+
+        .section-light { background: var(--ftg-light-gradient); color: var(--ftg-navy); }
+        .section-light p { color: var(--ftg-charcoal); }
+
+        .section h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-align: center;
+            line-height: 1.15;
+        }
+        .section .section-intro {
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 44px;
+        }
+        .section p { font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+
+        /* ===== Tables ===== */
+        .table-wrap { overflow-x: auto; margin: 28px 0; }
+        table.rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--ftg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.10);
+            font-size: 16px;
+        }
+        table.rate-table th, table.rate-table td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--ftg-silver);
+            color: var(--ftg-navy);
+        }
+        table.rate-table thead th {
+            background: var(--ftg-navy);
+            color: var(--ftg-white);
+            font-weight: 700;
+        }
+        table.rate-table tbody tr:last-child td { border-bottom: none; }
+        table.rate-table tbody tr:nth-child(even) { background: #F8FAFC; }
+        table.rate-table td strong { color: var(--ftg-turquoise-border); }
+        .table-note { font-size: 14px; color: #6B7280; font-style: italic; text-align: center; margin-top: 12px; }
+        .section-dark .table-note { color: #9FB3D1; }
+
+        /* ===== Math breakdown box ===== */
+        .math-box {
+            position: relative;
+            background: rgba(7, 230, 222, 0.06);
+            border: 1px solid rgba(7, 230, 222, 0.35);
+            border-radius: 18px;
+            padding: 40px 34px 30px;
+            margin: 36px auto 0;
+            max-width: 760px;
+        }
+        .math-badge {
+            position: absolute;
+            top: -15px; left: 34px;
+            background: var(--ftg-emerald);
+            color: #fff;
+            font-size: 13px; font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 6px 16px;
+            border-radius: 999px;
+        }
+        .math-block { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .math-title { font-size: 16px; font-weight: 700; color: #fff; margin: 0 0 10px; }
+        .math-line { font-size: 16px; color: #CBD5E1; margin: 6px 0; line-height: 1.6; }
+        .math-line strong { color: #fff; }
+        .math-total { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.18); font-weight: 600; }
+
+        /* ===== Funnel flow ===== */
+        .funnel-flow { max-width: 780px; margin: 40px auto 0; }
+        .funnel-step {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-left: 5px solid var(--ftg-turquoise);
+            border-radius: 14px;
+            padding: 26px 28px 26px 30px;
+            position: relative;
+        }
+        .funnel-step h3 { font-size: 19px; margin: 0 0 10px; color: var(--ftg-navy); padding-right: 44px; }
+        .funnel-step p { font-size: 16px; color: var(--ftg-charcoal); margin: 0; line-height: 1.6; }
+        .funnel-num {
+            position: absolute;
+            top: 22px; right: 24px;
+            width: 34px; height: 34px;
+            background: var(--ftg-turquoise);
+            color: #06262f;
+            font-weight: 800; font-size: 17px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .funnel-arrow { text-align: center; font-size: 30px; color: var(--ftg-turquoise-border); margin: 8px 0; line-height: 1; }
+
+        /* ===== Scenario cards (earnings range) ===== */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-top: 36px;
+        }
+        .scenario-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(7, 230, 222, 0.25);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            position: relative;
+        }
+        .scenario-card.featured {
+            border-color: var(--ftg-cta-yellow);
+            background: rgba(255, 210, 76, 0.08);
+            box-shadow: 0 10px 30px rgba(255, 210, 76, 0.12);
+        }
+        .scenario-badge {
+            position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+            background: var(--ftg-cta-yellow); color: #3a2c00;
+            font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
+            padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+        }
+        .scenario-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ftg-turquoise); font-weight: 700; }
+        .scenario-sub { font-size: 14px; color: #9FB3D1; margin: 10px 0 16px; line-height: 1.5; }
+        .scenario-amount { font-size: 34px; font-weight: 800; color: #fff; line-height: 1; }
+        .scenario-card.featured .scenario-amount { color: var(--ftg-cta-yellow); }
+
+        /* ===== Tier cards ===== */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-top: 36px;
+        }
+        .tier-card {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-radius: 16px;
+            padding: 30px 26px;
+            text-align: center;
+            position: relative;
+        }
+        .tier-card.featured { border-color: var(--ftg-turquoise); box-shadow: 0 10px 30px rgba(7, 230, 222, 0.18); }
+        .tier-card .tier-name { font-size: 15px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ftg-charcoal); font-weight: 700; }
+        .tier-card .tier-rate { font-size: 52px; font-weight: 800; color: var(--ftg-turquoise-border); line-height: 1; margin: 12px 0 8px; }
+        .tier-card .tier-vol { font-size: 16px; color: var(--ftg-charcoal); }
+        .tier-card .tier-badge {
+            position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+            background: var(--ftg-turquoise); color: var(--ftg-black);
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            padding: 5px 14px; border-radius: 999px;
+        }
+
+        /* ===== Feature callout cards ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 36px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(7, 230, 222, 0.25);
+            border-radius: 16px;
+            padding: 30px 26px;
+        }
+        .feature-card .icon { font-size: 34px; margin-bottom: 14px; display: block; }
+        .feature-card h3 { font-size: 20px; margin-bottom: 10px; color: var(--ftg-turquoise); }
+        .feature-card p { font-size: 15.5px; margin-bottom: 0; color: #CBD5E1; }
+
+        /* ===== Highlight box ===== */
+        .highlight-box {
+            background: var(--ftg-white);
+            border-left: 4px solid var(--ftg-turquoise);
+            border-radius: 12px;
+            padding: 28px 30px;
+            margin: 32px auto 0;
+            max-width: 860px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+        }
+        .highlight-box p { margin-bottom: 0; color: var(--ftg-charcoal); }
+        .highlight-box p strong { color: var(--ftg-navy); }
+
+        .caveat {
+            font-size: 14.5px;
+            font-style: italic;
+            color: #6B7280;
+            text-align: center;
+            max-width: 760px;
+            margin: 18px auto 0;
+        }
+        .section-dark .caveat { color: #9FB3D1; }
+
+        /* ===== Steps ===== */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
+        .step {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-radius: 16px;
+            padding: 30px 26px;
+        }
+        .step .step-num {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--ftg-turquoise); color: var(--ftg-black);
+            font-weight: 800; font-size: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .step h3 { font-size: 19px; margin-bottom: 10px; color: var(--ftg-navy); }
+        .step p { font-size: 15.5px; margin-bottom: 0; color: var(--ftg-charcoal); }
+
+        /* ===== Payout steps (timeline) ===== */
+        .payout-flow { max-width: 820px; margin: 34px auto 0; }
+        .payout-row {
+            display: flex; align-items: flex-start; gap: 18px;
+            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+        .payout-row:last-child { border-bottom: none; }
+        .payout-row .dot {
+            flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%;
+            background: var(--ftg-turquoise); margin-top: 8px;
+        }
+        .payout-row p { margin: 0; color: #CBD5E1; font-size: 16.5px; }
+        .payout-row p strong { color: var(--ftg-white); }
+
+        /* ===== FAQ ===== */
+        .faq { max-width: 820px; margin: 40px auto 0; }
+        .faq-item {
+            background: var(--ftg-white);
+            border: 1px solid var(--ftg-silver);
+            border-radius: 12px;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+        .faq-item summary {
+            cursor: pointer;
+            padding: 20px 24px;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--ftg-navy);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 24px; color: var(--ftg-turquoise-border); font-weight: 400; }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item .faq-body { padding: 0 24px 22px; color: var(--ftg-charcoal); font-size: 16px; line-height: 1.7; }
+
+        /* ===== Final CTA ===== */
+        .final-cta {
+            background: linear-gradient(315deg, #000000 0%, #012b6e 70%, #011d4a 100%);
+            border-top: 2px solid var(--ftg-turquoise);
+            color: var(--ftg-white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .final-cta h2 { color: var(--ftg-white); margin-bottom: 20px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
+        .final-cta p { color: #D6E2F5; font-size: 18px; margin-bottom: 38px; max-width: 720px; margin-left: auto; margin-right: auto; }
+
+        /* ===== Footer ===== */
+        .site-footer {
+            background: var(--ftg-black);
+            color: #9FB3D1;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .site-footer a { color: var(--ftg-turquoise); text-decoration: none; }
+        .site-footer .disclaimer { max-width: 820px; margin: 14px auto 0; font-size: 12.5px; color: #64748B; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .hero-nav { flex-direction: column; padding: 16px 20px; }
+            .hero-nav .nav-links { gap: 16px; justify-content: center; }
+            .hero { padding: 52px 15px 44px; }
+            .section { padding: 48px 15px; }
+            .stat-strip { gap: 28px; }
+            .cta-button { padding: 16px 34px; font-size: 18px; }
+        }
+
+        /* ===== Welcome-page additions ===== */
+        .notice {
+            max-width: 900px; margin: 34px auto 0;
+            background: rgba(7,230,222,0.10);
+            border: 1px solid rgba(7,230,222,0.45);
+            border-radius: 12px; padding: 18px 24px;
+            color: var(--ftg-navy); font-size: 15.5px; line-height: 1.6;
+        }
+        .notice strong { color: var(--ftg-turquoise-border); }
+        .checklist { max-width: 840px; margin: 36px auto 0; }
+        .check-day {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-left: 5px solid var(--ftg-turquoise);
+            border-radius: 14px; padding: 22px 26px; margin-bottom: 16px;
+        }
+        .check-day h3 { font-size: 18px; color: var(--ftg-navy); margin: 0 0 12px; }
+        .check-day ul { list-style: none; margin: 0; padding: 0; }
+        .check-day li {
+            position: relative; padding-left: 30px; margin: 9px 0;
+            color: var(--ftg-charcoal); font-size: 16px; line-height: 1.55;
+        }
+        .check-day li::before {
+            content: '\2713'; position: absolute; left: 0; top: 0;
+            color: var(--ftg-emerald); font-weight: 800; font-size: 17px;
+        }
+        .goal-line { margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--ftg-navy); }
+        .section-tag {
+            display:inline-block; background: rgba(16,185,129,0.12);
+            border:1px solid var(--ftg-emerald); color: var(--ftg-emerald);
+            font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase;
+            padding:6px 16px; border-radius:999px; margin-bottom:18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="hero-nav">
+        <a href="../home.html"><img src="../images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="nav-logo"></a>
+        <ul class="nav-links">
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="#activate">Activate</a></li>
+            <li><a href="#commissions">Commissions</a></li>
+            <li><a href="#cookie">Cookie &amp; Funnel</a></li>
+            <li><a href="#payouts">Payouts</a></li>
+            <li><a href="#checklist">First 7 Days</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#dashboard" class="nav-cta">Go to Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <span class="eyebrow">You're In · Founding Affiliate</span>
+            <h1>Welcome to the <span class="accent">Fast Track GenAI</span> Affiliate Program</h1>
+            <p class="subheadline">You're approved. This is your onboarding hub &mdash; everything you need to activate your account, understand exactly how you get paid, and land your first sales in the next 7 days.</p>
+            <div class="stat-strip">
+                <div class="stat"><div class="num">365-day</div><div class="label">Tracking Cookie</div></div>
+                <div class="stat"><div class="num">Up to 35%</div><div class="label">Per Sale</div></div>
+                <div class="stat"><div class="num">15%</div><div class="label">Recurring Monthly</div></div>
+            </div>
+            <a href="#dashboard" class="cta-button yellow">Open Your Affiliate Dashboard &rarr;</a>
+            <p class="cta-sub">New here? Start with the activation steps below.</p>
+        </div>
+    </section>
+
+    <!-- ===== Activate (light) ===== -->
+    <section class="section section-light" id="activate">
+        <div class="inner">
+            <span class="section-tag" style="display:block; width:fit-content; margin:0 auto 18px;">Start Here</span>
+            <h2>Activate Your Account</h2>
+            <p class="section-intro">Four quick steps get you from approved to actively promoting. Do these first &mdash; they take about 15 minutes.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Access Your Dashboard</h3>
+                    <p>Log into your GoHighLevel affiliate portal to see your links, sales, and commission status in real time. <a href="#dashboard" style="color:var(--ftg-turquoise-border); font-weight:700; text-decoration:none;">Dashboard link &rarr;</a></p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Grab Your Link</h3>
+                    <p>Copy your unique tracking link. Every click on it is tagged to you for a full 365 days &mdash; one link earns you commissions across the entire funnel.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Download Your Kit</h3>
+                    <p>Open the Resources section for your starter promo kit &mdash; swipe copy, images, and demo clips you can customize in your own voice.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h3>Join the Community</h3>
+                    <p>Introduce yourself in the affiliate community and add the weekly check-in call to your calendar. That's where the best-performing strategies get shared.</p>
+                </div>
+            </div>
+            <div class="notice">
+                <strong>What you're promoting:</strong> one simple funnel with two products. Your link sends people to the <strong>Business Launchpad</strong> ($37 intro / $97 standard). The <strong>GenAI Builders Club</strong> ($47/mo intro / $97/mo standard) follows automatically as the next step &mdash; and right now it includes the 7-agent Business Accelerator workforce ($731 value) free as a launch bonus, making it an easy "yes" for the people you send. You earn on <strong>both</strong> products, initial and recurring, from day one.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Cookie & Funnel (dark) ===== -->
+    <section class="section section-dark" id="cookie">
+        <div class="inner">
+            <h2>How the Funnel Works &amp; Why Your 365-Day Cookie Matters</h2>
+            <p class="section-intro" style="color:#CBD5E1;">Understanding this is the key to understanding your commissions. Not everyone buys on the first visit &mdash; and our funnel is built so you get paid whether they buy today or eleven months from now.</p>
+
+            <div class="funnel-flow">
+                <div class="funnel-step">
+                    <span class="funnel-num">1</span>
+                    <h3>Your link &rarr; One-Time Offer pricing</h3>
+                    <p>Traffic you send lands on our best founder's pricing first: Launchpad at <strong>$37</strong>, Builders Club from <strong>$47/mo</strong>. Immediate buyers earn you your tier % on the OTO price.</p>
+                </div>
+                <div class="funnel-arrow">&darr;</div>
+                <div class="funnel-step">
+                    <span class="funnel-num">2</span>
+                    <h3>Non-buyers enter our nurture &mdash; handled by us</h3>
+                    <p>People who don't buy right away get worked by our automated email sequences and retargeting. That selling happens on our side, not yours &mdash; no extra work for you.</p>
+                </div>
+                <div class="funnel-arrow">&darr;</div>
+                <div class="funnel-step">
+                    <span class="funnel-num">3</span>
+                    <h3>Later conversions &rarr; Standard pricing (you earn more)</h3>
+                    <p>When they come back and buy at standard pricing (Launchpad $97, Builders Club $97/mo), your 365-day cookie still credits you &mdash; at the <strong>higher</strong> commission amount.</p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="icon">&#127850;</span>
+                    <h3>A Full Year of Credit</h3>
+                    <p>Most programs give you 30&ndash;90 days. Ours gives you 365. Somebody clicks today, buys eight months from now &mdash; you still get paid.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">&#128257;</span>
+                    <h3>Recurring, Not One-and-Done</h3>
+                    <p>Every Builders Club member you refer pays you 15% every month they stay &mdash; for up to 12 months. One referral, paid again and again.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">&#9889;</span>
+                    <h3>Send the Click Once</h3>
+                    <p>You bring the traffic; our funnel keeps selling to it for a year. That's the difference between renting a customer and actually earning one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Commission Structure (light) ===== -->
+    <section class="section section-light" id="commissions">
+        <div class="inner">
+            <h2>Your Commission Structure</h2>
+            <p class="section-intro">Your rate rises with your total sales volume. Every approved affiliate earns on both products from day one &mdash; no gates, no "unlock after X sales."</p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-name">Starter</div>
+                    <div class="tier-rate">25%</div>
+                    <div class="tier-vol">First 10 sales</div>
+                </div>
+                <div class="tier-card featured">
+                    <div class="tier-badge">Most Common</div>
+                    <div class="tier-name">Growth</div>
+                    <div class="tier-rate">30%</div>
+                    <div class="tier-vol">11&ndash;50 sales</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-name">Elite</div>
+                    <div class="tier-rate">35%</div>
+                    <div class="tier-vol">51+ sales</div>
+                </div>
+            </div>
+
+            <h3 style="text-align:center; margin-top:56px; font-size:22px; color:var(--ftg-navy);">What You Earn Per Sale</h3>
+            <div class="table-wrap">
+                <table class="rate-table">
+                    <thead>
+                        <tr><th>Product &amp; Price</th><th>25% Tier</th><th>30% Tier</th><th>35% Tier</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Launchpad &mdash; $37</strong> (OTO)</td><td>$9.25</td><td>$11.10</td><td>$12.95</td></tr>
+                        <tr><td><strong>Launchpad &mdash; $97</strong> (standard)</td><td>$24.25</td><td>$29.10</td><td>$33.95</td></tr>
+                        <tr><td><strong>Builders Club &mdash; $47/mo</strong> (OTO, initial)</td><td>$11.75</td><td>$14.10</td><td>$16.45</td></tr>
+                        <tr><td><strong>Builders Club &mdash; $97/mo</strong> (standard, initial)</td><td>$24.25</td><td>$29.10</td><td>$33.95</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="text-align:center; margin-top:48px; font-size:22px; color:var(--ftg-navy);">Builders Club Multi-Month Passes</h3>
+            <p style="text-align:center; max-width:760px; margin:0 auto 8px;">Members can also buy the <strong>6-Month Pass</strong> or <strong>3-Month Pass</strong>. These are prepaid upfront, earning you <strong>full tier %</strong> on the lump sum, then they auto-convert to monthly at the end of the term.</p>
+            <div class="table-wrap">
+                <table class="rate-table">
+                    <thead>
+                        <tr><th>Pass</th><th>25% Tier</th><th>30% Tier</th><th>35% Tier</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>6-Month Pass &mdash; $297</strong> (OTO)</td><td>$74.25</td><td>$89.10</td><td>$103.95</td></tr>
+                        <tr><td><strong>6-Month Pass &mdash; $397</strong> (standard)</td><td>$99.25</td><td>$119.10</td><td>$138.95</td></tr>
+                        <tr><td><strong>3-Month Pass &mdash; $177</strong> (OTO)</td><td>$44.25</td><td>$53.10</td><td>$61.95</td></tr>
+                        <tr><td><strong>3-Month Pass &mdash; $277</strong> (standard)</td><td>$69.25</td><td>$83.10</td><td>$96.95</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-note">After the pass term ends, members auto-renew at $47/mo (OTO) or $97/mo (standard). You then earn 15% recurring on those monthly payments (up to 12 months total per member).</p>
+
+            <h3 style="text-align:center; margin-top:48px; font-size:22px; color:var(--ftg-navy);">Plus Recurring on the Builders Club</h3>
+            <p style="text-align:center; max-width:760px; margin:0 auto 8px;">On top of the initial sale, you earn a flat <strong>15% on every monthly payment</strong> your referral makes &mdash; for up to 12 months.</p>
+            <div class="table-wrap">
+                <table class="rate-table">
+                    <thead>
+                        <tr><th>Membership</th><th>You earn / month</th><th>Over 11 recurring months</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>$47/mo Builders Club</strong> (OTO)</td><td>$7.05</td><td>up to $77.55</td></tr>
+                        <tr><td><strong>$97/mo Builders Club</strong> (standard)</td><td>$14.55</td><td>up to $160.05</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-note"><strong>Note:</strong> A $1 trial option (14 days &rarr; $47 or $97/mo) is also available as an entry point. Commissions follow the same structure once the trial converts to a paid membership.</p>
+
+            <div class="highlight-box">
+                <p><strong>One Builders Club referral can pay you up to $194 across the first year</strong> &mdash; the initial commission plus recurring &mdash; not a one-and-done $10. That's why the Builders Club is where your real income compounds.</p>
+            </div>
+            <p class="caveat">The 12-month recurring figure is a maximum potential, not a guarantee. Members can cancel anytime, and you're paid only on payments actually collected. If a member cancels in month 4, recurring commissions stop at month 4.</p>
+        </div>
+    </section>
+
+    <!-- ===== Earning Potential (dark) ===== -->
+    <section class="section section-dark" id="earnings">
+        <div class="inner">
+            <h2>Your Earning Potential</h2>
+            <p class="section-intro" style="color:#CBD5E1;">Because your link feeds the OTO first and then nurtures toward standard pricing, your real earnings land somewhere on a range. Here's what <strong style="color:var(--ftg-turquoise);">25 Launchpad buyers + 25 Builders Club members</strong> looks like at the 30% tier &mdash; from an all-OTO minimum to an all-standard maximum.</p>
+
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <div class="scenario-label">Minimum</div>
+                    <div class="scenario-sub">All 25 buy at OTO pricing<br>($37 Launchpad &middot; $47/mo Club)</div>
+                    <div class="scenario-amount">$2,568.75</div>
+                </div>
+                <div class="scenario-card featured">
+                    <div class="scenario-badge">Realistic</div>
+                    <div class="scenario-label">Average</div>
+                    <div class="scenario-sub">A typical OTO / standard mix<br>(midpoint of the range)</div>
+                    <div class="scenario-amount">$4,012.50</div>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-label">Maximum</div>
+                    <div class="scenario-sub">All 25 buy at standard pricing<br>($97 Launchpad &middot; $97/mo Club)</div>
+                    <div class="scenario-amount">$5,456.25</div>
+                </div>
+            </div>
+
+            <div class="math-box">
+                <div class="math-badge">Math Verified &#10003;</div>
+                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Minimum &mdash; all 25 at OTO pricing (30% tier)</h3>
+                <div class="math-block">
+                    <p class="math-title">&#9312; 25 Launchpad buyers @ $37 (one-time)</p>
+                    <p class="math-line">$37 &times; 30% = <strong>$11.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $11.10 = <strong style="color:var(--ftg-turquoise);">$277.50</strong></p>
+                </div>
+                <div class="math-block">
+                    <p class="math-title">&#9313; 25 Builders Club members @ $47/mo</p>
+                    <p class="math-line"><em>Initial month</em>: $47 &times; 30% = $14.10 &nbsp;&rarr;&nbsp; 25 &times; $14.10 = <strong>$352.50</strong></p>
+                    <p class="math-line"><em>Recurring</em> &mdash; 15% on months 2&ndash;12: $47 &times; 15% = $7.05/mo &nbsp;&rarr;&nbsp; 25 &times; $7.05 &times; 11 = <strong>$1,938.75</strong></p>
+                    <p class="math-line math-total">$352.50 + $1,938.75 = <strong style="color:var(--ftg-turquoise);">$2,291.25</strong></p>
+                </div>
+                <div class="math-block" style="border-bottom:none;">
+                    <p class="math-title">Minimum year-one total</p>
+                    <p class="math-line math-total">$277.50 + $2,291.25 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$2,568.75</strong></p>
+                </div>
+            </div>
+
+            <div class="math-box" style="margin-top:28px;">
+                <div class="math-badge">Math Verified &#10003;</div>
+                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Maximum &mdash; all 25 at standard pricing (30% tier)</h3>
+                <div class="math-block">
+                    <p class="math-title">&#9312; 25 Launchpad buyers @ $97 (one-time)</p>
+                    <p class="math-line">$97 &times; 30% = <strong>$29.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong style="color:var(--ftg-turquoise);">$727.50</strong></p>
+                </div>
+                <div class="math-block">
+                    <p class="math-title">&#9313; 25 Builders Club members @ $97/mo</p>
+                    <p class="math-line"><em>Initial month</em>: $97 &times; 30% = $29.10 &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong>$727.50</strong></p>
+                    <p class="math-line"><em>Recurring</em> &mdash; 15% on months 2&ndash;12: $97 &times; 15% = $14.55/mo &nbsp;&rarr;&nbsp; 25 &times; $14.55 &times; 11 = <strong>$4,001.25</strong></p>
+                    <p class="math-line math-total">$727.50 + $4,001.25 = <strong style="color:var(--ftg-turquoise);">$4,728.75</strong></p>
+                </div>
+                <div class="math-block" style="border-bottom:none;">
+                    <p class="math-title">Maximum year-one total</p>
+                    <p class="math-line math-total">$727.50 + $4,728.75 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$5,456.25</strong></p>
+                </div>
+            </div>
+
+            <div class="math-box" style="margin-top:28px;">
+                <div class="math-badge">Math Verified &#10003;</div>
+                <h3 style="margin:0 0 12px; color:var(--ftg-turquoise); font-size:20px;">Average &mdash; the realistic midpoint</h3>
+                <p class="math-line math-total" style="border-top:none; margin-top:0;">( $2,568.75 minimum + $5,456.25 maximum ) &divide; 2 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$4,012.50</strong></p>
+                <p class="math-line" style="color:#9FB3D1; margin-top:8px;">In practice your referrals will be a blend of OTO and standard buyers, so your true earnings will fall between the two &mdash; right around this midpoint.</p>
+            </div>
+
+            <p class="caveat">Figures assume members remain subscribed for the full year and are illustrations of potential, not income promises. Members can cancel anytime; you earn on every payment collected while they're active. Higher tiers (35%) earn more; the Starter tier (25%) earns somewhat less.</p>
+        </div>
+    </section>
+
+    <!-- ===== Performance Bonuses (light) ===== -->
+    <section class="section section-light" id="bonuses">
+        <div class="inner">
+            <h2>&#127919; Performance Bonuses</h2>
+            <p class="section-intro">On top of every commission, hit these cumulative sales milestones and earn cash bonuses. The harder you push early, the more you stack.</p>
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-name">Get Rolling</div>
+                    <div class="tier-rate" style="font-size:44px;">+$25</div>
+                    <div class="tier-vol">at 5 total sales</div>
+                </div>
+                <div class="tier-card featured">
+                    <div class="tier-badge">Popular Target</div>
+                    <div class="tier-name">Serious Effort</div>
+                    <div class="tier-rate" style="font-size:44px;">+$100</div>
+                    <div class="tier-vol">at 10 total sales</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-name">Top Performer</div>
+                    <div class="tier-rate" style="font-size:44px;">+$250</div>
+                    <div class="tier-vol">at 25 total sales</div>
+                </div>
+            </div>
+            <p class="caveat">Bonuses stack on top of your regular commissions and are paid directly once each milestone is reached. Hit all three and that's $375 in bonus cash on top of your percentages. More tiers will be added as the program grows.</p>
+        </div>
+    </section>
+
+    <!-- ===== How You Get Paid (dark) ===== -->
+    <section class="section section-dark" id="payouts">
+        <div class="inner">
+            <h2>How &amp; When You Get Paid</h2>
+            <p class="section-intro" style="color:#CBD5E1;">Commissions are paid on <strong style="color:var(--ftg-turquoise);">Net-30</strong> terms &mdash; the standard payout schedule built into our affiliate platform.</p>
+            <p class="section-intro" style="color:#CBD5E1; margin-top:-24px;"><strong style="color:var(--ftg-turquoise);">Why the wait?</strong> This window clears our 30-day money-back guarantee before a penny is paid, so you're only ever paid on sales that truly stick. Here's exactly how it works:</p>
+            <div class="payout-flow">
+                <div class="payout-row"><span class="dot"></span><p><strong>Every commission is held ("Pending")</strong> until 30 days after the end of the month it was earned in &mdash; then it's released to you.</p></div>
+                <div class="payout-row"><span class="dot"></span><p><strong>Example:</strong> A sale on July 10 is earned in July. July ends on the 31st, the 30-day clock runs through August 30, and your commission releases at the end of August.</p></div>
+                <div class="payout-row"><span class="dot"></span><p><strong>In practice that's a 30&ndash;60 day wait</strong> from the sale date &mdash; protecting you from chargebacks and refunds so your earnings are secure once released.</p></div>
+                <div class="payout-row"><span class="dot"></span><p><strong>Recurring works the same way:</strong> each monthly Builders Club payment starts its own Net-30 clock when collected &mdash; a steady rolling income stream for as long as your referral stays subscribed.</p></div>
+                <div class="payout-row"><span class="dot"></span><p><strong>Fair and transparent:</strong> if a member refunds while a commission is still pending, it's voided (you're never paid on returned money). Everything already released is yours to keep.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== First 7 Days (light) ===== -->
+    <section class="section section-light" id="checklist">
+        <div class="inner">
+            <span class="section-tag" style="display:block; width:fit-content; margin:0 auto 18px;">Your Fast Start</span>
+            <h2>Your First 7 Days</h2>
+            <p class="section-intro">A simple day-by-day plan to go from approved to your first clicks. Consistency beats intensity &mdash; follow this and you'll be promoting confidently by day 7.</p>
+            <div class="checklist">
+                <div class="check-day">
+                    <h3>Day 1 &mdash; Set Up</h3>
+                    <ul>
+                        <li>Read the Commission Structure and 365-Day Cookie sections above so you understand OTO vs. standard pricing</li>
+                        <li>Log into your dashboard and copy your unique affiliate link</li>
+                        <li>Join the affiliate community and post a short introduction</li>
+                    </ul>
+                </div>
+                <div class="check-day">
+                    <h3>Days 2&ndash;3 &mdash; Learn the Product</h3>
+                    <ul>
+                        <li>Review the Launchpad demo and the Builders Club overview so you can speak to both</li>
+                        <li>Watch the Affiliate VSL to see how we position the program &mdash; borrow the angles that fit your voice</li>
+                        <li>Pick your primary promotional platform (where your audience already pays attention)</li>
+                    </ul>
+                </div>
+                <div class="check-day">
+                    <h3>Days 4&ndash;5 &mdash; Build Your Content</h3>
+                    <ul>
+                        <li>Download promo assets from the Resources section</li>
+                        <li>Draft your first three posts &mdash; lead with education, not a hard sell</li>
+                        <li>Schedule them across the next several days</li>
+                    </ul>
+                </div>
+                <div class="check-day">
+                    <h3>Days 6&ndash;7 &mdash; Go Live</h3>
+                    <ul>
+                        <li>Publish your first promotional post with your affiliate link</li>
+                        <li>Attend your first weekly check-in call</li>
+                        <li>Check your dashboard to confirm your clicks are tracking</li>
+                    </ul>
+                    <p class="goal-line">&#127919; Goal by Day 7: first content live, link tracking, community connection made.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Promotional Playbook (dark) ===== -->
+    <section class="section section-dark" id="playbook">
+        <div class="inner">
+            <h2>Promotional Playbook</h2>
+            <p class="section-intro" style="color:#CBD5E1;">The affiliates who win here protect their audience's trust. Point people at something real, and they thank you. Here's the content balance and messaging that converts without burning your list.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="icon">&#128218;</span>
+                    <h3>Educate (70%)</h3>
+                    <p>Teach AI implementation concepts and quick wins. Most of your content should give value first &mdash; that's what earns the right to promote.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">&#11088;</span>
+                    <h3>Prove (15%)</h3>
+                    <p>Share real results and transformations. "From no clear idea to a funded business in motion" beats any feature list.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">&#128075;</span>
+                    <h3>Promote (15%)</h3>
+                    <p>Clear, direct calls to action with your link. When you've led with value, the ask feels natural, not pushy.</p>
+                </div>
+            </div>
+            <div class="highlight-box" style="margin-top:36px;">
+                <p><strong>Messaging that works:</strong> Focus on transformation, not features. Use authentic, conversational language &mdash; you're one founder talking to another. Create clear before/after scenarios ("decision paralysis &rarr; launched in 20 minutes"). And always point people toward a real result &mdash; results are what make your audience thank you instead of unsubscribe.</p>
+            </div>
+            <p class="caveat" style="color:#9FB3D1;">Always disclose your affiliate relationship, use only approved claims, and treat provided templates as a starting point &mdash; not a rigid script. Full compliance guidelines are in your dashboard.</p>
+        </div>
+    </section>
+
+    <!-- ===== FAQ (light) ===== -->
+    <section class="section section-light" id="faq">
+        <div class="inner">
+            <h2>Common Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>What's the difference between OTO and Standard pricing?</summary>
+                    <div class="faq-body">OTO (One-Time Offer) pricing is what people see when they click your link and buy right away &mdash; $37 Launchpad, $47/mo Builders Club. People who don't buy immediately enter our nurture sequence and later see Standard pricing ($97 / $97/mo). Your 365-day cookie tracks both, and Standard sales actually earn you a <em>higher</em> commission.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What is the Business Accelerator &mdash; do I promote it separately?</summary>
+                    <div class="faq-body">No. The Business Accelerator is a 7-agent AI workforce ($731 value) included <strong>free</strong> inside every Builders Club membership during launch. It's a bonus that makes the Club an easy "yes" &mdash; not a separate product. You earn your commissions on the Builders Club pricing, which already includes it.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How do the recurring commissions work?</summary>
+                    <div class="faq-body">For every Builders Club member you refer, you earn your tier % on the first month (or pass), then a flat 15% on each monthly payment after &mdash; for up to 12 months total. If they stay the full year you earn the initial plus the recurring; if they cancel in month 4, recurring stops at month 4. You're only ever paid on payments actually collected.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Why is my commission held for 30 days?</summary>
+                    <div class="faq-body">Net-30 clears our 30-day money-back guarantee window. It protects you from clawbacks &mdash; you're only ever paid on sales that stick. Once a commission is released (30&ndash;60 days after the sale), it's yours permanently. No surprises, no reversals.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Someone clicked my link but bought 6 months later &mdash; do I still get paid?</summary>
+                    <div class="faq-body">Yes. Your 365-day cookie means you get the credit for any purchase within a full year of the click. They'll likely see Standard pricing by then, which earns you the higher commission. Our nurture sequence does that selling for you &mdash; no extra work required.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I promote both Launchpad and Builders Club?</summary>
+                    <div class="faq-body">Yes &mdash; and you should. Most affiliates start with the Launchpad (low $37 barrier) to get first sales, then lean into the Builders Club, which is where recurring income compounds. One link covers the whole funnel, so you earn on both automatically.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do performance bonuses stack with commissions?</summary>
+                    <div class="faq-body">Yes. Bonuses are paid on top of your regular commissions. Hit 5, 10, and 25 total sales and that's an extra $25, $100, and $250 &mdash; $375 in bonus cash on top of everything you've already earned.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Final CTA ===== -->
+    <section class="final-cta" id="dashboard">
+        <div class="container">
+            <h2>Ready? Open Your Dashboard</h2>
+            <p>Everything you need is waiting inside your GoHighLevel affiliate portal &mdash; your unique link, your promo kit, your live sales and commission tracking. Grab your link and publish your first post today.</p>
+            <a href="#dashboard" class="cta-button yellow">Go to Your Affiliate Dashboard &rarr;</a>
+            <p class="cta-sub" style="margin-top:16px;">Want a refresher on the offer? <a href="index.html" style="color:var(--ftg-turquoise); text-decoration:none;">Review the affiliate program page</a> &middot; Questions? <a href="../home.html" style="color:var(--ftg-turquoise); text-decoration:none;">Get in touch</a></p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>Fast Track GenAI &copy; 2026 &middot; <a href="index.html">Affiliate Program</a> &middot; <a href="../index.html">Site Directory</a> &middot; <a href="../home.html">Home</a></p>
+        <p class="disclaimer">Commission figures and earning scenarios shown on this page are illustrations of maximum potential, not guarantees of income. Actual earnings depend on your own efforts, the volume and quality of traffic you send, and how long referred members remain subscribed. Recurring commissions are paid only on payments actually collected.</p>
+    </footer>
+
+</body>
+</html>
