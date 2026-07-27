@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Launchpad - Validate Your Business Idea in 20 Minutes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero .subheadline {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: #b8b8d1;
+            margin-bottom: 50px;
+            line-height: 1.5;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Visual Container */
+        .visual-container {
+            margin: 50px auto;
+            max-width: 1000px;
+        }
+
+        .visual-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-style: italic;
+            color: #9d9db8;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 18px 48px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #c8c8dc;
+            margin-bottom: 20px;
+        }
+
+        /* Pain Section */
+        .pain-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 50px 40px;
+        }
+
+        /* Credibility Section */
+        .credibility-section {
+            padding: 60px 20px;
+        }
+
+        .credibility-section .author {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            border-radius: 12px;
+            padding: 50px 40px;
+            margin: 60px 0;
+        }
+
+        .testimonial-section blockquote {
+            font-size: 20px;
+            line-height: 1.7;
+            color: #e8e8f5;
+            font-style: italic;
+            margin: 30px 0;
+        }
+
+        .testimonial-section .author-name {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* What's Inside Section */
+        .whats-inside {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .whats-inside .visual-container {
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        .whats-inside .description {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        /* Future Regret Section */
+        .future-regret {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border-radius: 12px;
+            padding: 60px 40px;
+            margin: 60px 0;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            color: #b8b8d1;
+            margin-bottom: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 15px 40px;
+            }
+
+            .section {
+                padding: 40px 15px;
+            }
+
+            .pain-section,
+            .testimonial-section,
+            .future-regret {
+                padding: 30px 20px;
+            }
+
+            .cta-button {
+                padding: 16px 36px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Validate Your Business Idea in Twenty Minutes — Not Six Months</h1>
+            <p class="subheadline">The Business Launchpad gives you a complete twenty-section business playbook — market viability, competitive analysis, pricing strategy, go-to-market plan — customized to YOUR specific idea.</p>
+            
+            <!-- Visual 1: Comparison Table -->
+            <div class="visual-container">
+                <img src="images/comparison-table.png" alt="Comparison between ChatGPT generic response and Business Launchpad custom playbook showing dramatically different depth and specificity">
+                <p class="caption">Same Prompt. Dramatically Different Results.</p>
+            </div>
+            
+            <a href="#demo" class="cta-button">Watch the Free Demo</a>
+        </div>
+    </section>
+
+    <!-- Pain Recognition Section -->
+    <section class="section">
+        <div class="pain-section">
+            <p>Let me guess: you've got multiple AI chat sessions open right now, trying to figure out how to build your business. Prompting ChatGPT, Claude, Gemini—getting answers that sound smart but leave you wondering: "Is this actually RIGHT?"</p>
+            
+            <p>Or you haven't really started using AI yet, but you know you need to—and you're not sure where to begin.</p>
+            
+            <p><strong>Either way: you need strategies you can TRUST and ACT on.</strong></p>
+        </div>
+    </section>
+
+    <!-- Credibility Section - David Kunzelman -->
+    <section class="section credibility-section">
+        <p class="author">— David Kunzelman, Creator of Business Launchpad</p>
+        
+        <p>I spent months doing this. Prompting. Refining. Ten prompts deep, still spinning my wheels. The problem? Open-ended questions get open-ended answers. No structure. No framework. No way to know what's actually actionable.</p>
+        
+        <p>So I stopped waiting for someone to build what I needed and built it myself.</p>
+        
+        <p>Twenty-one months. Over three thousand hours. I'm a twenty-year IT operations veteran, and I channeled every ounce of that frustration into a system that actually works. The same framework I'm using right now to build my own business.</p>
+    </section>
+
+    <!-- Testimonial Section - Sonali -->
+    <section class="section">
+        <div class="testimonial-section">
+            <p><strong>Sonali came to me without a clear business idea.</strong> She used this system to pressure test several concepts with the same framework you just saw.</p>
+            
+            <blockquote>
+                "This toolkit instantly jump-started my creative process, turning that idea into something I could actually build. It truly feels like opening a door to a room full of experts you can talk to at any time."
+            </blockquote>
+            
+            <p>She validated her concept, assembled a team, and she's actively managing development—building her app with a VC meeting lined up for launch.</p>
+            
+            <p><strong>From no idea to a funded business in motion.</strong></p>
+            
+            <p class="author-name">— Sonali</p>
+        </div>
+    </section>
+
+    <!-- What's Inside Section -->
+    <section class="whats-inside">
+        <div class="container">
+            <h2>Everything Inside the Business Launchpad</h2>
+            
+            <!-- Visual 2: Product Bundle -->
+            <div class="visual-container">
+                <img src="images/product-bundle.png" alt="Business Launchpad complete bundle with 100% money-back guarantee">
+                <p class="caption">Everything Inside the Business Launchpad</p>
+            </div>
+            
+            <div class="description">
+                <p>You get three connected tiers: Quick Start to get oriented, Foundation to sharpen your strategy, and the Opportunity Engine—the core assessment tool that processes twenty-three data points in eight minutes and delivers your complete business playbook.</p>
+                
+                <p>This isn't a course you watch and forget. It's a system that works with you. You get AI agents built specifically for business validation, frameworks that guide your decisions, and a clear answer to the question: is this worth building?</p>
+                
+                <p>Plus community access, a personal onboarding call, and ongoing support as you move from idea to launch.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Regret Section -->
+    <section class="section">
+        <div class="future-regret">
+            <p>Six months from now, one of two things is true. Either you launched—or you're still researching. Both paths start with this decision.</p>
+            
+            <p>Picture yourself making real decisions. Watching your business take shape—not someday, but now. A notification hits your phone—a new customer just signed up. Someone asks what you do, and you say "I run my own business." Not "I'm thinking about it." You BUILT it. You LAUNCHED it. It's real.</p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop Spinning Your Wheels. Start Building.</h2>
+            <p>See exactly how the Business Launchpad validates your idea in twenty minutes—with a real business example.</p>
+            <a href="#demo" class="cta-button">Watch the Free Demo</a>
+        </div>
+    </section>
+
+</body>
+</html>
