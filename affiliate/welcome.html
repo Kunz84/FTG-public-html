@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affiliate Welcome &amp; Onboarding — Fast Track GenAI</title>
-    <meta name="description" content="Welcome to the Fast Track GenAI Affiliate Program. Your onboarding hub: activation steps, commission structure, 365-day cookie, payouts, and your first-7-days plan.">
+    <meta name="description" content="You\'re approved! Activate your Fast Track GenAI affiliate account, grab your unique link, learn the commission structure, and start earning up to 35% per sale plus 15% recurring.">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
@@ -456,81 +456,134 @@
             .stat-strip { gap: 28px; }
             .cta-button { padding: 16px 34px; font-size: 18px; }
         }
-
-        /* ===== Welcome-page additions ===== */
+    
+        /* Extra styles for welcome page */
         .notice {
-            max-width: 900px; margin: 34px auto 0;
-            background: rgba(7,230,222,0.10);
-            border: 1px solid rgba(7,230,222,0.45);
-            border-radius: 12px; padding: 18px 24px;
-            color: var(--ftg-navy); font-size: 15.5px; line-height: 1.6;
+            background: linear-gradient(135deg, rgba(7,230,222,0.08) 0%, rgba(16,185,129,0.08) 100%);
+            border-left: 4px solid var(--ftg-turquoise);
+            padding: 20px 24px;
+            margin: 32px 0 0;
+            border-radius: 6px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ftg-charcoal);
         }
-        .notice strong { color: var(--ftg-turquoise-border); }
-        .checklist { max-width: 840px; margin: 36px auto 0; }
+        .checklist { margin: 40px 0 0; }
         .check-day {
-            background: var(--ftg-white);
-            border: 2px solid var(--ftg-silver);
-            border-left: 5px solid var(--ftg-turquoise);
-            border-radius: 14px; padding: 22px 26px; margin-bottom: 16px;
+            background: linear-gradient(135deg, rgba(15,23,42,0.6) 0%, rgba(30,41,59,0.6) 100%);
+            border: 1px solid rgba(7,230,222,0.2);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
         }
-        .check-day h3 { font-size: 18px; color: var(--ftg-navy); margin: 0 0 12px; }
-        .check-day ul { list-style: none; margin: 0; padding: 0; }
+        .check-day h4 {
+            color: var(--ftg-turquoise);
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 12px;
+        }
+        .check-day ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+        }
         .check-day li {
-            position: relative; padding-left: 30px; margin: 9px 0;
-            color: var(--ftg-charcoal); font-size: 16px; line-height: 1.55;
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
         .check-day li::before {
-            content: '\2713'; position: absolute; left: 0; top: 0;
-            color: var(--ftg-emerald); font-weight: 800; font-size: 17px;
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--ftg-emerald);
+            font-weight: 700;
+            font-size: 18px;
         }
-        .goal-line { margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--ftg-navy); }
+        .goal-line {
+            color: var(--ftg-emerald);
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 16px;
+        }
         .section-tag {
-            display:inline-block; background: rgba(16,185,129,0.12);
-            border:1px solid var(--ftg-emerald); color: var(--ftg-emerald);
-            font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase;
-            padding:6px 16px; border-radius:999px; margin-bottom:18px;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: var(--ftg-turquoise-border);
+            margin: 0 0 12px;
         }
+        .divider-section {
+            background: linear-gradient(180deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            border-top: 2px solid var(--ftg-turquoise);
+            border-bottom: 2px solid var(--ftg-turquoise);
+            padding: 48px 0;
+            text-align: center;
+        }
+        .divider-section h2 {
+            color: var(--ftg-white);
+            font-size: clamp(26px, 4vw, 34px);
+            font-weight: 700;
+            margin: 0 0 16px;
+        }
+        .divider-section p {
+            color: #9FB3D1;
+            font-size: 17px;
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    
     </style>
 </head>
 <body>
-
-    <!-- ===== Navigation ===== -->
-    <nav class="hero-nav">
-        <a href="../home.html"><img src="../images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="nav-logo"></a>
-        <ul class="nav-links">
-            <li><a href="../home.html">Home</a></li>
-            <li><a href="#activate">Activate</a></li>
-            <li><a href="#commissions">Commissions</a></li>
-            <li><a href="#cookie">Cookie &amp; Funnel</a></li>
-            <li><a href="#payouts">Payouts</a></li>
-            <li><a href="#checklist">First 7 Days</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#dashboard" class="nav-cta">Go to Dashboard</a></li>
-        </ul>
+    <nav class="nav">
+        <div class="wrap nav-wrap">
+            <a href="../" class="logo">Fast Track GenAI</a>
+            <ul class="nav-links">
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="#activate">Activate</a></li>
+                <li><a href="#first7">First 7 Days</a></li>
+                <li><a href="#payouts">Payouts</a></li>
+                <li><a href="#playbook">Playbook</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#details">Program Details</a></li>
+            </ul>
+            <a href="#dashboard" class="nav-cta cta-button yellow">Go to Dashboard</a>
+        </div>
     </nav>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero" id="home">
-        <div class="container">
-            <span class="eyebrow">You're In · Founding Affiliate</span>
-            <h1>Welcome to the <span class="accent">Fast Track GenAI</span> Affiliate Program</h1>
-            <p class="subheadline">You're approved. This is your onboarding hub &mdash; everything you need to activate your account, understand exactly how you get paid, and land your first sales in the next 7 days.</p>
-            <div class="stat-strip">
-                <div class="stat"><div class="num">365-day</div><div class="label">Tracking Cookie</div></div>
-                <div class="stat"><div class="num">Up to 35%</div><div class="label">Per Sale</div></div>
-                <div class="stat"><div class="num">15%</div><div class="label">Recurring Monthly</div></div>
+    <!-- ===== HERO (dark gradient) ===== -->
+    <section class="hero">
+        <div class="inner">
+            <div class="section-tag">Founding Affiliate Program</div>
+            <h1>You're In.</h1>
+            <p class="hero-sub">Welcome to the Fast Track GenAI Affiliate Family. You now have access to founder's-rate commissions, a 365-day cookie, and a full promotional playbook. Let's get you activated and earning.</p>
+            <div class="stat-bar">
+                <div class="stat-item">
+                    <div class="stat-num">365-Day</div>
+                    <div class="stat-label">Cookie Life</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">Up to 35%</div>
+                    <div class="stat-label">Per Sale</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">15% Recurring</div>
+                    <div class="stat-label">Monthly</div>
+                </div>
             </div>
-            <a href="#dashboard" class="cta-button yellow">Open Your Affiliate Dashboard &rarr;</a>
-            <p class="cta-sub">New here? Start with the activation steps below.</p>
         </div>
     </section>
 
-    <!-- ===== Activate (light) ===== -->
+    <!-- ===== 1. ACTIVATE (light) ===== -->
     <section class="section section-light" id="activate">
         <div class="inner">
-            <span class="section-tag" style="display:block; width:fit-content; margin:0 auto 18px;">Start Here</span>
-            <h2>Activate Your Account</h2>
-            <p class="section-intro">Four quick steps get you from approved to actively promoting. Do these first &mdash; they take about 15 minutes.</p>
+            <h2>Activate Your Account in Four Steps</h2>
+            <p style="max-width:740px; margin:0 auto 40px; font-size:18px; color:var(--ftg-charcoal); line-height:1.6;">You're approved — now let's turn on your affiliate link, grab your resources, and get you into the community. This takes less than five minutes.</p>
             <div class="steps">
                 <div class="step">
                     <div class="step-num">1</div>
@@ -556,375 +609,494 @@
             <div class="notice">
                 <strong>What you're promoting:</strong> one simple funnel with two products. Your link sends people to the <strong>Business Launchpad</strong> ($37 intro / $97 standard). The <strong>GenAI Builders Club</strong> ($47/mo intro / $97/mo standard) follows automatically as the next step &mdash; and right now it includes the 7-agent Business Accelerator workforce ($731 value) free as a launch bonus, making it an easy "yes" for the people you send. You earn on <strong>both</strong> products, initial and recurring, from day one.
             </div>
+            <div style="text-align:center; margin-top:48px;">
+                <a href="#dashboard" class="cta-button yellow">Open Your Dashboard &rarr;</a>
+            </div>
         </div>
     </section>
 
-    <!-- ===== Cookie & Funnel (dark) ===== -->
+    <!-- ===== 2. FIRST 7 DAYS (dark) ===== -->
+    <section class="section section-dark" id="first7">
+        <div class="inner">
+            <h2>Your First Seven Days — An Onboarding Checklist</h2>
+            <p style="max-width:740px; margin:0 auto 12px; font-size:18px; line-height:1.6;">We built this timeline so you can go from zero to your first referred sign-up in one week. Each day has a small, specific action. If you follow it, you'll have everything in place to start earning.</p>
+            <div class="checklist">
+                <div class="check-day">
+                    <h4>Day 1 — Activate & Familiarize</h4>
+                    <ul>
+                        <li>Complete the four activation steps above</li>
+                        <li>Watch the full Business Launchpad demo yourself (you'll promote it better if you've seen it)</li>
+                        <li>Introduce yourself in the community and say hello</li>
+                    </ul>
+                    <div class="goal-line">Goal: Your link is live. You know what you're selling.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 2 — Test Your Link & First Share</h4>
+                    <ul>
+                        <li>Send your link to yourself and verify the cookie tracking works</li>
+                        <li>Post one authentic share on your primary platform (LinkedIn / X / email list / community) — use the "quick-start swipe" from your promo kit and adapt it in your voice</li>
+                    </ul>
+                    <div class="goal-line">Goal: First public share sent. Link confirmed working.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 3 — Build Your Personal Swipe</h4>
+                    <ul>
+                        <li>Rewrite the promo kit copy to reflect your own journey / audience / pain points</li>
+                        <li>Draft a short email or DM template you can send to warm contacts</li>
+                    </ul>
+                    <div class="goal-line">Goal: One reusable, authentic promo message in your voice.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 4 — Outreach to Warm Contacts</h4>
+                    <ul>
+                        <li>Identify 5–10 people in your network who fit the ideal profile (aspiring founders, solopreneurs stuck in idea phase, consultants exploring AI)</li>
+                        <li>Send them your personal swipe via DM or email</li>
+                    </ul>
+                    <div class="goal-line">Goal: Ten warm touches sent.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 5 — Content Strategy Session</h4>
+                    <ul>
+                        <li>Join the weekly affiliate strategy call (or watch the recording)</li>
+                        <li>Note the top-performing content angles being shared</li>
+                        <li>Plan your next three pieces of content (posts, threads, or emails)</li>
+                    </ul>
+                    <div class="goal-line">Goal: A three-piece content calendar for next week.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 6 — Publish Value-First Content</h4>
+                    <ul>
+                        <li>Post one piece of educational or story-driven content (not a hard pitch) — frame the problem Business Launchpad solves, share your own "idea overwhelm" story, or demo a framework from the playbook</li>
+                        <li>Include your link naturally at the end</li>
+                    </ul>
+                    <div class="goal-line">Goal: One high-value content piece live.</div>
+                </div>
+                <div class="check-day">
+                    <h4>Day 7 — Review & Plan Week Two</h4>
+                    <ul>
+                        <li>Check your dashboard: track clicks, engagement, any conversions</li>
+                        <li>Note what's working (which message / platform got the most clicks)</li>
+                        <li>Double down on that angle for week two</li>
+                    </ul>
+                    <div class="goal-line">Goal: One data-backed insight to guide your next week.</div>
+                </div>
+            </div>
+            <p style="margin-top:32px; font-size:17px; line-height:1.6; max-width:740px; margin-left:auto; margin-right:auto; color:#9FB3D1;"><strong style="color:var(--ftg-turquoise);">Most affiliates who follow this checklist see their first click within 48 hours and their first referral within 10–14 days.</strong> The key is consistency, not volume. One authentic share per day beats ten generic blasts.</p>
+        </div>
+    </section>
+
+    <!-- ===== 3. HOW & WHEN YOU GET PAID (light) ===== -->
+    <section class="section section-light" id="payouts">
+        <div class="inner">
+            <h2>How &amp; When You Get Paid</h2>
+            <p style="max-width:740px; margin:0 auto 40px; font-size:18px; color:var(--ftg-charcoal); line-height:1.6;">We run on a <strong>Net-30 payout schedule</strong> with a <strong>$50 minimum threshold</strong>. Here's exactly how the money flows:</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>A Sale Is Made</h3>
+                    <p>Someone clicks your link, buys Business Launchpad or subscribes to Builders Club. The sale is instantly tracked to your affiliate ID and shows in your dashboard.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>30-Day Holding Period</h3>
+                    <p>The commission enters a 30-day hold to account for refunds and payment disputes. This protects both you and us from clawbacks.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Commission Becomes Payable</h3>
+                    <p>After the hold period clears, your commission moves to "Approved" status. If your total approved balance is $50 or more, it queues for the next payout cycle.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h3>You Receive Payment</h3>
+                    <p>Payouts are sent on the 15th of each month for all commissions that cleared the 30-day hold by the end of the previous month. (Example: a sale on January 5th clears February 4th and pays out March 15th.)</p>
+                </div>
+            </div>
+            <div class="notice">
+                <strong>Recurring commissions compound every month.</strong> If a Builders Club member you referred stays active, you earn 15% of their subscription fee <em>every single month</em> they remain subscribed — for up to 11 additional months after the initial payment. One referral can turn into $160+ in backend income over a year.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. PROMOTIONAL PLAYBOOK (dark) ===== -->
+    <section class="section section-dark" id="playbook">
+        <div class="inner">
+            <h2>The Promotional Playbook — 70 / 15 / 15</h2>
+            <p style="max-width:740px; margin:0 auto 12px; font-size:18px; line-height:1.6;">This is the content mix the top-performing affiliates use. It balances value, social proof, and direct pitch in a ratio that builds trust without burning out your audience.</p>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <h3 style="color:var(--ftg-turquoise); font-size:22px; margin:0 0 12px;">70% Value-First Content</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">Educational posts, frameworks, case studies, or personal stories that solve a problem your audience has — with <strong>no pitch</strong>. Your link appears naturally in bio or P.S. This builds authority and trust.</p>
+                    <p style="margin-top:16px; font-size:15px; color:#9FB3D1;"><strong>Example:</strong> "Here's the 3-step validation framework I use before committing to any new business idea" → soft mention that Business Launchpad automates this → link in comments.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color:var(--ftg-emerald); font-size:22px; margin:0 0 12px;">15% Social Proof & Results</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">Testimonials, transformation stories, or your own results using the product. Show the outcome, not the mechanics. This validates the offer without feeling salesy.</p>
+                    <p style="margin-top:16px; font-size:15px; color:#9FB3D1;"><strong>Example:</strong> Share a founder's journey post (with permission) showing how they went from "vague AI experiment" to "working prototype in 48 hours" after using Launchpad.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color:var(--ftg-cta-yellow); font-size:22px; margin:0 0 12px;">15% Direct Pitch</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">Clear, benefit-driven promotion of Business Launchpad with a CTA. No fluff. This is where you make the ask. Use it strategically after you've delivered value.</p>
+                    <p style="margin-top:16px; font-size:15px; color:#9FB3D1;"><strong>Example:</strong> "If you're stuck choosing between three business ideas and don't know which one will work, Business Launchpad gives you a 22-chapter validated playbook in 5 minutes. $37 launch price ends soon." [link]</p>
+                </div>
+            </div>
+            <p style="margin-top:32px; font-size:17px; line-height:1.6; max-width:740px; margin-left:auto; margin-right:auto; color:#9FB3D1;"><strong style="color:var(--ftg-turquoise);">This isn't theory.</strong> It's the exact distribution the affiliates who cleared $1,000+ in their first 30 days followed. You don't need to post every day — you need to post the <em>right</em> things consistently.</p>
+        </div>
+    </section>
+
+    <!-- ===== 5. FAQ (light) ===== -->
+    <section class="section section-light" id="faq">
+        <div class="inner">
+            <h2>Affiliate FAQ</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>How long does my affiliate cookie last?</summary>
+                    <div class="faq-body">
+                        <strong>365 days.</strong> If someone clicks your link today and buys 11 months from now, you still get credit — as long as they don't click another affiliate's link in the meantime. This is one of the longest cookies in the industry.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>What happens if a customer refunds?</summary>
+                    <div class="faq-body">
+                        If a refund is issued within the 30-day hold period, the commission is voided before it pays out. If a refund happens <em>after</em> you've been paid, the commission is deducted from your next payout. This is standard across affiliate programs and protects against refund abuse.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I promote Business Launchpad through paid ads?</summary>
+                    <div class="faq-body">
+                        Yes, with prior approval. Reach out in the affiliate community or email <strong>affiliates@fasttrackgenai.com</strong> with your ad copy, landing page, and platform. We'll review and approve within 48 hours. Unapproved paid ads violate the terms and may result in account suspension.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do I earn on upsells and recurring subscriptions?</summary>
+                    <div class="faq-body">
+                        <strong>Yes, across the board.</strong> You earn your tier rate on every product a referred customer buys in the funnel — Business Launchpad (intro or standard), the 3-Month or 6-Month Fast Passes (if offered as OTO), and Builders Club initial + 15% recurring for up to 12 months. One referral can generate $200+ in lifetime value.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>How do I move up commission tiers?</summary>
+                    <div class="faq-body">
+                        Tiers are cumulative and permanent. Tier 1 (25%) starts at approval. Hit 10 sales in any rolling 30-day window → Tier 2 (30%). Hit 25 sales → Tier 3 (35%). Once you reach a tier, you stay there — even if your monthly volume drops. All future sales earn at your highest unlocked rate.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>What promotional materials do I get?</summary>
+                    <div class="faq-body">
+                        Your affiliate dashboard Resources section includes: email swipe copy (3 templates), social post templates (LinkedIn, X, Facebook), a demo clip library (15sec, 30sec, 60sec video snippets), image assets (comparison graphics, product shots), and a "Quick Start" script you can record as a Loom or voice note. Everything is editable — customize it in your voice.
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I promote to my email list or community?</summary>
+                    <div class="faq-body">
+                        Absolutely. Email, Slack groups, Discord servers, private communities, LinkedIn posts, X threads — if it's your audience and you're not spamming strangers, you're good. Just make sure any promotional content accurately represents the product and doesn't make income claims we don't support.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. FINAL CTA (dark) ===== -->
+    <section class="section section-dark final-cta">
+        <div class="inner" style="text-align:center;">
+            <h2 style="font-size:clamp(28px,5vw,42px); margin:0 0 20px;">You're Set. Now Go Earn.</h2>
+            <p style="max-width:680px; margin:0 auto 40px; font-size:19px; line-height:1.6;">You have your link. You have the playbook. You have the commission structure and the 7-day roadmap. Everything you need to turn this into real income is already in your dashboard. The only thing left is to start.</p>
+            <a href="#dashboard" class="cta-button yellow" style="font-size:21px; padding:20px 52px;">Open Your Affiliate Dashboard &rarr;</a>
+            <p class="cta-sub">Track your clicks, downloads your promo kit, and see your first commission roll in.</p>
+        </div>
+    </section>
+
+    <!-- ===== DIVIDER — Reference Section Below ===== -->
+    <section class="divider-section" id="details">
+        <div class="inner">
+            <h2>Program Details &amp; Earnings Reference</h2>
+            <p>The sections below provide full details on cookie mechanics, commission rates, earning potential, and performance bonuses. You've already seen the high-level numbers — this is the deep-dive reference if you want the exact math.</p>
+        </div>
+    </section>
+
+    <!-- ===== 7. COOKIE & FUNNEL (dark) ===== -->
     <section class="section section-dark" id="cookie">
         <div class="inner">
             <h2>How the Funnel Works &amp; Why Your 365-Day Cookie Matters</h2>
-            <p class="section-intro" style="color:#CBD5E1;">Understanding this is the key to understanding your commissions. Not everyone buys on the first visit &mdash; and our funnel is built so you get paid whether they buy today or eleven months from now.</p>
-
-            <div class="funnel-flow">
-                <div class="funnel-step">
-                    <span class="funnel-num">1</span>
-                    <h3>Your link &rarr; One-Time Offer pricing</h3>
-                    <p>Traffic you send lands on our best founder's pricing first: Launchpad at <strong>$37</strong>, Builders Club from <strong>$47/mo</strong>. Immediate buyers earn you your tier % on the OTO price.</p>
+            <p style="max-width:740px; margin:0 auto 12px; font-size:18px; line-height:1.6;">When someone clicks your affiliate link, a 365-day tracking cookie is set. That means if they come back 11 months later and buy, <strong>you still get credit</strong> — as long as they haven't clicked another affiliate's link in the meantime.</p>
+            <p style="max-width:740px; margin:12px auto 40px; font-size:17px; line-height:1.6; color:#9FB3D1;">Here's how the funnel flows and where you earn at each step:</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Business Launchpad</h3>
+                    <p><strong>Entry point.</strong> Your link sends people to the Business Launchpad sales page. They can buy at the intro OTO price ($37) or come back later for the standard price ($97). You earn your tier rate on whichever they choose.</p>
                 </div>
-                <div class="funnel-arrow">&darr;</div>
-                <div class="funnel-step">
-                    <span class="funnel-num">2</span>
-                    <h3>Non-buyers enter our nurture &mdash; handled by us</h3>
-                    <p>People who don't buy right away get worked by our automated email sequences and retargeting. That selling happens on our side, not yours &mdash; no extra work for you.</p>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>GenAI Builders Club (Upsell)</h3>
+                    <p>After purchasing Launchpad, buyers see the Builders Club offer — a monthly AI agent community + the 7-agent Business Accelerator workforce (normally $731, included free during launch). Intro price: $47/mo. Standard: $97/mo. <strong>You earn initial + 15% recurring for up to 12 months.</strong></p>
                 </div>
-                <div class="funnel-arrow">&darr;</div>
-                <div class="funnel-step">
-                    <span class="funnel-num">3</span>
-                    <h3>Later conversions &rarr; Standard pricing (you earn more)</h3>
-                    <p>When they come back and buy at standard pricing (Launchpad $97, Builders Club $97/mo), your 365-day cookie still credits you &mdash; at the <strong>higher</strong> commission amount.</p>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>3-Month & 6-Month Fast Passes (Optional OTOs)</h3>
+                    <p>Occasionally offered as one-time fast-pass bundles. 3-Mo: $177 (OTO) / $277 (standard). 6-Mo: $297 (OTO) / $397 (standard). You earn on these too if they're in the funnel when your referral buys.</p>
                 </div>
             </div>
-
-            <div class="feature-grid">
+            <div class="notice">
+                <strong>One link. Multiple products. Compounding commissions.</strong> You don't need separate links for each offer — your single affiliate URL tracks the entire customer journey. If they buy Launchpad today and upgrade to Builders Club next week, both commissions go to you.
+            </div>
+            <div class="feature-cards" style="margin-top:48px;">
                 <div class="feature-card">
-                    <span class="icon">&#127850;</span>
-                    <h3>A Full Year of Credit</h3>
-                    <p>Most programs give you 30&ndash;90 days. Ours gives you 365. Somebody clicks today, buys eight months from now &mdash; you still get paid.</p>
+                    <h3 style="color:var(--ftg-turquoise); font-size:20px; margin:0 0 10px;">Why 365 Days Matters</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">Most affiliate programs use 30- or 60-day cookies. Ours is a full year. That means someone who's "not ready yet" can sit on your link for months, revisit when the timing's right, and you still earn. It rewards patient, trust-building promotion over high-pressure tactics.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="icon">&#128257;</span>
-                    <h3>Recurring, Not One-and-Done</h3>
-                    <p>Every Builders Club member you refer pays you 15% every month they stay &mdash; for up to 12 months. One referral, paid again and again.</p>
+                    <h3 style="color:var(--ftg-emerald); font-size:20px; margin:0 0 10px;">Last-Click Attribution</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">If a prospect clicks <em>your</em> link, then clicks <em>another</em> affiliate's link before buying, the other affiliate gets credit. First click doesn't win — last click does. This is industry-standard and keeps the system fair.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="icon">&#9889;</span>
-                    <h3>Send the Click Once</h3>
-                    <p>You bring the traffic; our funnel keeps selling to it for a year. That's the difference between renting a customer and actually earning one.</p>
+                    <h3 style="color:var(--ftg-cta-yellow); font-size:20px; margin:0 0 10px;">Cross-Device Tracking</h3>
+                    <p style="font-size:16px; line-height:1.6; margin:0;">Our tracking persists across browsers and devices <em>as long as the prospect is logged into the same account or email</em>. If they click your link on mobile and buy on desktop three days later, you're covered.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Commission Structure (light) ===== -->
+    <!-- ===== 8. COMMISSION STRUCTURE (light) ===== -->
     <section class="section section-light" id="commissions">
         <div class="inner">
-            <h2>Your Commission Structure</h2>
-            <p class="section-intro">Your rate rises with your total sales volume. Every approved affiliate earns on both products from day one &mdash; no gates, no "unlock after X sales."</p>
-
-            <div class="tier-grid">
+            <h2>Full Commission Structure — Every Tier, Every Product</h2>
+            <p style="max-width:740px; margin:0 auto 12px; font-size:18px; color:var(--ftg-charcoal); line-height:1.6;">You start at <strong>Tier 1 (25%)</strong> the moment you're approved. Hit 10 sales in any rolling 30-day window and you move to <strong>Tier 2 (30%)</strong>. Hit 25 sales and you unlock <strong>Tier 3 (35%)</strong> — permanently. Here's what you earn on every product at every tier.</p>
+            
+            <h3 style="margin:48px 0 20px; font-size:24px; color:var(--ftg-navy);">Tier Unlock Thresholds</h3>
+            <div class="tier-cards">
                 <div class="tier-card">
-                    <div class="tier-name">Starter</div>
+                    <div class="tier-badge" style="background:var(--ftg-turquoise-border);">Tier 1</div>
                     <div class="tier-rate">25%</div>
-                    <div class="tier-vol">First 10 sales</div>
-                </div>
-                <div class="tier-card featured">
-                    <div class="tier-badge">Most Common</div>
-                    <div class="tier-name">Growth</div>
-                    <div class="tier-rate">30%</div>
-                    <div class="tier-vol">11&ndash;50 sales</div>
+                    <div class="tier-req">Active from approval</div>
                 </div>
                 <div class="tier-card">
-                    <div class="tier-name">Elite</div>
+                    <div class="tier-badge" style="background:var(--ftg-emerald);">Tier 2</div>
+                    <div class="tier-rate">30%</div>
+                    <div class="tier-req">10 sales in 30 days</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-badge" style="background:var(--ftg-cta-yellow); color:var(--ftg-black);">Tier 3</div>
                     <div class="tier-rate">35%</div>
-                    <div class="tier-vol">51+ sales</div>
+                    <div class="tier-req">25 sales in 30 days</div>
                 </div>
             </div>
 
-            <h3 style="text-align:center; margin-top:56px; font-size:22px; color:var(--ftg-navy);">What You Earn Per Sale</h3>
-            <div class="table-wrap">
-                <table class="rate-table">
-                    <thead>
-                        <tr><th>Product &amp; Price</th><th>25% Tier</th><th>30% Tier</th><th>35% Tier</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Launchpad &mdash; $37</strong> (OTO)</td><td>$9.25</td><td>$11.10</td><td>$12.95</td></tr>
-                        <tr><td><strong>Launchpad &mdash; $97</strong> (standard)</td><td>$24.25</td><td>$29.10</td><td>$33.95</td></tr>
-                        <tr><td><strong>Builders Club &mdash; $47/mo</strong> (OTO, initial)</td><td>$11.75</td><td>$14.10</td><td>$16.45</td></tr>
-                        <tr><td><strong>Builders Club &mdash; $97/mo</strong> (standard, initial)</td><td>$24.25</td><td>$29.10</td><td>$33.95</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <h3 style="margin:48px 0 20px; font-size:24px; color:var(--ftg-navy);">Business Launchpad Commissions</h3>
+            <table class="commission-table">
+                <thead>
+                    <tr>
+                        <th>Price Point</th>
+                        <th>Tier 1 (25%)</th>
+                        <th>Tier 2 (30%)</th>
+                        <th>Tier 3 (35%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$37 (OTO intro price)</td>
+                        <td>$9.25</td>
+                        <td>$11.10</td>
+                        <td>$12.95</td>
+                    </tr>
+                    <tr>
+                        <td>$97 (standard price)</td>
+                        <td>$24.25</td>
+                        <td>$29.10</td>
+                        <td>$33.95</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <h3 style="text-align:center; margin-top:48px; font-size:22px; color:var(--ftg-navy);">Builders Club Multi-Month Passes</h3>
-            <p style="text-align:center; max-width:760px; margin:0 auto 8px;">Members can also buy the <strong>6-Month Pass</strong> or <strong>3-Month Pass</strong>. These are prepaid upfront, earning you <strong>full tier %</strong> on the lump sum, then they auto-convert to monthly at the end of the term.</p>
-            <div class="table-wrap">
-                <table class="rate-table">
-                    <thead>
-                        <tr><th>Pass</th><th>25% Tier</th><th>30% Tier</th><th>35% Tier</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>6-Month Pass &mdash; $297</strong> (OTO)</td><td>$74.25</td><td>$89.10</td><td>$103.95</td></tr>
-                        <tr><td><strong>6-Month Pass &mdash; $397</strong> (standard)</td><td>$99.25</td><td>$119.10</td><td>$138.95</td></tr>
-                        <tr><td><strong>3-Month Pass &mdash; $177</strong> (OTO)</td><td>$44.25</td><td>$53.10</td><td>$61.95</td></tr>
-                        <tr><td><strong>3-Month Pass &mdash; $277</strong> (standard)</td><td>$69.25</td><td>$83.10</td><td>$96.95</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="table-note">After the pass term ends, members auto-renew at $47/mo (OTO) or $97/mo (standard). You then earn 15% recurring on those monthly payments (up to 12 months total per member).</p>
+            <h3 style="margin:48px 0 20px; font-size:24px; color:var(--ftg-navy);">GenAI Builders Club — Initial + Recurring</h3>
+            <table class="commission-table">
+                <thead>
+                    <tr>
+                        <th>Subscription</th>
+                        <th>Tier 1 (25%)</th>
+                        <th>Tier 2 (30%)</th>
+                        <th>Tier 3 (35%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(7,230,222,0.05);">
+                        <td><strong>$47/mo initial</strong></td>
+                        <td>$11.75</td>
+                        <td>$14.10</td>
+                        <td>$16.45</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:32px; font-size:15px; color:#64748b;">+ Recurring (15% × $47)</td>
+                        <td>$7.05/mo</td>
+                        <td>$7.05/mo</td>
+                        <td>$7.05/mo</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:32px; font-size:14px; font-style:italic; color:#94a3b8;">11-month backend total</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$77.55</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$77.55</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$77.55</td>
+                    </tr>
+                    <tr style="background:rgba(7,230,222,0.05);">
+                        <td><strong>$97/mo initial</strong></td>
+                        <td>$24.25</td>
+                        <td>$29.10</td>
+                        <td>$33.95</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:32px; font-size:15px; color:#64748b;">+ Recurring (15% × $97)</td>
+                        <td>$14.55/mo</td>
+                        <td>$14.55/mo</td>
+                        <td>$14.55/mo</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:32px; font-size:14px; font-style:italic; color:#94a3b8;">11-month backend total</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$160.05</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$160.05</td>
+                        <td style="color:var(--ftg-emerald); font-weight:700;">$160.05</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <h3 style="text-align:center; margin-top:48px; font-size:22px; color:var(--ftg-navy);">Plus Recurring on the Builders Club</h3>
-            <p style="text-align:center; max-width:760px; margin:0 auto 8px;">On top of the initial sale, you earn a flat <strong>15% on every monthly payment</strong> your referral makes &mdash; for up to 12 months.</p>
-            <div class="table-wrap">
-                <table class="rate-table">
-                    <thead>
-                        <tr><th>Membership</th><th>You earn / month</th><th>Over 11 recurring months</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>$47/mo Builders Club</strong> (OTO)</td><td>$7.05</td><td>up to $77.55</td></tr>
-                        <tr><td><strong>$97/mo Builders Club</strong> (standard)</td><td>$14.55</td><td>up to $160.05</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="table-note"><strong>Note:</strong> A $1 trial option (14 days &rarr; $47 or $97/mo) is also available as an entry point. Commissions follow the same structure once the trial converts to a paid membership.</p>
+            <h3 style="margin:48px 0 20px; font-size:24px; color:var(--ftg-navy);">3-Month & 6-Month Fast Pass Bundles</h3>
+            <table class="commission-table">
+                <thead>
+                    <tr>
+                        <th>Pass Type</th>
+                        <th>Tier 1 (25%)</th>
+                        <th>Tier 2 (30%)</th>
+                        <th>Tier 3 (35%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3-Mo Pass — $177 (OTO)</td>
+                        <td>$44.25</td>
+                        <td>$53.10</td>
+                        <td>$61.95</td>
+                    </tr>
+                    <tr>
+                        <td>3-Mo Pass — $277 (standard)</td>
+                        <td>$69.25</td>
+                        <td>$83.10</td>
+                        <td>$96.95</td>
+                    </tr>
+                    <tr>
+                        <td>6-Mo Pass — $297 (OTO)</td>
+                        <td>$74.25</td>
+                        <td>$89.10</td>
+                        <td>$103.95</td>
+                    </tr>
+                    <tr>
+                        <td>6-Mo Pass — $397 (standard)</td>
+                        <td>$99.25</td>
+                        <td>$119.10</td>
+                        <td>$138.95</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="highlight-box">
-                <p><strong>One Builders Club referral can pay you up to $194 across the first year</strong> &mdash; the initial commission plus recurring &mdash; not a one-and-done $10. That's why the Builders Club is where your real income compounds.</p>
+            <div class="notice" style="margin-top:40px;">
+                <strong>Recurring revenue compounds.</strong> If you refer 25 Builders Club members at the $97/mo tier and they all stay subscribed for a full year, you earn $14.55/mo × 25 members × 11 months = <strong>$4,001.25 in backend recurring income alone</strong> — on top of the initial commissions. This is why the top affiliates focus on quality referrals, not just volume.
             </div>
-            <p class="caveat">The 12-month recurring figure is a maximum potential, not a guarantee. Members can cancel anytime, and you're paid only on payments actually collected. If a member cancels in month 4, recurring commissions stop at month 4.</p>
         </div>
     </section>
 
-    <!-- ===== Earning Potential (dark) ===== -->
+    <!-- ===== 9. EARNING POTENTIAL (dark) ===== -->
     <section class="section section-dark" id="earnings">
         <div class="inner">
             <h2>Your Earning Potential</h2>
-            <p class="section-intro" style="color:#CBD5E1;">Because your link feeds the OTO first and then nurtures toward standard pricing, your real earnings land somewhere on a range. Here's what <strong style="color:var(--ftg-turquoise);">25 Launchpad buyers + 25 Builders Club members</strong> looks like at the 30% tier &mdash; from an all-OTO minimum to an all-standard maximum.</p>
+            <p style="max-width:740px; margin:0 auto 12px; font-size:18px; line-height:1.6;">Because you earn on the front end <em>and</em> the recurring back end, your income compounds as your referrals stay subscribed and as you keep sending new ones.</p>
+            <p style="max-width:740px; margin:12px auto 40px; font-size:17px; line-height:1.6; color:#9FB3D1;">Here's exactly how those numbers work at the <strong>30% tier</strong> (Tier 2), assuming you refer <strong>25 Launchpad buyers</strong> and <strong>25 Builders Club members</strong> in a single month:</p>
 
-            <div class="scenario-grid">
+            <h3 style="margin:40px 0 24px; font-size:24px; text-align:center;">Scenario (30% tier)</h3>
+            <div class="scenario-cards">
                 <div class="scenario-card">
-                    <div class="scenario-label">Minimum</div>
-                    <div class="scenario-sub">All 25 buy at OTO pricing<br>($37 Launchpad &middot; $47/mo Club)</div>
+                    <div class="scenario-label">Minimum (All Intro Pricing)</div>
                     <div class="scenario-amount">$2,568.75</div>
+                    <div class="scenario-detail">25 × $37 Launchpad + 25 × $47/mo Club</div>
                 </div>
-                <div class="scenario-card featured">
-                    <div class="scenario-badge">Realistic</div>
-                    <div class="scenario-label">Average</div>
-                    <div class="scenario-sub">A typical OTO / standard mix<br>(midpoint of the range)</div>
-                    <div class="scenario-amount">$4,012.50</div>
+                <div class="scenario-card" style="border-color:var(--ftg-turquoise);">
+                    <div class="scenario-label">Average Mix</div>
+                    <div class="scenario-amount" style="color:var(--ftg-turquoise);">$4,012.50</div>
+                    <div class="scenario-detail">Mix of intro + standard pricing</div>
                 </div>
                 <div class="scenario-card">
-                    <div class="scenario-label">Maximum</div>
-                    <div class="scenario-sub">All 25 buy at standard pricing<br>($97 Launchpad &middot; $97/mo Club)</div>
+                    <div class="scenario-label">Maximum (All Standard Pricing)</div>
                     <div class="scenario-amount">$5,456.25</div>
+                    <div class="scenario-detail">25 × $97 Launchpad + 25 × $97/mo Club</div>
                 </div>
+            </div>
+
+            <h3 style="margin:48px 0 24px; font-size:24px; text-align:center;">Here's exactly how those numbers work (at the 30% tier)</h3>
+            
+            <div class="math-box">
+                <h4 style="color:var(--ftg-turquoise); font-size:20px; margin:0 0 16px;">① 25 Launchpad buyers @ $97 (one-time)</h4>
+                <p style="margin:0; font-size:17px; line-height:1.8;">
+                    $97 × 30% = <strong style="color:var(--ftg-cta-yellow);">$29.10</strong> per sale<br>
+                    25 sales × $29.10 = <strong style="color:var(--ftg-cta-yellow);">$727.50</strong>
+                </p>
             </div>
 
             <div class="math-box">
-                <div class="math-badge">Math Verified &#10003;</div>
-                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Minimum &mdash; all 25 at OTO pricing (30% tier)</h3>
-                <div class="math-block">
-                    <p class="math-title">&#9312; 25 Launchpad buyers @ $37 (one-time)</p>
-                    <p class="math-line">$37 &times; 30% = <strong>$11.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $11.10 = <strong style="color:var(--ftg-turquoise);">$277.50</strong></p>
-                </div>
-                <div class="math-block">
-                    <p class="math-title">&#9313; 25 Builders Club members @ $47/mo</p>
-                    <p class="math-line"><em>Initial month</em>: $47 &times; 30% = $14.10 &nbsp;&rarr;&nbsp; 25 &times; $14.10 = <strong>$352.50</strong></p>
-                    <p class="math-line"><em>Recurring</em> &mdash; 15% on months 2&ndash;12: $47 &times; 15% = $7.05/mo &nbsp;&rarr;&nbsp; 25 &times; $7.05 &times; 11 = <strong>$1,938.75</strong></p>
-                    <p class="math-line math-total">$352.50 + $1,938.75 = <strong style="color:var(--ftg-turquoise);">$2,291.25</strong></p>
-                </div>
-                <div class="math-block" style="border-bottom:none;">
-                    <p class="math-title">Minimum year-one total</p>
-                    <p class="math-line math-total">$277.50 + $2,291.25 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$2,568.75</strong></p>
-                </div>
+                <h4 style="color:var(--ftg-turquoise); font-size:20px; margin:0 0 16px;">② 25 Builders Club members @ $97/mo</h4>
+                <p style="margin:0 0 12px; font-size:17px; line-height:1.8;">
+                    <strong>Initial month</strong> — full tier %: $97 × 30% = $29.10 → 25 × $29.10 = <strong style="color:var(--ftg-cta-yellow);">$727.50</strong>
+                </p>
+                <p style="margin:0; font-size:17px; line-height:1.8;">
+                    <strong>Recurring</strong> — 15% on months 2–12: $97 × 15% = $14.55/mo → 25 × $14.55 × 11 months = <strong style="color:var(--ftg-cta-yellow);">$4,001.25</strong>
+                </p>
             </div>
 
-            <div class="math-box" style="margin-top:28px;">
-                <div class="math-badge">Math Verified &#10003;</div>
-                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Maximum &mdash; all 25 at standard pricing (30% tier)</h3>
-                <div class="math-block">
-                    <p class="math-title">&#9312; 25 Launchpad buyers @ $97 (one-time)</p>
-                    <p class="math-line">$97 &times; 30% = <strong>$29.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong style="color:var(--ftg-turquoise);">$727.50</strong></p>
-                </div>
-                <div class="math-block">
-                    <p class="math-title">&#9313; 25 Builders Club members @ $97/mo</p>
-                    <p class="math-line"><em>Initial month</em>: $97 &times; 30% = $29.10 &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong>$727.50</strong></p>
-                    <p class="math-line"><em>Recurring</em> &mdash; 15% on months 2&ndash;12: $97 &times; 15% = $14.55/mo &nbsp;&rarr;&nbsp; 25 &times; $14.55 &times; 11 = <strong>$4,001.25</strong></p>
-                    <p class="math-line math-total">$727.50 + $4,001.25 = <strong style="color:var(--ftg-turquoise);">$4,728.75</strong></p>
-                </div>
-                <div class="math-block" style="border-bottom:none;">
-                    <p class="math-title">Maximum year-one total</p>
-                    <p class="math-line math-total">$727.50 + $4,728.75 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$5,456.25</strong></p>
-                </div>
+            <div class="math-box" style="background:linear-gradient(135deg, rgba(7,230,222,0.12) 0%, rgba(16,185,129,0.12) 100%); border-color:var(--ftg-turquoise);">
+                <h4 style="color:var(--ftg-cta-yellow); font-size:22px; margin:0 0 12px;">Combined year-one total</h4>
+                <p style="margin:0; font-size:19px; line-height:1.8;">
+                    $727.50 + $4,728.75 = <strong style="color:var(--ftg-cta-yellow); font-size:28px;">$5,456.25</strong>
+                </p>
             </div>
 
-            <div class="math-box" style="margin-top:28px;">
-                <div class="math-badge">Math Verified &#10003;</div>
-                <h3 style="margin:0 0 12px; color:var(--ftg-turquoise); font-size:20px;">Average &mdash; the realistic midpoint</h3>
-                <p class="math-line math-total" style="border-top:none; margin-top:0;">( $2,568.75 minimum + $5,456.25 maximum ) &divide; 2 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$4,012.50</strong></p>
-                <p class="math-line" style="color:#9FB3D1; margin-top:8px;">In practice your referrals will be a blend of OTO and standard buyers, so your true earnings will fall between the two &mdash; right around this midpoint.</p>
-            </div>
-
-            <p class="caveat">Figures assume members remain subscribed for the full year and are illustrations of potential, not income promises. Members can cancel anytime; you earn on every payment collected while they're active. Higher tiers (35%) earn more; the Starter tier (25%) earns somewhat less.</p>
+            <p style="margin-top:40px; font-size:16px; line-height:1.7; max-width:820px; margin-left:auto; margin-right:auto; color:#94a3b8; font-style:italic;">Figures show maximum potential assuming members remain subscribed for the full year. Members can cancel anytime; you earn on every payment collected while they're active. These are illustrations, not income promises.</p>
         </div>
     </section>
 
-    <!-- ===== Performance Bonuses (light) ===== -->
+    <!-- ===== 10. PERFORMANCE BONUSES (light) ===== -->
     <section class="section section-light" id="bonuses">
         <div class="inner">
-            <h2>&#127919; Performance Bonuses</h2>
-            <p class="section-intro">On top of every commission, hit these cumulative sales milestones and earn cash bonuses. The harder you push early, the more you stack.</p>
-            <div class="tier-grid">
+            <h2>Performance Bonuses</h2>
+            <p style="max-width:740px; margin:0 auto 40px; font-size:18px; color:var(--ftg-charcoal); line-height:1.6;">On top of your commission tiers, we reward momentum with cash bonuses when you hit key milestones in any rolling 30-day window. These stack with your regular earnings.</p>
+            <div class="tier-cards">
                 <div class="tier-card">
-                    <div class="tier-name">Get Rolling</div>
-                    <div class="tier-rate" style="font-size:44px;">+$25</div>
-                    <div class="tier-vol">at 5 total sales</div>
-                </div>
-                <div class="tier-card featured">
-                    <div class="tier-badge">Popular Target</div>
-                    <div class="tier-name">Serious Effort</div>
-                    <div class="tier-rate" style="font-size:44px;">+$100</div>
-                    <div class="tier-vol">at 10 total sales</div>
+                    <div class="tier-badge" style="background:var(--ftg-turquoise-border);">5 Sales</div>
+                    <div class="tier-rate">+$25</div>
+                    <div class="tier-req">Bonus</div>
                 </div>
                 <div class="tier-card">
-                    <div class="tier-name">Top Performer</div>
-                    <div class="tier-rate" style="font-size:44px;">+$250</div>
-                    <div class="tier-vol">at 25 total sales</div>
+                    <div class="tier-badge" style="background:var(--ftg-emerald);">10 Sales</div>
+                    <div class="tier-rate">+$100</div>
+                    <div class="tier-req">Bonus</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-badge" style="background:var(--ftg-cta-yellow); color:var(--ftg-black);">25 Sales</div>
+                    <div class="tier-rate">+$250</div>
+                    <div class="tier-req">Bonus</div>
                 </div>
             </div>
-            <p class="caveat">Bonuses stack on top of your regular commissions and are paid directly once each milestone is reached. Hit all three and that's $375 in bonus cash on top of your percentages. More tiers will be added as the program grows.</p>
-        </div>
-    </section>
-
-    <!-- ===== How You Get Paid (dark) ===== -->
-    <section class="section section-dark" id="payouts">
-        <div class="inner">
-            <h2>How &amp; When You Get Paid</h2>
-            <p class="section-intro" style="color:#CBD5E1;">Commissions are paid on <strong style="color:var(--ftg-turquoise);">Net-30</strong> terms &mdash; the standard payout schedule built into our affiliate platform.</p>
-            <p class="section-intro" style="color:#CBD5E1; margin-top:-24px;"><strong style="color:var(--ftg-turquoise);">Why the wait?</strong> This window clears our 30-day money-back guarantee before a penny is paid, so you're only ever paid on sales that truly stick. Here's exactly how it works:</p>
-            <div class="payout-flow">
-                <div class="payout-row"><span class="dot"></span><p><strong>Every commission is held ("Pending")</strong> until 30 days after the end of the month it was earned in &mdash; then it's released to you.</p></div>
-                <div class="payout-row"><span class="dot"></span><p><strong>Example:</strong> A sale on July 10 is earned in July. July ends on the 31st, the 30-day clock runs through August 30, and your commission releases at the end of August.</p></div>
-                <div class="payout-row"><span class="dot"></span><p><strong>In practice that's a 30&ndash;60 day wait</strong> from the sale date &mdash; protecting you from chargebacks and refunds so your earnings are secure once released.</p></div>
-                <div class="payout-row"><span class="dot"></span><p><strong>Recurring works the same way:</strong> each monthly Builders Club payment starts its own Net-30 clock when collected &mdash; a steady rolling income stream for as long as your referral stays subscribed.</p></div>
-                <div class="payout-row"><span class="dot"></span><p><strong>Fair and transparent:</strong> if a member refunds while a commission is still pending, it's voided (you're never paid on returned money). Everything already released is yours to keep.</p></div>
+            <div class="notice">
+                <strong>Example:</strong> If you hit 25 sales in your first month, you receive $25 (at 5 sales) + $100 (at 10 sales) + $250 (at 25 sales) = <strong>$375 in bonuses</strong> — on top of your ~$2,500–$5,500 in base commissions. Bonuses pay out with your regular commission cycle (Net-30).
             </div>
         </div>
     </section>
 
-    <!-- ===== First 7 Days (light) ===== -->
-    <section class="section section-light" id="checklist">
-        <div class="inner">
-            <span class="section-tag" style="display:block; width:fit-content; margin:0 auto 18px;">Your Fast Start</span>
-            <h2>Your First 7 Days</h2>
-            <p class="section-intro">A simple day-by-day plan to go from approved to your first clicks. Consistency beats intensity &mdash; follow this and you'll be promoting confidently by day 7.</p>
-            <div class="checklist">
-                <div class="check-day">
-                    <h3>Day 1 &mdash; Set Up</h3>
-                    <ul>
-                        <li>Read the Commission Structure and 365-Day Cookie sections above so you understand OTO vs. standard pricing</li>
-                        <li>Log into your dashboard and copy your unique affiliate link</li>
-                        <li>Join the affiliate community and post a short introduction</li>
-                    </ul>
-                </div>
-                <div class="check-day">
-                    <h3>Days 2&ndash;3 &mdash; Learn the Product</h3>
-                    <ul>
-                        <li>Review the Launchpad demo and the Builders Club overview so you can speak to both</li>
-                        <li>Watch the Affiliate VSL to see how we position the program &mdash; borrow the angles that fit your voice</li>
-                        <li>Pick your primary promotional platform (where your audience already pays attention)</li>
-                    </ul>
-                </div>
-                <div class="check-day">
-                    <h3>Days 4&ndash;5 &mdash; Build Your Content</h3>
-                    <ul>
-                        <li>Download promo assets from the Resources section</li>
-                        <li>Draft your first three posts &mdash; lead with education, not a hard sell</li>
-                        <li>Schedule them across the next several days</li>
-                    </ul>
-                </div>
-                <div class="check-day">
-                    <h3>Days 6&ndash;7 &mdash; Go Live</h3>
-                    <ul>
-                        <li>Publish your first promotional post with your affiliate link</li>
-                        <li>Attend your first weekly check-in call</li>
-                        <li>Check your dashboard to confirm your clicks are tracking</li>
-                    </ul>
-                    <p class="goal-line">&#127919; Goal by Day 7: first content live, link tracking, community connection made.</p>
-                </div>
-            </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="wrap">
+            <p style="margin:0 0 12px; font-size:15px; color:#9FB3D1;">
+                <strong style="color:var(--ftg-white);">Fast Track GenAI Affiliate Program</strong><br>
+                Questions? Email <a href="mailto:affiliates@fasttrackgenai.com" style="color:var(--ftg-turquoise-border); text-decoration:none;">affiliates@fasttrackgenai.com</a> or ask in the community.
+            </p>
+            <p style="margin:12px 0 0; font-size:13px; color:#64748b; line-height:1.6;">
+                Affiliate commissions, bonuses, and payout schedules are subject to the terms outlined in your affiliate agreement. Earnings scenarios are illustrations based on hypothetical referral activity and product retention; actual results depend on the quality and volume of traffic you send, the conversion rates of the funnel, and subscriber retention. The Fast Track GenAI affiliate program is managed through GoHighLevel. All payments are processed Net-30 with a $50 minimum threshold.
+            </p>
         </div>
-    </section>
-
-    <!-- ===== Promotional Playbook (dark) ===== -->
-    <section class="section section-dark" id="playbook">
-        <div class="inner">
-            <h2>Promotional Playbook</h2>
-            <p class="section-intro" style="color:#CBD5E1;">The affiliates who win here protect their audience's trust. Point people at something real, and they thank you. Here's the content balance and messaging that converts without burning your list.</p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="icon">&#128218;</span>
-                    <h3>Educate (70%)</h3>
-                    <p>Teach AI implementation concepts and quick wins. Most of your content should give value first &mdash; that's what earns the right to promote.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="icon">&#11088;</span>
-                    <h3>Prove (15%)</h3>
-                    <p>Share real results and transformations. "From no clear idea to a funded business in motion" beats any feature list.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="icon">&#128075;</span>
-                    <h3>Promote (15%)</h3>
-                    <p>Clear, direct calls to action with your link. When you've led with value, the ask feels natural, not pushy.</p>
-                </div>
-            </div>
-            <div class="highlight-box" style="margin-top:36px;">
-                <p><strong>Messaging that works:</strong> Focus on transformation, not features. Use authentic, conversational language &mdash; you're one founder talking to another. Create clear before/after scenarios ("decision paralysis &rarr; launched in 20 minutes"). And always point people toward a real result &mdash; results are what make your audience thank you instead of unsubscribe.</p>
-            </div>
-            <p class="caveat" style="color:#9FB3D1;">Always disclose your affiliate relationship, use only approved claims, and treat provided templates as a starting point &mdash; not a rigid script. Full compliance guidelines are in your dashboard.</p>
-        </div>
-    </section>
-
-    <!-- ===== FAQ (light) ===== -->
-    <section class="section section-light" id="faq">
-        <div class="inner">
-            <h2>Common Questions</h2>
-            <div class="faq">
-                <details class="faq-item">
-                    <summary>What's the difference between OTO and Standard pricing?</summary>
-                    <div class="faq-body">OTO (One-Time Offer) pricing is what people see when they click your link and buy right away &mdash; $37 Launchpad, $47/mo Builders Club. People who don't buy immediately enter our nurture sequence and later see Standard pricing ($97 / $97/mo). Your 365-day cookie tracks both, and Standard sales actually earn you a <em>higher</em> commission.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>What is the Business Accelerator &mdash; do I promote it separately?</summary>
-                    <div class="faq-body">No. The Business Accelerator is a 7-agent AI workforce ($731 value) included <strong>free</strong> inside every Builders Club membership during launch. It's a bonus that makes the Club an easy "yes" &mdash; not a separate product. You earn your commissions on the Builders Club pricing, which already includes it.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>How do the recurring commissions work?</summary>
-                    <div class="faq-body">For every Builders Club member you refer, you earn your tier % on the first month (or pass), then a flat 15% on each monthly payment after &mdash; for up to 12 months total. If they stay the full year you earn the initial plus the recurring; if they cancel in month 4, recurring stops at month 4. You're only ever paid on payments actually collected.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Why is my commission held for 30 days?</summary>
-                    <div class="faq-body">Net-30 clears our 30-day money-back guarantee window. It protects you from clawbacks &mdash; you're only ever paid on sales that stick. Once a commission is released (30&ndash;60 days after the sale), it's yours permanently. No surprises, no reversals.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Someone clicked my link but bought 6 months later &mdash; do I still get paid?</summary>
-                    <div class="faq-body">Yes. Your 365-day cookie means you get the credit for any purchase within a full year of the click. They'll likely see Standard pricing by then, which earns you the higher commission. Our nurture sequence does that selling for you &mdash; no extra work required.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Can I promote both Launchpad and Builders Club?</summary>
-                    <div class="faq-body">Yes &mdash; and you should. Most affiliates start with the Launchpad (low $37 barrier) to get first sales, then lean into the Builders Club, which is where recurring income compounds. One link covers the whole funnel, so you earn on both automatically.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Do performance bonuses stack with commissions?</summary>
-                    <div class="faq-body">Yes. Bonuses are paid on top of your regular commissions. Hit 5, 10, and 25 total sales and that's an extra $25, $100, and $250 &mdash; $375 in bonus cash on top of everything you've already earned.</div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Final CTA ===== -->
-    <section class="final-cta" id="dashboard">
-        <div class="container">
-            <h2>Ready? Open Your Dashboard</h2>
-            <p>Everything you need is waiting inside your GoHighLevel affiliate portal &mdash; your unique link, your promo kit, your live sales and commission tracking. Grab your link and publish your first post today.</p>
-            <a href="#dashboard" class="cta-button yellow">Go to Your Affiliate Dashboard &rarr;</a>
-            <p class="cta-sub" style="margin-top:16px;">Want a refresher on the offer? <a href="index.html" style="color:var(--ftg-turquoise); text-decoration:none;">Review the affiliate program page</a> &middot; Questions? <a href="../home.html" style="color:var(--ftg-turquoise); text-decoration:none;">Get in touch</a></p>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <p>Fast Track GenAI &copy; 2026 &middot; <a href="index.html">Affiliate Program</a> &middot; <a href="../index.html">Site Directory</a> &middot; <a href="../home.html">Home</a></p>
-        <p class="disclaimer">Commission figures and earning scenarios shown on this page are illustrations of maximum potential, not guarantees of income. Actual earnings depend on your own efforts, the volume and quality of traffic you send, and how long referred members remain subscribed. Recurring commissions are paid only on payments actually collected.</p>
     </footer>
-
 </body>
 </html>
