@@ -219,6 +219,32 @@
         .table-note { font-size: 14px; color: #6B7280; font-style: italic; text-align: center; margin-top: 12px; }
         .section-dark .table-note { color: #9FB3D1; }
 
+        /* ===== Math breakdown box ===== */
+        .math-box {
+            position: relative;
+            background: rgba(7, 230, 222, 0.06);
+            border: 1px solid rgba(7, 230, 222, 0.35);
+            border-radius: 18px;
+            padding: 40px 34px 30px;
+            margin: 36px auto 0;
+            max-width: 760px;
+        }
+        .math-badge {
+            position: absolute;
+            top: -15px; left: 34px;
+            background: var(--ftg-emerald);
+            color: #fff;
+            font-size: 13px; font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 6px 16px;
+            border-radius: 999px;
+        }
+        .math-block { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .math-title { font-size: 16px; font-weight: 700; color: #fff; margin: 0 0 10px; }
+        .math-line { font-size: 16px; color: #CBD5E1; margin: 6px 0; line-height: 1.6; }
+        .math-line strong { color: #fff; }
+        .math-total { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.18); font-weight: 600; }
+
         /* ===== Tier cards ===== */
         .tier-grid {
             display: grid;
@@ -515,10 +541,35 @@
                     <tbody>
                         <tr><td>Refer 25 Launchpad buyers at $97</td><td><strong>$727.50</strong></td></tr>
                         <tr><td>Refer 25 Builders Club members at $97/mo</td><td><strong>up to $4,728.75</strong></td></tr>
-                        <tr><td>Stack both — front end + recurring back end</td><td><strong>Compounds all year</strong></td></tr>
+                        <tr><td>Stack both — front end + recurring back end</td><td><strong>$5,456.25 combined</strong></td></tr>
                     </tbody>
                 </table>
             </div>
+
+            <!-- Math spelled out -->
+            <div class="math-box">
+                <div class="math-badge">Math Verified ✓</div>
+                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Here's exactly how those numbers work (at the 30% tier)</h3>
+
+                <div class="math-block">
+                    <p class="math-title">① 25 Launchpad buyers @ $97 (one-time)</p>
+                    <p class="math-line">$97 &times; 30% = <strong>$29.10</strong> per sale</p>
+                    <p class="math-line">25 sales &times; $29.10 = <strong style="color:var(--ftg-turquoise);">$727.50</strong></p>
+                </div>
+
+                <div class="math-block">
+                    <p class="math-title">② 25 Builders Club members @ $97/mo</p>
+                    <p class="math-line"><em>Initial month</em> — full tier %: $97 &times; 30% = $29.10 &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong>$727.50</strong></p>
+                    <p class="math-line"><em>Recurring</em> — 15% on months 2&ndash;12: $97 &times; 15% = $14.55/mo &nbsp;&rarr;&nbsp; 25 &times; $14.55 &times; 11 months = <strong>$4,001.25</strong></p>
+                    <p class="math-line math-total">$727.50 + $4,001.25 = <strong style="color:var(--ftg-turquoise);">$4,728.75</strong></p>
+                </div>
+
+                <div class="math-block" style="border-bottom:none;">
+                    <p class="math-title">Combined year-one total</p>
+                    <p class="math-line math-total">$727.50 + $4,728.75 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$5,456.25</strong></p>
+                </div>
+            </div>
+
             <p class="caveat">Figures show maximum potential assuming members remain subscribed for the full year. Members can cancel anytime; you earn on every payment collected while they're active. These are illustrations, not income promises.</p>
         </div>
     </section>
