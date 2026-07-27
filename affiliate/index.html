@@ -245,6 +245,61 @@
         .math-line strong { color: #fff; }
         .math-total { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.18); font-weight: 600; }
 
+        /* ===== Funnel flow ===== */
+        .funnel-flow { max-width: 780px; margin: 40px auto 0; }
+        .funnel-step {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-left: 5px solid var(--ftg-turquoise);
+            border-radius: 14px;
+            padding: 26px 28px 26px 30px;
+            position: relative;
+        }
+        .funnel-step h3 { font-size: 19px; margin: 0 0 10px; color: var(--ftg-navy); padding-right: 44px; }
+        .funnel-step p { font-size: 16px; color: var(--ftg-charcoal); margin: 0; line-height: 1.6; }
+        .funnel-num {
+            position: absolute;
+            top: 22px; right: 24px;
+            width: 34px; height: 34px;
+            background: var(--ftg-turquoise);
+            color: #06262f;
+            font-weight: 800; font-size: 17px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .funnel-arrow { text-align: center; font-size: 30px; color: var(--ftg-turquoise-border); margin: 8px 0; line-height: 1; }
+
+        /* ===== Scenario cards (earnings range) ===== */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            margin-top: 36px;
+        }
+        .scenario-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(7, 230, 222, 0.25);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            position: relative;
+        }
+        .scenario-card.featured {
+            border-color: var(--ftg-cta-yellow);
+            background: rgba(255, 210, 76, 0.08);
+            box-shadow: 0 10px 30px rgba(255, 210, 76, 0.12);
+        }
+        .scenario-badge {
+            position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+            background: var(--ftg-cta-yellow); color: #3a2c00;
+            font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
+            padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+        }
+        .scenario-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ftg-turquoise); font-weight: 700; }
+        .scenario-sub { font-size: 14px; color: #9FB3D1; margin: 10px 0 16px; line-height: 1.5; }
+        .scenario-amount { font-size: 34px; font-weight: 800; color: #fff; line-height: 1; }
+        .scenario-card.featured .scenario-amount { color: var(--ftg-cta-yellow); }
+
         /* ===== Tier cards ===== */
         .tier-grid {
             display: grid;
@@ -410,6 +465,7 @@
         <a href="../home.html"><img src="../images/ftg-logo-light.png" alt="Fast Track GenAI Logo" class="nav-logo"></a>
         <ul class="nav-links">
             <li><a href="../home.html">Home</a></li>
+            <li><a href="#funnel">The Funnel</a></li>
             <li><a href="#commissions">Commissions</a></li>
             <li><a href="#earnings">Earnings</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
@@ -434,6 +490,38 @@
 
             <a href="#apply" class="cta-button yellow">Become a Founding Affiliate →</a>
             <p class="cta-sub">Application-based · Approved partners promote from day one</p>
+        </div>
+    </section>
+
+    <!-- ===== How the Funnel Works (light) ===== -->
+    <section class="section section-light" id="funnel">
+        <div class="inner">
+            <h2>How the Funnel Works (Before You Send Traffic)</h2>
+            <p class="section-intro">You're promoting <strong>two products</strong> — the Business Launchpad and the Builders Club — and each is sold at two price points. Understanding this is the key to understanding your commissions.</p>
+
+            <div class="funnel-flow">
+                <div class="funnel-step">
+                    <div class="funnel-num">1</div>
+                    <h3>Your link sends visitors to the <span style="color:var(--ftg-turquoise-border);">OTO (One-Time Offer)</span></h3>
+                    <p>The first thing your referral sees is our best, lowest founder's pricing — <strong>Launchpad at $37</strong> and the <strong>Builders Club from $47/mo</strong>. It's a limited, one-time price shown only on the way in.</p>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-num">2</div>
+                    <h3>If they don't buy at OTO pricing, we nurture them</h3>
+                    <p>Not everyone buys on the first visit. Those who pass are followed up automatically through email and retargeting — so the sale you started keeps working without any extra effort from you.</p>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-num">3</div>
+                    <h3>They convert later at <span style="color:var(--ftg-turquoise-border);">Standard pricing</span></h3>
+                    <p>When they come back, they buy at standard pricing — <strong>Launchpad at $97</strong> and the <strong>Builders Club from $97/mo</strong>. Thanks to your <strong>365-day cookie</strong>, you still get full credit, even weeks or months later.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top:36px;">
+                <p><strong>What this means for you:</strong> every referral earns you a commission whether they buy immediately at the lower OTO price or later at the higher standard price. OTO sales pay a little less per sale; standard sales pay more. Most affiliates land somewhere in between — which is exactly why the earnings section below shows a <strong>minimum, average, and maximum</strong>.</p>
+            </div>
         </div>
     </section>
 
@@ -550,45 +638,82 @@
     <section class="section section-dark" id="earnings">
         <div class="inner">
             <h2>Your Earning Potential</h2>
-            <p class="section-intro" style="color:#CBD5E1;">Because you earn on the front end <em>and</em> the recurring back end, your income compounds as your referrals stay subscribed and as you keep sending new ones.</p>
-            <div class="table-wrap">
-                <table class="rate-table">
-                    <thead>
-                        <tr><th>Scenario (30% tier)</th><th>Potential Year-One Earnings</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Refer 25 Launchpad buyers at $97</td><td><strong>$727.50</strong></td></tr>
-                        <tr><td>Refer 25 Builders Club members at $97/mo</td><td><strong>up to $4,728.75</strong></td></tr>
-                        <tr><td>Stack both — front end + recurring back end</td><td><strong>$5,456.25 combined</strong></td></tr>
-                    </tbody>
-                </table>
+            <p class="section-intro" style="color:#CBD5E1;">Because your link feeds the OTO first and then nurtures toward standard pricing, your real earnings land somewhere on a range. Here's what <strong style="color:var(--ftg-turquoise);">25 Launchpad buyers + 25 Builders Club members</strong> looks like at the 30% tier — from an all-OTO minimum to an all-standard maximum.</p>
+
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <div class="scenario-label">Minimum</div>
+                    <div class="scenario-sub">All 25 buy at OTO pricing<br>($37 Launchpad · $47/mo Club)</div>
+                    <div class="scenario-amount">$2,568.75</div>
+                </div>
+                <div class="scenario-card featured">
+                    <div class="scenario-badge">Realistic</div>
+                    <div class="scenario-label">Average</div>
+                    <div class="scenario-sub">A typical OTO / standard mix<br>(midpoint of the range)</div>
+                    <div class="scenario-amount">$4,012.50</div>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-label">Maximum</div>
+                    <div class="scenario-sub">All 25 buy at standard pricing<br>($97 Launchpad · $97/mo Club)</div>
+                    <div class="scenario-amount">$5,456.25</div>
+                </div>
             </div>
 
-            <!-- Math spelled out -->
+            <!-- Math spelled out: MINIMUM -->
             <div class="math-box">
                 <div class="math-badge">Math Verified ✓</div>
-                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Here's exactly how those numbers work (at the 30% tier)</h3>
+                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Minimum — all 25 at OTO pricing (30% tier)</h3>
+
+                <div class="math-block">
+                    <p class="math-title">① 25 Launchpad buyers @ $37 (one-time)</p>
+                    <p class="math-line">$37 &times; 30% = <strong>$11.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $11.10 = <strong style="color:var(--ftg-turquoise);">$277.50</strong></p>
+                </div>
+
+                <div class="math-block">
+                    <p class="math-title">② 25 Builders Club members @ $47/mo</p>
+                    <p class="math-line"><em>Initial month</em>: $47 &times; 30% = $14.10 &nbsp;&rarr;&nbsp; 25 &times; $14.10 = <strong>$352.50</strong></p>
+                    <p class="math-line"><em>Recurring</em> — 15% on months 2&ndash;12: $47 &times; 15% = $7.05/mo &nbsp;&rarr;&nbsp; 25 &times; $7.05 &times; 11 = <strong>$1,938.75</strong></p>
+                    <p class="math-line math-total">$352.50 + $1,938.75 = <strong style="color:var(--ftg-turquoise);">$2,291.25</strong></p>
+                </div>
+
+                <div class="math-block" style="border-bottom:none;">
+                    <p class="math-title">Minimum year-one total</p>
+                    <p class="math-line math-total">$277.50 + $2,291.25 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$2,568.75</strong></p>
+                </div>
+            </div>
+
+            <!-- Math spelled out: MAXIMUM -->
+            <div class="math-box" style="margin-top:28px;">
+                <div class="math-badge">Math Verified ✓</div>
+                <h3 style="margin:0 0 18px; color:var(--ftg-turquoise); font-size:20px;">Maximum — all 25 at standard pricing (30% tier)</h3>
 
                 <div class="math-block">
                     <p class="math-title">① 25 Launchpad buyers @ $97 (one-time)</p>
-                    <p class="math-line">$97 &times; 30% = <strong>$29.10</strong> per sale</p>
-                    <p class="math-line">25 sales &times; $29.10 = <strong style="color:var(--ftg-turquoise);">$727.50</strong></p>
+                    <p class="math-line">$97 &times; 30% = <strong>$29.10</strong> per sale &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong style="color:var(--ftg-turquoise);">$727.50</strong></p>
                 </div>
 
                 <div class="math-block">
                     <p class="math-title">② 25 Builders Club members @ $97/mo</p>
-                    <p class="math-line"><em>Initial month</em> — full tier %: $97 &times; 30% = $29.10 &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong>$727.50</strong></p>
-                    <p class="math-line"><em>Recurring</em> — 15% on months 2&ndash;12: $97 &times; 15% = $14.55/mo &nbsp;&rarr;&nbsp; 25 &times; $14.55 &times; 11 months = <strong>$4,001.25</strong></p>
+                    <p class="math-line"><em>Initial month</em>: $97 &times; 30% = $29.10 &nbsp;&rarr;&nbsp; 25 &times; $29.10 = <strong>$727.50</strong></p>
+                    <p class="math-line"><em>Recurring</em> — 15% on months 2&ndash;12: $97 &times; 15% = $14.55/mo &nbsp;&rarr;&nbsp; 25 &times; $14.55 &times; 11 = <strong>$4,001.25</strong></p>
                     <p class="math-line math-total">$727.50 + $4,001.25 = <strong style="color:var(--ftg-turquoise);">$4,728.75</strong></p>
                 </div>
 
                 <div class="math-block" style="border-bottom:none;">
-                    <p class="math-title">Combined year-one total</p>
+                    <p class="math-title">Maximum year-one total</p>
                     <p class="math-line math-total">$727.50 + $4,728.75 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$5,456.25</strong></p>
                 </div>
             </div>
 
-            <p class="caveat">Figures show maximum potential assuming members remain subscribed for the full year. Members can cancel anytime; you earn on every payment collected while they're active. These are illustrations, not income promises.</p>
+            <!-- Average note -->
+            <div class="math-box" style="margin-top:28px;">
+                <div class="math-badge">Math Verified ✓</div>
+                <h3 style="margin:0 0 12px; color:var(--ftg-turquoise); font-size:20px;">Average — the realistic midpoint</h3>
+                <p class="math-line math-total" style="border-top:none; margin-top:0;">( $2,568.75 minimum + $5,456.25 maximum ) &divide; 2 = <strong style="color:var(--ftg-cta-yellow); font-size:22px;">$4,012.50</strong></p>
+                <p class="math-line" style="color:#9FB3D1; margin-top:8px;">In practice your referrals will be a blend of OTO and standard buyers, so your true earnings will fall between the two — right around this midpoint.</p>
+            </div>
+
+            <p class="caveat">Figures assume members remain subscribed for the full year and are illustrations of potential, not income promises. Members can cancel anytime; you earn on every payment collected while they're active. Higher tiers (35%) earn more; the Starter tier (25%) earns somewhat less.</p>
         </div>
     </section>
 
