@@ -201,8 +201,66 @@
         }
         .site-footer a { color: var(--ftg-turquoise); text-decoration: none; }
 
+        /* ===== Tier Ladder (Complete System) ===== */
+        .tier-section {
+            background: radial-gradient(circle at 50% 0%, #0a1430 0%, #000000 72%);
+            color: var(--ftg-white);
+            padding: 80px 20px;
+        }
+        .tier-section .inner { max-width: 840px; margin: 0 auto; }
+        .tier-section h2 { color: var(--ftg-turquoise); text-align: center; margin-bottom: 16px; }
+        .tier-intro { text-align: center; color: #CBD5E1; font-size: 18px; line-height: 1.7; max-width: 780px; margin: 0 auto 8px; }
+
+        .you-are-here { margin: 44px 0 -6px 8px; }
+        .you-are-here .label { color: #F43F5E; font-weight: 800; letter-spacing: 2px; font-size: 14px; text-transform: uppercase; display: block; }
+        .you-are-here .pin { font-size: 24px; color: #F43F5E; line-height: 1; display: block; margin-top: 2px; }
+
+        .tier-timeline { position: relative; margin-top: 6px; padding-left: 62px; }
+        .tier-timeline::before {
+            content: ""; position: absolute; left: 20px; top: 14px; bottom: 26px; width: 3px;
+            background: linear-gradient(180deg, var(--ftg-turquoise) 0%, var(--ftg-turquoise-border) 100%);
+            border-radius: 3px;
+        }
+        .tier-item { position: relative; margin-bottom: 26px; }
+        .tier-item:last-child { margin-bottom: 0; }
+        .tier-node {
+            position: absolute; left: -62px; top: 4px;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: var(--ftg-navy); border: 3px solid var(--ftg-turquoise);
+            color: var(--ftg-white); font-weight: 800; font-size: 19px;
+            display: flex; align-items: center; justify-content: center; z-index: 2;
+        }
+        .tier-card {
+            background: linear-gradient(135deg, #0F172A 0%, #011d4a 100%);
+            border: 1px solid rgba(7, 230, 222, 0.25);
+            border-radius: 14px;
+            padding: 26px 30px;
+        }
+        .tier-card h3 { color: var(--ftg-turquoise); font-size: clamp(21px, 3vw, 27px); margin-bottom: 14px; font-weight: 800; line-height: 1.2; }
+        .tier-card ul { list-style: none; padding: 0; margin: 0; }
+        .tier-card li { color: #E2E8F0; font-size: 17px; font-weight: 600; padding-left: 24px; position: relative; margin-bottom: 9px; line-height: 1.5; }
+        .tier-card li:last-child { margin-bottom: 0; }
+        .tier-card li::before { content: "▸"; color: var(--ftg-turquoise); position: absolute; left: 0; font-weight: 700; }
+
+        .tier-item.current .tier-node { background: var(--ftg-turquoise); color: #06262f; box-shadow: 0 0 0 6px rgba(7, 230, 222, 0.18); }
+        .tier-item.current .tier-card { border-color: var(--ftg-turquoise); box-shadow: 0 0 34px rgba(7, 230, 222, 0.16); }
+        .tier-badge-here {
+            display: inline-block; background: #F43F5E; color: #fff; font-size: 12px; font-weight: 800;
+            letter-spacing: 1px; text-transform: uppercase; padding: 4px 13px; border-radius: 999px; margin-bottom: 13px;
+        }
+        .tier-item.future .tier-card { opacity: 0.82; }
+        .tier-tag { display: inline-block; font-size: 13px; font-weight: 700; color: #9FB3D1; letter-spacing: 0.5px; margin-top: 12px; }
+
+        .tier-footnote { color: #B8C6DE; font-size: 17px; line-height: 1.85; max-width: 820px; margin: 44px auto 0; text-align: center; }
+        .tier-footnote strong { color: var(--ftg-white); }
+        .tier-reinforce { text-align: center; margin-top: 22px; font-size: 18px; font-weight: 700; color: var(--ftg-turquoise); }
+
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
+            .tier-timeline { padding-left: 50px; }
+            .tier-node { left: -50px; width: 36px; height: 36px; font-size: 16px; }
+            .tier-timeline::before { left: 17px; }
+            .tier-card { padding: 22px 22px; }
             .hero-nav { flex-direction: column; padding: 16px 20px; }
             .hero-nav .nav-links { gap: 18px; justify-content: center; }
             .hero { padding: 56px 15px 48px; }
@@ -222,6 +280,7 @@
             <li><a href="#bio">BIO</a></li>
             <li><a href="#mission">Mission</a></li>
             <li><a href="#get-started">Get Started</a></li>
+            <li><a href="#system">The System</a></li>
             <li><a href="#materials">Materials</a></li>
             <li><a href="#contact">Contact Us</a></li>
         </ul>
@@ -321,6 +380,72 @@
                     <p style="font-size:18px; line-height:1.7; color:var(--ftg-white); margin:0;">How Our System can empower you To Develop <strong>Actionable Solutions</strong> and Turn Your Ideas into <strong>Measurable Business Progress.</strong></p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== The Complete System — Tier Ladder (near-black) ===== -->
+    <section class="tier-section" id="system">
+        <div class="inner">
+            <h2>Business Launchpad Is Step One of Your Complete AI Transformation</h2>
+            <p class="tier-intro">You're not just buying a tool — you're entering a complete 4-tier system built to take you from idea validation all the way to full, done-for-you AI implementation, with progressively deeper support at every stage.</p>
+
+            <div class="you-are-here">
+                <span class="label">You Are Here!</span>
+                <span class="pin">📍</span>
+            </div>
+
+            <div class="tier-timeline">
+                <div class="tier-item current">
+                    <div class="tier-node">1</div>
+                    <div class="tier-card">
+                        <span class="tier-badge-here">📍 You Start Here</span>
+                        <h3>Tier 1 · Business Launchpad</h3>
+                        <ul>
+                            <li>Instantly turn AI confusion into clear, confident action</li>
+                            <li>Essential tools and playbooks for quick business results</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tier-item future">
+                    <div class="tier-node">2</div>
+                    <div class="tier-card">
+                        <h3>Tier 2 · GenAI Builders Club</h3>
+                        <ul>
+                            <li>Master AI with our full system, agent suite &amp; monthly coaching</li>
+                            <li>Includes the GenAI Business Accelerator free as a launch bonus</li>
+                        </ul>
+                        <span class="tier-tag">Your next step after Launchpad</span>
+                    </div>
+                </div>
+
+                <div class="tier-item future">
+                    <div class="tier-node">3</div>
+                    <div class="tier-card">
+                        <h3>Tier 3 · Business Acceleration VIP</h3>
+                        <ul>
+                            <li>Your custom AI strategy, built with you through 1:1 coaching</li>
+                            <li>Dedicated expert guidance &amp; access to our VIP network</li>
+                        </ul>
+                        <span class="tier-tag">By application</span>
+                    </div>
+                </div>
+
+                <div class="tier-item future">
+                    <div class="tier-node">4</div>
+                    <div class="tier-card">
+                        <h3>Tier 4 · DFY Elite Business Blueprint</h3>
+                        <ul>
+                            <li>We build, integrate &amp; train your team for you</li>
+                            <li>Complete AI business transformation — done for you</li>
+                        </ul>
+                        <span class="tier-tag">By application</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="tier-footnote">Each tier builds on the last. <strong>Right now, you're at Tier 1</strong> — the fastest, lowest-risk way to get real results. Start here, and the entire system opens up as your business grows.</p>
+            <p class="tier-reinforce">Lock in your Tier 1 access below ↓</p>
         </div>
     </section>
 
