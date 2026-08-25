@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Track GenAI | Funnel Step URLs</title>
+    <meta name="description" content="Fast Track GenAI funnel step URLs — Standard and OTO (Founder's Deal) path slugs for GHL setup, with the full redirect flow wiring.">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="#000000">
+    <style>
+        :root {
+            --ftg-black: #000000;
+            --ftg-navy: #0F172A;
+            --ftg-charcoal: #374151;
+            --ftg-bright-turquoise: #07E6DE;
+            --ftg-bright-turquoise-border: #0ABAB5;
+            --ftg-emerald: #10B981;
+            --ftg-cta-yellow: #FFD24C;
+            --ftg-offwhite: #FAFAFA;
+            --ftg-silver: #E5E7EB;
+            --ftg-white: #FFFFFF;
+            --ftg-hero-gradient: linear-gradient(90deg, #000000 0%, #0F172A 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--ftg-offwhite);
+            color: var(--ftg-navy);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: var(--ftg-hero-gradient);
+            border-bottom: 2px solid var(--ftg-bright-turquoise);
+            color: var(--ftg-white);
+            padding: 56px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .wrap { max-width: 1140px; margin: 0 auto; }
+
+        .hero-logo { height: 58px; margin-bottom: 16px; }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .breadcrumb a { color: var(--ftg-bright-turquoise); text-decoration: none; font-weight: 600; }
+        .breadcrumb a:hover { color: var(--ftg-white); }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .hero p { max-width: 820px; font-size: 1.1rem; color: #E5E7EB; }
+
+        .hero .meta {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pill {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--ftg-bright-turquoise-border);
+            color: var(--ftg-bright-turquoise);
+            background: rgba(7, 230, 222, 0.08);
+        }
+
+        .section { padding: 44px 24px; }
+        .section.alt { background: var(--ftg-white); border-top: 1px solid var(--ftg-silver); border-bottom: 1px solid var(--ftg-silver); }
+
+        .section h2 {
+            font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .section .lead { color: var(--ftg-charcoal); max-width: 820px; margin-bottom: 8px; }
+
+        /* Step block */
+        .step {
+            margin-top: 28px;
+        }
+        .step-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 30px;
+            padding: 0 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: var(--ftg-navy);
+            color: var(--ftg-bright-turquoise);
+            border: 1px solid var(--ftg-bright-turquoise-border);
+        }
+        .step-badge.entry { background: var(--ftg-emerald); color: var(--ftg-white); border-color: var(--ftg-emerald); }
+        .step-badge.ty { background: var(--ftg-cta-yellow); color: var(--ftg-black); border-color: #E6B800; }
+        .step-title { font-size: 1.25rem; font-weight: 800; }
+        .step-sub { color: var(--ftg-charcoal); font-size: 0.95rem; }
+
+        /* URL comparison grid: Standard vs OTO */
+        .pair {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .url-card {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .url-card.standard { border-color: var(--ftg-bright-turquoise-border); }
+        .url-card.oto { border-color: var(--ftg-emerald); background: #F5FBF8; }
+
+        .url-card .tag-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .type-tag {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        .type-tag.standard { background: rgba(7, 230, 222, 0.14); color: #0A8F8B; }
+        .type-tag.oto { background: rgba(16, 185, 129, 0.16); color: #0B7A55; }
+
+        .price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--ftg-navy);
+        }
+        .price .save {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--ftg-emerald);
+            letter-spacing: 0.02em;
+        }
+
+        .url-line {
+            display: flex;
+            align-items: stretch;
+            gap: 8px;
+        }
+        .url-box {
+            flex: 1;
+            font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 0.88rem;
+            background: var(--ftg-navy);
+            color: var(--ftg-bright-turquoise);
+            border-radius: 8px;
+            padding: 10px 12px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px solid #1E293B;
+            display: flex;
+            align-items: center;
+        }
+        .copy-btn {
+            flex: 0 0 auto;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.82rem;
+            border-radius: 8px;
+            padding: 0 14px;
+            background: var(--ftg-emerald);
+            color: var(--ftg-white);
+            transition: background 0.15s ease, transform 0.1s ease;
+        }
+        .copy-btn:hover { background: #0EA271; transform: translateY(-1px); }
+        .copy-btn.copied { background: var(--ftg-cta-yellow); color: var(--ftg-black); }
+
+        .note {
+            font-size: 0.85rem;
+            color: var(--ftg-charcoal);
+        }
+        .note strong { color: var(--ftg-navy); }
+
+        /* Flow arrow between steps */
+        .flow-arrow {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--ftg-bright-turquoise-border);
+            margin: 22px 0 4px;
+            line-height: 1;
+        }
+
+        /* At-a-glance / wiring code blocks */
+        .code-block {
+            background: var(--ftg-navy);
+            color: #E5E7EB;
+            border-radius: 14px;
+            padding: 22px;
+            overflow-x: auto;
+            border: 1px solid #1E293B;
+            margin-top: 20px;
+        }
+        .code-block pre {
+            font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 0.86rem;
+            line-height: 1.7;
+            white-space: pre;
+        }
+        .code-block .c-slug { color: var(--ftg-bright-turquoise); font-weight: 700; }
+        .code-block .c-price { color: var(--ftg-cta-yellow); }
+        .code-block .c-label { color: #94A3B8; }
+        .code-block .c-yes { color: var(--ftg-emerald); font-weight: 700; }
+        .code-block .c-no { color: #F87171; font-weight: 700; }
+
+        .wiring-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            margin-top: 20px;
+        }
+        .wiring-grid h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--ftg-navy); }
+        .wiring-grid .code-block { margin-top: 10px; }
+
+        /* Callout */
+        .callout {
+            margin-top: 22px;
+            border-left: 4px solid var(--ftg-bright-turquoise);
+            background: rgba(7, 230, 222, 0.06);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: var(--ftg-charcoal);
+        }
+        .callout strong { color: var(--ftg-navy); }
+
+        .builder-notes { margin-top: 18px; padding-left: 20px; }
+        .builder-notes li { margin-bottom: 10px; color: var(--ftg-charcoal); }
+        .builder-notes li strong { color: var(--ftg-navy); }
+        .builder-notes code {
+            font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+            background: var(--ftg-silver);
+            color: var(--ftg-navy);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .footer {
+            background: var(--ftg-navy);
+            color: var(--ftg-white);
+            padding: 24px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        .footer a { color: var(--ftg-bright-turquoise); text-decoration: none; font-weight: 600; }
+        .footer a:hover { color: var(--ftg-white); }
+
+        @media (max-width: 640px) {
+            .hero, .section { padding-left: 18px; padding-right: 18px; }
+            .hero-logo { height: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="wrap">
+            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="hero-logo">
+            <nav class="breadcrumb"><a href="index.html">&larr; Site Directory</a></nav>
+            <h1>Funnel Step URLs</h1>
+            <p>Every GHL path slug for the Fast Track GenAI funnel — the <strong>Standard</strong> (public/retargeting) page and the <strong>OTO / Founder's Deal</strong> version side-by-side, with prices, the full redirect flow, and copy-ready URLs for builder setup.</p>
+            <div class="meta">
+                <span class="pill">Domain: fasttrackgenai.com</span>
+                <span class="pill">Naming rule: base slug + <code>-oto</code></span>
+                <span class="pill">Source: Funnel Master Doc v2.0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- STEP-BY-STEP -->
+        <section class="section">
+            <div class="wrap">
+                <h2>Step-by-Step Funnel Map</h2>
+                <p class="lead">Standard page = clean base slug (public, indexable). OTO version = same slug + <code>-oto</code> (post-purchase only, discounted, noindex). Click <strong>Copy</strong> on any URL to grab it for GHL.</p>
+
+                <!-- ENTRY -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge entry">Entry</span>
+                        <span class="step-title">AI Business Strike Team &mdash; Free Lead Magnet</span>
+                    </div>
+                    <p class="step-sub">Single opt-in page shared by both funnels. Feeds the email nurture that sends new leads into the front-end offer.</p>
+                    <div class="pair">
+                        <div class="url-card standard" style="grid-column: 1 / -1;">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Shared opt-in</span>
+                                <span class="price">FREE</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/ai-business-strike-team</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/ai-business-strike-team">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">&darr;</div>
+
+                <!-- FRONT-END -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge">Front-End</span>
+                        <span class="step-title">Business Launchpad</span>
+                    </div>
+                    <p class="step-sub">The core paid offer. OTO decliners &amp; $97 buyers land on the Standard recovery path; the $37 Founder's Deal runs inside the post-purchase OTO flow.</p>
+                    <div class="pair">
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Standard &middot; Base</span>
+                                <span class="price">$97</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/business-launchpad</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/business-launchpad">Copy</button>
+                            </div>
+                            <p class="note">Public / indexable. Used for retargeting &amp; cold traffic.</p>
+                        </div>
+                        <div class="url-card oto">
+                            <div class="tag-row">
+                                <span class="type-tag oto">OTO &middot; Founder's</span>
+                                <span class="price">$37 <span class="save">Save $60 vs Standard</span></span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/business-launchpad-oto</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/business-launchpad-oto">Copy</button>
+                            </div>
+                            <p class="note">Post-purchase only &middot; noindex &middot; no direct nav.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">&darr;</div>
+
+                <!-- OTO1 -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge">OTO 1</span>
+                        <span class="step-title">Builders Club &mdash; 6-Month</span>
+                    </div>
+                    <p class="step-sub">Membership Tier 1. First upsell after the front-end purchase.</p>
+                    <div class="pair">
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Standard &middot; Base</span>
+                                <span class="price">$397</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-6-month</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-6-month">Copy</button>
+                            </div>
+                            <p class="note">Public / indexable recovery offer.</p>
+                        </div>
+                        <div class="url-card oto">
+                            <div class="tag-row">
+                                <span class="type-tag oto">OTO &middot; Founder's</span>
+                                <span class="price">$297 <span class="save">Save $100 vs Standard</span></span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-6-month-oto</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-6-month-oto">Copy</button>
+                            </div>
+                            <p class="note">Post-purchase only &middot; noindex.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">&darr; <span style="font-size:0.9rem; color:var(--ftg-charcoal);">(if declined)</span></div>
+
+                <!-- OTO2 -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge">OTO 2</span>
+                        <span class="step-title">Builders Club &mdash; 3-Month</span>
+                    </div>
+                    <p class="step-sub">Membership Tier 2. Shown to anyone who declines the 6-Month offer.</p>
+                    <div class="pair">
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Standard &middot; Base</span>
+                                <span class="price">$277</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-3-month</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-3-month">Copy</button>
+                            </div>
+                            <p class="note">Public / indexable recovery offer.</p>
+                        </div>
+                        <div class="url-card oto">
+                            <div class="tag-row">
+                                <span class="type-tag oto">OTO &middot; Founder's</span>
+                                <span class="price">$177 <span class="save">Save $100 vs Standard</span></span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-3-month-oto</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-3-month-oto">Copy</button>
+                            </div>
+                            <p class="note">Post-purchase only &middot; noindex.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">&darr; <span style="font-size:0.9rem; color:var(--ftg-charcoal);">(if declined)</span></div>
+
+                <!-- OTO3 -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge">OTO 3</span>
+                        <span class="step-title">Builders Club &mdash; $1 Trial</span>
+                    </div>
+                    <p class="step-sub">Membership Tier 3 &mdash; final fallback. $1 gets 14 days, then auto-renews monthly.</p>
+                    <div class="pair">
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Standard &middot; Base</span>
+                                <span class="price">$1 &rarr; $97/mo</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-trial</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-trial">Copy</button>
+                            </div>
+                            <p class="note">Public / indexable recovery offer.</p>
+                        </div>
+                        <div class="url-card oto">
+                            <div class="tag-row">
+                                <span class="type-tag oto">OTO &middot; Founder's</span>
+                                <span class="price">$1 &rarr; $47/mo <span class="save">$50/mo lower than Standard</span></span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/builders-club-trial-oto</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/builders-club-trial-oto">Copy</button>
+                            </div>
+                            <p class="note">Post-purchase only &middot; noindex.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">&darr;</div>
+
+                <!-- THANK YOU -->
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-badge ty">Thank-You</span>
+                        <span class="step-title">Post-Purchase Landing Pages</span>
+                    </div>
+                    <p class="step-sub">Two physical pages. GHL serves buyer-specific content dynamically (by purchase tag or <code>?tier=</code> param) &mdash; no need for 5 separate URLs.</p>
+                    <div class="pair">
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Members Welcome</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/welcome</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/welcome">Copy</button>
+                            </div>
+                            <p class="note">Anyone who bought <strong>any Builders Club tier</strong> (OTO1/2/3 or Standard membership).</p>
+                        </div>
+                        <div class="url-card standard">
+                            <div class="tag-row">
+                                <span class="type-tag standard">Launchpad Thank-You</span>
+                            </div>
+                            <div class="url-line">
+                                <span class="url-box">fasttrackgenai.com/thank-you</span>
+                                <button class="copy-btn" data-url="fasttrackgenai.com/thank-you">Copy</button>
+                            </div>
+                            <p class="note"><strong>Launchpad-only</strong> buyers (declined all upsells, or Standard $97 buyer). Enters Standard Recovery email sequence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AT A GLANCE -->
+        <section class="section alt">
+            <div class="wrap">
+                <h2>Complete Map at a Glance</h2>
+                <p class="lead">The full slug list, grouped by funnel stage.</p>
+                <div class="code-block">
+<pre><span class="c-label">ENTRY (shared)</span>
+  <span class="c-slug">/ai-business-strike-team</span>        <span class="c-price">FREE</span>  lead magnet
+
+<span class="c-label">FRONT-END</span>
+  <span class="c-slug">/business-launchpad</span>             <span class="c-price">$97</span>   Standard
+  <span class="c-slug">/business-launchpad-oto</span>         <span class="c-price">$37</span>   OTO (Founder's)
+
+<span class="c-label">OTO1 — Builders Club 6-Month</span>
+  <span class="c-slug">/builders-club-6-month</span>          <span class="c-price">$397</span>  Standard
+  <span class="c-slug">/builders-club-6-month-oto</span>      <span class="c-price">$297</span>  OTO (Founder's)
+
+<span class="c-label">OTO2 — Builders Club 3-Month</span>
+  <span class="c-slug">/builders-club-3-month</span>          <span class="c-price">$277</span>  Standard
+  <span class="c-slug">/builders-club-3-month-oto</span>      <span class="c-price">$177</span>  OTO (Founder's)
+
+<span class="c-label">OTO3 — Builders Club $1 Trial</span>
+  <span class="c-slug">/builders-club-trial</span>            <span class="c-price">$1 → $97/mo</span>  Standard
+  <span class="c-slug">/builders-club-trial-oto</span>        <span class="c-price">$1 → $47/mo</span>  OTO (Founder's)
+
+<span class="c-label">THANK-YOU</span>
+  <span class="c-slug">/welcome</span>                        Members (any Builders Club buyer)
+  <span class="c-slug">/thank-you</span>                      Launchpad-only buyers</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLOW WIRING -->
+        <section class="section">
+            <div class="wrap">
+                <h2>Flow Wiring (Redirect Chain)</h2>
+                <p class="lead">How each step redirects to the next. The OTO funnel chains immediately after purchase; the Standard funnel runs via email / retargeting with no post-purchase chaining.</p>
+
+                <div class="wiring-grid">
+                    <div>
+                        <h3>OTO Funnel &mdash; immediate post-purchase</h3>
+                        <div class="code-block">
+<pre><span class="c-slug">/ai-business-strike-team</span>
+   <span class="c-label">→ (email nurture) →</span>
+<span class="c-slug">/business-launchpad-oto</span>
+   purchase <span class="c-price">$37</span> →
+<span class="c-slug">/builders-club-6-month-oto</span>
+   <span class="c-yes">YES</span> → <span class="c-slug">/welcome</span>
+   <span class="c-no">NO</span>  → <span class="c-slug">/builders-club-3-month-oto</span>
+      <span class="c-yes">YES</span> → <span class="c-slug">/welcome</span>
+      <span class="c-no">NO</span>  → <span class="c-slug">/builders-club-trial-oto</span>
+         <span class="c-yes">YES</span> → <span class="c-slug">/welcome</span>
+         <span class="c-no">NO</span>  → <span class="c-slug">/thank-you</span>
+               <span class="c-label">(→ Standard Recovery email, Day 5)</span></pre>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Standard Recovery &mdash; email / retargeting</h3>
+                        <div class="code-block">
+<pre><span class="c-slug">/business-launchpad</span>  (<span class="c-price">$97</span> purchase)
+   → <span class="c-slug">/thank-you</span>
+
+<span class="c-label">Email / retargeting offers</span>
+<span class="c-label">(higher price, no chaining):</span>
+  <span class="c-slug">/builders-club-6-month</span>   (<span class="c-price">$397</span>)
+  <span class="c-slug">/builders-club-3-month</span>   (<span class="c-price">$277</span>)
+  <span class="c-slug">/builders-club-trial</span>     (<span class="c-price">$1 → $97/mo</span>)
+     → each purchase → <span class="c-slug">/welcome</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Why only 2 thank-you pages?</strong> The master doc lists 5 buyer "variants" (OTO1 buyer, OTO2 buyer, Trial buyer, Launchpad-only, Standard buyer). These map onto the 2 physical pages above &mdash; GHL serves buyer-specific content dynamically by purchase tag or a <code>?tier=</code> query param, so you don't need 5 separate URLs.
+                </div>
+            </div>
+        </section>
+
+        <!-- BUILDER NOTES -->
+        <section class="section alt">
+            <div class="wrap">
+                <h2>Notes for the Funnel Builder</h2>
+                <ul class="builder-notes">
+                    <li><strong>Lowercase, hyphenated slugs only.</strong> No dates or random suffixes (replaces the old <code>/testing-vsl-offer-page-new-5th-sep-1656</code> style auto-slugs).</li>
+                    <li><strong>Reserve <code>-oto</code> for Founder's-Deal versions only</strong>, so tracking &amp; attribution stay clean.</li>
+                    <li><strong>OTO pages: post-purchase flow only.</strong> Set <code>noindex</code> and no direct navigation, so the discount stays private.</li>
+                    <li><strong>Standard (base) pages are public.</strong> These are the retargeting / indexable URLs.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Fast Track GenAI © 2026 · <a href="index.html">Site Directory</a> · <a href="brand-resource-center/">Brand Resource Center</a></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var url = btn.getAttribute('data-url');
+                var done = function () {
+                    var original = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(function () {
+                        btn.textContent = original;
+                        btn.classList.remove('copied');
+                    }, 1400);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(done).catch(function () { fallbackCopy(url, done); });
+                } else {
+                    fallbackCopy(url, done);
+                }
+            });
+        });
+        function fallbackCopy(text, cb) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            cb();
+        }
+    </script>
+</body>
+</html>
