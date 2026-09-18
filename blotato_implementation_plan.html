@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blotato + Claude + Airtable — Iterative Social Content System</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1c1c27;
+      --border: #2a2a3d;
+      --accent: #7c5cfc;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse at center, rgba(124,92,252,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(124,92,252,0.15);
+      border: 1px solid rgba(124,92,252,0.4);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 820px;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-stack {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* WHY IT MATTERS */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .why-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+    .why-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .why-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* LOOP DIAGRAM */
+    .loop-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .loop-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 130px;
+    }
+    .loop-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+      border: 2px solid var(--border);
+      background: var(--surface2);
+      position: relative;
+    }
+    .loop-circle.accent { border-color: var(--accent); background: rgba(124,92,252,0.12); }
+    .loop-circle.accent2 { border-color: var(--accent2); background: rgba(0,212,170,0.10); }
+    .loop-step h4 { font-size: 0.78rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .loop-step p { font-size: 0.7rem; color: var(--muted); }
+    .loop-arrow {
+      font-size: 1.3rem;
+      color: var(--muted);
+      padding: 0 0.25rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* WHAT IMPROVES */
+    .improves-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .improve-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .improve-pill .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .improve-pill h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .improve-pill p { font-size: 0.75rem; color: var(--muted); line-height: 1.45; }
+
+    /* PHASES */
+    .phases-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .phases-timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 36px;
+      bottom: 36px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2), var(--accent3));
+      opacity: 0.4;
+    }
+    .phase {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0 0 2rem 0;
+      position: relative;
+    }
+    .phase-num {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .phase-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      flex: 1;
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .phase-title { font-size: 1rem; font-weight: 700; }
+    .phase-week {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.3);
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+    }
+    .phase p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.55; }
+    .phase-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .phase-step {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .phase-step .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    /* AIRTABLE SCHEMA */
+    .schema-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .schema-table th {
+      background: var(--surface2);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .schema-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(42,42,61,0.5);
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    .schema-table tr:last-child td { border-bottom: none; }
+    .schema-table tr:hover td { background: rgba(124,92,252,0.04); }
+    .field-type {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .type-text { background: rgba(124,92,252,0.15); color: var(--accent); }
+    .type-number { background: rgba(0,212,170,0.12); color: var(--accent2); }
+    .type-formula { background: rgba(255,107,107,0.12); color: var(--accent3); }
+    .type-date { background: rgba(255,183,0,0.12); color: #ffb700; }
+    .type-select { background: rgba(0,150,255,0.12); color: #0096ff; }
+    .type-url { background: rgba(255,100,200,0.12); color: #ff64c8; }
+    .type-attach { background: rgba(100,200,100,0.12); color: #64c864; }
+    .type-long { background: rgba(180,100,255,0.12); color: #b464ff; }
+
+    /* STACK */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .stack-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .stack-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .stack-card p { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
+    .stack-role {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    /* QUICK START */
+    .quickstart-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .qs-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+    }
+    .qs-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(124,92,252,0.15);
+      border: 1px solid rgba(124,92,252,0.4);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .qs-item h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .qs-item p { font-size: 0.78rem; color: var(--muted); }
+    .qs-when {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    /* PROMPT TEMPLATE */
+    .prompt-box {
+      background: #0d0d16;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #aad4f5;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      position: relative;
+      overflow-x: auto;
+    }
+    .prompt-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .prompt-var { color: #ffc66d; }
+
+    /* METRICS */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .metric-week {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .metric-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+    .metric-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* FUNNEL */
+    .funnel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .funnel-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .funnel-label {
+      width: 120px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .funnel-bar {
+      height: 42px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .funnel-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    footer span { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">FTG — Social AI-OS</div>
+  <ul class="nav-links">
+    <li><a href="#why">Why It Works</a></li>
+    <li><a href="#loop">The Loop</a></li>
+    <li><a href="#phases">Phases</a></li>
+    <li><a href="#airtable">Airtable Schema</a></li>
+    <li><a href="#quickstart">Quick Start</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Implementation Plan</div>
+  <h1>Blotato + Claude + Airtable<br/><span>Iterative Social Content System</span></h1>
+  <p>A self-improving AI content loop that posts smarter every cycle — informed by real engagement data, not guesswork.</p>
+  <div class="hero-stack">
+    <div class="badge">🤖 Claude (MCP)</div>
+    <div class="badge">📤 Blotato (9 Platforms)</div>
+    <div class="badge">🗃️ Airtable (Data Hub)</div>
+    <div class="badge">⚙️ n8n (Automation)</div>
+    <div class="badge">📊 Google Analytics</div>
+    <div class="badge">🔥 Microsoft Clarity</div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- WHY IT MATTERS -->
+<section id="why">
+  <div class="section-label">Why It Matters</div>
+  <div class="section-title">From "Create &amp; Post" to<br/>Create → Measure → Learn → Improve</div>
+  <p class="section-sub">This is not a scheduling tool. It's a continuous improvement engine where each post teaches Claude what works, so the next post is smarter than the last.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">📈</div>
+      <h3>Data-Informed, Not Random</h3>
+      <p>Claude generates content using your actual audience data — top posts, engagement rates, hooks that landed — not generic best practices.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔁</div>
+      <h3>Compound Improvement</h3>
+      <p>Each cycle adds more data. By post #20, Claude has a rich reference library. By post #50, it knows your audience better than any agency does.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h3>Full Funnel Visibility</h3>
+      <p>UTM parameters bridge Blotato social analytics → Google Analytics → Microsoft Clarity. You see what posted, what clicked, and what converted.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <h3>One Conversation, 9 Platforms</h3>
+      <p>Claude creates platform-native copy (thread for X, professional for LinkedIn, short-form for TikTok) and publishes across all 9 platforms via Blotato MCP.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🧠</div>
+      <h3>Your Audience, Your Patterns</h3>
+      <p>The system learns what resonates specifically for you — tone, topic, visual style, posting time — not industry averages.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏗️</div>
+      <h3>Manual First, Then Automated</h3>
+      <p>Start by understanding the flow manually. Once comfortable, n8n handles post capture and analytics syncing automatically.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- THE LOOP -->
+<section id="loop">
+  <div class="section-label">The Core Loop</div>
+  <div class="section-title">Self-Improving Cycle</div>
+  <p class="section-sub">Every post feeds the next. The loop tightens with every iteration.</p>
+
+  <div class="loop-container">
+    <div class="loop-step">
+      <div class="loop-circle accent">🤖</div>
+      <h4>Claude Creates</h4>
+      <p>Platform-native copy + UTM-tagged links</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle accent">📤</div>
+      <h4>Blotato Posts</h4>
+      <p>9 platforms simultaneously</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle">🗃️</div>
+      <h4>Airtable Captures</h4>
+      <p>Copy, images, UTM params, publish date</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle">⏱️</div>
+      <h4>48 Hours Pass</h4>
+      <p>Analytics populate across platforms</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle accent2">📊</div>
+      <h4>Metrics Sync</h4>
+      <p>Views, likes, comments, reach → Airtable</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle accent2">🧠</div>
+      <h4>Claude Analyzes</h4>
+      <p>Patterns, top performers, what resonated</p>
+    </div>
+    <div class="loop-arrow">→</div>
+    <div class="loop-step">
+      <div class="loop-circle accent">✨</div>
+      <h4>Better Posts</h4>
+      <p>New content informed by real data</p>
+    </div>
+  </div>
+
+  <br/>
+  <div class="section-label" style="margin-top:2rem;">What Gets Better Every Cycle</div>
+  <div class="improves-grid">
+    <div class="improve-pill">
+      <div class="icon">✍️</div>
+      <div>
+        <h4>Copy Strategy</h4>
+        <p>Claude learns your winning tone, hook style, and optimal post length per platform.</p>
+      </div>
+    </div>
+    <div class="improve-pill">
+      <div class="icon">🖼️</div>
+      <div>
+        <h4>Visual Strategy</h4>
+        <p>Discovers which image types, formats, and thumbnails drive more clicks and shares.</p>
+      </div>
+    </div>
+    <div class="improve-pill">
+      <div class="icon">📱</div>
+      <div>
+        <h4>Platform Tuning</h4>
+        <p>Learns TikTok vs. LinkedIn vs. Instagram preferences specific to your audience.</p>
+      </div>
+    </div>
+    <div class="improve-pill">
+      <div class="icon">🕐</div>
+      <div>
+        <h4>Timing Optimization</h4>
+        <p>Identifies which posting days and times generate peak engagement by platform.</p>
+      </div>
+    </div>
+    <div class="improve-pill">
+      <div class="icon">💰</div>
+      <div>
+        <h4>Campaign ROI</h4>
+        <p>UTMs expose which campaigns drive lowest-cost traffic and highest conversions.</p>
+      </div>
+    </div>
+    <div class="improve-pill">
+      <div class="icon">🪝</div>
+      <div>
+        <h4>Hook Patterns</h4>
+        <p>Surfaces which opening lines, questions, and CTAs generate the most engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PHASES -->
+<section id="phases">
+  <div class="section-label">Implementation</div>
+  <div class="section-title">5 Phases to Full Loop</div>
+  <p class="section-sub">Start manual. Build confidence. Then automate. Each phase stands on its own.</p>
+
+  <div class="phases-timeline">
+
+    <div class="phase">
+      <div class="phase-num">1</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-title">Foundation Setup</span>
+          <span class="phase-week">Week 1</span>
+        </div>
+        <p>Build the infrastructure before a single post goes out. Airtable becomes your data hub, Claude becomes your publishing interface.</p>
+        <div class="phase-steps">
+          <div class="phase-step"><div class="dot"></div><span>Create Airtable base "Social Content Hub" with Posts table (full schema below)</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Verify Blotato paid subscription is active (required for MCP access)</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Connect all 9 social platforms to Blotato</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Generate Blotato API key: Settings → API</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Connect Claude to Blotato MCP: Customize → Connectors → https://mcp.blotato.com/mcp</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Test: Ask Claude "List my Blotato accounts" to confirm connection</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Define your UTM naming convention (source / medium / campaign)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">2</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-title">Manual Publishing Workflow</span>
+          <span class="phase-week">Week 1–2</span>
+        </div>
+        <p>Prompt Claude to create content and publish via Blotato. Manually log posts into Airtable. Learn the flow before automating it.</p>
+        <div class="phase-steps">
+          <div class="phase-step"><div class="dot"></div><span>Prompt Claude with campaign name, UTM params, destination URL, and platform targets</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Claude generates platform-native copy, constructs UTM URLs, calls blotato_post_create</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Claude returns Post IDs and confirmation for each platform</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Manually create Airtable record: Post ID, copy, image URL, UTM params, publish date</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Set record Status = "Published"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">3</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-title">Analytics Feedback</span>
+          <span class="phase-week">Week 2–3</span>
+        </div>
+        <p>48 hours after publishing, pull performance data from Blotato and update Airtable. Airtable auto-calculates engagement rates and ranks.</p>
+        <div class="phase-steps">
+          <div class="phase-step"><div class="dot"></div><span>Ask Claude: "What were the top performers from posts published on [DATE]?"</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Claude queries Blotato API GET /posts/:id/analytics for each post</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Update Airtable: Views, Likes, Comments, Reach fields for each record</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Airtable formula auto-calculates Engagement Rate and Performance Rank</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Add Iteration Notes: "This hook got 40% engagement — reuse pattern"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">4</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-title">Learning Loop — Informed Content</span>
+          <span class="phase-week">Week 3+</span>
+        </div>
+        <p>Before every new content batch, Claude analyzes your Airtable top performers and generates new posts based on proven patterns. The loop has begun.</p>
+        <div class="phase-steps">
+          <div class="phase-step"><div class="dot"></div><span>Share top 5 Airtable posts (copy + metrics + notes) with Claude before generating</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Claude identifies patterns: tone, length, hooks, topics, visuals, timing</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Claude generates new posts using those patterns for the new campaign</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Publish with UTM parameters → repeat the cycle</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Each cycle: Airtable gets richer, Claude gets smarter, content gets better</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">5</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-title">n8n Automation (Optional)</span>
+          <span class="phase-week">Week 4+</span>
+        </div>
+        <p>Once you understand the manual flow, offload the repetitive parts to n8n. Focus only on campaign strategy and content review.</p>
+        <div class="phase-steps">
+          <div class="phase-step"><div class="dot"></div><span>n8n Workflow 1: Daily schedule → Blotato GET /published-posts → Create Airtable records</span></div>
+          <div class="phase-step"><div class="dot"></div><span>n8n Workflow 2: 48hrs after publish → Blotato GET /posts/:id/analytics → Update Airtable metrics</span></div>
+          <div class="phase-step"><div class="dot"></div><span>n8n uses Blotato verified community node (search "Blotato" in Community Nodes)</span></div>
+          <div class="phase-step"><div class="dot"></div><span>For self-hosted n8n: Set N8N_ENABLE_COMMUNITY_NODES=true and restart</span></div>
+          <div class="phase-step"><div class="dot"></div><span>Your role becomes: campaign planning → Claude prompt → review drafts → approve → monitor</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- AIRTABLE SCHEMA -->
+<section id="airtable">
+  <div class="section-label">Airtable Schema</div>
+  <div class="section-title">Social Content Hub — Posts Table</div>
+  <p class="section-sub">Every field serves a purpose: some capture what was posted, some capture how it performed, some help Claude iterate.</p>
+
+  <table class="schema-table">
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Type</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Post ID</strong></td><td><span class="field-type type-text">Text</span></td><td>Blotato post ID — links record to Blotato API for analytics pull</td></tr>
+      <tr><td><strong>Status</strong></td><td><span class="field-type type-select">Select</span></td><td>Draft / Scheduled / Published / Analyzed</td></tr>
+      <tr><td><strong>Platform</strong></td><td><span class="field-type type-select">Multi-Select</span></td><td>X, Instagram, TikTok, LinkedIn, Facebook, YouTube, Threads, Bluesky, Pinterest</td></tr>
+      <tr><td><strong>Copy</strong></td><td><span class="field-type type-long">Long Text</span></td><td>Full post caption/text — reference for Claude to learn from</td></tr>
+      <tr><td><strong>Image URL</strong></td><td><span class="field-type type-url">URL</span></td><td>Hosted image link — Airtable renders as thumbnail preview</td></tr>
+      <tr><td><strong>Images (Attachments)</strong></td><td><span class="field-type type-attach">Attachment</span></td><td>Backup copy of original image — survives if hosted URL expires</td></tr>
+      <tr><td><strong>UTM Source</strong></td><td><span class="field-type type-text">Text</span></td><td>e.g., "social"</td></tr>
+      <tr><td><strong>UTM Medium</strong></td><td><span class="field-type type-text">Text</span></td><td>e.g., "instagram", "tiktok", "linkedin"</td></tr>
+      <tr><td><strong>UTM Campaign</strong></td><td><span class="field-type type-text">Text</span></td><td>e.g., "q4_launch", "product_awareness"</td></tr>
+      <tr><td><strong>UTM Content</strong></td><td><span class="field-type type-text">Text</span></td><td>Optional: A/B variant identifier (e.g., "hook_v1" vs "hook_v2")</td></tr>
+      <tr><td><strong>Full UTM URL</strong></td><td><span class="field-type type-formula">Formula</span></td><td>Auto-constructs full tracking URL from UTM fields + base URL</td></tr>
+      <tr><td><strong>Published Date</strong></td><td><span class="field-type type-date">Date/Time</span></td><td>When post went live — used for analytics scheduling (48hr window)</td></tr>
+      <tr><td><strong>Views</strong></td><td><span class="field-type type-number">Number</span></td><td>Fetched from Blotato API 48hrs post-publish</td></tr>
+      <tr><td><strong>Likes</strong></td><td><span class="field-type type-number">Number</span></td><td>Fetched from Blotato API</td></tr>
+      <tr><td><strong>Comments</strong></td><td><span class="field-type type-number">Number</span></td><td>Fetched from Blotato API</td></tr>
+      <tr><td><strong>Reach</strong></td><td><span class="field-type type-number">Number</span></td><td>Fetched from Blotato API (note: LinkedIn excluded from analytics)</td></tr>
+      <tr><td><strong>Engagement Rate</strong></td><td><span class="field-type type-formula">Formula</span></td><td>(Likes + Comments) / Reach × 100 — primary performance metric</td></tr>
+      <tr><td><strong>Performance Rank</strong></td><td><span class="field-type type-formula">Formula</span></td><td>Ranks post vs. all others — surfaces top performers for Claude reference</td></tr>
+      <tr><td><strong>Iteration Notes</strong></td><td><span class="field-type type-long">Long Text</span></td><td>Your notes on what worked, what didn't — qualitative signal for Claude</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROMPT TEMPLATES -->
+<section id="prompts">
+  <div class="section-label">Claude Prompt Templates</div>
+  <div class="section-title">How to Talk to the System</div>
+  <p class="section-sub">Use these as starting points. Customize as your workflow matures.</p>
+
+  <div class="prompt-label">PHASE 2 — Publishing Prompt</div>
+  <div class="prompt-box">I'm launching a campaign called "<span class="prompt-var">[CAMPAIGN NAME]</span>".
+UTM parameters:
+- Source: <span class="prompt-var">social</span>
+- Medium: <span class="prompt-var">[instagram / tiktok / linkedin]</span>
+- Campaign: <span class="prompt-var">[campaign_name]</span>
+- Content: <span class="prompt-var">[variant_v1]</span>
+
+Destination URL: <span class="prompt-var">https://yoursite.com/page</span>
+
+Create platform-native posts for X, Instagram, TikTok, and LinkedIn
+that include the full UTM-tracked URL. Save as drafts in Blotato first — 
+I'll review before publishing.</div>
+
+  <br/>
+  <div class="prompt-label">PHASE 4 — Learning Loop Prompt</div>
+  <div class="prompt-box">Before we create new posts, here are my top 5 performing posts:
+
+1. [COPY] — Engagement Rate: <span class="prompt-var">6.2%</span> | Platform: Instagram | Notes: "hook resonated"
+2. [COPY] — Engagement Rate: <span class="prompt-var">4.8%</span> | Platform: TikTok | Notes: "short form worked"
+3. [COPY] — Engagement Rate: <span class="prompt-var">3.9%</span> | Platform: X | Notes: "thread format"
+4. [COPY] — Engagement Rate: <span class="prompt-var">3.2%</span> | Platform: LinkedIn | Notes: "thought leadership"
+5. [COPY] — Engagement Rate: <span class="prompt-var">2.8%</span> | Platform: Instagram | Notes: "visual drove reach"
+
+What patterns do you see? Then create 3 new posts for my 
+<span class="prompt-var">[NEW CAMPAIGN]</span> campaign, informed by these patterns.
+Include UTM parameters and publish to Blotato as drafts.</div>
+</section>
+
+<hr class="divider"/>
+
+<!-- FULL FUNNEL -->
+<section id="funnel">
+  <div class="section-label">Full Funnel Visibility</div>
+  <div class="section-title">What Each Tool Sees</div>
+  <p class="section-sub">UTM parameters are the bridge. Together, you have visibility from post creation to page engagement.</p>
+
+  <div class="funnel">
+    <div class="funnel-row">
+      <div class="funnel-label">Blotato</div>
+      <div class="funnel-bar" style="width:100%; background: linear-gradient(90deg, #7c5cfc, #9b7ffd);">Social performance: views, likes, comments, reach per platform</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">UTM Bridge</div>
+      <div class="funnel-bar" style="width:75%; background: linear-gradient(90deg, #5a9fd4, #4bc8b0);">Links social posts to your website via utm_source / medium / campaign</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Google Analytics</div>
+      <div class="funnel-bar" style="width:55%; background: linear-gradient(90deg, #00d4aa, #00b894);">Which campaigns drove traffic, sessions, and conversions</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">MS Clarity</div>
+      <div class="funnel-bar" style="width:35%; background: linear-gradient(90deg, #ff6b6b, #ee5a24);">What visitors did on your page — heatmaps, scrolls, drop-offs</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Airtable</div>
+      <div class="funnel-bar" style="width:100%; background: linear-gradient(90deg, #2d3436, #636e72);">Complete record tying all of the above together for Claude to learn from</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SUCCESS METRICS -->
+<section>
+  <div class="section-label">Success Metrics</div>
+  <div class="section-title">How You'll Know It's Working</div>
+  <p class="section-sub">Concrete milestones week by week.</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-week">Week 2</div>
+      <div class="metric-val">10+</div>
+      <p>Posts in Airtable with copy, images, UTM params, and engagement metrics</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-week">Week 3</div>
+      <div class="metric-val">🧠</div>
+      <p>Claude references top performers and generates new posts from real patterns</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-week">Week 4+</div>
+      <div class="metric-val">↑ER</div>
+      <p>Engagement rate visibly improving as Claude iterates on what works</p>
+    </div>
+    <div class="metric-card">
+      <div class="metric-week">Month 2</div>
+      <div class="metric-val">⚙️</div>
+      <p>n8n handles all data capture automatically — you focus on strategy only</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- QUICK START -->
+<section id="quickstart">
+  <div class="section-label">Quick Start</div>
+  <div class="section-title">Do This Week</div>
+  <p class="section-sub">Six steps to get the first post published with tracking in place.</p>
+
+  <div class="quickstart-list">
+    <div class="qs-item">
+      <div class="qs-num">1</div>
+      <div>
+        <div class="qs-when">Today</div>
+        <h4>Create Airtable Base</h4>
+        <p>Set up "Social Content Hub" with Posts table using the schema above. Spend 30 minutes here — this is your permanent record.</p>
+      </div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-num">2</div>
+      <div>
+        <div class="qs-when">Today</div>
+        <h4>Connect Claude → Blotato MCP</h4>
+        <p>Claude.ai → Customize → Connectors → Add https://mcp.blotato.com/mcp → Authenticate. Ask "List my Blotato accounts" to verify.</p>
+      </div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-num">3</div>
+      <div>
+        <div class="qs-when">Today</div>
+        <h4>Define UTM Naming Convention</h4>
+        <p>Decide your standard format. Example: utm_source=social, utm_medium=[platform], utm_campaign=[campaign_name]. Write it down — consistency is critical.</p>
+      </div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-num">4</div>
+      <div>
+        <div class="qs-when">Tomorrow</div>
+        <h4>Create 3 Test Posts via Claude</h4>
+        <p>Use the Phase 2 prompt template. Target X, Instagram, and TikTok. Set isDraft: true in Blotato for review before publishing live.</p>
+      </div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-num">5</div>
+      <div>
+        <div class="qs-when">Tomorrow</div>
+        <h4>Log Posts in Airtable</h4>
+        <p>Manually create 3 Airtable records with Post ID, copy, image URL, UTM params. Set Status = Published after approving in Blotato.</p>
+      </div>
+    </div>
+    <div class="qs-item">
+      <div class="qs-num">6</div>
+      <div>
+        <div class="qs-when">In 48 Hours</div>
+        <h4>Fetch Analytics → Update Airtable → Iterate</h4>
+        <p>Ask Claude to check Blotato analytics for those 3 posts. Update Airtable. Ask Claude what it notices. Generate your next 3 posts based on those patterns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- TOOL STACK -->
+<section>
+  <div class="section-label">Tool Stack</div>
+  <div class="section-title">What Each Tool Does</div>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon">🤖</div>
+      <h3>Claude + MCP</h3>
+      <p>Content creation, UTM generation, Blotato publishing, analytics queries, pattern analysis</p>
+      <div class="stack-role">Brain + Publisher</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📤</div>
+      <h3>Blotato</h3>
+      <p>9-platform publisher, post analytics, DM automation (Instagram + Facebook)</p>
+      <div class="stack-role">Publishing Layer</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🗃️</div>
+      <h3>Airtable</h3>
+      <p>Historical post records, copy, images, UTM params, performance metrics, iteration notes</p>
+      <div class="stack-role">Data Hub + Memory</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">⚙️</div>
+      <h3>n8n</h3>
+      <p>Automates Blotato → Airtable post capture and analytics sync (Phase 5, optional)</p>
+      <div class="stack-role">Automation Layer</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📊</div>
+      <h3>Google Analytics</h3>
+      <p>Tracks UTM-tagged traffic from social posts to your website — sessions, conversions</p>
+      <div class="stack-role">Traffic Analytics</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🔥</div>
+      <h3>Microsoft Clarity</h3>
+      <p>Page engagement for social-driven visitors — heatmaps, session recordings, drop-offs</p>
+      <div class="stack-role">Page Engagement</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built for <span>Fast Track GenAI™</span> — Iterative Social Content System &nbsp;|&nbsp; Blotato + Claude + Airtable
+</footer>
+
+</body>
+</html>
