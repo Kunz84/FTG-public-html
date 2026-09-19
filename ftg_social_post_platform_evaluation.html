@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTG — Social Post Platform Evaluation 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #09090f;
+    color: #e2e2f0;
+    min-height: 100vh;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0f0f2a 0%, #1a0a2e 50%, #0a1a2e 100%);
+    border-bottom: 1px solid #2a2a4a;
+    padding: 48px 40px 36px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #a78bfa, #38bdf8, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero p { color: #94a3b8; font-size: 1rem; max-width: 780px; line-height: 1.6; }
+  .hero .meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .hero .meta span {
+    background: #1e1e38;
+    border: 1px solid #3a3a5c;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+  }
+  .hero .meta span strong { color: #a78bfa; }
+
+  .main { max-width: 1400px; margin: 0 auto; padding: 40px 24px; }
+
+  .lens-box {
+    background: linear-gradient(135deg, #0f0820 0%, #0a1520 100%);
+    border: 1px solid #2a1a4a;
+    border-left: 4px solid #a78bfa;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+  .lens-box h3 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a78bfa;
+    margin-bottom: 12px;
+  }
+  .lens-box p { color: #94a3b8; font-size: 0.85rem; line-height: 1.7; margin-bottom: 10px; }
+  .lens-box p:last-child { margin-bottom: 0; }
+  .lens-box strong { color: #e2e2f0; }
+  .lens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .lens-col h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .lens-col.replaceable h4 { color: #34d399; }
+  .lens-col.irreplaceable h4 { color: #f87171; }
+  .lens-col ul { list-style: none; }
+  .lens-col ul li { font-size: 0.81rem; color: #94a3b8; padding: 4px 0; border-bottom: 1px solid #1a1a2e; }
+  .lens-col ul li:last-child { border-bottom: none; }
+  .lens-col.replaceable ul li::before { content: "✓ "; color: #34d399; font-weight: 700; }
+  .lens-col.irreplaceable ul li::before { content: "⚑ "; color: #f87171; font-weight: 700; }
+
+  .category { margin-bottom: 56px; }
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e1e38;
+  }
+  .cat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .cat-header h2 { font-size: 1.25rem; font-weight: 700; color: #e2e2f0; }
+  .cat-header p { font-size: 0.83rem; color: #64748b; margin-top: 2px; }
+
+  .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid #1e1e38; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 960px;
+  }
+  thead th {
+    background: #0f0f22;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    border-bottom: 1px solid #1e1e38;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid #12121e;
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: #13131f; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 13px 14px; vertical-align: top; line-height: 1.5; }
+
+  .tool-name { font-weight: 700; color: #e2e2f0; font-size: 0.9rem; }
+  .tool-site { font-size: 0.71rem; color: #4a4a6a; margin-top: 2px; }
+  .tool-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; display: inline-block; padding: 1px 6px; border-radius: 3px; }
+  .badge-top { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .badge-pick { background: #0c1a2e; color: #38bdf8; border: 1px solid #0369a1; }
+  .badge-addon { background: #1e1030; color: #c084fc; border: 1px solid #7c3aed; }
+  .badge-skip { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+
+  .score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .score-9up { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .score-8   { background: #0c1a2e; color: #38bdf8; border: 1px solid #0369a1; }
+  .score-7   { background: #1c1a06; color: #facc15; border: 1px solid #92400e; }
+  .score-6   { background: #1a1a1a; color: #94a3b8; border: 1px solid #374151; }
+  .score-5   { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+  .score-4   { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+
+  .price { color: #a78bfa; font-weight: 600; font-size: 0.82rem; white-space: nowrap; }
+  .price-note { color: #4a4a6a; font-size: 0.72rem; display: block; }
+  .price-free { color: #34d399; font-weight: 700; font-size: 0.75rem; display: block; margin-top: 2px; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.70rem;
+    font-weight: 600;
+    margin: 2px 2px 2px 0;
+  }
+  .tag-green  { background: #052e16; color: #4ade80; }
+  .tag-blue   { background: #0c1a2e; color: #38bdf8; }
+  .tag-purple { background: #1e1030; color: #c084fc; }
+  .tag-orange { background: #1c0a00; color: #fb923c; }
+  .tag-red    { background: #1a0a0a; color: #f87171; }
+  .tag-gray   { background: #1a1a2e; color: #94a3b8; }
+  .tag-yellow { background: #1c1a06; color: #facc15; }
+
+  .features-list { display: flex; flex-wrap: wrap; gap: 3px; }
+
+  .pros-list, .cons-list { font-size: 0.80rem; list-style: none; }
+  .pros-list li { color: #4ade80; padding: 2px 0; padding-left: 14px; position: relative; }
+  .pros-list li::before { content: "+"; position: absolute; left: 0; font-weight: 700; }
+  .cons-list li { color: #f87171; padding: 2px 0; padding-left: 14px; position: relative; }
+  .cons-list li::before { content: "−"; position: absolute; left: 0; font-weight: 700; }
+
+  .best-for { color: #c084fc; font-size: 0.80rem; font-weight: 600; }
+
+  .verdict-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .v-top    { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .v-strong { background: #0c1a2e; color: #38bdf8; border: 1px solid #0369a1; }
+  .v-good   { background: #1c1a06; color: #facc15; border: 1px solid #92400e; }
+  .v-pass   { background: #1a1a1a; color: #94a3b8; border: 1px solid #374151; }
+  .v-skip   { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+  .v-addon  { background: #1e1030; color: #c084fc; border: 1px solid #7c3aed; }
+
+  .winner-row { background: #050d14 !important; }
+  .faded-row  { opacity: 0.68; }
+
+  .note-box {
+    background: #0f0f22;
+    border: 1px solid #1e1e38;
+    border-left: 3px solid #a78bfa;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+  .note-box strong { color: #a78bfa; }
+
+  .gap-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .gap-card {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.80rem;
+    line-height: 1.6;
+  }
+  .gap-card h4 { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .gap-green { background: #050d08; border: 1px solid #166534; }
+  .gap-green h4 { color: #4ade80; }
+  .gap-green li { color: #86efac; }
+  .gap-red { background: #100808; border: 1px solid #991b1b; }
+  .gap-red h4 { color: #f87171; }
+  .gap-red li { color: #fca5a5; }
+  .gap-card ul { list-style: none; }
+  .gap-card ul li { padding: 3px 0; padding-left: 14px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .gap-card ul li:last-child { border-bottom: none; }
+  .gap-green ul li::before { content: "✓ "; color: #4ade80; font-weight: 700; position: absolute; left: 0; }
+  .gap-red ul li::before { content: "⚑ "; color: #f87171; font-weight: 700; position: absolute; left: 0; }
+
+  .ftg-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #1e0a3e;
+    border: 1px solid #7c3aed;
+    color: #c084fc;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .stack-section { margin-top: 56px; }
+  .stack-header {
+    background: linear-gradient(90deg, #0a0a1a, #100820);
+    border: 1px solid #2a1a4a;
+    border-radius: 14px 14px 0 0;
+    padding: 24px 28px 16px;
+  }
+  .stack-header h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #a78bfa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stack-header p { font-size: 0.82rem; color: #64748b; margin-top: 4px; }
+  .stack-table-wrap { border: 1px solid #2a1a4a; border-top: none; border-radius: 0 0 14px 14px; overflow: hidden; }
+  .stack-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+  .stack-table thead th {
+    background: #0a0a18;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.70rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    border-bottom: 1px solid #1e1e38;
+  }
+  .stack-table tbody tr { border-bottom: 1px solid #12121e; }
+  .stack-table tbody tr:last-child { border-bottom: none; }
+  .stack-table td { padding: 12px 14px; vertical-align: middle; }
+
+  .priority-core { color: #4ade80; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
+  .priority-strong { color: #38bdf8; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+  .priority-opt { color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; }
+
+  .stack-totals {
+    display: flex;
+    gap: 24px;
+    padding: 18px 28px;
+    background: #07070f;
+    border-top: 1px solid #1e1e38;
+    flex-wrap: wrap;
+  }
+  .stack-totals > div { }
+  .stack-totals .label { font-size: 0.72rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .stack-totals .value { font-size: 1.05rem; font-weight: 800; }
+  .val-green { color: #4ade80; }
+  .val-blue  { color: #38bdf8; }
+  .val-gray  { color: #94a3b8; }
+
+  footer {
+    text-align: center;
+    color: #2a2a4a;
+    font-size: 0.75rem;
+    padding: 32px;
+    border-top: 1px solid #12121e;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 1.5rem; }
+    .main { padding: 24px 12px; }
+    .lens-grid, .gap-box { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>FTG — Social Post Platform Evaluation</h1>
+  <p>Complete ranking of 19 social post generation and scheduling platforms evaluated through the lens of the Abacus-orchestrated AI content stack. Scoring weights MCP quality, pricing architecture, AI credit depth, and which gaps can be filled externally vs. which are architectural limits you cannot work around.</p>
+  <div class="meta">
+    <span><strong>Date:</strong> September 2026</span>
+    <span><strong>Orchestrator:</strong> Abacus AI + Claude Models</span>
+    <span><strong>Stack:</strong> Blotato · Airtable · GA4 · Clarity</span>
+    <span><strong>Platforms Evaluated:</strong> 19</span>
+    <span><strong>Use Case:</strong> Fast Track GenAI™ Content Engine</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SCORING LENS -->
+  <div class="lens-box">
+    <h3>⚙️ Evaluation Lens — The Gap-Filling Framework</h3>
+    <p>The original Gemini analysis scored platforms on their <strong>native</strong> UTM/GA4/Clarity loop capability. That lens is wrong when Abacus AI is the orchestrator. The correct lens is: <strong>which gaps are architectural limits you cannot escape, and which are integration-layer gaps Abacus already fills?</strong></p>
+    <p>A platform's score rises when its weaknesses live in the integration layer (fixable by Abacus + Airtable + GA4). It falls when its weaknesses are structural — per-seat pricing that scales uncontrollably, paywalled APIs, or closed ecosystems where agents cannot reach.</p>
+    <div class="lens-grid">
+      <div class="lens-col replaceable">
+        <h4>✓ Easily Filled by the Stack (Don't penalize)</h4>
+        <ul>
+          <li>No native UTM builder → Abacus generates programmatically</li>
+          <li>No visual calendar → Airtable Calendar view</li>
+          <li>No analytics dashboard → GA4 + Clarity + HTML dashboard</li>
+          <li>No GUI needed → MCP + Skill.md files replace UI</li>
+          <li>No image generation → Blotato AI credits</li>
+          <li>No link shortener → Bitly / native UTM tracking</li>
+        </ul>
+      </div>
+      <div class="lens-col irreplaceable">
+        <h4>⚑ Architectural Limits (Hard penalize)</h4>
+        <ul>
+          <li>Per-channel / per-seat pricing that scales uncontrollably</li>
+          <li>API / MCP locked behind expensive tiers you must upgrade to</li>
+          <li>No MCP server at all → cannot connect AI agents natively</li>
+          <li>Closed ecosystem / walled garden → no external data in or out</li>
+          <li>Infrastructure overhead you must maintain (Docker, Redis)</li>
+          <li>Add-on fees per platform (e.g., $10/mo per X account)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY 1 — AI-NATIVE AGENT PUBLISHERS -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #1a0a3e, #0a1a3e);">🤖</div>
+      <div>
+        <h2>Category 1 — AI-Native Agent Publishers</h2>
+        <p>Purpose-built for AI orchestration. MCP-first architecture. Agents drive the entire workflow — no human GUI required.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Why this category scores highest:</strong> These platforms were designed from the ground up for AI agents, not human schedulers. Their MCP servers expose deep publishing, analytics, and automation toolsets. Combined with Abacus as the orchestrator, every "gap" (no UTM builder, no calendar, no dashboard) is handled upstream — and their irreplaceable strengths (flat pricing, AI credit depth, agent tool breadth) have no equivalent elsewhere.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="winner-row">
+            <td>
+              <div class="tool-name">🏆 Blotato</div>
+              <div class="tool-site">blotato.com</div>
+              <div class="tool-badge badge-top">#1 Overall</div>
+            </td>
+            <td><div class="score score-9up">9.8</div></td>
+            <td>
+              <div class="price">$29/mo flat</div>
+              <div class="price-note">Starter: 20 accts, 1,250 AI credits</div>
+              <div class="price-note">Creator: $97/mo · 40 accts · 5K credits</div>
+              <div class="price-note">Agency: $499/mo · unlimited</div>
+              <div class="price-free">No free plan — 7-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">36 MCP Tools</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-purple">AI Image + Video</span>
+                <span class="tag tag-green">ElevenLabs Voice</span>
+                <span class="tag tag-blue">n8n Official Node</span>
+                <span class="tag tag-blue">Make Official Node</span>
+                <span class="tag tag-purple">Comment + DM Automation</span>
+                <span class="tag tag-green">Flat Pricing</span>
+                <span class="tag tag-orange">9 Platforms</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Only flat-rate publisher — no per-channel cost creep</li>
+                <li>36 MCP tools — widest agent toolset of any publisher</li>
+                <li>AI credits cover image + video + voice in one bill</li>
+                <li>ElevenLabs integration built-in</li>
+                <li>Official n8n + Make nodes (no API wrapper needed)</li>
+                <li>Comment &amp; DM automation included</li>
+                <li>All "gaps" live in the integration layer — Abacus fills them</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>No native GUI calendar (not needed with Airtable)</li>
+                <li>No UTM builder (not needed — Abacus handles it)</li>
+                <li>9 platforms — no Reddit, Discord, Google Business</li>
+                <li>No free plan</li>
+              </ul>
+            </td>
+            <td><div class="best-for">AI-native autonomous publishing. Self-improving content engine with Abacus orchestration. The core publishing layer.</div></td>
+            <td><span class="verdict-badge v-top">Core #1</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">Postiz</div>
+              <div class="tool-site">postiz.com</div>
+              <div class="tool-badge badge-pick">Strong Alt</div>
+            </td>
+            <td><div class="score score-8">8.6</div></td>
+            <td>
+              <div class="price">$29–$99/mo</div>
+              <div class="price-note">5 / 10 / 30 / 100 channels per tier</div>
+              <div class="price-free">✓ Free via self-hosting (Docker)</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">30+ Platforms</span>
+                <span class="tag tag-blue">MCP Server</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-purple">Webhooks</span>
+                <span class="tag tag-orange">Full Postgres DB</span>
+                <span class="tag tag-green">RSS Auto-post</span>
+                <span class="tag tag-purple">AI Copilot</span>
+                <span class="tag tag-purple">Smart Agent</span>
+                <span class="tag tag-orange">Evergreen Recycling</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>30+ platforms — widest network coverage of all 19 tools</li>
+                <li>Full Postgres DB access → join post_id with GA4 BigQuery exports</li>
+                <li>Webhooks → real-time event triggers</li>
+                <li>Free self-hosted option (only free AI-native publisher)</li>
+                <li>Evergreen recycling built-in</li>
+                <li>RSS auto-posting for content pipelines</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Self-hosting = Docker + Redis + Temporal (real overhead)</li>
+                <li>Per-channel pricing on SaaS tiers (unlike Blotato's flat rate)</li>
+                <li>AI image/video generation gated behind higher tiers</li>
+                <li>No native UTM builder (same gap as Blotato — same fix)</li>
+                <li>Smaller ecosystem / community</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Developers who want DB-level control. Self-hosted control freaks. Widest platform coverage when Reddit/Discord are needed.</div></td>
+            <td><span class="verdict-badge v-strong">Strong Alt</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATEGORY 2 — BUDGET MULTI-CHANNEL SCHEDULERS -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #0a2e1a, #0a1a2e);">💰</div>
+      <div>
+        <h2>Category 2 — Budget Multi-Channel Schedulers</h2>
+        <p>Traditional scheduling-first platforms with MCP bolted on. Best for low-channel, cost-conscious setups. Pricing architecture limits their ceiling.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>The per-channel pricing trap:</strong> Buffer at $5/channel sounds cheap until you're managing 10+ accounts — then you're at $50–$100/mo with no AI credits, no video generation, and the same per-channel cost forever. This is an architectural limit, not an integration-layer gap. Abacus cannot fix it.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tool-name">Buffer</div>
+              <div class="tool-site">buffer.com</div>
+              <div class="tool-badge badge-pick">Budget Pick</div>
+            </td>
+            <td><div class="score score-8">8.2</div></td>
+            <td>
+              <div class="price">$5–$10/channel/mo</div>
+              <div class="price-note">Essentials: $5 · Team: $10 (annual)</div>
+              <div class="price-free">✓ Free: 3 channels, 10 posts/channel</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Official MCP Server</span>
+                <span class="tag tag-blue">REST API (5 keys)</span>
+                <span class="tag tag-green">Native Auto-UTM</span>
+                <span class="tag tag-blue">GA Campaign Tracking</span>
+                <span class="tag tag-purple">AI Assistant</span>
+                <span class="tag tag-orange">Start Page (bio link)</span>
+                <span class="tag tag-orange">Unified Inbox</span>
+                <span class="tag tag-gray">11 Platforms</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Official MCP server — solid agent connection</li>
+                <li>Native auto-UTM append + GA tracking (useful redundancy)</li>
+                <li>Cheapest entry for 1–5 channels</li>
+                <li>Unified inbox for comment/DM management</li>
+                <li>Free forever plan (3 channels)</li>
+                <li>Cleanest traditional scheduling UI of the four</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Per-channel pricing — costs $50–$100/mo at 10+ accounts</li>
+                <li>Zero AI credits — no image/video generation</li>
+                <li>Basic analytics — must rely on GA4 for conversion data</li>
+                <li>No webhooks, no RSS, no evergreen recycling</li>
+                <li>Auto-UTM advantage is redundant with Abacus as orchestrator</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Tight budget with 1–5 channels. Best fallback if Blotato isn't an option. Good MCP connection for simple agent publishing.</div></td>
+            <td><span class="verdict-badge v-strong">Fallback</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">RobinReach</div>
+              <div class="tool-site">robinreach.com</div>
+            </td>
+            <td><div class="score score-7">7.8</div></td>
+            <td>
+              <div class="price">$9/mo</div>
+              <div class="price-free">✓ Free forever plan</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Native MCP</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-purple">Brand Context Memory</span>
+                <span class="tag tag-orange">12 Networks</span>
+                <span class="tag tag-purple">AI Captions</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Native MCP at the lowest price point ($9/mo)</li>
+                <li>Brand context memory across client profiles</li>
+                <li>12 networks — solid mid-range coverage</li>
+                <li>Free forever tier</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Small developer community — limited ecosystem</li>
+                <li>Manual prompt configuration required for UTM variables</li>
+                <li>No AI image/video generation</li>
+                <li>Less proven at scale than Buffer or Blotato</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Multi-brand AI agency publishing on a tight budget. Good MCP at rock-bottom price.</div></td>
+            <td><span class="verdict-badge v-good">Niche Pick</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">Publer</div>
+              <div class="tool-site">publer.io</div>
+            </td>
+            <td><div class="score score-7">7.2</div></td>
+            <td>
+              <div class="price">$5/mo base</div>
+              <div class="price-free">✓ Free forever plan</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Beta MCP</span>
+                <span class="tag tag-blue">Business API</span>
+                <span class="tag tag-green">Native Auto-UTM</span>
+                <span class="tag tag-orange">Link Shortener</span>
+                <span class="tag tag-gray">Multi-platform queuing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Lowest entry price with native UTM params</li>
+                <li>Free forever plan</li>
+                <li>Link shortener integration included</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>API and MCP locked behind higher-tier plans</li>
+                <li>MCP still in beta — not production-ready for agents</li>
+                <li>No AI credits or media generation</li>
+                <li>UTM advantage is redundant with Abacus orchestration</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Budget scheduling for humans. MCP not yet reliable enough for agent workflows.</div></td>
+            <td><span class="verdict-badge v-pass">Monitor</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATEGORY 3 — ANALYTICS-FIRST PLATFORMS -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #0a1a2e, #1a0a2e);">📊</div>
+      <div>
+        <h2>Category 3 — Analytics-First Platforms</h2>
+        <p>Strong native reporting and competitor tracking. Best used as analytics read layers alongside Blotato — not as primary publishers in this stack.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Metricool's role in this stack:</strong> Metricool is not the primary publisher — Blotato handles that. Metricool's value is as an <strong>analytics read layer</strong>: its native MCP lets external LLMs query cross-network metrics, ad spend, and competitor data alongside GA4 outputs. The pair (Blotato publishes, Metricool reads analytics) is stronger than either alone. But Metricool's API/MCP is locked behind the Advanced tier — budget accordingly.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tool-name">Metricool</div>
+              <div class="tool-site">metricool.com</div>
+              <div class="tool-badge badge-addon">Add-On Read Layer</div>
+            </td>
+            <td><div class="score score-8">8.2</div></td>
+            <td>
+              <div class="price">$20/mo Starter</div>
+              <div class="price-note">Advanced: custom (API/MCP unlocked)</div>
+              <div class="price-note">X: +$10/mo per account add-on</div>
+              <div class="price-free">✓ Free: 1 brand, 20 posts/mo</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Native MCP (Advanced)</span>
+                <span class="tag tag-blue">Multi-channel UTM Builder</span>
+                <span class="tag tag-purple">Ad Tracking (FB/Google/TikTok)</span>
+                <span class="tag tag-orange">Competitor Analysis (100)</span>
+                <span class="tag tag-blue">Advanced Analytics</span>
+                <span class="tag tag-gray">Twitch Support</span>
+                <span class="tag tag-purple">AI Assistant</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Best-in-class analytics — cross-network + ad spend tracking</li>
+                <li>Native MCP lets LLMs query metrics alongside GA4 outputs</li>
+                <li>Competitor benchmarking (up to 100 competitors)</li>
+                <li>Twitch analytics — unique in this category</li>
+                <li>Free tier for solo testing</li>
+                <li>White-label on Custom plan</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>API + MCP locked behind Advanced tier — expensive jump</li>
+                <li>Twitter/X costs $10/mo extra per connected account</li>
+                <li>Advanced Analytics is a separate add-on ($12–$36/mo extra)</li>
+                <li>AI copywriter doesn't auto-optimize from its own data</li>
+                <li>Best as read-only layer — don't make this your primary publisher</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Analytics intelligence alongside Blotato publishing. LLM reads Metricool metrics + GA4 together for deeper insights.</div></td>
+            <td><span class="verdict-badge v-addon">Add-On</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Sprout Social</div>
+              <div class="tool-site">sproutsocial.com</div>
+            </td>
+            <td><div class="score score-6">6.8</div></td>
+            <td>
+              <div class="price">$79/seat/mo</div>
+              <div class="price-note">30-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">OAuth MCP</span>
+                <span class="tag tag-blue">Enterprise API</span>
+                <span class="tag tag-green">Dynamic URL Tracking</span>
+                <span class="tag tag-purple">ViralPost AI</span>
+                <span class="tag tag-orange">Social CRM</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Enterprise-grade URL tracking across large teams</li>
+                <li>Best social listening of any platform</li>
+                <li>ViralPost send-time optimization</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>$79/seat — prohibitive for solo or small team</li>
+                <li>Enterprise sales barriers to get API access</li>
+                <li>Massive overkill for this use case</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Large enterprise teams with compliance and governance needs. Not for FTG stack.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Hootsuite</div>
+              <div class="tool-site">hootsuite.com</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">$99/mo</div>
+              <div class="price-note">14-day trial only</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Hootsuite MCP</span>
+                <span class="tag tag-green">Ow.ly Dynamic UTM</span>
+                <span class="tag tag-purple">OwlyWriter AI</span>
+                <span class="tag tag-orange">Social Listening</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Enterprise-grade Ow.ly dynamic UTM governance</li>
+                <li>Strong social listening and brand monitoring</li>
+                <li>MCP server available</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>$99/mo starting price — expensive for what you get</li>
+                <li>Enterprise API requires enterprise tier</li>
+                <li>UTM advantage is redundant with Abacus orchestration</li>
+                <li>Dated interface, higher cost than modern alternatives</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Large enterprise teams only. Hootsuite's listening is best-in-class, but the price is unjustifiable for this stack.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATEGORY 4 — DEVELOPER API ENDPOINTS -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #1a1a0a, #0a2e1a);">🔌</div>
+      <div>
+        <h2>Category 4 — Developer API Publishing Endpoints</h2>
+        <p>Pure plumbing layers. No content generation, no analytics. Designed for developers embedding social publishing into their own applications.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Why these score lower despite strong APIs:</strong> These platforms are infrastructure, not content engines. They don't offer AI credits, analytics, or agent toolsets. For this stack, Blotato already provides a full REST API + MCP — adding Ayrshare or Zernio is redundant unless you're building a multi-tenant SaaS product that resells publishing capability.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tool-name">Ayrshare</div>
+              <div class="tool-site">ayrshare.com</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">$149/mo</div>
+              <div class="price-note">Trial only — no free plan</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-blue">Composio MCP</span>
+                <span class="tag tag-green">Auto-UTM Parameters</span>
+                <span class="tag tag-green">Dynamic Link Shortening</span>
+                <span class="tag tag-orange">Webhook Delivery</span>
+                <span class="tag tag-gray">Enterprise SaaS Embedding</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Best API for embedding publishing in your own SaaS</li>
+                <li>Auto-UTM + dynamic link shortening built-in</li>
+                <li>Webhook delivery on post status</li>
+                <li>Unique post IDs for GA4 tracking</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>$149/mo — most expensive in this eval</li>
+                <li>No native analytics, no AI credits, no content generation</li>
+                <li>Built for SaaS builders, not content creators</li>
+                <li>Overkill and overpriced for a single-brand content engine</li>
+              </ul>
+            </td>
+            <td><div class="best-for">SaaS developers embedding social publishing into multi-tenant products. Not for direct FTG use.</div></td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">Zernio</div>
+              <div class="tool-site">zernio.com</div>
+            </td>
+            <td><div class="score score-7">7.2</div></td>
+            <td>
+              <div class="price">$6/account/mo</div>
+              <div class="price-free">✓ Free: 2 accounts</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Native Hosted MCP</span>
+                <span class="tag tag-blue">280+ API Endpoints</span>
+                <span class="tag tag-orange">15 App Integrations</span>
+                <span class="tag tag-purple">OAuth Token Abstraction</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Per-account pricing keeps costs predictable at low volume</li>
+                <li>280+ API endpoints across 15 apps</li>
+                <li>MCP hosted natively</li>
+                <li>OAuth token abstraction simplifies multi-account auth</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Pure infrastructure — no analytics UI, no link shortening, no generation</li>
+                <li>Per-account pricing scales like Buffer at higher volumes</li>
+                <li>Smaller community, fewer integrations than Blotato</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Multi-account agent pipelines where per-account pricing makes sense. Niche developer use case.</div></td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">Upload-Post</div>
+              <div class="tool-site">upload-post.com</div>
+            </td>
+            <td><div class="score score-6">6.8</div></td>
+            <td>
+              <div class="price">$24/mo</div>
+              <div class="price-free">✓ Free forever plan</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Official MCP (50 tools)</span>
+                <span class="tag tag-blue">Headless Video Upload API</span>
+                <span class="tag tag-orange">Webhook Notifications</span>
+                <span class="tag tag-gray">High-Volume Publishing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Headless video upload API — best for programmatic bulk video posting</li>
+                <li>50-tool MCP server</li>
+                <li>Webhook notifications on post events</li>
+                <li>Free forever plan available</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Pure plumbing — no link shortener, no UTM builder, no analytics</li>
+                <li>No AI generation of any kind</li>
+                <li>MCP handles custom UTM injection but requires scripting</li>
+              </ul>
+            </td>
+            <td><div class="best-for">High-volume programmatic video publishing pipelines. Headless bulk upload use cases.</div></td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATEGORY 5 — AGENCY & APPROVAL WORKFLOWS -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #1a0a2e, #1a1a0a);">🏢</div>
+      <div>
+        <h2>Category 5 — Agency & Approval Workflow Platforms</h2>
+        <p>Client management, multi-brand dashboards, and content approval pipelines. Designed for agencies with multiple client accounts and human review steps.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Why these score lower for this stack:</strong> These platforms optimize for human approval workflows — multi-tier sign-off, client portals, white-label reports. That's the opposite of what an autonomous agent loop needs. Their MCP access is often limited to drafting, not publishing. And their per-seat pricing model is specifically designed for agency billing — which is a cost structure you don't need.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tool-name">SocialPilot</div>
+              <div class="tool-site">socialpilot.co</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">$30/mo flat</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">SocialPilot MCP</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-green">Auto-UTM Presets</span>
+                <span class="tag tag-orange">Bulk Scheduling</span>
+                <span class="tag tag-gray">Agency Flat Pricing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Flat pricing like Blotato — doesn't scale with channel count</li>
+                <li>MCP server available</li>
+                <li>Bulk scheduling engine</li>
+                <li>Auto-UTM presets</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Dated UI — clearly built for humans, not agents</li>
+                <li>AI copy engine is a generic wrapper — no depth</li>
+                <li>No AI credits, no media generation</li>
+                <li>UTM advantage redundant with Abacus</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Agencies needing flat pricing and high-volume human scheduling. Second choice if Blotato's AI focus is overkill.</div></td>
+            <td><span class="verdict-badge v-good">Agency Alt</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Agorapulse</div>
+              <div class="tool-site">agorapulse.com</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">$79/seat/mo</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Drafts MCP</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-green">Native UTM Builder</span>
+                <span class="tag tag-orange">Shared Inbox</span>
+                <span class="tag tag-orange">Social CRM</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Shared inbox + social CRM for client accounts</li>
+                <li>Native campaign UTM builder</li>
+                <li>Strong team workflow for large agencies</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>$79/seat — enterprise price for a mid-tier product</li>
+                <li>MCP limited to drafting, not publishing</li>
+                <li>AI generation blind to GA4/Clarity conversion data</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Teams prioritizing shared inbox triage. Not viable for autonomous agent loops.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Planable</div>
+              <div class="tool-site">planable.io</div>
+            </td>
+            <td><div class="score score-6">6.0</div></td>
+            <td>
+              <div class="price">$33/mo</div>
+              <div class="price-free">✓ Free forever plan</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Drafts MCP</span>
+                <span class="tag tag-green">UTM Presets</span>
+                <span class="tag tag-purple">Multi-tier Approvals</span>
+                <span class="tag tag-orange">Visual Content Calendar</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Best client review + sign-off workflow in the market</li>
+                <li>Visual calendar for content presentation to clients</li>
+                <li>Free plan available</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>MCP limited to drafting — can't auto-publish via agent</li>
+                <li>No analytics endpoints</li>
+                <li>Designed for human approval cycles, not autonomous loops</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Client review and sign-off workflows. Wrong tool for agent automation.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Sendible</div>
+              <div class="tool-site">sendible.com</div>
+            </td>
+            <td><div class="score score-6">6.0</div></td>
+            <td>
+              <div class="price">$35/mo</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Campaign UTM Presets</span>
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-orange">White-label Reports</span>
+                <span class="tag tag-gray">Bitly Integration</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>White-label client dashboards and reports</li>
+                <li>Standardized UTM tagging across campaigns</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>No MCP server — cannot connect AI agents natively</li>
+                <li>Basic AI features — generic wrapper, no depth</li>
+                <li>Traditional agency tool in a world moving toward agents</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Traditional agency white-label reporting. No MCP = no agent loop.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CATEGORY 6 — NICHE & CONTENT STRATEGY -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #1a0a0a, #1a1a0a);">🎯</div>
+      <div>
+        <h2>Category 6 — Niche Content Strategy & Repurposing</h2>
+        <p>Specialized tools for specific use cases: visual-first scheduling, content recycling, video repurposing, and ad creative generation. Lowest scores for the Abacus stack — these solve problems Blotato + Abacus already handle.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Key Features</th>
+            <th>Pros</th>
+            <th>Cons</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tool-name">SocialBee</div>
+              <div class="tool-site">socialbee.com</div>
+            </td>
+            <td><div class="score score-5">5.5</div></td>
+            <td>
+              <div class="price">$29/mo</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-orange">Evergreen Recycling</span>
+                <span class="tag tag-green">Category UTM Presets</span>
+                <span class="tag tag-purple">AI Post Variations</span>
+                <span class="tag tag-gray">RSS Feed Import</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Best-in-class evergreen content recycling</li>
+                <li>Category-level UTM tagging for content rotation</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>No REST API or MCP server — cannot connect agents natively</li>
+                <li>Evergreen recycling is Postiz's territory at higher score</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Solopreneurs focused purely on evergreen content rotation. No agent capability.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tool-name">Predis.ai</div>
+              <div class="tool-site">predis.ai</div>
+            </td>
+            <td><div class="score score-5">5.5</div></td>
+            <td>
+              <div class="price">$19/mo</div>
+              <div class="price-free">✓ Free plan (1 brand)</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">REST API</span>
+                <span class="tag tag-purple">Prompt-to-Video</span>
+                <span class="tag tag-orange">Competitor Visual Tracking</span>
+                <span class="tag tag-purple">Auto-caption Generation</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Strong visual and video ad creative generation</li>
+                <li>Competitor visual tracking</li>
+                <li>REST API available</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>No MCP server — no native agent connection</li>
+                <li>Base tier: 1 brand only</li>
+                <li>Blotato's AI credits cover image/video generation — redundant</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Visual ad creative generation. Redundant with Blotato's AI credits in this stack.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Later</div>
+              <div class="tool-site">later.com</div>
+            </td>
+            <td><div class="score score-4">4.5</div></td>
+            <td>
+              <div class="price">$18.75/mo</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-orange">Visual Grid Planning</span>
+                <span class="tag tag-green">Linkin.bio UTM</span>
+                <span class="tag tag-purple">Caption Generator</span>
+                <span class="tag tag-gray">Instagram/Pinterest Focus</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Best visual grid planning for Instagram aesthetics</li>
+                <li>Linkin.bio UTM attribution for bio link traffic</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>Closed platform — no public API, no MCP</li>
+                <li>Cannot connect external AI agents at all</li>
+                <li>Platform-specific (IG/Pinterest) — not a full publisher</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Visual-first Instagram brand accounts managed by humans. Incompatible with agent loops.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr class="faded-row">
+            <td>
+              <div class="tool-name">Repurpose.io</div>
+              <div class="tool-site">repurpose.io</div>
+            </td>
+            <td><div class="score score-4">4.0</div></td>
+            <td>
+              <div class="price">$35/mo</div>
+              <div class="price-note">14-day trial</div>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-orange">Automated Video Syndication</span>
+                <span class="tag tag-gray">Watermark Removal</span>
+                <span class="tag tag-gray">Rule-Based Routing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros-list">
+                <li>Hands-off automated video mirroring across networks</li>
+                <li>Rule-based routing without manual intervention</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons-list">
+                <li>No API, no MCP — completely closed to agents</li>
+                <li>Pure video syndication — no link tracking, no analytics</li>
+                <li>Blotato handles multi-platform posting — this is redundant</li>
+              </ul>
+            </td>
+            <td><div class="best-for">Automated video mirroring for pure video content pipelines. No agent integration possible.</div></td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CRITICAL EVALUATION: GAP FILLING -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #0a2e1a, #1e0a3e);">🔬</div>
+      <div>
+        <h2>Critical Evaluation — Why Blotato Wins on Gap-Filling Logic</h2>
+        <p>Every platform has gaps. The question is whether those gaps are architectural limits or integration-layer problems. Here's how each platform's gaps classify.</p>
+      </div>
+    </div>
+
+    <div class="gap-box">
+      <div class="gap-card gap-green">
+        <h4>🟠 Blotato — Gaps Easily Filled</h4>
+        <ul>
+          <li>No native UTM builder → Abacus generates programmatically</li>
+          <li>No visual calendar → Airtable Calendar view</li>
+          <li>No analytics dashboard → GA4 + Clarity + HTML dashboard</li>
+          <li>No GUI needed → MCP replaces UI entirely</li>
+          <li>Missing Reddit/Discord → Postiz as secondary if needed</li>
+        </ul>
+      </div>
+      <div class="gap-card gap-red">
+        <h4>⚑ Blotato — Hard Limits (None that block this stack)</h4>
+        <ul>
+          <li>9 platforms vs. 30+ for Postiz — acceptable for core channels</li>
+          <li>No free plan — $29/mo is table stakes for the stack</li>
+          <li>AI credits are finite — Creator tier needed at scale</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gap-box">
+      <div class="gap-card gap-red">
+        <h4>⚑ Buffer — Architectural Limits (Cannot fix)</h4>
+        <ul>
+          <li>Per-channel pricing: 10 accounts = $50–$100/mo forever</li>
+          <li>No AI credits — still need Blotato for media generation</li>
+          <li>No webhooks, no RSS, no evergreen recycling</li>
+          <li>Native UTM advantage is redundant with Abacus</li>
+        </ul>
+      </div>
+      <div class="gap-card gap-red">
+        <h4>⚑ Metricool — Architectural Limits (Cannot fix)</h4>
+        <ul>
+          <li>API + MCP locked behind expensive Advanced tier — forced upgrade</li>
+          <li>Twitter/X: +$10/mo per account — adds up fast</li>
+          <li>Advanced analytics is a separate add-on purchase</li>
+          <li>AI doesn't self-optimize from its own data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box" style="border-left-color: #34d399;">
+      <strong style="color: #34d399;">The Verdict:</strong> Blotato's gaps are all in the integration layer — the exact layer Abacus, Airtable, GA4, and the HTML dashboard own. Buffer and Metricool's gaps are architectural: pricing models you cannot escape, paywalled APIs, and missing AI credit depth. Blotato's irreplaceable features (36 MCP tools, flat pricing, AI credits + voice + video, n8n/Make nodes, purpose-built agent architecture) have no direct equivalent in any other platform at this price point. This is why the revised ranking puts Blotato at 9.8 — not because it's perfect, but because every imperfection is solvable, and every strength is unique.
+    </div>
+  </div>
+
+  <!-- MASTER RANKING TABLE -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background: linear-gradient(135deg, #1a0a2e, #0a1a2e);">📋</div>
+      <div>
+        <h2>Master Ranking — All 19 Platforms</h2>
+        <p>Ranked by Abacus-Orchestrated Stack Score. Original Gemini GA4/Clarity score shown for reference.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Platform</th>
+            <th>Abacus Stack Score</th>
+            <th>Original GA4 Score</th>
+            <th>Score Δ</th>
+            <th>Reason for Change</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="winner-row">
+            <td style="color:#4ade80; font-weight:800">#1 🏆</td>
+            <td><span class="tool-name">Blotato</span></td>
+            <td><div class="score score-9up" style="font-size:1rem;">9.8</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">9.2</td>
+            <td style="color:#4ade80; font-weight:700;">+0.6</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Every gap is integration-layer — Abacus fills them. Flat pricing, 36 MCP tools, AI credits, ElevenLabs, n8n/Make are irreplaceable.</td>
+            <td><span class="verdict-badge v-top">Core #1</span></td>
+          </tr>
+          <tr>
+            <td style="color:#38bdf8; font-weight:700">#2</td>
+            <td><span class="tool-name">Buffer</span></td>
+            <td><div class="score score-8">8.2</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">9.5</td>
+            <td style="color:#f87171; font-weight:700;">−1.3</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Per-channel pricing is architectural. Native UTM advantage is redundant with Abacus. No AI credits.</td>
+            <td><span class="verdict-badge v-strong">Fallback</span></td>
+          </tr>
+          <tr>
+            <td style="color:#38bdf8; font-weight:700">#3</td>
+            <td><span class="tool-name">Metricool</span></td>
+            <td><div class="score score-8">8.2</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">9.5</td>
+            <td style="color:#f87171; font-weight:700;">−1.3</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Best analytics read layer — but API/MCP locked behind expensive tier. X add-on fees are architectural. Use alongside Blotato, not instead of.</td>
+            <td><span class="verdict-badge v-addon">Add-On</span></td>
+          </tr>
+          <tr>
+            <td style="color:#38bdf8; font-weight:700">#4</td>
+            <td><span class="tool-name">Postiz</span></td>
+            <td><div class="score score-8">8.6</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">9.0</td>
+            <td style="color:#f87171; font-weight:700;">−0.4</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Best network breadth (30+), Postgres DB, webhooks. Docker overhead is real. Strong alternative or complement to Blotato.</td>
+            <td><span class="verdict-badge v-strong">Strong Alt</span></td>
+          </tr>
+          <tr>
+            <td style="color:#38bdf8; font-weight:700">#5</td>
+            <td><span class="tool-name">RobinReach</span></td>
+            <td><div class="score score-7">7.8</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">8.2</td>
+            <td style="color:#f87171; font-weight:700;">−0.4</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Native MCP at lowest price. Brand context memory is useful. Smaller ecosystem.</td>
+            <td><span class="verdict-badge v-good">Niche</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#6</td>
+            <td><span class="tool-name">Ayrshare</span></td>
+            <td><div class="score score-7">7.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">8.8</td>
+            <td style="color:#f87171; font-weight:700;">−1.3</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Best for SaaS embedding. $149/mo is unjustifiable for single-brand use. Dev-only territory.</td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#7</td>
+            <td><span class="tool-name">Zernio</span></td>
+            <td><div class="score score-7">7.2</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">8.5</td>
+            <td style="color:#f87171; font-weight:700;">−1.3</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Pure infrastructure. Flexible per-account pricing. No analytics or generation layer.</td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#8</td>
+            <td><span class="tool-name">Publer</span></td>
+            <td><div class="score score-7">7.2</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">7.0</td>
+            <td style="color:#4ade80; font-weight:700;">+0.2</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Budget-friendly. MCP still beta. API locked behind higher tier.</td>
+            <td><span class="verdict-badge v-pass">Monitor</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#9</td>
+            <td><span class="tool-name">SocialPilot</span></td>
+            <td><div class="score score-7">7.0</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">7.5</td>
+            <td style="color:#f87171; font-weight:700;">−0.5</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Flat pricing like Blotato but no AI depth. Good fallback for agencies needing human scheduling.</td>
+            <td><span class="verdict-badge v-good">Agency Alt</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#10</td>
+            <td><span class="tool-name">Upload-Post</span></td>
+            <td><div class="score score-6">6.8</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">4.5</td>
+            <td style="color:#4ade80; font-weight:700;">+2.3</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">50-tool MCP and headless video upload API are genuinely useful for bulk video pipelines. Rises with Abacus as orchestrator.</td>
+            <td><span class="verdict-badge v-pass">Dev Only</span></td>
+          </tr>
+          <tr>
+            <td style="color:#facc15; font-weight:700">#11</td>
+            <td><span class="tool-name">Sprout Social</span></td>
+            <td><div class="score score-6">6.8</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">8.0</td>
+            <td style="color:#f87171; font-weight:700;">−1.2</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Best social listening but $79/seat is enterprise pricing. Massive overkill for this stack.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#12</td>
+            <td><span class="tool-name">Hootsuite</span></td>
+            <td><div class="score score-6">6.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">8.0</td>
+            <td style="color:#f87171; font-weight:700;">−1.5</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Dynamic UTM governance is its strength — redundant with Abacus. $99/mo unjustified.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#13</td>
+            <td><span class="tool-name">Agorapulse</span></td>
+            <td><div class="score score-6">6.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">6.5</td>
+            <td style="color:#94a3b8; font-weight:700;">—</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">MCP limited to drafting. Per-seat pricing. Good shared inbox but wrong architecture for agents.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#14</td>
+            <td><span class="tool-name">Planable</span></td>
+            <td><div class="score score-6">6.0</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">6.5</td>
+            <td style="color:#f87171; font-weight:700;">−0.5</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Best client approval workflows but MCP draft-only. Designed for humans, not agents.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#15</td>
+            <td><span class="tool-name">Sendible</span></td>
+            <td><div class="score score-6">6.0</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">5.0</td>
+            <td style="color:#4ade80; font-weight:700;">+1.0</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">White-label reports are unique but no MCP at all. Traditional agency tool.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#16</td>
+            <td><span class="tool-name">SocialBee</span></td>
+            <td><div class="score score-5">5.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">4.0</td>
+            <td style="color:#4ade80; font-weight:700;">+1.5</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Evergreen recycling is genuinely unique. But no REST API or MCP — agents cannot reach it.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#17</td>
+            <td><span class="tool-name">Predis.ai</span></td>
+            <td><div class="score score-5">5.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">3.0</td>
+            <td style="color:#4ade80; font-weight:700;">+2.5</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">REST API and strong visual generation. No MCP. Redundant with Blotato AI credits.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#18</td>
+            <td><span class="tool-name">Later</span></td>
+            <td><div class="score score-4">4.5</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">3.5</td>
+            <td style="color:#4ade80; font-weight:700;">+1.0</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Closed platform — no API, no MCP. Beautiful IG grid planning for humans only.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+          <tr>
+            <td style="color:#94a3b8; font-weight:700">#19</td>
+            <td><span class="tool-name">Repurpose.io</span></td>
+            <td><div class="score score-4">4.0</div></td>
+            <td style="color:#64748b; font-size:0.82rem;">1.0</td>
+            <td style="color:#4ade80; font-weight:700;">+3.0</td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Automated video syndication is useful but no API/MCP means agents cannot drive it. Blotato covers multi-platform posting.</td>
+            <td><span class="verdict-badge v-skip">Skip</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FTG RECOMMENDED STACK -->
+  <div class="stack-section">
+    <div class="stack-header">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+        <span style="font-size:1.4rem;">🚀</span>
+        <h2>FTG Recommended Stack — Social Post Engine</h2>
+      </div>
+      <p>Minimum-tool, maximum-output stack for the Fast Track GenAI™ autonomous content engine. Abacus AI is the orchestrator — it connects everything.</p>
+    </div>
+    <div class="stack-table-wrap">
+      <table class="stack-table">
+        <thead>
+          <tr>
+            <th>Priority</th>
+            <th>Tool</th>
+            <th>Role in Stack</th>
+            <th>Monthly Cost</th>
+            <th>Why This Tool</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="priority-core">Core #1</div></td>
+            <td>
+              <div class="tool-name">Blotato</div>
+              <div class="tool-site">blotato.com</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Publishing layer. Abacus publishes here via 36-tool MCP. AI credits generate images/video. n8n/Make sync automation.</td>
+            <td><div class="price">$29/mo</div><div class="price-note">Starter (flat)</div></td>
+            <td style="font-size:0.80rem; color:#4ade80;">Only flat-rate AI-native publisher. Every gap is stack-layer (Abacus fills them). Irreplaceable feature set at this price.</td>
+          </tr>
+          <tr>
+            <td><div class="priority-core">Core #2</div></td>
+            <td>
+              <div class="tool-name">Abacus AI</div>
+              <div class="tool-site">abacusai.app</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Orchestrator. Uses Claude models for copy. Injects UTMs programmatically. Runs daemons. Connects Google Drive + Airtable natively.</td>
+            <td><div class="price">Existing plan</div></td>
+            <td style="font-size:0.80rem; color:#4ade80;">Fills every Blotato gap: UTMs, calendar, analytics read, video pull from GDrive, autonomous scheduled loops.</td>
+          </tr>
+          <tr>
+            <td><div class="priority-core">Core #3</div></td>
+            <td>
+              <div class="tool-name">Airtable</div>
+              <div class="tool-site">airtable.com</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Data hub + learning engine. Every post, UTM param, and metric logged here. Calendar view = content calendar. Historical reference for Claude.</td>
+            <td><div class="price">$0–$20/mo</div><div class="price-note">Free plan works for solo</div></td>
+            <td style="font-size:0.80rem; color:#4ade80;">Native Abacus connector. No API work needed. Becomes the learning engine as data accumulates.</td>
+          </tr>
+          <tr>
+            <td><div class="priority-core">Core #4</div></td>
+            <td>
+              <div class="tool-name">GA4 + Clarity</div>
+              <div class="tool-site">analytics.google.com</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Attribution layer. GA4 tracks UTM-variant sessions and conversions. Clarity captures scroll depth, rage clicks, session replays per variant.</td>
+            <td><div class="price">Free</div></td>
+            <td style="font-size:0.80rem; color:#4ade80;">Closes the loop: which hook drove conversions, not just likes. Makes the content engine optimize for business outcomes.</td>
+          </tr>
+          <tr>
+            <td><div class="priority-strong">Strong Add</div></td>
+            <td>
+              <div class="tool-name">Metricool</div>
+              <div class="tool-site">metricool.com</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Analytics read layer. MCP lets Abacus/Claude query cross-network metrics + ad spend + competitor data alongside GA4 outputs.</td>
+            <td><div class="price">$20/mo Starter</div><div class="price-note">Advanced for API/MCP access</div></td>
+            <td style="font-size:0.80rem; color:#38bdf8;">Best analytics intelligence. Use as a read-only data source for the agent loop — not as a publisher. Add when analytics depth is needed.</td>
+          </tr>
+          <tr>
+            <td><div class="priority-opt">Optional</div></td>
+            <td>
+              <div class="tool-name">Postiz</div>
+              <div class="tool-site">postiz.com</div>
+            </td>
+            <td style="font-size:0.82rem; color:#94a3b8;">Extended publisher for Reddit, Discord, Google Business. Postgres DB for BigQuery joins. Add only if Blotato's 9-platform coverage is insufficient.</td>
+            <td><div class="price">$29/mo or free</div><div class="price-note">(self-hosted)</div></td>
+            <td style="font-size:0.80rem; color:#94a3b8;">Not needed for core channels. Add if Reddit/Discord publishing or direct database joins with GA4 BigQuery are required.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="stack-totals">
+        <div>
+          <div class="label">CORE STACK (4 tools)</div>
+          <div class="value val-green">~$29–$49/mo</div>
+          <div style="font-size:0.72rem; color:#64748b; margin-top:2px;">Blotato + Airtable + GA4 + Clarity</div>
+        </div>
+        <div>
+          <div class="label">FULL STACK (5 tools)</div>
+          <div class="value val-blue">~$69–$99/mo</div>
+          <div style="font-size:0.72rem; color:#64748b; margin-top:2px;">Core + Metricool Advanced</div>
+        </div>
+        <div>
+          <div class="label">TOOLS EVALUATED</div>
+          <div class="value val-gray">19 Platforms</div>
+          <div style="font-size:0.72rem; color:#64748b; margin-top:2px;">All major social post generators</div>
+        </div>
+        <div>
+          <div class="label">OVERALL #1</div>
+          <div class="value" style="color:#a78bfa;">🏆 Blotato</div>
+          <div style="font-size:0.72rem; color:#64748b; margin-top:2px;">9.8 / 10 — Abacus Stack Score</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Fast Track GenAI™ · Social Post Platform Evaluation · September 2026 · Scored on Abacus-Orchestrated Stack lens — original Gemini GA4/Clarity scores shown for reference · All pricing approximate — verify at each platform before purchasing
+</footer>
+
+</body>
+</html>
