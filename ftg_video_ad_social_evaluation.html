@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTG — AI Video Ad & Social Post Evaluation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #09090f;
+    color: #e2e2f0;
+    min-height: 100vh;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0f0f2a 0%, #1a0a2e 50%, #0a1a2e 100%);
+    border-bottom: 1px solid #2a2a4a;
+    padding: 48px 40px 36px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #a78bfa, #38bdf8, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero p { color: #94a3b8; font-size: 1rem; max-width: 720px; line-height: 1.6; }
+  .hero .meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .hero .meta span {
+    background: #1e1e38;
+    border: 1px solid #3a3a5c;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+  }
+  .hero .meta span strong { color: #a78bfa; }
+
+  .main { max-width: 1400px; margin: 0 auto; padding: 40px 24px; }
+
+  .category {
+    margin-bottom: 56px;
+  }
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e1e38;
+  }
+  .cat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .cat-header h2 { font-size: 1.25rem; font-weight: 700; color: #e2e2f0; }
+  .cat-header p { font-size: 0.83rem; color: #64748b; margin-top: 2px; }
+
+  .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid #1e1e38; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 900px;
+  }
+  thead th {
+    background: #0f0f22;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    border-bottom: 1px solid #1e1e38;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid #12121e;
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: #13131f; }
+  tbody tr:last-child { border-bottom: none; }
+  td {
+    padding: 13px 14px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .tool-name { font-weight: 700; color: #e2e2f0; font-size: 0.9rem; }
+  .tool-site { font-size: 0.71rem; color: #4a4a6a; margin-top: 2px; }
+
+  .score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .score-10 { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .score-9  { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .score-8  { background: #0c1a2e; color: #38bdf8; border: 1px solid #0369a1; }
+  .score-7  { background: #1c1a06; color: #facc15; border: 1px solid #92400e; }
+  .score-6  { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+  .score-5  { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+
+  .price { color: #a78bfa; font-weight: 600; font-size: 0.82rem; white-space: nowrap; }
+  .price-note { color: #4a4a6a; font-size: 0.72rem; display: block; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.70rem;
+    font-weight: 600;
+    margin: 2px 2px 2px 0;
+  }
+  .tag-green  { background: #052e16; color: #4ade80; }
+  .tag-blue   { background: #0c1a2e; color: #38bdf8; }
+  .tag-purple { background: #1e1030; color: #c084fc; }
+  .tag-orange { background: #1c0a00; color: #fb923c; }
+  .tag-red    { background: #1a0a0a; color: #f87171; }
+  .tag-gray   { background: #1a1a2e; color: #94a3b8; }
+
+  .features-list { display: flex; flex-wrap: wrap; gap: 3px; }
+
+  .pros { color: #4ade80; font-size: 0.80rem; }
+  .cons { color: #f87171; font-size: 0.80rem; }
+  .pros li, .cons li { margin-left: 14px; margin-bottom: 3px; }
+
+  .best-for { color: #c084fc; font-size: 0.80rem; font-weight: 600; }
+
+  .verdict-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .v-top    { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .v-strong { background: #0c1a2e; color: #38bdf8; border: 1px solid #0369a1; }
+  .v-good   { background: #1c1a06; color: #facc15; border: 1px solid #92400e; }
+  .v-pass   { background: #1a0a0a; color: #f87171; border: 1px solid #991b1b; }
+  .v-agency { background: #1e1030; color: #c084fc; border: 1px solid #7c3aed; }
+
+  .agency-row { background: #0f0818 !important; opacity: 0.75; }
+
+  .note-box {
+    background: #0f0f22;
+    border: 1px solid #1e1e38;
+    border-left: 3px solid #a78bfa;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+  .note-box strong { color: #a78bfa; }
+
+  .ftg-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #1e0a3e;
+    border: 1px solid #7c3aed;
+    color: #c084fc;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  footer {
+    text-align: center;
+    color: #2a2a4a;
+    font-size: 0.75rem;
+    padding: 32px;
+    border-top: 1px solid #12121e;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 1.5rem; }
+    .main { padding: 24px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🎬 AI Video Ad & Social Post — Full Platform Evaluation</h1>
+  <p>All platforms from FTG bookmarks evaluated <strong>strictly</strong> for creating video ads and social media posts. Scored for a coaching/service business (Fast Track GenAI™) targeting new venture founders. Meta/Facebook ad focus.</p>
+  <div class="meta">
+    <span>📅 <strong>September 2026</strong></span>
+    <span>🎯 <strong>Use Case:</strong> Video Ads + Social Posts</span>
+    <span>🏢 <strong>Context:</strong> Coaching / Service (Not E-Commerce)</span>
+    <span>📣 <strong>Platform Focus:</strong> Meta · TikTok · YouTube · Instagram</span>
+    <span>🔢 <strong>Tools Evaluated:</strong> 38</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 1: PURPOSE-BUILT AI VIDEO AD GENERATORS         -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#052e16;">🎯</div>
+      <div>
+        <h2>Category 1 — Purpose-Built AI Video Ad Generators</h2>
+        <p>Tools built specifically to generate video ads — UGC-style, scripted, or performance-optimized</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">Creatify</div>
+              <div class="tool-site">creatify.ai</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+              <div style="margin-top:4px"><span class="ftg-label" style="background:#052e16;border-color:#166534;color:#4ade80;">🏆 #1 Overall</span></div>
+            </td>
+            <td><div class="score score-10">9.8</div></td>
+            <td>
+              <div class="price">$39/mo Starter<br>$99/mo Pro</div>
+              <span class="price-note">Free trial · API available</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">🔄 Full AI Optimization Loop</span>
+                <span class="tag tag-green">Performance Agent</span>
+                <span class="tag tag-green">URL-to-Video Ad</span>
+                <span class="tag tag-blue">Meta/Google/TikTok/Snap</span>
+                <span class="tag tag-blue">24/7 Ad Monitoring</span>
+                <span class="tag tag-blue">Budget Auto-Reallocation</span>
+                <span class="tag tag-purple">Competitor Intelligence</span>
+                <span class="tag tag-purple">Compounding AI Learning</span>
+                <span class="tag tag-orange">AI Script Gen</span>
+                <span class="tag tag-orange">Avatar Library</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li><strong>Only tool with a closed-loop AI Performance Agent</strong> — generates ad → runs it → reads live performance → feeds results back into next creative automatically</li>
+                <li>24/7 monitoring — auto-rotates creative, adjusts budgets, flags wasted spend</li>
+                <li>Competitor intelligence — monitors rival messaging + creative formats across platforms</li>
+                <li>Compounding intelligence — Day 1 reads account history; Day 14 knows your best hooks; Day 30 forecasts ad fatigue and proactively recommends campaigns</li>
+                <li>Connects to Meta, Google, TikTok, Snap Ads, AppLovin, Shopify</li>
+                <li>Most affordable in this tier</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>No custom personal likeness clone (HeyGen wins for that)</li>
+                <li>Performance Agent is newer — compounding intelligence improves over time</li>
+                <li>Template-driven creative feel without customization</li>
+              </ul>
+            </td>
+            <td><span class="best-for">The only tool with a true end-to-end AI ad optimization loop. Generates creative, runs it, monitors performance, and iterates — all autonomously. Anchor tool for FTG's relaunch.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">🏆 #1 Overall</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Arcads</div>
+              <div class="tool-site">arcads.ai</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">9.5</div></td>
+            <td>
+              <div class="price">$99/mo Creator<br>$249/mo Pro<br>$499/mo Agency</div>
+              <span class="price-note">7-day trial available</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">UGC AI Actors</span>
+                <span class="tag tag-green">Script-to-Ad</span>
+                <span class="tag tag-blue">Meta Direct Push</span>
+                <span class="tag tag-blue">A/B Variations</span>
+                <span class="tag tag-purple">400+ Actor Library</span>
+                <span class="tag tag-orange">Batch Generation</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best-in-class UGC actor diversity (400+)</li>
+                <li>Direct Meta/TikTok push</li>
+                <li>Excellent hook + CTA tooling</li>
+                <li>Proven at scale for performance ads</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>No real likeness cloning</li>
+                <li>Higher price point than Creatify</li>
+                <li>Actors can look AI at close range</li>
+                <li><strong style="color:#f87171">No AI ad monitoring / improvement loop</strong> — no built-in performance feedback to auto-iterate creative</li>
+              </ul>
+            </td>
+            <td><span class="best-for">High-volume UGC-style ads with the largest actor library. Best complement to Creatify's Performance Agent for raw creative volume.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Mako</div>
+              <div class="tool-site">trymako.ai</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">9.0</div></td>
+            <td>
+              <div class="price">$39.99/mo Intro<br>Higher tiers TBD</div>
+              <span class="price-note">2-week intro plan available</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Creative OS</span>
+                <span class="tag tag-green">Buyer Signal Mining</span>
+                <span class="tag tag-blue">UGC + B-Roll Gen</span>
+                <span class="tag tag-blue">Meta/TikTok Scheduling</span>
+                <span class="tag tag-purple">Mako Swipe (clone wins)</span>
+                <span class="tag tag-orange">130+ creatives/mo</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Mines 10K+ buyer signals (Reddit, TikTok, Amazon)</li>
+                <li>Auto-scripts hooks from data</li>
+                <li>Publishes + schedules to Meta/TikTok</li>
+                <li>Clones winning ad templates</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Newer platform — less proven at scale</li>
+                <li>Full pricing not fully transparent</li>
+                <li>Best for performance marketers</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Data-driven ad creative at volume. Best for scaling winning concepts fast across Meta + TikTok.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">AdCreative.ai</div>
+              <div class="tool-site">adcreative.ai</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">$39/mo Starter<br>$99/mo Pro<br>$149/mo Premium</div>
+              <span class="price-note">Free trial available</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Ad Creative Gen</span>
+                <span class="tag tag-blue">A/B Score Prediction</span>
+                <span class="tag tag-blue">Platform Integration</span>
+                <span class="tag tag-purple">Text Variations</span>
+                <span class="tag tag-gray">Video Ads (growing)</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Strong A/B creative scoring</li>
+                <li>Platform integration (Meta, Google)</li>
+                <li>Fast static ad generation</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Primarily static ads — video is secondary</li>
+                <li>Less compelling for coaching content</li>
+                <li>Template-heavy aesthetic</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Static ad creatives + performance scoring. Video ads are a secondary feature.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Zeely</div>
+              <div class="tool-site">zeely.ai</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">From ~$49/mo</div>
+              <span class="price-note">Verify at site</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Social Ad Creator</span>
+                <span class="tag tag-blue">Template Library</span>
+                <span class="tag tag-blue">AI Copy Gen</span>
+                <span class="tag tag-gray">Video Templates</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Quick social ad creation</li>
+                <li>Beginner-friendly</li>
+                <li>AI copy generation included</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Template-driven, less creative control</li>
+                <li>Video quality limited</li>
+                <li>Less suited for coaching brand</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Quick social content for beginners. Not a strong fit for premium coaching brand.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Breakout Clips</div>
+              <div class="tool-site">breakoutclips.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">$39/mo Basic<br>$99/mo Pro<br>$199/mo Agency</div>
+              <span class="price-note">Confirmed pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Short-Form Clip Gen</span>
+                <span class="tag tag-blue">AI Editing</span>
+                <span class="tag tag-blue">Auto-Captions</span>
+                <span class="tag tag-gray">Repurposing Focus</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Good for clipping long-form to short ads</li>
+                <li>Reasonable price tiers</li>
+                <li>Auto captions included</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Repurposing tool — not ad creation</li>
+                <li>Less AI generation vs editing</li>
+                <li>Requires source video</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Repurposing existing long-form coaching content into short-form social clips.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr class="agency-row">
+            <td>
+              <div class="tool-name">HookPoint</div>
+              <div class="tool-site">hookpoint.com</div>
+            </td>
+            <td><div class="score score-6">N/A</div></td>
+            <td>
+              <div class="price">Custom / Agency</div>
+              <span class="price-note">Not a SaaS product</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-gray">Agency Service</span>
+                <span class="tag tag-gray">Content Strategy</span>
+                <span class="tag tag-gray">Creative Consulting</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Data-driven creative strategy</li>
+                <li>60B+ view database for hook research</li>
+                <li>Done-for-you execution</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>NOT self-serve software</li>
+                <li>Agency pricing (premium)</li>
+                <li>No product to license</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Agency/consulting service — not a self-serve tool. Evaluate separately as a service partner.</span> <div style="margin-top:6px"><span class="verdict-badge v-agency">Agency Service</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 2: AVATAR-BASED VIDEO FOR ADS                   -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#0c1a2e;">🧑‍💼</div>
+      <div>
+        <h2>Category 2 — Avatar-Based Video for Ads & Social</h2>
+        <p>Talking-head avatar tools. Evaluated for ad suitability — coaching, testimonial, and presenter style content</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">HeyGen</div>
+              <div class="tool-site">heygen.com</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">8.5</div></td>
+            <td>
+              <div class="price">$29/mo Essential<br>$89/mo Pro<br>$179/mo Team</div>
+              <span class="price-note">Free trial (3 videos)</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Custom Avatar Clone</span>
+                <span class="tag tag-green">AI Script</span>
+                <span class="tag tag-blue">100+ Templates</span>
+                <span class="tag tag-blue">Video Translation</span>
+                <span class="tag tag-purple">Instant Avatar</span>
+                <span class="tag tag-orange">Brand Kit</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best avatar quality for coaching ads</li>
+                <li>Custom likeness clone option</li>
+                <li>Video translation (scale content)</li>
+                <li>Premium look for brand ads</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>No direct Meta ad push</li>
+                <li>Per-video credit system</li>
+                <li>Avatar cloning is Pro tier+</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Premium talking-head ads + social content. Best avatar quality for personal brand.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Creatify</div>
+              <div class="tool-site">creatify.ai</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-8">8.0</div></td>
+            <td>
+              <div class="price">$39/mo Starter<br>$99/mo Pro</div>
+              <span class="price-note">Free trial · API available</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Avatar Library</span>
+                <span class="tag tag-green">URL-to-Ad Avatar</span>
+                <span class="tag tag-blue">Direct Socials API</span>
+                <span class="tag tag-blue">Batch Avatar Ads</span>
+                <span class="tag tag-purple">Auto-Script + Captions</span>
+                <span class="tag tag-orange">A/B Ad Variations</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Fastest URL → avatar ad pipeline</li>
+                <li>Direct social publishing via API</li>
+                <li>Good avatar variety for UGC-style</li>
+                <li>Batch creation for hook testing</li>
+                <li>More affordable than HeyGen at scale</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>No custom likeness clone (unlike HeyGen)</li>
+                <li>Avatar quality slightly below HeyGen</li>
+                <li>Template-driven — less creative control</li>
+              </ul>
+            </td>
+            <td><span class="best-for">High-volume avatar-based ads via API. Best when you need quantity + direct social push over premium likeness quality.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Higgsfield</div>
+              <div class="tool-site">higgsfield.ai</div>
+            </td>
+            <td><div class="score score-8">8.0</div></td>
+            <td>
+              <div class="price">~$12/mo Basic<br>~$30/mo Pro</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Cinematic Video Gen</span>
+                <span class="tag tag-blue">Character Consistency</span>
+                <span class="tag tag-blue">Camera Motion Control</span>
+                <span class="tag tag-purple">Scene-to-Scene Continuity</span>
+                <span class="tag tag-gray">No Likeness Cloning</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Cinematic quality for brand ads</li>
+                <li>Consistent character across scenes</li>
+                <li>Premium visual storytelling</li>
+                <li>Creative camera moves</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Does NOT clone your likeness</li>
+                <li>More creative/brand — less direct-response</li>
+                <li>Limited text/dialogue overlay</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Cinematic brand video ads. Story-driven social content — NOT a talking-head ad tool.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">D-ID</div>
+              <div class="tool-site">d-id.com</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">$5.90/mo Lite<br>$13.90/mo Pro<br>$49.90/mo Advanced</div>
+              <span class="price-note">Most affordable avatar option</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Photo-to-Video Avatar</span>
+                <span class="tag tag-blue">AI Script Input</span>
+                <span class="tag tag-blue">Multiple Languages</span>
+                <span class="tag tag-purple">API Access</span>
+                <span class="tag tag-orange">Presenter Templates</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Extremely affordable entry</li>
+                <li>Photo → talking video quickly</li>
+                <li>API for automation</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Avatar quality lower than HeyGen</li>
+                <li>Limited customization</li>
+                <li>Can look synthetic at scale</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Budget-friendly talking head content. Good for high-volume, lower-stakes social posts.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Synthesia</div>
+              <div class="tool-site">synthesia.io</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">$22/mo Personal<br>$67/mo Enterprise</div>
+              <span class="price-note">Per-video limits apply</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">160+ AI Avatars</span>
+                <span class="tag tag-blue">Custom Avatar (Personal)</span>
+                <span class="tag tag-blue">Multi-Language</span>
+                <span class="tag tag-gray">Corporate Templates</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Large avatar library</li>
+                <li>Solid video quality</li>
+                <li>Multi-language for scaling</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Corporate/training design aesthetic</li>
+                <li>Not optimized for ad creative</li>
+                <li>Fewer ad-specific templates</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Educational-style social content. Less suitable as a direct-response ad tool.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Rephrase.ai</div>
+              <div class="tool-site">rephrase.ai</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">From ~$25/mo</div>
+              <span class="price-note">Verify at site — pricing varies</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Personalized Video</span>
+                <span class="tag tag-blue">Text-to-Avatar</span>
+                <span class="tag tag-gray">Ad-Oriented</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Ad-oriented video creation</li>
+                <li>Personalization at scale</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Less polished than HeyGen</li>
+                <li>Smaller avatar/template library</li>
+                <li>Less known / fewer integrations</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Personalized video outreach ads. Lower priority vs. HeyGen or Arcads.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Colossyan</div>
+              <div class="tool-site">colossyan.com</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">From ~$28/mo Starter</div>
+              <span class="price-note">Corporate focus</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">AI Avatars</span>
+                <span class="tag tag-blue">Multi-Language</span>
+                <span class="tag tag-gray">L&amp;D / Training Focus</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Solid avatar quality</li>
+                <li>Multi-language</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Heavy corporate/L&amp;D feel</li>
+                <li>Not ad-creative optimized</li>
+                <li>Redundant vs HeyGen</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Corporate training content only. Skip for ad/social use — HeyGen outperforms it.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">DeepBrain</div>
+              <div class="tool-site">deepbrain.io</div>
+            </td>
+            <td><div class="score score-6">6.0</div></td>
+            <td>
+              <div class="price">From ~$30/mo</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">AI Avatars</span>
+                <span class="tag tag-gray">Script-to-Video</span>
+                <span class="tag tag-gray">News/Broadcast Style</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Realistic newsreader-style avatars</li>
+                <li>Good for formal scripted content</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Broadcast/news aesthetic — not ad-native</li>
+                <li>Limited ad templates</li>
+                <li>Less creative flexibility</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Formal news-style content. Not a strong fit for coaching ads or social posts.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">HourOne</div>
+              <div class="tool-site">hourone.ai</div>
+            </td>
+            <td><div class="score score-6">6.0</div></td>
+            <td>
+              <div class="price">From ~$25/mo</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Presenter Avatars</span>
+                <span class="tag tag-gray">Corporate Templates</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Clean presenter style</li>
+                <li>Quick to produce</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Corporate/enterprise focus</li>
+                <li>Limited social/ad templates</li>
+                <li>Redundant vs HeyGen</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Enterprise-focused. Skip for ad/social use.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 3: VIDEO EDITING & REPURPOSING                  -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#1c1a06;">✂️</div>
+      <div>
+        <h2>Category 3 — Video Editing, Assembly & Repurposing</h2>
+        <p>Editing tools, auto-clip generators, and text-to-video platforms for social content creation</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">InVideo AI</div>
+              <div class="tool-site">invideo.io</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">9.0</div></td>
+            <td>
+              <div class="price">Free (watermark)<br>$30/mo Plus<br>$60/mo Max</div>
+              <span class="price-note">Good value for social video</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Text-to-Video</span>
+                <span class="tag tag-green">AI Script Gen</span>
+                <span class="tag tag-blue">Stock Library (16M+)</span>
+                <span class="tag tag-blue">Auto-Captions</span>
+                <span class="tag tag-purple">Social Format Export</span>
+                <span class="tag tag-orange">Voice-Over AI</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best text-to-video for social</li>
+                <li>Fast content from prompts</li>
+                <li>Massive stock library</li>
+                <li>Good for multi-format export</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Generic stock feel without customization</li>
+                <li>No UGC-style actors</li>
+                <li>Less ad-conversion focus</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Fast social video content from prompts. Organic social posts and awareness campaigns.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">CapCut</div>
+              <div class="tool-site">capcut.com</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">9.0</div></td>
+            <td>
+              <div class="price">Free<br>$9.99/mo Pro</div>
+              <span class="price-note">Best free-to-pro ratio</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Templates (TikTok-native)</span>
+                <span class="tag tag-green">Auto-Captions</span>
+                <span class="tag tag-blue">Trending Sounds</span>
+                <span class="tag tag-blue">AI Script Gen</span>
+                <span class="tag tag-purple">Background Removal</span>
+                <span class="tag tag-orange">Reframe for Formats</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Dominant TikTok/Reels editing tool</li>
+                <li>Trending templates built-in</li>
+                <li>AI captions + script included free</li>
+                <li>Near-zero learning curve</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>ByteDance (TikTok parent) — data concerns</li>
+                <li>Less suited for long-form</li>
+                <li>Template aesthetic can look generic</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Reels, TikTok, Shorts editing. Fastest way to make scroll-stopping short-form social content.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Opus Clip</div>
+              <div class="tool-site">opus.pro</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-8">8.5</div></td>
+            <td>
+              <div class="price">Free (40 min/mo)<br>$13/mo Starter<br>$39/mo Pro</div>
+              <span class="price-note">Best repurposing ROI</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Long-to-Short AI Clip</span>
+                <span class="tag tag-green">Virality Score</span>
+                <span class="tag tag-blue">Auto-Captions</span>
+                <span class="tag tag-blue">Multi-Platform Export</span>
+                <span class="tag tag-purple">AI Hook Detection</span>
+                <span class="tag tag-orange">Speaker Reframe</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best-in-class clip extraction</li>
+                <li>Virality scoring is accurate</li>
+                <li>Auto-reframe + speaker tracking</li>
+                <li>Great for coaching content repurposing</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Requires source video (not creation)</li>
+                <li>Free plan limits clip length</li>
+                <li>Less control over creative output</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Repurpose coaching webinars/podcasts into short-form social clips and ad hooks.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Descript</div>
+              <div class="tool-site">descript.com</div>
+            </td>
+            <td><div class="score score-8">8.0</div></td>
+            <td>
+              <div class="price">Free (watermark)<br>$12/mo Hobbyist<br>$24/mo Creator</div>
+              <span class="price-note">Best for polished editing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Edit Video Like Doc</span>
+                <span class="tag tag-green">AI Voice Clone</span>
+                <span class="tag tag-blue">Remove Filler Words</span>
+                <span class="tag tag-blue">Screen Record</span>
+                <span class="tag tag-purple">Overdub (voice fix)</span>
+                <span class="tag tag-orange">Auto-Captions</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Easiest professional video editing</li>
+                <li>Voice clone for error correction</li>
+                <li>Remove silences/filler auto</li>
+                <li>Great for polished coaching content</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Editing-only — no ad generation</li>
+                <li>Requires source footage</li>
+                <li>Overdub voice slightly robotic</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Polishing recorded coaching content for ads/social. Fastest way to clean up talking-head footage.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">VEED</div>
+              <div class="tool-site">veed.io</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">Free<br>$18/mo Basic<br>$30/mo Pro</div>
+              <span class="price-note">Subtitle-first tool</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Auto-Subtitles</span>
+                <span class="tag tag-blue">Online Video Editor</span>
+                <span class="tag tag-blue">Teleprompter</span>
+                <span class="tag tag-purple">AI Script</span>
+                <span class="tag tag-gray">AI Avatar (new)</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best auto-subtitle quality</li>
+                <li>Teleprompter for recording</li>
+                <li>Easy online editing</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Less advanced than Descript</li>
+                <li>Limited AI generation features</li>
+                <li>Export limits on free</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Adding captions to videos for social. Simple ad editing with auto-subtitles.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Spikes Studio</div>
+              <div class="tool-site">spikes.studio</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">Free (5 clips/mo)<br>From ~$19/mo Pro</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Clip Selection</span>
+                <span class="tag tag-blue">Gaming/Twitch Origin</span>
+                <span class="tag tag-blue">Auto-Captions</span>
+                <span class="tag tag-gray">Virality Scoring</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Good AI clip selection</li>
+                <li>Auto-caption quality</li>
+                <li>Free tier useful</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Gaming-origin — less optimized for coaching</li>
+                <li>Opus Clip outperforms it for business use</li>
+                <li>Limited format customization</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Clip extraction from long recordings. Opus Clip is a better choice for FTG's use case.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Pictory</div>
+              <div class="tool-site">pictory.ai</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">$19/mo Starter<br>$39/mo Pro<br>$99/mo Teams</div>
+              <span class="price-note">Blog-to-video focus</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Blog/Text → Video</span>
+                <span class="tag tag-blue">Script-to-Video</span>
+                <span class="tag tag-blue">Stock Footage</span>
+                <span class="tag tag-gray">Auto-Summary Clips</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Good for turning articles into social video</li>
+                <li>Large stock library</li>
+                <li>Auto-highlights long video</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Stock footage can feel generic</li>
+                <li>Less ad-conversion focused</li>
+                <li>InVideo AI is a stronger alternative</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Converting FTG articles/blogs into social video content. Secondary to InVideo AI.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">ToastyAI / Outcast</div>
+              <div class="tool-site">toastyai.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">Free trial (60 min)<br>Paid plans TBD</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Podcast → Social Clips</span>
+                <span class="tag tag-blue">Long-Form Repurposing</span>
+                <span class="tag tag-blue">AI Clip Creator</span>
+                <span class="tag tag-gray">Show Notes + Transcription</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Good for podcast repurposing</li>
+                <li>Team collaboration</li>
+                <li>AI prompt packs for social posts</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Podcast-focused — niche use case</li>
+                <li>Opus Clip outperforms for video</li>
+                <li>Pricing not fully transparent</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Podcast-to-social repurposing if FTG runs audio content. Secondary to Opus Clip.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Viddyoze</div>
+              <div class="tool-site">viddyoze.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">From $37/mo<br>One-time plans avail.</div>
+              <span class="price-note">Animation-focused</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Animated Intros/Outros</span>
+                <span class="tag tag-blue">Logo Animations</span>
+                <span class="tag tag-blue">Social Templates</span>
+                <span class="tag tag-gray">Video Overlays</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Great branded intros/outros</li>
+                <li>Logo animation quality</li>
+                <li>Add polish to existing video ads</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Not a standalone video creator</li>
+                <li>Enhancement tool only</li>
+                <li>Limited AI generation</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Adding branded intros, logos, and animated stings to video ads. Supporting role.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Filmora</div>
+              <div class="tool-site">filmora.wondershare.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">$49.99/yr<br>~$7.99/mo billed monthly</div>
+              <span class="price-note">Desktop software</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Full Desktop Editor</span>
+                <span class="tag tag-blue">AI Features (growing)</span>
+                <span class="tag tag-blue">Effects Library</span>
+                <span class="tag tag-gray">Multi-Track Editing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Full-featured desktop editor</li>
+                <li>Affordable for features</li>
+                <li>Good effects/template library</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Manual editing — slower workflow</li>
+                <li>Less AI-native than cloud tools</li>
+                <li>Steeper learning curve</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Traditional desktop editing for polished video ads. Good backup editor alongside AI tools.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Kapwing</div>
+              <div class="tool-site">kapwing.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">Free (watermark)<br>$16/mo Pro</div>
+              <span class="price-note">Team-friendly tool</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Collaborative Online Editor</span>
+                <span class="tag tag-blue">Meme/GIF Creation</span>
+                <span class="tag tag-blue">Auto-Subtitles</span>
+                <span class="tag tag-gray">Template Library</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Team collaboration</li>
+                <li>Good meme/GIF tools for social</li>
+                <li>Affordable</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Less AI-native than competitors</li>
+                <li>More of a Swiss army knife</li>
+                <li>VEED and Descript outperform for ads</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Team social content creation and quick edits. Not primary ad creation tool.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">VideoGen</div>
+              <div class="tool-site">videogen.io</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">From ~$29/mo</div>
+              <span class="price-note">Verify current pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Text-to-Video</span>
+                <span class="tag tag-gray">Stock Footage</span>
+                <span class="tag tag-gray">AI Script</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Quick text-to-video generation</li>
+                <li>Straightforward workflow</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Basic output quality</li>
+                <li>InVideo AI and Pictory outperform</li>
+                <li>Limited template selection</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Basic social video — outperformed by InVideo AI for the same use case.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">CreateStudio</div>
+              <div class="tool-site">createstudio.com</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">One-time ~$197<br>(lifetime access)</div>
+              <span class="price-note">Desktop software</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Animated Explainer Videos</span>
+                <span class="tag tag-blue">Character Animations</span>
+                <span class="tag tag-gray">Template Library</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>One-time cost — no subscription</li>
+                <li>Good animated explainer videos</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Dated animation style</li>
+                <li>Limited AI features</li>
+                <li>Desktop-only workflow</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Animated explainer content. Limited ad-creation value — more of a legacy tool.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 4: AI CREATIVE VIDEO GENERATION                 -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#1e1030;">🎨</div>
+      <div>
+        <h2>Category 4 — AI Creative Video Generation</h2>
+        <p>Generative AI tools for creating high-quality brand and cinematic video content from prompts</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">Runway</div>
+              <div class="tool-site">runwayml.com</div>
+            </td>
+            <td><div class="score score-8">8.5</div></td>
+            <td>
+              <div class="price">$15/mo Standard<br>$35/mo Pro<br>$95/mo Unlimited</div>
+              <span class="price-note">Credits-based generation</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Gen-3 Video Generation</span>
+                <span class="tag tag-green">Image-to-Video</span>
+                <span class="tag tag-blue">Motion Brush</span>
+                <span class="tag tag-blue">Inpainting</span>
+                <span class="tag tag-purple">Text-to-Video</span>
+                <span class="tag tag-orange">Act One (expressions)</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Industry-leading generation quality</li>
+                <li>Advanced creative control</li>
+                <li>Great for premium brand ad visuals</li>
+                <li>Constant model improvements</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Credit consumption can be expensive</li>
+                <li>Not an ad platform — creative layer only</li>
+                <li>Requires copywriting + editing elsewhere</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Visually stunning brand-awareness video ads. Best AI-generated B-roll for social content.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Sora (OpenAI)</div>
+              <div class="tool-site">sora.com</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">ChatGPT Plus $20/mo<br>ChatGPT Pro $200/mo</div>
+              <span class="price-note">Included in ChatGPT plans</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Text-to-Video (up to 20s)</span>
+                <span class="tag tag-blue">Storyboard Mode</span>
+                <span class="tag tag-blue">HD Output</span>
+                <span class="tag tag-purple">Prompt-to-Scene</span>
+                <span class="tag tag-gray">No direct ad publish</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Exceptional realism for prompts</li>
+                <li>Good value if already on ChatGPT</li>
+                <li>Strong for concept/story ads</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Limited fine control vs Runway</li>
+                <li>Credit/generation limits on Plus</li>
+                <li>No ad workflow integration</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Creative story-driven brand videos. Good if already paying for ChatGPT Pro — otherwise Runway wins.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 5: SOCIAL POST & STATIC AD CREATION             -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#0c1a2e;">🖼️</div>
+      <div>
+        <h2>Category 5 — Social Post & Static Ad Creation</h2>
+        <p>Image generation, carousel builders, graphic design, and static ad creators for social platforms</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">Canva</div>
+              <div class="tool-site">canva.com</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-10">9.5</div></td>
+            <td>
+              <div class="price">Free (generous)<br>$14.99/mo Pro<br>$29.99/mo Teams</div>
+              <span class="price-note">Best value in category</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Social Post Templates</span>
+                <span class="tag tag-green">AI Image Gen</span>
+                <span class="tag tag-blue">Brand Kit</span>
+                <span class="tag tag-blue">Video Templates</span>
+                <span class="tag tag-purple">Magic Resize</span>
+                <span class="tag tag-orange">Direct Social Publish</span>
+                <span class="tag tag-green">Presentation Mode</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Everything in one tool</li>
+                <li>Thousands of social post templates</li>
+                <li>Direct publish to all platforms</li>
+                <li>Brand kit for consistency</li>
+                <li>Video, carousel, story — all formats</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>AI image gen lags Midjourney quality</li>
+                <li>Pro templates can look generic</li>
+                <li>Not ad-conversion optimized</li>
+              </ul>
+            </td>
+            <td><span class="best-for">All-format social post creation — static ads, carousels, stories, video reels. FTG's social content hub.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">AICarousels</div>
+              <div class="tool-site">aicarousels.com</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-9">9.0</div></td>
+            <td>
+              <div class="price">Free tier<br>From ~$19/mo Pro</div>
+              <span class="price-note">Best carousel tool in class</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Carousel Generator</span>
+                <span class="tag tag-green">LinkedIn Optimized</span>
+                <span class="tag tag-blue">Instagram Carousel</span>
+                <span class="tag tag-blue">URL/Text to Slides</span>
+                <span class="tag tag-purple">Brand Customization</span>
+                <span class="tag tag-orange">Auto-Layout</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best-in-class carousel creation</li>
+                <li>LinkedIn + Instagram optimized</li>
+                <li>Extremely fast workflow</li>
+                <li>Strong for thought leadership content</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Carousel-only (not multi-format)</li>
+                <li>Limited to static post format</li>
+                <li>Template aesthetic if not customized</li>
+              </ul>
+            </td>
+            <td><span class="best-for">LinkedIn/Instagram carousels for FTG thought leadership and course promotion. Fast + high engagement format.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Midjourney</div>
+              <div class="tool-site">midjourney.com</div>
+            </td>
+            <td><div class="score score-8">8.5</div></td>
+            <td>
+              <div class="price">$10/mo Basic<br>$30/mo Standard<br>$60/mo Pro</div>
+              <span class="price-note">Discord-based interface</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Best-in-Class Image Gen</span>
+                <span class="tag tag-blue">Consistent Character</span>
+                <span class="tag tag-blue">Style Reference</span>
+                <span class="tag tag-purple">Commercial License</span>
+                <span class="tag tag-orange">4x Upscale</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Highest image quality available</li>
+                <li>Consistent brand character generation</li>
+                <li>Commercial use on paid plans</li>
+                <li>Best for premium social graphics</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Discord-only (no direct social publish)</li>
+                <li>Requires prompt skill</li>
+                <li>No text overlay/design built-in</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Premium social post imagery and ad graphics. Use with Canva for text overlay and publishing.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Adobe Firefly</div>
+              <div class="tool-site">firefly.adobe.com</div>
+            </td>
+            <td><div class="score score-8">8.0</div></td>
+            <td>
+              <div class="price">$9.99/mo standalone<br>Included in CC plans</div>
+              <span class="price-note">Commercially safe images</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Generative Fill</span>
+                <span class="tag tag-green">Text Effects</span>
+                <span class="tag tag-blue">Generative Expand</span>
+                <span class="tag tag-blue">CC Integration</span>
+                <span class="tag tag-purple">Structure/Style Reference</span>
+                <span class="tag tag-orange">Commercially Safe</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Commercially safe training data</li>
+                <li>Seamless Photoshop/Illustrator integration</li>
+                <li>Generative fill for ad backgrounds</li>
+                <li>Strong text effects for ad graphics</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Image quality below Midjourney</li>
+                <li>Best value only if on Creative Cloud</li>
+                <li>Less creative variety</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Safe commercial ad imagery + photo editing. Essential if team uses Adobe CC already.</span> <div style="margin-top:6px"><span class="verdict-badge v-strong">Strong</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">OpenArt</div>
+              <div class="tool-site">openart.ai</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">Free (50 credits)<br>From ~$15/mo Pro</div>
+              <span class="price-note">Multi-model platform</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Multi-Model Image Gen</span>
+                <span class="tag tag-blue">AI Workflows</span>
+                <span class="tag tag-blue">Consistent Character</span>
+                <span class="tag tag-gray">Batch Generation</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Access to multiple image models</li>
+                <li>Good consistent character tool</li>
+                <li>Affordable</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Less polished than Midjourney</li>
+                <li>Workflow complex for non-technical users</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Social post imagery at lower cost. Secondary to Midjourney for quality.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">ImagineArt</div>
+              <div class="tool-site">imagine.art</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">Free tier<br>From ~$9/mo Premium</div>
+              <span class="price-note">Budget image gen</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Text-to-Image</span>
+                <span class="tag tag-blue">Style Presets</span>
+                <span class="tag tag-gray">Basic Editing</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Very affordable</li>
+                <li>Style presets for quick results</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Quality significantly below Midjourney</li>
+                <li>Limited commercial customization</li>
+                <li>Redundant given free Canva AI gen</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Budget image generation. Not necessary if using Canva Pro or Midjourney.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Memes.com</div>
+              <div class="tool-site">memes.com</div>
+            </td>
+            <td><div class="score score-6">6.0</div></td>
+            <td>
+              <div class="price">Free</div>
+              <span class="price-note">Freemium meme tool</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Meme Templates</span>
+                <span class="tag tag-blue">GIF Creator</span>
+                <span class="tag tag-gray">Trend Library</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Free to use</li>
+                <li>Large meme template library</li>
+                <li>Good for engagement/humor posts</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Single-purpose tool</li>
+                <li>Low brand authority feel</li>
+                <li>Canva does this better with brand control</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Occasional meme posts for social engagement. Not a core tool — Canva can cover this.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Low Priority</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- CAT 6: VOICE & AUDIO FOR ADS                        -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#1c0a00;">🎙️</div>
+      <div>
+        <h2>Category 6 — Voice & Audio for Video Ads</h2>
+        <p>AI voice narration, voice cloning, and audio tools for adding professional audio to ad content</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Supporting role:</strong> These tools provide the audio layer for video ads — not standalone ad creators. ElevenLabs is the clear standout and pairs with every video tool above.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px">Tool</th>
+            <th style="width:50px">Score</th>
+            <th style="width:140px">Pricing</th>
+            <th style="width:220px">Key Features</th>
+            <th style="width:190px">Pros</th>
+            <th style="width:170px">Cons</th>
+            <th>Best For (Ad Use)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              <div class="tool-name">ElevenLabs</div>
+              <div class="tool-site">elevenlabs.io</div>
+              <div style="margin-top:5px"><span class="ftg-label">⭐ FTG Pick</span></div>
+            </td>
+            <td><div class="score score-10">9.5</div></td>
+            <td>
+              <div class="price">Free (10K chars/mo)<br>$5/mo Starter<br>$22/mo Creator<br>$99/mo Pro</div>
+              <span class="price-note">Best AI voice quality bar none</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Voice Cloning</span>
+                <span class="tag tag-green">1000+ Voices</span>
+                <span class="tag tag-blue">Emotional Control</span>
+                <span class="tag tag-blue">API Access</span>
+                <span class="tag tag-purple">Instant Clone (3 min audio)</span>
+                <span class="tag tag-orange">29 Languages</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Best AI voice quality available</li>
+                <li>Clone your voice for consistent ads</li>
+                <li>Emotional tone + pacing control</li>
+                <li>Pairs with every video tool above</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Per-character billing on high volume</li>
+                <li>Voice clone requires quality sample</li>
+                <li>Voice-only — no video output</li>
+              </ul>
+            </td>
+            <td><span class="best-for">AI voiceover for all video ads. Clone FTG founder voice for brand consistency at scale.</span> <div style="margin-top:6px"><span class="verdict-badge v-top">Top Tier</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Resemble AI</div>
+              <div class="tool-site">resemble.ai</div>
+            </td>
+            <td><div class="score score-7">7.5</div></td>
+            <td>
+              <div class="price">$0.006/sec PAYG<br>From ~$29/mo Basic</div>
+              <span class="price-note">Usage-based billing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">Voice Cloning</span>
+                <span class="tag tag-blue">Real-Time Voice API</span>
+                <span class="tag tag-blue">Emotion Injection</span>
+                <span class="tag tag-gray">Localization</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Good voice cloning quality</li>
+                <li>Real-time API useful for automation</li>
+                <li>Pay-as-you-go pricing</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>ElevenLabs outperforms on voice quality</li>
+                <li>Less intuitive interface</li>
+                <li>More developer-focused</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Voice cloning via API for automated ad pipeline. Secondary to ElevenLabs for standard use.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">WellSaid Labs</div>
+              <div class="tool-site">wellsaidlabs.com</div>
+            </td>
+            <td><div class="score score-7">7.0</div></td>
+            <td>
+              <div class="price">From ~$49/mo Maker</div>
+              <span class="price-note">Enterprise pricing</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-blue">Professional Voices</span>
+                <span class="tag tag-blue">Team Collaboration</span>
+                <span class="tag tag-gray">Brand Voice</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Professional-grade voice quality</li>
+                <li>Team collaboration built-in</li>
+                <li>Consistent brand voice</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>More expensive than ElevenLabs</li>
+                <li>Corporate/studio focus</li>
+                <li>Less emotional range</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Studio-quality narration for premium brand ads. Pricier than ElevenLabs — only if needing team voice assets.</span> <div style="margin-top:6px"><span class="verdict-badge v-good">Decent</span></div></td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="tool-name">Stable Audio</div>
+              <div class="tool-site">stability.ai</div>
+            </td>
+            <td><div class="score score-6">6.5</div></td>
+            <td>
+              <div class="price">Free tier<br>From ~$20/mo Membership</div>
+              <span class="price-note">Music generation focus</span>
+            </td>
+            <td>
+              <div class="features-list">
+                <span class="tag tag-green">AI Music Generation</span>
+                <span class="tag tag-blue">Sound Effects</span>
+                <span class="tag tag-gray">Royalty-Free Output</span>
+              </div>
+            </td>
+            <td>
+              <ul class="pros">
+                <li>Generate custom background music</li>
+                <li>Royalty-free for commercial use</li>
+                <li>Sound effects for ad production</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="cons">
+                <li>Music-only — no voice generation</li>
+                <li>Less control than Suno/Udio</li>
+                <li>Supporting role in ad production</li>
+              </ul>
+            </td>
+            <td><span class="best-for">Custom background music for video ads. Eliminates stock music licensing concerns.</span> <div style="margin-top:6px"><span class="verdict-badge v-pass">Supporting Role</span></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- FTG RECOMMENDED STACK SUMMARY                       -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="category">
+    <div class="cat-header">
+      <div class="cat-icon" style="background:#1e0a3e;">🚀</div>
+      <div>
+        <h2>FTG Recommended Stack — Video Ad & Social Post</h2>
+        <p>Minimum-tool maximum-output stack for Fast Track GenAI™ relaunch campaign</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:80px">Priority</th>
+            <th style="width:150px">Tool</th>
+            <th style="width:120px">Monthly Cost</th>
+            <th style="width:160px">Role in Stack</th>
+            <th>What It Does for FTG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="verdict-badge v-top">Core #1</span></td>
+            <td><div class="tool-name">Creatify 🏆</div></td>
+            <td><div class="price">$39–$99/mo</div></td>
+            <td><span class="tag tag-green">AI Performance Agent</span></td>
+            <td>Closed-loop AI Performance Agent: generates ads, runs them, monitors 24/7 across Meta/Google/TikTok/Snap, auto-reallocates budget, feeds performance data back into next creative. Competitor intelligence + compounding learning. Anchor tool for FTG relaunch.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-top">Core</span></td>
+            <td><div class="tool-name">Arcads</div></td>
+            <td><div class="price">$99–$249/mo</div></td>
+            <td><span class="tag tag-green">UGC Ad Volume</span></td>
+            <td>400+ UGC AI actors for high-volume ad creative. Best for generating diverse hooks to feed into Creatify's performance loop. Direct Meta/TikTok push.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-top">Core</span></td>
+            <td><div class="tool-name">HeyGen</div></td>
+            <td><div class="price">$29–$89/mo</div></td>
+            <td><span class="tag tag-green">Avatar Video</span></td>
+            <td>FTG founder avatar for premium coaching ads, testimonials, and course promotion content.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-top">Core</span></td>
+            <td><div class="tool-name">Canva Pro</div></td>
+            <td><div class="price">$14.99/mo</div></td>
+            <td><span class="tag tag-green">Social Post Hub</span></td>
+            <td>All social post formats — static ads, story graphics, carousels, video reels. Brand kit for consistency.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-strong">Strong Add</span></td>
+            <td><div class="tool-name">Mako</div></td>
+            <td><div class="price">$39.99/mo</div></td>
+            <td><span class="tag tag-blue">AI Creative OS</span></td>
+            <td>Data-driven ad scripts from buyer signals. Generates + schedules 130+ creatives/mo to Meta/TikTok.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-strong">Strong Add</span></td>
+            <td><div class="tool-name">Opus Clip</div></td>
+            <td><div class="price">$13–$39/mo</div></td>
+            <td><span class="tag tag-blue">Content Repurposing</span></td>
+            <td>Turn coaching sessions, webinars, and long-form video into short-form social clips automatically.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-strong">Strong Add</span></td>
+            <td><div class="tool-name">ElevenLabs</div></td>
+            <td><div class="price">$5–$22/mo</div></td>
+            <td><span class="tag tag-blue">Voice Layer</span></td>
+            <td>Clone founder voice for consistent voiceovers across all AI-generated video ads.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-strong">Strong Add</span></td>
+            <td><div class="tool-name">AICarousels</div></td>
+            <td><div class="price">Free–$19/mo</div></td>
+            <td><span class="tag tag-blue">Carousel Posts</span></td>
+            <td>LinkedIn + Instagram carousel posts for thought leadership and funnel content.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-good">Optional</span></td>
+            <td><div class="tool-name">Midjourney</div></td>
+            <td><div class="price">$10–$30/mo</div></td>
+            <td><span class="tag tag-purple">Premium Images</span></td>
+            <td>High-quality imagery for premium social post graphics and ad creatives. Pair with Canva.</td>
+          </tr>
+          <tr>
+            <td><span class="verdict-badge v-good">Optional</span></td>
+            <td><div class="tool-name">Descript</div></td>
+            <td><div class="price">$12–$24/mo</div></td>
+            <td><span class="tag tag-purple">Video Editing</span></td>
+            <td>Polish raw coaching footage for polished ads and social content. Easiest professional editor.</td>
+          </tr>
+          <tr style="background:#0f0818">
+            <td colspan="5" style="padding:16px 14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                <div>
+                  <div style="color:#94a3b8; font-size:0.75rem; margin-bottom:4px">CORE STACK (5 tools)</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#4ade80">~$196–$399/mo</div>
+                  <div style="font-size:0.75rem; color:#64748b">Creatify + Arcads + HeyGen + Canva + ElevenLabs</div>
+                </div>
+                <div>
+                  <div style="color:#94a3b8; font-size:0.75rem; margin-bottom:4px">FULL STACK (9 tools)</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#38bdf8">~$253–$493/mo</div>
+                  <div style="font-size:0.75rem; color:#64748b">All of above + Opus Clip + AICarousels + Midjourney + Descript</div>
+                </div>
+                <div>
+                  <div style="color:#94a3b8; font-size:0.75rem; margin-bottom:4px">TOOLS EVALUATED</div>
+                  <div style="font-size:1.1rem; font-weight:800; color:#c084fc">38 Platforms</div>
+                  <div style="font-size:0.75rem; color:#64748b">From FTG bookmarks — Sep 2026</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Fast Track GenAI™ · AI Video Ad & Social Post Evaluation · September 2026 · All pricing approximate — verify at each platform before purchasing
+</footer>
+
+</body>
+</html>
