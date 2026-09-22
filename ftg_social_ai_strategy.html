@@ -268,16 +268,18 @@
 <nav>
   <div class="nav-logo">⚡ FTG Social AI-OS</div>
   <div class="nav-links">
+    <a href="#rethink">Re-Architecture</a>
     <a href="#architecture">Architecture</a>
     <a href="#content-engine">Content Agents</a>
     <a href="#brand">Brand System</a>
     <a href="#workflow">UTM Workflow</a>
-    <a href="#videos">Video Content</a>
-    <a href="#analytics">Analytics</a>
+    <a href="#videos">Video & Studio</a>
+    <a href="#loop">Self-Improving Loop</a>
+    <a href="#infra">Infrastructure</a>
     <a href="#skills">Skills vs Data</a>
-    <a href="#comparison">Abacus vs Claude</a>
+    <a href="#comparison">Abacus as OS</a>
     <a href="#visibility">Visibility</a>
-    <a href="#airtable">Airtable Schema</a>
+    <a href="#airtable">Data Schema</a>
     <a href="#phases">Phases</a>
     <a href="#quickstart">Quick Start</a>
   </div>
@@ -285,232 +287,176 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Fast Track GenAI™ — Social AI-OS</div>
-  <h1>The Complete <span>Social Content</span><br>Intelligence Strategy</h1>
-  <p>A fully integrated, autonomous system connecting the <strong>FTG Agent Console</strong>, Claude, Blotato, Airtable, and Google Drive — powered by 8 custom content agents, bound by the FTG brand, with UTM tracking, analytics feedback loops, and single-pane visibility.</p>
+  <div class="hero-eyebrow">Fast Track GenAI™ — Social AI-OS · Re-Architected 2026</div>
+  <h1>Stop Gluing Tools Together.<br><span>Build on the AI Operating System.</span></h1>
+  <p>The old plan wired Claude, Blotato, Airtable, n8n and Google Drive together by hand. The <strong><a href="https://ftg-agent-console.abacusai.app/" target="_blank" style="color:#a29bfe;">FTG Agent Console</a></strong> already runs on Abacus — a full AI OS with self-improving tasks, an always-on SuperComputer, a 50-model creative Studio, agent swarms, and native connectors. This is how to architect the system so Abacus does the heavy lifting and Blotato stays the one specialist you bolt on.</p>
   <div class="tool-badges">
     <span class="badge badge-purple">FTG Agent Console (Abacus)</span>
-    <span class="badge badge-teal">Claude (via Abacus)</span>
-    <span class="badge badge-yellow">8 Content Agents</span>
-    <span class="badge badge-green">FTG Brand System</span>
+    <span class="badge badge-teal">RouteLLM · Claude Opus 5 + GPT-6</span>
+    <span class="badge badge-yellow">Self-Improving Tasks</span>
+    <span class="badge badge-green">Abacus Studio (video/image)</span>
+    <span class="badge badge-pink">SuperComputer (always-on)</span>
+    <span class="badge badge-purple">Agent Swarms</span>
+    <span class="badge badge-teal">Personal Agents + Claw</span>
     <span class="badge badge-pink">Blotato MCP</span>
-    <span class="badge badge-yellow">Airtable</span>
-    <span class="badge badge-green">Google Drive</span>
-    <span class="badge badge-purple">Google Analytics</span>
-    <span class="badge badge-teal">Microsoft Clarity</span>
-    <span class="badge badge-pink">n8n</span>
+    <span class="badge badge-yellow">Airtable (MCP)</span>
+    <span class="badge badge-green">Google Drive · GA4 · Clarity</span>
   </div>
 </div>
 
+<!-- RE-ARCHITECTURE -->
+<section id="rethink">
+  <div class="section-label">01 — The Re-Architecture</div>
+  <h2>You Were Building Glue. Abacus Is the Machine.</h2>
+  <p class="section-intro">The instinct was to treat Abacus as an orchestrator that calls out to a stack of external tools, then hand-build the loop, the schedule, the hosting and the dashboard yourself. But most of that already exists <em>inside</em> Abacus as first-class capability. The correct architecture collapses the glue and keeps only the genuinely specialist externals (Blotato for multi-platform publishing, GA4/Clarity for web behaviour).</p>
+
+  <div style="background:rgba(253,203,110,0.08); border:1px solid rgba(253,203,110,0.3); border-radius:12px; padding:1.25rem; margin-bottom:2rem; font-size:0.9rem;">
+    <strong style="color:var(--accent4);">⚡ The one-line thesis:</strong> <span style="color:var(--muted);">Don't script an "analytics → learn → improve" loop with n8n and cron. Abacus <strong>Self-Improving Tasks</strong> are that loop natively — with an independent evaluator, a tracked metric, and a built-in progress dashboard. Everything else in the old plan gets simpler once you accept that.</span>
+  </div>
+
+  <h3 style="margin-bottom:1rem;">What Changes: Hand-Built Glue → Abacus-Native Capability</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>The old plan built…</th><th>Replace with (Abacus-native)</th><th>Why it's better</th></tr></thead>
+      <tbody>
+        <tr><td>n8n cron + Claude prompt = "feedback loop"</td><td><span class="tag tag-purple">Self-Improving Task</span></td><td>Objective + metric + baseline; picks ONE improvement per run; independent evaluator grades it; auto-pauses when plateaued</td></tr>
+        <tr><td>External cron / manual trigger to post</td><td><span class="tag tag-purple">Scheduled Tasks (daemons)</span></td><td>Native 24/7 scheduling; webhook triggers; up to 20 active tasks</td></tr>
+        <tr><td>"Where do we get video?" = Google Drive only</td><td><span class="tag tag-green">Abacus Studio</span></td><td>50+ video/image/audio models, AI avatars, video editor — generate creative, don't just store it</td></tr>
+        <tr><td>Static HTML dashboard on GitHub Pages + n8n feeds</td><td><span class="tag tag-teal">Agent-built web app</span></td><td>Real Next.js + Postgres + auth app the Agent builds and deploys to *.abacusai.app; live, not a scraped snapshot</td></tr>
+        <tr><td>"Abacus vs Claude — which do we pick?"</td><td><span class="tag tag-pink">RouteLLM</span></td><td>Wrong question. Abacus routes each task to Claude Opus 5, GPT-6, or Gemini — you get all of them, not one</td></tr>
+        <tr><td>Worry that the VM shuts down / posts stop</td><td><span class="tag tag-pink">SuperComputer</span></td><td>Always-on Ubuntu VM, root, Postgres, Docker, custom domains — hosts the loop and the app persistently</td></tr>
+        <tr><td>Big campaign = one agent doing everything slowly</td><td><span class="tag tag-purple">Agent Swarms</span></td><td>Master agent delegates to parallel workers (research, copy, creative, publish) — a launch in days not weeks</td></tr>
+        <tr><td>Community mgmt / DMs / "did it post?" checks</td><td><span class="tag tag-teal">Personal Agent + Claw</span></td><td>A sidebar Chief-of-Staff briefs you daily on WhatsApp/Telegram; Claw handles cross-channel DMs on 50+ platforms</td></tr>
+        <tr><td>Custom "ask my data" reporting scripts</td><td><span class="tag tag-yellow">DataLLM (text-to-SQL)</span></td><td>Ask the content database questions in plain English — no report to build</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:2.5rem; margin-bottom:1rem;">The Nine Capability Layers You Actually Own</h3>
+  <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">Your Pro subscription ($10/mo, 30,000 credits) already includes every layer below. The FTG Agent Console is your branded window into them.</p>
+  <div class="card-grid">
+    <div class="card"><div class="card-icon">💬</div><h3>1 · ChatLLM Teams</h3><p>100+ models in one place with RouteLLM auto-routing. The hub where the console lives.</p></div>
+    <div class="card"><div class="card-icon">🤖</div><h3>2 · Abacus Agent</h3><p>The execution engine — builds apps, writes code, runs the content workflow end-to-end.</p></div>
+    <div class="card"><div class="card-icon">🧑‍💼</div><h3>3 · Personal Agents</h3><p>Always-on sidebar agents with memory; brief you on WhatsApp/Telegram, run on schedule.</p></div>
+    <div class="card"><div class="card-icon">🔁</div><h3>4 · Self-Improving Tasks</h3><p>The autonomous loop that gets measurably better run over run, with an independent evaluator.</p></div>
+    <div class="card"><div class="card-icon">🖥️</div><h3>5 · SuperComputer</h3><p>Always-on Ubuntu VM — Postgres, Docker, SSH, custom domains. Hosts what must persist.</p></div>
+    <div class="card"><div class="card-icon">🧠</div><h3>6 · Hermes</h3><p>Self-evolving agent that builds reusable skills and persistent memory on SuperComputer.</p></div>
+    <div class="card"><div class="card-icon">🌐</div><h3>7 · Claw (OpenClaw)</h3><p>Cross-channel orchestration across 50+ messaging platforms — one AI presence everywhere.</p></div>
+    <div class="card"><div class="card-icon">🎬</div><h3>8 · Abacus Studio</h3><p>50+ generative models, AI avatars, and a video editor for platform-ready creative.</p></div>
+    <div class="card"><div class="card-icon">💻</div><h3>9 · Abacus Desktop</h3><p>CLI + VS Code + CoWork — the same agent on your own machine for build/edit work.</p></div>
+  </div>
+</section>
+<hr class="divider">
+
 <!-- ARCHITECTURE -->
 <section id="architecture">
-  <div class="section-label">01 — System Architecture</div>
-  <h2>Full Stack Overview</h2>
-  <p class="section-intro">Every tool has a defined role. Content originates in Abacus (using Claude models), flows through Blotato to 9 platforms, and logs everything to Airtable as the single source of truth.</p>
+  <div class="section-label">02 — System Architecture</div>
+  <h2>Abacus Is the Spine. Blotato Is the Bolt-On.</h2>
+  <p class="section-intro">Content is generated inside Abacus (RouteLLM for copy, Studio for creative, the 8 content agents for structure), a Self-Improving Task drives the schedule and the learning, SuperComputer keeps it alive, and Blotato is the single specialist that fans posts out to 9 platforms. Airtable (via MCP) or SuperComputer Postgres is the record; an Agent-built app is the window.</p>
 
   <div class="arch-flow">
-    <div style="text-align:center; margin-bottom:2rem;">
-      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1.5rem;">Content Creation Layer</div>
+    <div style="text-align:center;">
+      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1.25rem;">Content Creation Layer — all inside Abacus</div>
       <div class="arch-row" style="justify-content:center; gap:1rem; margin-bottom:1.5rem;">
-        <div class="arch-col">
-          <div class="arch-node accent">
-            <span class="node-icon">🤖</span>
-            <div class="node-name">FTG Agent Console</div>
-            <div class="node-sub">Abacus · Orchestrator + 8 Content Agents</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node accent"><span class="node-icon">🤖</span><div class="node-name">FTG Agent Console</div><div class="node-sub">Orchestrator + 8 content agents</div></div></div>
         <div class="arch-arrow">+</div>
-        <div class="arch-col">
-          <div class="arch-node teal">
-            <span class="node-icon">🧠</span>
-            <div class="node-name">Claude Model</div>
-            <div class="node-sub">Copy Generation</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node teal"><span class="node-icon">🧠</span><div class="node-name">RouteLLM</div><div class="node-sub">Claude Opus 5 · GPT-6 · Gemini</div></div></div>
         <div class="arch-arrow">+</div>
-        <div class="arch-col">
-          <div class="arch-node green">
-            <span class="node-icon">🎬</span>
-            <div class="node-name">Google Drive</div>
-            <div class="node-sub">Video / Image Library</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node green"><span class="node-icon">🎬</span><div class="node-name">Abacus Studio</div><div class="node-sub">Generate video / image / avatar</div></div></div>
       </div>
 
       <div style="font-size:1.5rem; color:var(--accent); margin:0.75rem 0;">↓</div>
-      <div style="font-size:0.68rem; color:var(--muted); margin-bottom:0.75rem;">UTM parameters generated + embedded before posting</div>
+      <div style="font-size:0.68rem; color:var(--muted); margin-bottom:0.75rem;">UTM built + embedded before posting · brand constraints applied on every step</div>
 
-      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Publishing Layer</div>
+      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Publishing Layer — the one specialist external</div>
       <div class="arch-row" style="justify-content:center; margin-bottom:1.5rem;">
-        <div class="arch-node pink">
-          <span class="node-icon">📡</span>
-          <div class="node-name">Blotato</div>
-          <div class="node-sub">MCP → 9 Platforms</div>
-        </div>
+        <div class="arch-node pink"><span class="node-icon">📡</span><div class="node-name">Blotato</div><div class="node-sub">MCP → 9 platforms</div></div>
       </div>
 
       <div style="font-size:1.5rem; color:var(--accent2); margin:0.75rem 0;">↓</div>
 
-      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Data & Intelligence Layer</div>
+      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Data &amp; Intelligence Layer</div>
       <div class="arch-row" style="justify-content:center; gap:1rem; margin-bottom:1.5rem;">
-        <div class="arch-col">
-          <div class="arch-node yellow">
-            <span class="node-icon">📊</span>
-            <div class="node-name">Airtable</div>
-            <div class="node-sub">Single Source of Truth</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node yellow"><span class="node-icon">📊</span><div class="node-name">Airtable / Postgres</div><div class="node-sub">Source of truth</div></div></div>
         <div class="arch-arrow">→</div>
-        <div class="arch-col">
-          <div class="arch-node accent">
-            <span class="node-icon">📈</span>
-            <div class="node-name">Google Analytics</div>
-            <div class="node-sub">Traffic + Conversions</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node accent"><span class="node-icon">📈</span><div class="node-name">GA4</div><div class="node-sub">Traffic + conversions</div></div></div>
         <div class="arch-arrow">→</div>
-        <div class="arch-col">
-          <div class="arch-node teal">
-            <span class="node-icon">🔥</span>
-            <div class="node-name">MS Clarity</div>
-            <div class="node-sub">Page Behaviour</div>
-          </div>
-        </div>
+        <div class="arch-col"><div class="arch-node teal"><span class="node-icon">🔥</span><div class="node-name">MS Clarity</div><div class="node-sub">Page behaviour</div></div></div>
       </div>
 
-      <div style="font-size:1.5rem; color:var(--accent5); margin:0.75rem 0;">↑</div>
-      <div style="font-size:0.68rem; color:var(--muted); margin-bottom:0.75rem;">Analytics flow back to Airtable → Claude learns → Better posts</div>
+      <div style="font-size:1.5rem; color:var(--accent5); margin:0.75rem 0;">↑↓</div>
+      <div style="font-size:0.68rem; color:var(--muted); margin-bottom:0.75rem;">A <strong>Self-Improving Task</strong> reads metrics → picks one improvement → regenerates smarter content → independent evaluator grades the result</div>
 
-      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Visibility Layer</div>
-      <div class="arch-row" style="justify-content:center; gap:1rem;">
-        <div class="arch-node green">
-          <span class="node-icon">🖥️</span>
-          <div class="node-name">HTML Dashboard</div>
-          <div class="node-sub">Single-pane control</div>
-        </div>
+      <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Runtime &amp; Visibility Layer</div>
+      <div class="arch-row" style="justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <div class="arch-node pink"><span class="node-icon">🖥️</span><div class="node-name">SuperComputer</div><div class="node-sub">Always-on host</div></div>
         <div class="arch-arrow">+</div>
-        <div class="arch-node accent">
-          <span class="node-icon">⚡</span>
-          <div class="node-name">n8n</div>
-          <div class="node-sub">Automation bridge</div>
-        </div>
+        <div class="arch-node green"><span class="node-icon">📱</span><div class="node-name">Agent-built App</div><div class="node-sub">Live single-pane dashboard</div></div>
+        <div class="arch-arrow">+</div>
+        <div class="arch-node accent"><span class="node-icon">🧑‍💼</span><div class="node-name">Personal Agent + Claw</div><div class="node-sub">Daily brief · cross-channel DMs</div></div>
       </div>
     </div>
   </div>
 </section>
 <hr class="divider">
 
+
 <!-- CONTENT ENGINE -->
 <section id="content-engine">
-  <div class="section-label">02 — Content Engine</div>
-  <h2>The 8 Content-Building Agents</h2>
-  <p class="section-intro">Before Blotato ever publishes, FTG's content agents create the raw material. Reverse-engineered from Writer.com and Ojoy.ai and rebuilt as portable Skill.md files in your <a href="https://ftg-agent-console.abacusai.app/" target="_blank" style="color:var(--accent2); font-weight:600;">FTG Agent Console</a>, each agent is a repeatable content capability with no platform lock-in. The FTG™ Voice Profile sits underneath them all — keeping every output unmistakably on-brand.</p>
+  <div class="section-label">03 — Content Engine</div>
+  <h2>8 Content Agents · RouteLLM Copy · Studio Creative</h2>
+  <p class="section-intro">Before Blotato ever publishes, three Abacus capabilities create the raw material: the <strong>8 content agents</strong> (structure + strategy), <strong>RouteLLM</strong> (writes the copy on the best model per task), and <strong>Abacus Studio</strong> (generates the video/image). The FTG™ Voice Profile sits underneath them all as a constraint layer, keeping every output on-brand on any model. The agents live as portable Skill.md files in your <a href="https://ftg-agent-console.abacusai.app/" target="_blank" style="color:var(--accent2); font-weight:600;">FTG Agent Console</a>.</p>
 
   <!-- VOICE PROFILE FOUNDATION -->
   <div style="background:rgba(0,206,201,0.08); border:1px solid rgba(0,206,201,0.3); border-radius:14px; padding:1.75rem; margin-bottom:2rem;">
-    <div class="vis-label" style="color:var(--accent2);">Foundation Layer — feeds every agent below</div>
+    <div class="vis-label" style="color:var(--accent2);">Foundation Layer — feeds every agent below, enforced on every model</div>
     <h3 style="margin:0.35rem 0 0.35rem; font-size:1.15rem;">🎙️ FTG™ Voice Profile — 4 Dimensions</h3>
-    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">Extracted from 8 writing samples (~3,500 words). Scored 9/10 effectiveness vs 4/10 without. Applied as a constraint layer on every generation step, on any LLM.</p>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">Extracted from 8 writing samples (~3,500 words). Scored 9/10 effectiveness vs 4/10 without. Because it's a <em>constraint</em> — not a copy template — RouteLLM can generate on Claude, GPT-6 or Gemini and stay unmistakably FTG.</p>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">🎯</div>
-        <h3>Direct &amp; Candid</h3>
-        <p>Imperative sentences, "Let's be honest" framing, rhetorical questions. No jargon, no hedging, no burying the lead.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📈</div>
-        <h3>Solution &amp; Results-Oriented</h3>
-        <p>Specific metrics, before/after contrasts, ROI language. "59% more docs per hour," not vague promises.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Conversational &amp; Relatable</h3>
-        <p>"You" and "we," shared-experience references, rhetorical questions. Never third-person or lecturing.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Contrast &amp; Differentiation</h3>
-        <p>"This isn't… this is…" frames, competitor contrast, negatives turned to positives. "Not another tool to add to the stack."</p>
-      </div>
+      <div class="card"><div class="card-icon">🎯</div><h3>Direct &amp; Candid</h3><p>Imperative sentences, "Let's be honest" framing, rhetorical questions. No jargon, no hedging, no burying the lead.</p></div>
+      <div class="card"><div class="card-icon">📈</div><h3>Solution &amp; Results-Oriented</h3><p>Specific metrics, before/after contrasts, ROI language. "59% more docs per hour," not vague promises.</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h3>Conversational &amp; Relatable</h3><p>"You" and "we," shared-experience references, rhetorical questions. Never third-person or lecturing.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Contrast &amp; Differentiation</h3><p>"This isn't… this is…" frames, competitor contrast, negatives turned to positives. "Not another tool to add to the stack."</p></div>
     </div>
   </div>
 
   <!-- 8 AGENTS -->
   <h3 style="margin-bottom:0.35rem;">The Agent Library</h3>
-  <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">5 from the Writer.com extraction, 3 from Ojoy.ai. Every one produces content the social pipeline can atomize, tag with UTM, and publish through Blotato.</p>
+  <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">5 from the Writer.com extraction, 3 from Ojoy.ai. Each is a <em>capability defined by constraints and decision rules</em>, not hardcoded copy — the creative stays open to whoever briefs it. Every one produces content the social pipeline can atomize, UTM-tag, and publish through Blotato.</p>
   <div class="card-grid">
-    <div class="card">
-      <div class="card-icon">🧬</div>
-      <h3>Voice Profile Extractor</h3>
-      <p><span class="tag tag-teal">Foundation</span> Analyses writing samples → reusable 4-dimension brand voice. Required by every other agent.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎨</div>
-      <h3>Style Transfer System</h3>
-      <p><span class="tag tag-pink">Ojoy</span> Rewrites any draft into FTG's brand style. Keeps output consistent across all agents.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📣</div>
-      <h3>Ad Campaign Generator</h3>
-      <p><span class="tag tag-purple">Writer</span> Facebook ads + Google RSA (15 headlines + 4 descriptions). Benefit-first, A/B variants built in.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📱</div>
-      <h3>Social Media Content Suite</h3>
-      <p><span class="tag tag-purple">Writer</span> One input → platform-adapted posts (LinkedIn, X, Instagram + more). Genuine adaptation, not truncation.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎬</div>
-      <h3>Webinar Content Atomizer</h3>
-      <p><span class="tag tag-purple">Writer</span> Transcript → blog + LinkedIn + X posts + emails. 6-step atomization from one source asset.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">✉️</div>
-      <h3>Email Sequence Builder</h3>
-      <p><span class="tag tag-purple">Writer</span> Subject lines + welcome + nurture sequences with dual CTAs. Converts social/ad traffic.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📧</div>
-      <h3>Email Marketing Framework</h3>
-      <p><span class="tag tag-pink">Ojoy</span> Full email system — structure, cadence, and persuasion architecture for campaigns.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔬</div>
-      <h3>CRO Research Methodology</h3>
-      <p><span class="tag tag-pink">Ojoy</span> Conversion-rate research framework. Informs what copy and offers actually convert.</p>
-    </div>
+    <div class="card"><div class="card-icon">🧬</div><h3>Voice Profile Extractor</h3><p><span class="tag tag-teal">Foundation</span> Analyses writing samples → reusable 4-dimension brand voice. Required by every other agent.</p></div>
+    <div class="card"><div class="card-icon">🎨</div><h3>Style Transfer System</h3><p><span class="tag tag-pink">Ojoy</span> Rewrites any draft into FTG's brand style. Keeps output consistent across all agents.</p></div>
+    <div class="card"><div class="card-icon">📣</div><h3>Ad Campaign Generator</h3><p><span class="tag tag-purple">Writer</span> Facebook ads + Google RSA (15 headlines + 4 descriptions). Benefit-first, A/B variants built in.</p></div>
+    <div class="card"><div class="card-icon">📱</div><h3>Social Media Content Suite</h3><p><span class="tag tag-purple">Writer</span> One input → platform-adapted posts (LinkedIn, X, Instagram + more). Genuine adaptation, not truncation.</p></div>
+    <div class="card"><div class="card-icon">🎬</div><h3>Webinar Content Atomizer</h3><p><span class="tag tag-purple">Writer</span> Transcript → blog + LinkedIn + X posts + emails. 6-step atomization from one source asset.</p></div>
+    <div class="card"><div class="card-icon">✉️</div><h3>Email Sequence Builder</h3><p><span class="tag tag-purple">Writer</span> Subject lines + welcome + nurture sequences with dual CTAs. Converts social/ad traffic.</p></div>
+    <div class="card"><div class="card-icon">📧</div><h3>Email Marketing Framework</h3><p><span class="tag tag-pink">Ojoy</span> Full email system — structure, cadence, and persuasion architecture for campaigns.</p></div>
+    <div class="card"><div class="card-icon">🔬</div><h3>CRO Research Methodology</h3><p><span class="tag tag-pink">Ojoy</span> Conversion-rate research framework. Informs what copy and offers actually convert.</p></div>
   </div>
 
-  <!-- HOW THEY FEED THE PIPELINE -->
-  <div class="utm-flow" style="margin-top:2rem; font-family:'Segoe UI',system-ui,sans-serif; font-size:0.9rem;">
-    <div class="line"><span class="step">HOW CONTENT AGENTS FEED THE SOCIAL PIPELINE</span></div>
-    <br>
-    <div class="line" style="color:var(--muted);">
-      Content Agent (e.g. Webinar Atomizer / Social Suite / Ad Generator)
-      <span style="color:var(--accent);">→</span>
-      Voice Profile + Style Transfer constrain output
-      <span style="color:var(--accent);">→</span>
-      Brand System check
-      <span style="color:var(--accent);">→</span>
-      UTM generated
-      <span style="color:var(--accent);">→</span>
-      Blotato publishes
-      <span style="color:var(--accent);">→</span>
-      Airtable logs
+  <!-- ADDED: RouteLLM + Studio -->
+  <div class="two-col" style="margin-top:2rem;">
+    <div class="card" style="border-top:3px solid var(--accent2);">
+      <h3>🧠 RouteLLM writes the copy</h3>
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">Set the agent to route copy tasks to <strong>Claude Opus 5 / Fable 5.1</strong> for voice-critical writing, and let cheaper models handle bulk variants. You are not choosing "Claude or Abacus" — you're using Claude <em>inside</em> Abacus, plus GPT-6 and Gemini when they win.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--accent5);">
+      <h3>🎬 Studio makes the creative</h3>
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">Instead of only pulling stock from Drive, generate on-brand shorts, AI-avatar UGC, before/after clips, and image variants for A/B testing — 50+ models and a timeline editor, all inside the console. See <a href="#videos" style="color:var(--accent5);">Video &amp; Studio →</a></p>
     </div>
   </div>
 
   <div style="background:rgba(108,92,231,0.08); border:1px solid rgba(108,92,231,0.3); border-radius:10px; padding:1.25rem; margin-top:1.5rem; font-size:0.85rem;">
-    <strong style="color:var(--accent);">Where these live:</strong> <span style="color:var(--muted);">The blueprints are documented in the <em>FTG Agent POC Framework</em> repo. As you build each one into a Skill.md in the FTG Agent Console, it becomes a callable capability the orchestrator can chain — turning one webinar or one campaign brief into weeks of on-brand, UTM-tracked social content.</span>
+    <strong style="color:var(--accent);">Where these live:</strong> <span style="color:var(--muted);">Blueprints are in the <em>FTG Agent POC Framework</em> repo. As each becomes a Skill.md in the console, it's a callable capability the orchestrator (or a Swarm) can chain — turning one webinar or one brief into weeks of on-brand, UTM-tracked content.</span>
   </div>
 </section>
 <hr class="divider">
 
 <!-- BRAND SYSTEM -->
 <section id="brand">
-  <div class="section-label">03 — Brand System</div>
+  <div class="section-label">04 — Brand System</div>
   <h2>Brand as the Constraint Layer</h2>
-  <p class="section-intro">Every agent output is bound by the FTG brand. The <a href="https://kunz84.github.io/FTG-public-html/" target="_blank" style="color:var(--accent2); font-weight:600;">Brand Resource Center</a> is the single reference the agents (and you) pull from — colors, typography, voice, and layout frameworks. Reference it inside each Skill.md so generated copy and creative stay on-brand automatically.</p>
+  <p class="section-intro">Every agent output is bound by the FTG brand. The <a href="https://kunz84.github.io/FTG-public-html/" target="_blank" style="color:var(--accent2); font-weight:600;">Brand Resource Center</a> is the single reference agents (and you) pull from — colors, typography, voice, and layout frameworks. Reference it inside each Skill.md so generated copy and creative stay on-brand automatically, and load it as a RAG source so any chatbot or agent can cite it.</p>
 
   <h3 style="margin-bottom:1rem;">Brand Palette</h3>
   <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:0.75rem; margin-bottom:2rem;">
@@ -555,79 +501,40 @@
 
   <h3 style="margin-top:2rem; margin-bottom:1rem;">Brand Resource Center — Reference These</h3>
   <div class="card-grid">
-    <div class="card">
-      <div class="card-icon">🎨</div>
-      <h3><a href="https://kunz84.github.io/FTG-public-html/brand-resource-center/brand-guide.html" target="_blank" style="color:var(--text);">Brand Style Guide →</a></h3>
-      <p>Technical color, typography, logo, and design specs. The source of truth for all creative.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔧</div>
-      <h3>GHL Implementation Guide</h3>
-      <p>Technical guidance for GoHighLevel integration — funnels, forms, and automation setup.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <h3>Sales Page Framework Guide</h3>
-      <p>The 7-step hybrid background layout: Hero → Lead Magnet → Problem → Proof → Offer → Pricing → Final CTA.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🏠</div>
-      <h3><a href="https://kunz84.github.io/FTG-public-html/" target="_blank" style="color:var(--text);">Resource Center Hub →</a></h3>
-      <p>The central directory linking every FTG brand and implementation resource in one place.</p>
-    </div>
+    <div class="card"><div class="card-icon">🎨</div><h3><a href="https://kunz84.github.io/FTG-public-html/brand-resource-center/brand-guide.html" target="_blank" style="color:var(--text);">Brand Style Guide →</a></h3><p>Technical color, typography, logo, and design specs. The source of truth for all creative.</p></div>
+    <div class="card"><div class="card-icon">🔧</div><h3>GHL Implementation Guide</h3><p>Technical guidance for GoHighLevel integration — funnels, forms, and automation setup.</p></div>
+    <div class="card"><div class="card-icon">📄</div><h3>Sales Page Framework Guide</h3><p>The 7-step hybrid layout: Hero → Lead Magnet → Problem → Proof → Offer → Pricing → Final CTA.</p></div>
+    <div class="card"><div class="card-icon">🏠</div><h3><a href="https://kunz84.github.io/FTG-public-html/" target="_blank" style="color:var(--text);">Resource Center Hub →</a></h3><p>The central directory linking every FTG brand and implementation resource in one place.</p></div>
   </div>
 </section>
 <hr class="divider">
 
+
 <!-- WORKFLOW / UTM -->
 <section id="workflow">
-  <div class="section-label">04 — The Correct Workflow</div>
-  <h2>Content Creation → UTM → Publish → Log</h2>
-  <p class="section-intro">UTM parameters are generated by Abacus <em>before</em> posting — embedded in copy before Blotato publishes. This is not retroactive. The flow is strictly left-to-right.</p>
+  <div class="section-label">05 — The Correct Workflow</div>
+  <h2>Content → UTM → Publish → Log</h2>
+  <p class="section-intro">The agent generates UTM parameters <em>before</em> posting — embedded in copy before Blotato publishes, never retroactively. This whole flow becomes the body of one Scheduled Task, so it runs on cadence without you.</p>
 
   <div class="loop-container">
     <div class="loop-steps">
-      <div class="loop-step">
-        <div class="step-num">1</div>
-        <h4>Content Brief</h4>
-        <p>You brief the Abacus agent. Campaign name, platform targets, asset location (GDrive or Airtable).</p>
-      </div>
-      <div class="loop-step">
-        <div class="step-num">2</div>
-        <h4>Claude Writes Copy</h4>
-        <p>Abacus calls Claude model. Hook, body, CTA. Analyses Airtable historical top performers first.</p>
-      </div>
-      <div class="loop-step">
-        <div class="step-num">3</div>
-        <h4>UTM Generated</h4>
-        <p>Agent auto-builds UTM URL from campaign slug, platform name, post ID. Embeds in copy CTA.</p>
-      </div>
-      <div class="loop-step">
-        <div class="step-num">4</div>
-        <h4>Media Pulled</h4>
-        <p>Video or image fetched from Google Drive or Airtable attachment. Uploaded to Blotato via presigned URL.</p>
-      </div>
-      <div class="loop-step">
-        <div class="step-num">5</div>
-        <h4>Blotato Publishes</h4>
-        <p>blotato_create_post called per platform. Post scheduled or published immediately. Blotato handles timing.</p>
-      </div>
-      <div class="loop-step">
-        <div class="step-num">6</div>
-        <h4>Airtable Logged</h4>
-        <p>Full record written: copy, image URL, UTM fields, platform, scheduled time, Blotato post ID.</p>
-      </div>
+      <div class="loop-step"><div class="step-num">1</div><h4>Content Brief</h4><p>You (or a Personal Agent) brief the console: campaign, platforms, asset source (Studio, Drive, or Airtable).</p></div>
+      <div class="loop-step"><div class="step-num">2</div><h4>RouteLLM Writes Copy</h4><p>Routed to Claude Opus 5 for voice-critical copy. Reads Airtable top performers first. Hook, body, CTA.</p></div>
+      <div class="loop-step"><div class="step-num">3</div><h4>UTM Generated</h4><p>Agent auto-builds the UTM URL from campaign slug, platform, and post ID. Embeds it in the copy CTA.</p></div>
+      <div class="loop-step"><div class="step-num">4</div><h4>Creative Ready</h4><p>Studio generates the clip/image, or the agent pulls a master from Drive/Airtable, then uploads to Blotato.</p></div>
+      <div class="loop-step"><div class="step-num">5</div><h4>Blotato Publishes</h4><p>blotato_create_post per platform. Scheduled or immediate. Blotato holds the per-platform OAuth tokens.</p></div>
+      <div class="loop-step"><div class="step-num">6</div><h4>Logged</h4><p>Full record written to Airtable/Postgres: copy, media, UTM fields, platform, time, Blotato post ID.</p></div>
     </div>
   </div>
 
   <h3 style="margin-top:2rem; margin-bottom:0.5rem;">UTM Parameter Convention</h3>
   <div class="utm-flow">
-    <div class="line"><span class="step">// ABACUS generates these programmatically — no manual work</span></div>
+    <div class="line"><span class="step">// The agent generates these programmatically — no manual work</span></div>
     <br>
     <div class="line"><span class="key">utm_source</span>  = <span class="val">instagram</span>  <span class="comment">// platform name, auto-detected from target</span></div>
     <div class="line"><span class="key">utm_medium</span>  = <span class="val">social</span>     <span class="comment">// always "social"</span></div>
     <div class="line"><span class="key">utm_campaign</span>= <span class="val">q4-launch</span>  <span class="comment">// from your campaign brief</span></div>
-    <div class="line"><span class="key">utm_content</span> = <span class="val">post-047</span>   <span class="comment">// auto-incremented from Airtable Post ID</span></div>
+    <div class="line"><span class="key">utm_content</span> = <span class="val">post-047</span>   <span class="comment">// auto-incremented from Post ID</span></div>
     <br>
     <div class="line"><span class="step">// FINAL URL embedded in post copy before publishing:</span></div>
     <div class="line"><span class="url">https://ftgai.com/launch?utm_source=instagram&utm_medium=social&utm_campaign=q4-launch&utm_content=post-047</span></div>
@@ -635,283 +542,277 @@
 </section>
 <hr class="divider">
 
-<!-- VIDEO CONTENT -->
+<!-- VIDEO & STUDIO -->
 <section id="videos">
-  <div class="section-label">05 — Video Content Sourcing</div>
-  <h2>Google Drive & Airtable → Blotato</h2>
-  <p class="section-intro">Abacus can pull existing and future video content from Google Drive or Airtable attachments, upload to Blotato, and schedule across all 9 platforms — no manual transfer needed.</p>
+  <div class="section-label">06 — Video &amp; Creative</div>
+  <h2>Generate in Studio First. Store in Drive Second.</h2>
+  <p class="section-intro">The old plan answered "where does video come from?" with "Google Drive." The real answer is <strong>Abacus Studio generates it</strong> — 50+ video/image/audio models, reusable AI avatars, and a timeline editor — and Drive becomes the archive of masters. This turns video from a bottleneck into an on-demand, on-brand supply.</p>
 
   <div class="video-flow">
     <div class="video-source recommended">
-      <div class="vs-icon">☁️</div>
-      <h4>Google Drive</h4>
-      <p>Master video library. Abacus pulls via native Drive connector (OAuth). Recommended for raw/original files.</p>
-      <div style="margin-top:0.75rem; font-size:0.7rem; color:var(--accent); font-weight:700;">⭐ Recommended source</div>
+      <div class="vs-icon">🎬</div>
+      <h4>Abacus Studio</h4>
+      <p>Generate shorts, AI-avatar UGC, explainers, before/after, and image variants. Edit on the timeline. Brand-constrained.</p>
+      <div style="margin-top:0.75rem; font-size:0.7rem; color:var(--accent); font-weight:700;">⭐ Primary source</div>
     </div>
+    <div style="display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--muted);">then</div>
+    <div class="video-source"><div class="vs-icon">☁️</div><h4>Google Drive</h4><p>Archive of master files + human-shot footage. Agent pulls via native Drive connector (OAuth).</p></div>
     <div style="display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--muted);">or</div>
-    <div class="video-source">
-      <div class="vs-icon">📋</div>
-      <h4>Airtable Attachment</h4>
-      <p>Video stored as attachment field on Posts record. Good for pre-approved, campaign-ready clips.</p>
-    </div>
-    <div style="display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--muted);">or</div>
-    <div class="video-source">
-      <div class="vs-icon">🔗</div>
-      <h4>Airtable Video URL</h4>
-      <p>Google Drive share link stored in a text field on Airtable record. Abacus reads, downloads, uploads.</p>
-    </div>
+    <div class="video-source"><div class="vs-icon">📋</div><h4>Airtable Attachment</h4><p>Pre-approved, campaign-ready clips stored on the Posts record for quick reuse.</p></div>
   </div>
 
   <div class="table-wrap" style="margin-top:2rem;">
     <table>
       <thead><tr><th>Step</th><th>What Happens</th><th>Tool Used</th></tr></thead>
       <tbody>
-        <tr><td>1. Locate video</td><td>Agent reads Airtable record for Google Drive File ID or attachment URL</td><td>Airtable connector</td></tr>
-        <tr><td>2. Download video</td><td>Agent downloads from Google Drive using native Drive connector</td><td>Google Drive connector</td></tr>
-        <tr><td>3. Get upload URL</td><td>Calls blotato_create_presigned_upload_url for secure media upload slot</td><td>Blotato MCP</td></tr>
-        <tr><td>4. Upload to Blotato</td><td>Streams video file to Blotato presigned URL</td><td>Blotato MCP</td></tr>
+        <tr><td>1. Generate or locate</td><td>Studio generates the clip on brief, OR agent reads Airtable for a Drive File ID</td><td>Abacus Studio / Airtable MCP</td></tr>
+        <tr><td>2. Fetch master</td><td>If reusing, agent downloads from Google Drive via native connector</td><td>Google Drive connector</td></tr>
+        <tr><td>3. Get upload URL</td><td>Calls blotato_create_presigned_upload_url for a secure media slot</td><td>Blotato MCP</td></tr>
+        <tr><td>4. Upload to Blotato</td><td>Streams the video file to the Blotato presigned URL</td><td>Blotato MCP</td></tr>
         <tr><td>5. Create post</td><td>Calls blotato_create_post with media reference + UTM copy + schedule</td><td>Blotato MCP</td></tr>
-        <tr><td>6. Log to Airtable</td><td>Updates Posts record: Blotato Media ID, platform, publish time, UTM params</td><td>Airtable connector</td></tr>
+        <tr><td>6. Log</td><td>Updates the Posts record: Blotato Media ID, platform, publish time, UTM params</td><td>Airtable MCP / Postgres</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="card-grid" style="margin-top:1.5rem;">
-    <div class="card">
-      <div class="card-icon">📹</div>
-      <h3>Supported Platforms for Video</h3>
-      <p>TikTok, YouTube, Instagram Reels, Facebook, X, LinkedIn, Threads, Pinterest Idea Pins — all 9 platforms support video via Blotato.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🗂️</div>
-      <h3>Recommended GDrive Structure</h3>
-      <p>Organise by: <strong>/campaigns/[campaign-slug]/[platform]/</strong> — agent references file ID in Airtable, keeps library clean and reusable.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">✂️</div>
-      <h3>Platform Size Limits</h3>
-      <p>TikTok: 10 min desktop · Instagram Reels: 90s · YouTube Shorts: 60s · X: 2min (free). Store master files in Drive, edit down per platform as needed.</p>
-    </div>
+    <div class="card"><div class="card-icon">📹</div><h3>All 9 Platforms Take Video</h3><p>TikTok, YouTube, Instagram Reels, Facebook, X, LinkedIn, Threads, Pinterest — all support video via Blotato.</p></div>
+    <div class="card"><div class="card-icon">🗂️</div><h3>Drive Structure</h3><p>Organise archives by <strong>/campaigns/[slug]/[platform]/</strong> — agent references file ID in the data hub, keeps the library reusable.</p></div>
+    <div class="card"><div class="card-icon">✂️</div><h3>Cut Per Platform in Studio</h3><p>Generate one master, then use the Studio editor to cut TikTok (10 min), Reels (90s), Shorts (60s), X (2 min) versions.</p></div>
   </div>
 </section>
 <hr class="divider">
 
-<!-- ANALYTICS -->
-<section id="analytics">
-  <div class="section-label">06 — Analytics & Feedback Loops</div>
-  <h2>Two Loops, One Goal: Better Posts</h2>
-  <p class="section-intro">Blotato analytics are sufficient for the social improvement loop. Add UTM + GA + Clarity to extend visibility to business outcomes.</p>
+<!-- SELF-IMPROVING LOOP -->
+<section id="loop">
+  <div class="section-label">07 — The Autonomous Loop</div>
+  <h2>Don't Script the Loop. Use a Self-Improving Task.</h2>
+  <p class="section-intro">This is the single biggest correction to the old architecture. You do not need n8n + cron + a hand-written "analyse top performers" prompt to close the feedback loop. Abacus <strong>Self-Improving Tasks</strong> are that loop as a first-class product feature — with the one safeguard hand-built loops always lack: an independent evaluator so the agent can't grade its own homework.</p>
 
-  <div class="two-col">
-    <div class="card" style="border-top:3px solid var(--accent);">
-      <h3>🔵 Loop 1 — Social Performance</h3>
-      <p style="font-size:0.8rem; color:var(--muted); margin:0.5rem 0;">Blotato only. Works immediately. Optimises for engagement.</p>
-      <div style="margin-top:1rem; font-size:0.8rem;">
-        <div style="margin-bottom:0.4rem;">Post → Blotato metrics (views, likes, comments, reach)</div>
-        <div style="margin-bottom:0.4rem;">→ Airtable logs performance per post</div>
-        <div style="margin-bottom:0.4rem;">→ Claude analyses top performers</div>
-        <div>→ Generates better posts informed by patterns</div>
-      </div>
-      <div style="margin-top:1rem; font-size:0.72rem; color:var(--green); font-weight:700;">✅ Blotato covers 8 of 9 platforms (excludes LinkedIn)</div>
+  <div class="two-col" style="margin-bottom:2rem;">
+    <div class="card" style="border-top:3px solid var(--red);">
+      <h3>❌ The old hand-built loop</h3>
+      <ul class="split-list" style="margin-top:0.5rem;">
+        <li>n8n cron pulls Blotato analytics on a timer</li>
+        <li>Writes metrics back to Airtable</li>
+        <li>A prompt asks Claude to "look at top posts and do better"</li>
+        <li><strong style="color:var(--red);">No baseline, no evaluator</strong> — the model marks its own work</li>
+        <li>You maintain the workflow, the schedule, and the glue</li>
+      </ul>
     </div>
-    <div class="card" style="border-top:3px solid var(--accent2);">
-      <h3>🟢 Loop 2 — Full Funnel</h3>
-      <p style="font-size:0.8rem; color:var(--muted); margin:0.5rem 0;">Blotato + UTM + GA + Clarity. Optimises for revenue.</p>
-      <div style="margin-top:1rem; font-size:0.8rem;">
-        <div style="margin-bottom:0.4rem;">Post (with UTM link) → Blotato social metrics</div>
-        <div style="margin-bottom:0.4rem;">→ UTM bridges to Google Analytics (traffic, conversions)</div>
-        <div style="margin-bottom:0.4rem;">→ Microsoft Clarity (page behaviour, drop-off)</div>
-        <div style="margin-bottom:0.4rem;">→ All metrics stored in Airtable</div>
-        <div>→ Claude learns what drives business outcomes</div>
-      </div>
-      <div style="margin-top:1rem; font-size:0.72rem; color:var(--accent2); font-weight:700;">🏆 Gold standard — start Loop 1, graduate to Loop 2</div>
+    <div class="card" style="border-top:3px solid var(--accent5);">
+      <h3>✅ The native Self-Improving Task</h3>
+      <ul class="split-list" style="margin-top:0.5rem;">
+        <li><strong>Objective</strong> — e.g. grow engagement rate per post</li>
+        <li><strong>Metric</strong> — one measurable number, tracked run over run</li>
+        <li><strong>Baseline</strong> — measured before any change</li>
+        <li><strong>Each run</strong> — reviews history → ONE focused change → applies it → independent evaluator grades improved / unchanged / regressed</li>
+        <li>Regressions trigger recovery; plateaus auto-pause to save credits; progress dashboard is built in</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="loop-container">
+    <div style="font-size:0.85rem; font-weight:700; margin-bottom:1rem; color:var(--text);">How the Self-Improving Task runs each cycle</div>
+    <div class="loop-steps">
+      <div class="loop-step"><div class="step-num">1</div><h4>Review History</h4><p>Reads past runs + current metric vs baseline from the data hub.</p></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="step-num">2</div><h4>Pick One Change</h4><p>Chooses a single focused improvement — hook style, format, posting time.</p></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="step-num">3</div><h4>Apply &amp; Post</h4><p>Generates + publishes the new batch via Blotato with that change.</p></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="step-num">4</div><h4>Independent Eval</h4><p>A separate evaluator measures the result and grades it honestly.</p></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step"><div class="step-num">5</div><h4>Carry Forward</h4><p>Keeps wins, recovers from regressions, updates the baseline.</p></div>
     </div>
   </div>
 
   <div class="table-wrap" style="margin-top:2rem;">
     <table>
-      <thead><tr><th>Metric</th><th>Source</th><th>Stored in Airtable</th><th>Used by Claude</th></tr></thead>
+      <thead><tr><th>Objective (pick one to start)</th><th>Metric</th><th>What the task tunes</th></tr></thead>
       <tbody>
-        <tr><td>Views, Likes, Comments, Reach</td><td>Blotato analytics API</td><td class="yes">✅</td><td class="yes">✅ Pattern analysis</td></tr>
-        <tr><td>Engagement Rate</td><td>Airtable formula</td><td class="yes">✅</td><td class="yes">✅ Performance ranking</td></tr>
-        <tr><td>Website traffic by post</td><td>Google Analytics (UTM)</td><td class="partial">⚠️ Manual / n8n</td><td class="yes">✅ When added</td></tr>
-        <tr><td>Conversions by campaign</td><td>Google Analytics (UTM)</td><td class="partial">⚠️ Manual / n8n</td><td class="yes">✅ When added</td></tr>
-        <tr><td>Page behaviour / heatmaps</td><td>Microsoft Clarity</td><td class="no">❌ Not stored</td><td class="partial">⚠️ Manual review</td></tr>
-        <tr><td>LinkedIn metrics</td><td>❌ Not in Blotato</td><td class="partial">⚠️ Manual pull</td><td class="partial">⚠️ When added manually</td></tr>
+        <tr><td>Grow social engagement</td><td>Engagement rate per post (↑)</td><td>Hook style, format, posting time, platform mix</td></tr>
+        <tr><td>Drive qualified traffic</td><td>UTM sessions per campaign (↑)</td><td>CTA phrasing, offer, link placement</td></tr>
+        <tr><td>Improve funnel conversion</td><td>Conversions per 1k clicks (↑)</td><td>Landing-page match, campaign targeting</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="loop-container" style="margin-top:2rem;">
-    <div style="font-size:0.85rem; font-weight:700; margin-bottom:1rem; color:var(--text);">What Improves Over Time (Claude Learns From Airtable)</div>
-    <div class="card-grid">
-      <div style="background:var(--bg3); border-radius:8px; padding:1rem; font-size:0.8rem;">
-        <div style="font-size:1.2rem; margin-bottom:0.3rem;">✍️</div>
-        <strong>Copy Strategy</strong>
-        <p style="color:var(--muted); margin-top:0.25rem;">Tone, hooks, length, emoji usage — what gets engagement on each platform.</p>
-      </div>
-      <div style="background:var(--bg3); border-radius:8px; padding:1rem; font-size:0.8rem;">
-        <div style="font-size:1.2rem; margin-bottom:0.3rem;">🎨</div>
-        <strong>Visual Strategy</strong>
-        <p style="color:var(--muted); margin-top:0.25rem;">Which image/video types perform. Static vs Reels. Talking head vs B-roll.</p>
-      </div>
-      <div style="background:var(--bg3); border-radius:8px; padding:1rem; font-size:0.8rem;">
-        <div style="font-size:1.2rem; margin-bottom:0.3rem;">📱</div>
-        <strong>Platform Tuning</strong>
-        <p style="color:var(--muted); margin-top:0.25rem;">What works on TikTok vs LinkedIn vs Instagram. Platform-specific format optimisation.</p>
-      </div>
-      <div style="background:var(--bg3); border-radius:8px; padding:1rem; font-size:0.8rem;">
-        <div style="font-size:1.2rem; margin-bottom:0.3rem;">💰</div>
-        <strong>UTM Campaign ROI</strong>
-        <p style="color:var(--muted); margin-top:0.25rem;">Which campaigns drive lowest-cost conversions. Budget and effort allocation.</p>
-      </div>
-    </div>
+  <div style="background:rgba(85,239,196,0.08); border:1px solid rgba(85,239,196,0.3); border-radius:10px; padding:1.25rem; margin-top:1.5rem; font-size:0.85rem;">
+    <strong style="color:var(--accent5);">Where analytics still come from:</strong> <span style="color:var(--muted);">Blotato covers social metrics for the engagement objective (immediately). Add GA4 + Clarity via connectors when you graduate to traffic/conversion objectives. The Self-Improving Task reads whichever metric you point it at — the plumbing is the same.</span>
   </div>
 </section>
 <hr class="divider">
 
-<!-- SKILLS VS AIRTABLE -->
+
+<!-- INFRASTRUCTURE -->
+<section id="infra">
+  <div class="section-label">08 — Infrastructure &amp; Always-On</div>
+  <h2>The Runtime That Keeps It Alive</h2>
+  <p class="section-intro">A content engine that only runs while you're watching isn't an OS. These are the Abacus layers that make the system autonomous, resilient, and always-on — most of them already included in your Pro tier.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⏱️</div>
+      <h3>Scheduled Tasks (Daemons)</h3>
+      <p>Wrap the whole content workflow in a task that runs daily/weekly, or fire it from a webhook. Native cron — no n8n. Up to <strong>20 active</strong>, 50 total, min 1-hour spacing.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖥️</div>
+      <h3>SuperComputer</h3>
+      <p>Always-on Ubuntu VM with root, SSH, Postgres/Redis, Docker, and custom domains. Host the dashboard app and the data hub here so nothing stops when a sandbox shuts down. ~1 credit / 5 min, auto-shutdown when idle.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🐝</div>
+      <h3>Agent Swarms</h3>
+      <p>For a full launch, a master agent delegates to parallel workers — research, copy, creative, publishing — running simultaneously. A campaign in days, not weeks.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧑‍💼</div>
+      <h3>Personal Agents</h3>
+      <p>A sidebar Chief-of-Staff with memory that briefs you each morning on WhatsApp/Telegram: what posted, what's queued, what's winning. Your human-in-the-loop without opening the console.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>Claw (OpenClaw)</h3>
+      <p>Cross-channel orchestration across 50+ messaging platforms. Handles inbound DMs and comment triage from Instagram/Facebook/etc. in one place, with persistent memory.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Hermes</h3>
+      <p>Self-evolving agent on SuperComputer that turns repeated procedures into reusable skills and remembers across sessions — ideal for ongoing competitive/content research that compounds.</p>
+    </div>
+  </div>
+
+  <div style="background:rgba(0,206,201,0.08); border:1px solid rgba(0,206,201,0.3); border-radius:10px; padding:1.25rem; margin-top:1.5rem; font-size:0.85rem;">
+    <strong style="color:var(--accent2);">Connectors, not custom code:</strong> <span style="color:var(--muted);">Google Drive, GA4, Gmail, Calendar, GitHub are one-click <em>native</em> connectors. Airtable, Blotato, Notion and hundreds more come in via <em>MCP</em>. GHL and Meta connect via API + webhooks. You rarely write integration code — you authorise a connector or point the agent at an MCP server.</span>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- SKILLS VS DATA -->
 <section id="skills">
-  <div class="section-label">07 — Skills vs Data</div>
+  <div class="section-label">09 — Skills vs Data</div>
   <h2>What Lives Where</h2>
-  <p class="section-intro">Skill.md files in Abacus teach the agent HOW to act. Airtable stores WHAT actually happened. Never mix them.</p>
+  <p class="section-intro">Skill.md files in the console teach the agent HOW to act. The data hub stores WHAT actually happened. Never mix them — and never bake example copy into a skill. Skills define <em>constraints and decision rules</em>; the creative stays open to whoever briefs it.</p>
 
   <div class="split-box">
     <div class="split-panel left">
       <div class="vis-label"><a href="https://ftg-agent-console.abacusai.app/" target="_blank" style="color:var(--accent);">FTG Agent Console ↗</a></div>
       <h3>Skill.md Files</h3>
-      <div class="subtitle">Instructions / Procedures / Capabilities — rarely change</div>
+      <div class="subtitle">Instructions / procedures / capabilities — rarely change · reusable like Hermes skills</div>
       <ul class="split-list">
-        <li><strong>blotato-publishing.md</strong> — How to publish posts via Blotato MCP, presigned upload flow, scheduling</li>
-        <li><strong>utm-generation.md</strong> — Naming convention, how to auto-increment Post ID from Airtable, URL construction</li>
-        <li><strong>content-analysis.md</strong> — How to query top performers, extract patterns, generate informed copy</li>
-        <li><strong>airtable-sync.md</strong> — Table structure, field names, how to read/write Posts and Campaigns tables</li>
-        <li><strong>gdrive-media.md</strong> — How to locate, download, and upload video/image from Google Drive to Blotato</li>
-        <li><strong>campaign-brief.md</strong> — How to accept a campaign brief and orchestrate the full creation → publish → log flow</li>
-        <li><strong>+ 8 content agents</strong> — Voice Profile, Style Transfer, Ad Generator, Social Suite, Webinar Atomizer, Email Builder, Email Framework, CRO (see Content Engine section)</li>
+        <li><strong>blotato-publishing.md</strong> — How to publish via Blotato MCP, presigned upload flow, scheduling</li>
+        <li><strong>utm-generation.md</strong> — Naming convention, how to auto-increment Post ID, URL construction</li>
+        <li><strong>content-analysis.md</strong> — How to read metrics + extract patterns (the Self-Improving Task calls this)</li>
+        <li><strong>data-sync.md</strong> — Table/schema structure, how to read/write Posts and Campaigns</li>
+        <li><strong>studio-creative.md</strong> — How to brief Studio for on-brand shorts/images within constraints</li>
+        <li><strong>campaign-brief.md</strong> — How to accept a brief and orchestrate create → publish → log</li>
+        <li><strong>+ 8 content agents</strong> — Voice Profile, Style Transfer, Ad Generator, Social Suite, Webinar Atomizer, Email Builder, Email Framework, CRO (see Content Engine)</li>
       </ul>
     </div>
     <div class="split-panel right">
-      <div class="vis-label">Airtable</div>
+      <div class="vis-label">Airtable (MCP) or SuperComputer Postgres</div>
       <h3>Operational Data</h3>
-      <div class="subtitle">Records / History / Metrics — updated constantly</div>
+      <div class="subtitle">Records / history / metrics — updated constantly</div>
       <ul class="split-list">
-        <li><strong>Posts table</strong> — Every post ever created, copy, media, UTM params, platform, scheduled time</li>
-        <li><strong>Campaigns table</strong> — Campaign name, slug, start/end date, target platforms, base URL</li>
-        <li><strong>Analytics table</strong> — Views, likes, comments, reach per post, updated 48hrs post-publish</li>
-        <li><strong>Media Library</strong> — Google Drive file IDs, descriptions, which posts used each asset</li>
-        <li><strong>System Log</strong> — What ran when, success/failure, automation execution history</li>
-        <li><strong>Performance Trends</strong> — Rollup of top hooks, formats, CTAs for Claude to reference</li>
+        <li><strong>Posts</strong> — Every post: copy, media, UTM params, platform, scheduled time</li>
+        <li><strong>Campaigns</strong> — Name, slug, start/end date, target platforms, base URL</li>
+        <li><strong>Analytics</strong> — Views, likes, comments, reach per post, updated post-publish</li>
+        <li><strong>Media Library</strong> — Drive/Studio asset IDs, descriptions, which posts used each</li>
+        <li><strong>System Log</strong> — What ran when, success/failure, run history</li>
+        <li><strong>Performance Trends</strong> — Rollup of top hooks/formats/CTAs the task references</li>
       </ul>
     </div>
   </div>
 
   <div style="background:rgba(108,92,231,0.08); border:1px solid rgba(108,92,231,0.3); border-radius:10px; padding:1.25rem; margin-top:1.5rem; font-size:0.85rem;">
-    <strong style="color:var(--accent);">Key principle:</strong> <span style="color:var(--muted);">Skill files are the agent's <em>memory of how to work</em>. Airtable is the <em>record of what it did</em>. Airtable is also what makes your HTML dashboard possible — it reads from there to show you everything at a glance.</span>
+    <strong style="color:var(--accent);">Key principle:</strong> <span style="color:var(--muted);">Skills are the agent's <em>memory of how to work</em> (rules, not templates). The data hub is the <em>record of what it did</em>. With DataLLM you can query that record in plain English — no report to build.</span>
   </div>
 </section>
 <hr class="divider">
 
-<!-- COMPARISON -->
+<!-- ABACUS AS OS (reframed comparison) -->
 <section id="comparison">
-  <div class="section-label">08 — Platform Comparison</div>
-  <h2>Abacus AI vs Claude-Only Systems</h2>
-  <p class="section-intro">Both connect to the same Blotato MCP endpoint and get the same 36 tools. The critical insight: Abacus can use Claude models for copy generation — giving you the best of both.</p>
+  <div class="section-label">10 — Abacus vs "Claude-Only"</div>
+  <h2>The Wrong Question — and the Right Frame</h2>
+  <p class="section-intro">The old plan asked "should we build this on Abacus or on Claude?" That's a false choice. Abacus is the operating system; Claude is one of the models it runs. Via RouteLLM you get Claude Opus 5 <em>plus</em> GPT-6 and Gemini, inside a platform that also gives you scheduling, hosting, Studio, and the self-improving loop.</p>
 
   <div style="background:rgba(0,206,201,0.08); border:1px solid rgba(0,206,201,0.3); border-radius:10px; padding:1.25rem; margin-bottom:2rem; font-size:0.87rem;">
-    <strong style="color:var(--accent2);">🔑 Key insight:</strong> <span style="color:var(--muted);">You can specify Claude Sonnet or Claude Opus as the model for copy generation tasks inside Abacus AI. This eliminates the main reason to use Claude standalone — you get Claude's writing quality <em>plus</em> Abacus's autonomous scheduling infrastructure.</span>
+    <strong style="color:var(--accent2);">🔑 Reframe:</strong> <span style="color:var(--muted);">"Claude-only" means one model and no runtime — you still have to supply the schedule, the hosting, the loop, and the creative tools yourself. "Abacus" means Claude <em>and</em> that entire runtime. The comparison isn't model vs model; it's a model vs an operating system.</span>
   </div>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>Dimension</th><th>Abacus AI → Blotato</th><th>Claude-Only → Blotato</th></tr></thead>
+      <thead><tr><th>Dimension</th><th>Abacus (FTG Console)</th><th>Claude-only → Blotato</th></tr></thead>
       <tbody>
-        <tr><td><strong>Copy quality</strong></td><td class="yes">✅ Same — use Claude model in Abacus</td><td class="yes">✅ Native Claude</td></tr>
-        <tr><td><strong>Blotato connection</strong></td><td class="partial">⚠️ MCP via API-key header</td><td class="yes">✅ MCP via OAuth (easiest)</td></tr>
-        <tr><td><strong>Autonomous scheduled loop</strong></td><td class="yes">✅ Built-in daemons — runs without you</td><td class="no">❌ Needs external cron or manual trigger</td></tr>
-        <tr><td><strong>Airtable integration</strong></td><td class="yes">✅ Native connector</td><td class="partial">⚠️ MCP or REST API only</td></tr>
-        <tr><td><strong>Google Drive integration</strong></td><td class="yes">✅ Native connector</td><td class="partial">⚠️ Via API</td></tr>
-        <tr><td><strong>Always-on compute</strong></td><td class="yes">✅ SuperComputer (persistent hosting)</td><td class="no">❌ Code: runs on your machine</td></tr>
-        <tr><td><strong>Skill.md system</strong></td><td class="yes">✅ Built-in — your agent's brain</td><td class="partial">⚠️ System prompts only</td></tr>
-        <tr><td><strong>Multi-model flexibility</strong></td><td class="yes">✅ Claude, GPT-4o, Gemini — switch per task</td><td class="no">❌ Claude only</td></tr>
-        <tr><td><strong>n8n integration</strong></td><td class="yes">✅ Works alongside</td><td class="yes">✅ Works alongside</td></tr>
-        <tr><td><strong>Team sharing</strong></td><td class="yes">✅ Org-level MCP + shared agents</td><td class="yes">✅ Team/Ent connectors</td></tr>
-        <tr><td><strong>Setup complexity</strong></td><td class="partial">⚠️ Medium (JSON config + API key)</td><td class="yes">✅ Low (OAuth one-click)</td></tr>
-        <tr><td><strong>Visibility / opacity</strong></td><td class="partial">⚠️ Opaque without HTML dashboard + Airtable</td><td class="partial">⚠️ Similar opacity in Cowork/.ai</td></tr>
-        <tr><td><strong>Verdict</strong></td><td style="color:var(--accent); font-weight:700;">🏆 Best for autonomous loop</td><td style="color:var(--muted);">Best for simple setup / dev work</td></tr>
+        <tr><td><strong>Model quality</strong></td><td class="yes">✅ Claude Opus 5 + GPT-6 + Gemini via RouteLLM</td><td class="partial">⚠️ Claude only</td></tr>
+        <tr><td><strong>Autonomous loop</strong></td><td class="yes">✅ Self-Improving Tasks w/ independent evaluator</td><td class="no">❌ Hand-built cron + prompt</td></tr>
+        <tr><td><strong>Scheduling</strong></td><td class="yes">✅ Native daemons + webhooks</td><td class="no">❌ External cron / manual</td></tr>
+        <tr><td><strong>Creative generation</strong></td><td class="yes">✅ Studio — 50+ models, avatars, editor</td><td class="no">❌ None (external tools)</td></tr>
+        <tr><td><strong>Always-on hosting</strong></td><td class="yes">✅ SuperComputer (root, Docker, Postgres)</td><td class="no">❌ Runs on your machine</td></tr>
+        <tr><td><strong>Parallel scale</strong></td><td class="yes">✅ Agent Swarms</td><td class="no">❌ Single session</td></tr>
+        <tr><td><strong>Dashboard / app</strong></td><td class="yes">✅ Agent builds Next.js + Postgres app</td><td class="partial">⚠️ You build it separately</td></tr>
+        <tr><td><strong>Cross-channel presence</strong></td><td class="yes">✅ Personal Agents + Claw (50+ platforms)</td><td class="no">❌ None</td></tr>
+        <tr><td><strong>Connectors</strong></td><td class="yes">✅ Native + MCP (Drive, GA4, Airtable, GHL…)</td><td class="partial">⚠️ MCP / REST by hand</td></tr>
+        <tr><td><strong>Blotato connection</strong></td><td class="partial">⚠️ MCP via API-key header</td><td class="yes">✅ MCP via OAuth (simplest)</td></tr>
+        <tr><td><strong>Verdict</strong></td><td style="color:var(--accent); font-weight:700;">🏆 The operating system for the whole thing</td><td style="color:var(--muted);">Fine for a quick manual test only</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 <hr class="divider">
 
-<!-- VISIBILITY -->
+
+<!-- 11 VISIBILITY -->
 <section id="visibility">
-  <div class="section-label">09 — Visibility Solution</div>
-  <h2>Solving the Opacity Problem</h2>
-  <p class="section-intro">Abacus agent conversations are opaque. The fix: Airtable as the data layer + a custom HTML dashboard as the control panel. One URL shows everything.</p>
+  <div class="section-label">11 — Visibility</div>
+  <h2>The Dashboard Is an App the Agent Builds — Not a Static Page</h2>
+  <p class="section-intro">The old plan hand-coded an HTML dashboard on GitHub Pages that polls Airtable and Blotato from the browser. That is the glue trap again. Abacus Agent <strong>writes and deploys a real full-stack app</strong> — Next.js front end, Postgres, auth — and hosts it live on a *.abacusai.app URL or your SuperComputer. You describe what you want to see; the agent ships it.</p>
 
   <div class="vis-stack">
     <div class="vis-box primary">
-      <div class="vis-label">Primary — HTML Dashboard</div>
-      <h4>Custom Control Panel (GitHub Pages)</h4>
+      <div class="vis-label">Primary — Agent-Built Web App</div>
+      <h4>Live Next.js + Postgres Dashboard</h4>
       <ul class="vis-list">
-        <li>🟢🟡🔴 Live system status (Blotato connected? Airtable synced? n8n last run?)</li>
-        <li>Recent 10 posts with thumbnails, platforms, UTM campaign</li>
-        <li>Top 5 performers by engagement rate this week</li>
-        <li>Quick links to Airtable, Blotato, n8n, Abacus console</li>
-        <li>Auto-refreshes every 60 seconds</li>
-        <li>One shareable URL — bookmark it</li>
+        <li>Agent generates the full app (front end, API, DB, auth)</li>
+        <li>Hosted on *.abacusai.app or SuperComputer — always on</li>
+        <li>Real-time post queue, funnel, top performers, system health</li>
+        <li>Iterate by chat: "add a per-platform ROI chart" ships it</li>
       </ul>
     </div>
     <div class="vis-box">
-      <div class="vis-label">Secondary — Airtable</div>
-      <h4>Data & Operations Hub</h4>
+      <div class="vis-label">Ask — DataLLM / Chat</div>
+      <h4>Natural-Language Analytics</h4>
       <ul class="vis-list">
-        <li>Every post ever published (Posts table)</li>
-        <li>All UTM parameters per post</li>
-        <li>Automation execution log (System Log table)</li>
-        <li>Campaign performance rollups</li>
-        <li>Media library reference (GDrive file IDs)</li>
-        <li>Analytics updates 48hrs post-publish</li>
+        <li>"Which hooks beat 4% engagement last month?"</li>
+        <li>Query Postgres/Airtable in plain English — no SQL, no views</li>
+        <li>Personal Agent delivers a daily brief to Slack/email</li>
       </ul>
     </div>
     <div class="vis-box">
-      <div class="vis-label">Tertiary — n8n</div>
-      <h4>Automation Execution Log</h4>
+      <div class="vis-label">Data — Source of Truth</div>
+      <h4>Airtable or SuperComputer Postgres</h4>
       <ul class="vis-list">
-        <li>Workflow execution history</li>
-        <li>Success/failure status per run</li>
-        <li>Analytics pull receipts</li>
-        <li>Airtable sync confirmations</li>
-      </ul>
-    </div>
-    <div class="vis-box">
-      <div class="vis-label">Native — Blotato Dashboard</div>
-      <h4>Social Platform View</h4>
-      <ul class="vis-list">
-        <li>Scheduled posts queue</li>
-        <li>Published post history</li>
-        <li>Platform analytics (8 platforms)</li>
-        <li>DM conversations (Instagram/Facebook)</li>
+        <li>Airtable for fast start + human editing</li>
+        <li>Postgres on SuperComputer when volume scales</li>
+        <li>The agent reads and writes both; the app renders them</li>
       </ul>
     </div>
   </div>
 
   <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-top:1.5rem; font-size:0.85rem;">
     <strong style="color:var(--text);">Architecture principle:</strong><br>
-    <span style="color:var(--muted);">Airtable = data layer (posts, metrics, logs) — the agent reads and writes here.<br>
-    HTML Dashboard = visibility layer (status, health, quick view) — reads from Airtable + Blotato APIs.<br>
-    These are not competing — the dashboard sits on top of Airtable and makes it instantly readable without clicking through views.</span>
+    <span style="color:var(--muted);">Data layer (Airtable / Postgres) and visibility layer (the app) still separate — but you no longer <em>build</em> the visibility layer by hand. The agent authors, deploys, and updates it. A static page you maintain becomes a living app the agent maintains for you.</span>
   </div>
 </section>
 <hr class="divider">
 
-<!-- AIRTABLE SCHEMA -->
+<!-- 12 DATA SCHEMA -->
 <section id="airtable">
-  <div class="section-label">10 — Airtable Schema</div>
-  <h2>Complete Database Structure</h2>
-  <p class="section-intro">Four tables covering everything. Posts is your primary table. Campaigns links posts to goals. Media Library tracks GDrive assets. System Log tracks automation health.</p>
+  <div class="section-label">12 — Data Schema</div>
+  <h2>The Database — Airtable to Start, Postgres to Scale</h2>
+  <p class="section-intro">The four-table model below is unchanged and still correct — it is a clean data design, not glue. Start in Airtable (via MCP) for instant setup and human editing. When volume grows, the agent migrates the same schema to Postgres on your SuperComputer. Posts is primary; Campaigns links posts to goals; Media Library tracks Studio/Drive assets; System Log tracks automation health.</p>
 
   <h3 style="margin-bottom:1rem; color:var(--accent);">Posts Table (Primary)</h3>
   <div class="table-wrap">
@@ -922,8 +823,8 @@
         <tr><td><strong>Status</strong></td><td><span class="tag tag-yellow">Single Select</span></td><td>Draft / Scheduled / Published / Failed</td></tr>
         <tr><td><strong>Platform</strong></td><td><span class="tag tag-teal">Multi Select</span></td><td>Instagram, TikTok, X, LinkedIn, Facebook, YouTube, Threads, Bluesky, Pinterest</td></tr>
         <tr><td><strong>Copy</strong></td><td><span class="tag tag-purple">Long Text</span></td><td>Full post text including UTM URL embedded in CTA</td></tr>
-        <tr><td><strong>Image URL</strong></td><td><span class="tag tag-green">URL</span></td><td>Direct image link for posts with static images</td></tr>
-        <tr><td><strong>Video GDrive ID</strong></td><td><span class="tag tag-green">Text</span></td><td>Google Drive file ID for video content</td></tr>
+        <tr><td><strong>Image URL</strong></td><td><span class="tag tag-green">URL</span></td><td>Direct image link (Studio-generated or static)</td></tr>
+        <tr><td><strong>Video Source ID</strong></td><td><span class="tag tag-green">Text</span></td><td>Studio render ID or Google Drive file ID for video</td></tr>
         <tr><td><strong>Blotato Media ID</strong></td><td><span class="tag tag-purple">Text</span></td><td>Reference ID from Blotato after media upload</td></tr>
         <tr><td><strong>UTM Source</strong></td><td><span class="tag tag-pink">Text</span></td><td>Platform name (instagram, tiktok, x…)</td></tr>
         <tr><td><strong>UTM Medium</strong></td><td><span class="tag tag-pink">Text</span></td><td>Always "social"</td></tr>
@@ -938,7 +839,7 @@
         <tr><td><strong>Engagement Rate</strong></td><td><span class="tag tag-yellow">Formula</span></td><td>(Likes+Comments)/Views × 100</td></tr>
         <tr><td><strong>Performance Rank</strong></td><td><span class="tag tag-yellow">Formula</span></td><td>Top / Mid / Low — based on engagement rate vs average</td></tr>
         <tr><td><strong>Campaign</strong></td><td><span class="tag tag-purple">Link to Record</span></td><td>Links to Campaigns table</td></tr>
-        <tr><td><strong>Iteration Notes</strong></td><td><span class="tag tag-purple">Long Text</span></td><td>Claude's notes on why this post was created, what it tested</td></tr>
+        <tr><td><strong>Iteration Notes</strong></td><td><span class="tag tag-purple">Long Text</span></td><td>Agent's notes on why this post was created, what it tested — the memory the Self-Improving Task learns from</td></tr>
       </tbody>
     </table>
   </div>
@@ -953,7 +854,7 @@
         <tr><td><strong>Base URL</strong></td><td><span class="tag tag-green">URL</span></td><td>Landing page UTM parameters append to</td></tr>
         <tr><td><strong>Target Platforms</strong></td><td><span class="tag tag-teal">Multi Select</span></td><td>Which platforms for this campaign</td></tr>
         <tr><td><strong>Start / End Date</strong></td><td><span class="tag tag-green">Date</span></td><td>Campaign duration</td></tr>
-        <tr><td><strong>Posts</strong></td><td><span class="tag tag-purple">Link to Record</span></td><td>All posts belonging to this campaign (rollup)</td></tr>
+        <tr><td><strong>Posts</strong></td><td><span class="tag tag-purple">Link to Record</span></td><td>All posts belonging to this campaign</td></tr>
         <tr><td><strong>Total Posts</strong></td><td><span class="tag tag-yellow">Rollup</span></td><td>Count of posts in campaign</td></tr>
         <tr><td><strong>Avg Engagement Rate</strong></td><td><span class="tag tag-yellow">Rollup</span></td><td>Average engagement across all campaign posts</td></tr>
       </tbody>
@@ -969,8 +870,9 @@
           <tbody>
             <tr><td><strong>Asset Name</strong></td><td><span class="tag tag-purple">Text</span></td></tr>
             <tr><td><strong>Type</strong></td><td><span class="tag tag-yellow">Single Select</span> Image / Video / Graphic</td></tr>
-            <tr><td><strong>GDrive File ID</strong></td><td><span class="tag tag-green">Text</span></td></tr>
-            <tr><td><strong>GDrive URL</strong></td><td><span class="tag tag-green">URL</span></td></tr>
+            <tr><td><strong>Source</strong></td><td><span class="tag tag-teal">Single Select</span> Studio / GDrive</td></tr>
+            <tr><td><strong>Asset ID / File ID</strong></td><td><span class="tag tag-green">Text</span></td></tr>
+            <tr><td><strong>URL</strong></td><td><span class="tag tag-green">URL</span></td></tr>
             <tr><td><strong>Used In Posts</strong></td><td><span class="tag tag-purple">Link to Record</span></td></tr>
             <tr><td><strong>Platform Suitability</strong></td><td><span class="tag tag-teal">Multi Select</span></td></tr>
             <tr><td><strong>Notes</strong></td><td><span class="tag tag-purple">Long Text</span></td></tr>
@@ -989,7 +891,7 @@
             <tr><td><strong>Status</strong></td><td><span class="tag tag-teal">Single Select</span> ✅ / ❌ / ⚠️</td></tr>
             <tr><td><strong>Records Affected</strong></td><td><span class="tag tag-teal">Number</span></td></tr>
             <tr><td><strong>Error Message</strong></td><td><span class="tag tag-pink">Long Text</span></td></tr>
-            <tr><td><strong>Triggered By</strong></td><td><span class="tag tag-purple">Text</span> Abacus / n8n</td></tr>
+            <tr><td><strong>Triggered By</strong></td><td><span class="tag tag-purple">Text</span> Self-Improving Task / Daemon / Agent</td></tr>
           </tbody>
         </table>
       </div>
@@ -998,11 +900,11 @@
 </section>
 <hr class="divider">
 
-<!-- PHASES -->
+<!-- 13 PHASES -->
 <section id="phases">
-  <div class="section-label">11 — Implementation Phases</div>
-  <h2>Rollout Timeline</h2>
-  <p class="section-intro">Start simple. Prove the loop. Automate incrementally. Each phase delivers real value before the next begins.</p>
+  <div class="section-label">13 — Implementation Phases</div>
+  <h2>Rollout — Native From Day One</h2>
+  <p class="section-intro">Same principle as before — start simple, prove the loop, scale — but each phase now uses the Abacus-native capability instead of hand-built glue. You reach the autonomous loop faster because the platform provides it.</p>
 
   <div class="phases">
     <div class="phase">
@@ -1012,17 +914,14 @@
         <div style="font-size:0.65rem; color:var(--muted); margin-top:0.25rem;">Week 1</div>
       </div>
       <div class="phase-content">
-        <h3>Foundation Setup</h3>
-        <p>Connect all systems. Build Airtable base. Write Skill.md files. Link Blotato to Abacus via MCP.</p>
+        <h3>Foundation in the FTG Console</h3>
+        <p>Connect systems and teach the agent your conventions. No external orchestrator needed — the console is the engine.</p>
         <div class="phase-steps">
-          <span class="phase-step">Create Airtable base (4 tables)</span>
-          <span class="phase-step">Connect Blotato MCP to Abacus (API-key header)</span>
-          <span class="phase-step">Connect Google Drive connector (OAuth)</span>
-          <span class="phase-step">Connect Airtable connector</span>
-          <span class="phase-step">Write blotato-publishing.md skill</span>
-          <span class="phase-step">Write utm-generation.md skill</span>
-          <span class="phase-step">Write airtable-sync.md skill</span>
-          <span class="phase-step">Write gdrive-media.md skill</span>
+          <span class="phase-step">Create Airtable base (4 tables) via MCP</span>
+          <span class="phase-step">Connect Blotato MCP (API-key header)</span>
+          <span class="phase-step">Connect Google Drive + GA4 (native connectors)</span>
+          <span class="phase-step">Write Skills: utm-generation, blotato-publishing, brand-voice</span>
+          <span class="phase-step">Capture Voice Profile from best existing posts</span>
           <span class="phase-step">Test end-to-end: 1 post, 1 platform</span>
         </div>
       </div>
@@ -1035,15 +934,13 @@
         <div style="font-size:0.65rem; color:var(--muted); margin-top:0.25rem;">Week 1–2</div>
       </div>
       <div class="phase-content">
-        <h3>First Posts with Full UTM Flow</h3>
-        <p>Run the complete flow: Claude writes copy → UTM generated → Blotato publishes → Airtable logged. Validate every field populates correctly.</p>
+        <h3>Full Content Flow + Studio Creative</h3>
+        <p>Run the complete flow: agent writes copy (RouteLLM picks the model) → Studio generates the visual → UTM built → Blotato publishes → Airtable logged.</p>
         <div class="phase-steps">
-          <span class="phase-step">Create first campaign in Airtable</span>
-          <span class="phase-step">Brief Abacus agent on campaign</span>
-          <span class="phase-step">Test image post (static)</span>
-          <span class="phase-step">Test video post (from GDrive)</span>
-          <span class="phase-step">Verify UTM params in Airtable</span>
-          <span class="phase-step">Verify GA receives UTM traffic</span>
+          <span class="phase-step">Create first campaign record</span>
+          <span class="phase-step">Generate a video/image in Studio</span>
+          <span class="phase-step">Test image post + video post</span>
+          <span class="phase-step">Verify UTM params + GA receives traffic</span>
           <span class="phase-step">Test multi-platform post (3+ platforms)</span>
         </div>
       </div>
@@ -1056,15 +953,14 @@
         <div style="font-size:0.65rem; color:var(--muted); margin-top:0.25rem;">Week 2–3</div>
       </div>
       <div class="phase-content">
-        <h3>Analytics Feedback Loop (Loop 1)</h3>
-        <p>Pull Blotato analytics 48hrs post-publish. Update Airtable with performance metrics. Activate Claude analysis of top performers.</p>
+        <h3>The Self-Improving Task (Replaces the n8n Loop)</h3>
+        <p>Stand up the native Self-Improving Task with an explicit metric (engagement rate). It runs on schedule, pulls analytics, and its independent evaluator scores each batch — no cron, no hand-built loop.</p>
         <div class="phase-steps">
-          <span class="phase-step">Write content-analysis.md skill</span>
-          <span class="phase-step">Set up n8n: analytics pull workflow</span>
-          <span class="phase-step">n8n updates Airtable performance fields</span>
-          <span class="phase-step">Claude analyses first batch of top posts</span>
-          <span class="phase-step">Generate second batch of posts informed by data</span>
-          <span class="phase-step">Compare engagement rates batch 1 vs batch 2</span>
+          <span class="phase-step">Define the objective metric + evaluator</span>
+          <span class="phase-step">Schedule analytics pull 48hrs post-publish</span>
+          <span class="phase-step">Task updates Airtable performance fields</span>
+          <span class="phase-step">Task generates next batch informed by top performers</span>
+          <span class="phase-step">Review the built-in metric trend + run history</span>
         </div>
       </div>
     </div>
@@ -1076,15 +972,14 @@
         <div style="font-size:0.65rem; color:var(--muted); margin-top:0.25rem;">Week 3–4</div>
       </div>
       <div class="phase-content">
-        <h3>Visibility Dashboard + Full Funnel (Loop 2)</h3>
-        <p>Deploy HTML dashboard for single-pane visibility. Add GA UTM tracking to close the full funnel loop.</p>
+        <h3>Agent-Built Visibility App + Full Funnel</h3>
+        <p>Ask the agent to build and deploy the dashboard as a live app. Add GA4 UTM tracking to close the funnel from post to conversion.</p>
         <div class="phase-steps">
-          <span class="phase-step">Deploy HTML dashboard to GitHub Pages</span>
-          <span class="phase-step">Connect Airtable API to dashboard</span>
-          <span class="phase-step">Set up GA4 UTM campaign tracking</span>
-          <span class="phase-step">Optional: MS Clarity for page behaviour</span>
+          <span class="phase-step">Agent builds Next.js + Postgres dashboard app</span>
+          <span class="phase-step">Deploy to *.abacusai.app or SuperComputer</span>
+          <span class="phase-step">Wire GA4 UTM campaign tracking</span>
           <span class="phase-step">Verify full funnel: post → UTM click → GA conversion</span>
-          <span class="phase-step">Brief Claude on GA conversion data</span>
+          <span class="phase-step">Personal Agent delivers daily brief</span>
         </div>
       </div>
     </div>
@@ -1096,15 +991,14 @@
         <div style="font-size:0.65rem; color:var(--muted); margin-top:0.25rem;">Week 4+</div>
       </div>
       <div class="phase-content">
-        <h3>Autonomous Self-Improving Loop</h3>
-        <p>Schedule the full loop as an Abacus daemon. Agent runs without you: posts, fetches analytics, updates Airtable, generates smarter content on a schedule.</p>
+        <h3>Always-On + Scale</h3>
+        <p>Move the whole system to SuperComputer for 24/7 operation, and use Agent Swarms to parallelise across many campaigns and platforms.</p>
         <div class="phase-steps">
-          <span class="phase-step">Set up Abacus daemon for daily content creation</span>
-          <span class="phase-step">Daemon reads Airtable top performers</span>
-          <span class="phase-step">Daemon generates 3–5 posts per run</span>
-          <span class="phase-step">Posts to Blotato queue for your review</span>
-          <span class="phase-step">Optional: auto-publish after N hours with no edits</span>
-          <span class="phase-step">Weekly performance summary to Airtable dashboard view</span>
+          <span class="phase-step">Host the loop + app on SuperComputer</span>
+          <span class="phase-step">Swarm: parallel content generation across campaigns</span>
+          <span class="phase-step">Claw + Personal Agents for cross-channel presence</span>
+          <span class="phase-step">Weekly performance summary auto-delivered</span>
+          <span class="phase-step">Migrate data to Postgres as volume grows</span>
         </div>
       </div>
     </div>
@@ -1112,18 +1006,18 @@
 </section>
 <hr class="divider">
 
-<!-- QUICK START -->
+<!-- 14 QUICK START -->
 <section id="quickstart">
-  <div class="section-label">12 — Quick Start Checklist</div>
+  <div class="section-label">14 — Quick Start Checklist</div>
   <h2>Get Running in Week 1</h2>
-  <p class="section-intro">6 steps to your first UTM-tracked, analytics-logged, multi-platform post.</p>
+  <p class="section-intro">6 steps to your first UTM-tracked, analytics-logged, multi-platform post — all inside the FTG Agent Console.</p>
 
   <ul class="checklist">
     <li>
       <div class="ck-num">1</div>
       <div class="ck-text">
-        <strong>Create Airtable Base</strong>
-        <span>4 tables: Posts, Campaigns, Media Library, System Log. Use schema above. Set Full UTM URL and Engagement Rate as formula fields.</span>
+        <strong>Create Airtable Base (via MCP)</strong>
+        <span>4 tables: Posts, Campaigns, Media Library, System Log. Use the schema above. Set Full UTM URL and Engagement Rate as formula fields.</span>
       </div>
     </li>
     <li>
@@ -1136,91 +1030,92 @@
     <li>
       <div class="ck-num">3</div>
       <div class="ck-text">
-        <strong>Connect Google Drive & Airtable</strong>
-        <span>In the FTG Agent Console → Connectors → Google Drive (OAuth) + Airtable (API token). Test: read a Drive file and an Airtable record.</span>
+        <strong>Connect Google Drive & GA4 (Native)</strong>
+        <span>In the console → Connectors → Google Drive (OAuth) + Google Analytics. These are first-party — no MCP needed. Test a Drive read and a GA4 query.</span>
       </div>
     </li>
     <li>
       <div class="ck-num">4</div>
       <div class="ck-text">
-        <strong>Write Your Skill.md Files</strong>
-        <span>Start with utm-generation.md, blotato-publishing.md, and airtable-sync.md. These teach the agent your exact conventions.</span>
+        <strong>Write Skills + Capture Voice Profile</strong>
+        <span>Start with utm-generation, blotato-publishing, and brand-voice Skills — define <em>constraints and conventions</em>, not fixed copy. Capture a Voice Profile from your best posts so every model matches FTG's tone.</span>
       </div>
     </li>
     <li>
       <div class="ck-num">5</div>
       <div class="ck-text">
         <strong>Run First End-to-End Post</strong>
-        <span>Brief the agent: campaign name, base URL, target platform, GDrive video or image. Verify UTM URL in Airtable, post appears in Blotato queue, GA receives traffic.</span>
+        <span>Brief the agent: campaign, base URL, platform, and let Studio generate the visual. Verify the UTM URL in Airtable, the post in the Blotato queue, and GA traffic.</span>
       </div>
     </li>
     <li>
       <div class="ck-num">6</div>
       <div class="ck-text">
-        <strong>Install n8n Analytics Workflow</strong>
-        <span>48hr scheduled workflow: fetch Blotato analytics for published posts → update Airtable views/likes/comments/reach fields → log run to System Log table.</span>
+        <strong>Stand Up the Self-Improving Task</strong>
+        <span>Create a native Self-Improving Task with engagement rate as the objective. It schedules itself, pulls analytics, scores batches with its evaluator, and improves — no n8n, no cron.</span>
       </div>
     </li>
   </ul>
 </section>
 <hr class="divider">
 
-<!-- TOOL STACK SUMMARY -->
+<!-- 15 TOOL STACK SUMMARY -->
 <section>
-  <div class="section-label">13 — Tool Stack Roles</div>
-  <h2>Each Tool, One Job</h2>
+  <div class="section-label">15 — Tool Stack Roles</div>
+  <h2>What Runs Where — Abacus Is the OS, Not One Tool</h2>
+  <p class="section-intro">The biggest reframe: Abacus is not a peer in this list — it is the operating system the rest plug into. External tools now play focused, optional roles.</p>
   <div class="card-grid" style="margin-top:1.5rem;">
     <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>FTG Agent Console (Abacus)</h3>
-      <p><strong>Orchestrator + content agents.</strong> Schedules daemons, runs the 8 content agents, calls Claude for copy, coordinates Airtable reads/writes, triggers Blotato via MCP. The engine that runs it all autonomously.</p>
+      <div class="card-icon">🧠</div>
+      <h3>FTG Agent Console (Abacus AI OS)</h3>
+      <p><strong>The whole platform.</strong> Agents, RouteLLM model access, Studio, Self-Improving Tasks, daemons, Swarms, Personal Agents, SuperComputer hosting, connectors. It runs, hosts, and improves the system — not just orchestrates it.</p>
     </div>
     <div class="card">
-      <div class="card-icon">🧠</div>
-      <h3>Claude (via Abacus)</h3>
-      <p><strong>Content brain.</strong> Specified as the model for copy generation tasks. Produces hooks, body copy, CTAs informed by top-performer data from Airtable.</p>
+      <div class="card-icon">🎯</div>
+      <h3>RouteLLM (inside Abacus)</h3>
+      <p><strong>Model layer.</strong> Routes each task to Claude, GPT, Gemini, or others by quality and cost. "Abacus vs Claude" is a false choice — Claude runs <em>inside</em> Abacus.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>Studio (inside Abacus)</h3>
+      <p><strong>Creative engine.</strong> 50+ image/video/audio models, avatars, and an editor. Generates the actual media — not just storage.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔁</div>
+      <h3>Self-Improving Task (inside Abacus)</h3>
+      <p><strong>The autonomous loop.</strong> Native scheduled task with an independent evaluator and metric tracking. Replaces the hand-built n8n + cron loop entirely.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖥️</div>
+      <h3>SuperComputer (inside Abacus)</h3>
+      <p><strong>Always-on host.</strong> Persistent cloud machine — root, Docker, Postgres — that runs the loop and hosts the dashboard app 24/7.</p>
     </div>
     <div class="card">
       <div class="card-icon">📡</div>
       <h3>Blotato</h3>
-      <p><strong>Publishing layer.</strong> 36 MCP tools, 9 platforms, 8-platform analytics. Handles OAuth tokens per platform. Posts go out on time even if agent isn't running.</p>
+      <p><strong>Publishing layer.</strong> Connected via MCP. 9 platforms, per-platform OAuth, 8-platform analytics. Posts go out on schedule.</p>
     </div>
     <div class="card">
       <div class="card-icon">📊</div>
-      <h3>Airtable</h3>
-      <p><strong>Single source of truth.</strong> Every post, UTM param, metric, and log lives here. What the dashboard reads. What Claude learns from. Historical reference.</p>
+      <h3>Airtable / Postgres</h3>
+      <p><strong>Data layer.</strong> Airtable (via MCP) to start; Postgres on SuperComputer to scale. Every post, UTM, metric, and log lives here.</p>
     </div>
     <div class="card">
       <div class="card-icon">☁️</div>
-      <h3>Google Drive</h3>
-      <p><strong>Media library.</strong> Master videos and images. Agent pulls via Drive connector, uploads to Blotato. Organised by campaign slug and platform.</p>
+      <h3>Google Drive + GA4</h3>
+      <p><strong>Native connectors.</strong> Drive stores master media; GA4 closes the funnel from UTM click to conversion. First-party, no MCP.</p>
     </div>
     <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>n8n</h3>
-      <p><strong>Automation bridge.</strong> Scheduled analytics pulls from Blotato → Airtable updates. Execution logs. Community Blotato node available natively.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📈</div>
-      <h3>Google Analytics</h3>
-      <p><strong>Conversion tracking.</strong> UTM parameters bridge social posts to website behaviour. Tracks traffic, conversions, and ROI per campaign and platform.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔥</div>
-      <h3>Microsoft Clarity</h3>
-      <p><strong>Page intelligence.</strong> Heatmaps, session recordings, and drop-off analysis for visitors arriving via UTM-tagged posts. Informs landing page improvements.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🖥️</div>
-      <h3>HTML Dashboard</h3>
-      <p><strong>Visibility layer.</strong> Single-pane control panel hosted on GitHub Pages. Reads Airtable and Blotato APIs. System status, recent posts, top performers — one URL.</p>
+      <div class="card-icon">⚙️</div>
+      <h3>n8n <span style="font-size:0.7rem; color:var(--muted);">(optional)</span></h3>
+      <p><strong>Edge-case bridge only.</strong> Keep it for a niche third-party webhook Abacus can't yet reach. It is no longer the loop or the scheduler.</p>
     </div>
   </div>
 </section>
 
 <footer>
   <strong>FTG Social AI-OS</strong> — Fast Track GenAI™<br>
-  <span style="margin-top:0.5rem; display:block;">FTG Agent Console (Abacus) + Claude + 8 Content Agents + Brand System + Blotato + Airtable + Google Drive + UTM + Analytics</span>
+  <span style="margin-top:0.5rem; display:block;">Built on the Abacus AI Operating System — Agents + RouteLLM + Studio + Self-Improving Tasks + SuperComputer + Skills + Blotato + Data + UTM + Analytics</span>
 </footer>
 
 </body>
