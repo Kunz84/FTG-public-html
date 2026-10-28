@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Kunzelman;Dave;;;
+FN:Dave Kunzelman
+ORG:Fast Track GenAI
+TITLE:Founder
+TEL;TYPE=CELL:+19256280585
+EMAIL;TYPE=INTERNET:David@FastTrackGenAI.com
+URL:https://fasttrackgenai.com
+X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/profile.php?id=61563803813314
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/fasttrackgenai/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/company/fast-track-genai/
+X-SOCIALPROFILE;TYPE=twitter:https://x.com/FastTrackGenAI
+X-SOCIALPROFILE;TYPE=youtube:https://www.youtube.com/@FastTrackGenAI
+X-SOCIALPROFILE;TYPE=tiktok:https://www.tiktok.com/@fasttrackgenai
+END:VCARD
