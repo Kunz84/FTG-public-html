@@ -3,175 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Track GenAI | Page Mockups</title>
-    <meta name="description" content="Fast Track GenAI page mockups for GHL implementation.">
+    <title>Fast Track GenAI | Site Directory</title>
+    <meta name="description" content="Fast Track GenAI directory for brand resources and funnel pages.">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <meta name="theme-color" content="#0A1628">
+    <meta name="theme-color" content="#000000">
     <style>
         :root {
-            --navy: #0A1628;
-            --navy-2: #0F2140;
-            --navy-3: #132A4F;
-            --turquoise: #07E6DE;
-            --emerald: #10B981;
-            --white: #FFFFFF;
-            --gray: #E5E7EB;
-            --muted: #9CA3AF;
+            --ftg-black: #000000;
+            --ftg-navy: #0F172A;
+            --ftg-charcoal: #374151;
+            --ftg-bright-turquoise: #07E6DE;
+            --ftg-bright-turquoise-border: #0ABAB5;
+            --ftg-emerald: #10B981;
+            --ftg-offwhite: #FAFAFA;
+            --ftg-silver: #E5E7EB;
+            --ftg-white: #FFFFFF;
+            --ftg-hero-gradient: linear-gradient(90deg, #000000 0%, #0F172A 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: radial-gradient(ellipse at top, var(--navy-3) 0%, var(--navy) 60%);
-            background-color: var(--navy);
-            color: var(--white);
+            background: var(--ftg-offwhite);
+            color: var(--ftg-navy);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
         }
 
-        .wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 0 24px; }
+        .hero {
+            background: var(--ftg-hero-gradient);
+            border-bottom: 2px solid var(--ftg-bright-turquoise);
+            color: var(--ftg-white);
+            padding: 56px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
 
-        header { padding: 64px 0 40px; text-align: center; }
-        .logo { height: 56px; width: auto; margin-bottom: 36px; }
+        .wrap {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
 
-        .eyebrow {
-            color: var(--turquoise);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
+        .hero-logo {
+            height: 58px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1;
             margin-bottom: 12px;
+            font-weight: 800;
         }
 
-        h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; }
-        .lead { margin: 16px auto 0; max-width: 620px; color: var(--gray); font-size: 1.1rem; }
+        .hero p {
+            max-width: 780px;
+            font-size: 1.1rem;
+            color: #E5E7EB;
+        }
 
-        main { flex: 1; padding-bottom: 64px; }
+        .section {
+            padding: 44px 24px;
+        }
+
+        .section h2 {
+            font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            margin-top: 24px;
         }
 
         .card {
+            background: var(--ftg-white);
+            border: 2px solid var(--ftg-silver);
+            border-radius: 14px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            padding: 32px;
-            border-radius: 16px;
-            background: linear-gradient(180deg, rgba(19, 42, 79, 0.65), rgba(15, 33, 64, 0.65));
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            color: inherit;
+            gap: 12px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            line-height: 1.25;
+        }
+
+        .card p {
+            color: var(--ftg-charcoal);
+            font-size: 0.98rem;
+            flex: 1;
+        }
+
+        .btn {
+            display: inline-block;
             text-decoration: none;
-            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover, .card:focus-visible {
-            border-color: var(--turquoise);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(7, 230, 222, 0.18);
-            outline: none;
-        }
-
-        .icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(7, 230, 222, 0.1);
-            color: var(--turquoise);
-        }
-
-        .card.emerald .icon { background: rgba(16, 185, 129, 0.12); color: var(--emerald); }
-
-        .card h2 { font-size: 1.45rem; font-weight: 700; line-height: 1.25; }
-        .card p { color: var(--gray); font-size: 1rem; flex: 1; }
-        .path { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; color: var(--muted); }
-
-        .cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            align-self: flex-start;
-            margin-top: 4px;
-            padding: 12px 20px;
-            border-radius: 10px;
-            background: var(--turquoise);
-            color: var(--navy);
             font-weight: 700;
+            border-radius: 10px;
+            padding: 12px 18px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .card.emerald .cta { background: var(--emerald); color: var(--white); }
+        .btn-primary {
+            background: var(--ftg-emerald);
+            color: var(--ftg-white);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+        }
 
-        footer {
-            padding: 24px 0 32px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-accent {
+            background: var(--ftg-bright-turquoise);
+            color: var(--ftg-black);
+            border: 1px solid var(--ftg-bright-turquoise-border);
+            box-shadow: 0 6px 18px rgba(7, 230, 222, 0.35);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(7, 230, 222, 0.45);
+        }
+
+        .footer {
+            background: var(--ftg-navy);
+            color: var(--ftg-white);
+            padding: 24px;
+            font-size: 0.95rem;
             text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
         }
 
-        footer a { color: var(--turquoise); text-decoration: none; font-weight: 600; }
-        footer a:hover { color: var(--white); }
+        .footer a {
+            color: var(--ftg-bright-turquoise);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover { color: var(--ftg-white); }
 
         @media (max-width: 640px) {
-            header { padding: 44px 0 28px; }
-            .logo { height: 44px; margin-bottom: 28px; }
-            .card { padding: 24px; }
+            .hero, .section { padding-left: 18px; padding-right: 18px; }
+            .hero-logo { height: 48px; }
         }
-
-        @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
     </style>
 </head>
 <body>
-    <header>
+    <header class="hero">
         <div class="wrap">
-            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="logo">
-            <p class="eyebrow">Mockups for GHL implementation</p>
-            <h1>Fast Track GenAI — Page Mockups</h1>
-            <p class="lead">Choose a page to review.</p>
+            <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="hero-logo">
+            <h1>Fast Track GenAI Site Directory</h1>
+            <p>Choose where you want to go: the Brand Resource Center for implementation documentation, or the live funnel pages for VSLs, checkouts, downsells, and thank-you flows.</p>
         </div>
     </header>
 
     <main>
-        <div class="wrap cards">
-            <a class="card" href="home.html">
-                <span class="icon" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
-                </span>
-                <h2>Fast Track GenAI Home Page</h2>
-                <p>The main home page: Business Launchpad offer, author bio, mission, and the free demo call to action.</p>
-                <span class="path">home.html</span>
-                <span class="cta">Open Home Page <span aria-hidden="true">→</span></span>
-            </a>
+        <section class="section">
+            <div class="wrap">
+                <h2>Core Destinations</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3>🏠 Fast Track GenAI Home Page</h3>
+                        <p>The public-facing home page — validate your business idea in 20 minutes. Drives visitors to watch the free demo.</p>
+                        <a class="btn btn-accent" href="home.html">Open Home Page</a>
+                    </article>
+                    <article class="card">
+                        <h3>🛠️ Website &amp; Web App Builds</h3>
+                        <p>Services page mockup — custom websites and web apps built by Fast Track GenAI, featuring the JB Performance and Dexter Salaverria builds.</p>
+                        <a class="btn btn-accent" href="webapp-builds.html">Open Website &amp; Web App Builds</a>
+                    </article>
+                    <article class="card">
+                        <h3>🗺️ Funnel Step URLs</h3>
+                        <p>Builder reference — every GHL path slug with Standard vs OTO (Founder's Deal) versions side-by-side, prices, the full redirect flow, and copy-ready URLs.</p>
+                        <a class="btn btn-accent" href="site-urls.html">Open Site URLs</a>
+                    </article>
+                    <article class="card">
+                        <h3>🎨 Brand Resource Center</h3>
+                        <p>Access the Brand Style Guide, GHL Implementation Guide, and Sales Page Framework Guide in the new structured location.</p>
+                        <a class="btn btn-accent" href="brand-resource-center/">Open Brand Resource Center</a>
+                    </article>
+                    <article class="card">
+                        <h3>🚀 Business Launchpad VSL</h3>
+                        <p>Main Business Launchpad sales page experience.</p>
+                        <a class="btn btn-primary" href="business-launchpad.html">Open Business Launchpad VSL</a>
+                    </article>
+                    <article class="card">
+                        <h3>🤝 Affiliate Program</h3>
+                        <p>Founder's-rate partner program — earn up to 35% per sale plus recurring monthly commissions on the Builders Club.</p>
+                        <a class="btn btn-accent" href="affiliate/">Open Affiliate Program</a>
+                    </article>
+                    <article class="card">
+                        <h3>✅ Affiliate Welcome &amp; Onboarding</h3>
+                        <p>Post-approval hub for approved affiliates — activation steps, exact commission structure, payout timing, and a first-7-days playbook.</p>
+                        <a class="btn btn-accent" href="affiliate/welcome.html">Open Affiliate Welcome Page</a>
+                    </article>
+                    <article class="card">
+                        <h3>🎉 GenAI Builders Club Welcome</h3>
+                        <p>Member welcome &amp; onboarding page — books the 1:1 30-minute onboarding call so we can learn each member's goals and build their success plan.</p>
+                        <a class="btn btn-accent" href="builders-club-welcome.html">Open Builders Club Welcome Page</a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-            <a class="card emerald" href="webapp-builds.html">
-                <span class="icon" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/><path d="m10 12-2 2 2 2"/><path d="m14 12 2 2-2 2"/><path d="M8 21h8"/></svg>
-                </span>
-                <h2>Website &amp; Web App Builds</h2>
-                <p>The services page for custom websites and web apps, with the JB Performance and Dexter Salaverria builds as portfolio examples.</p>
-                <span class="path">webapp-builds.html</span>
-                <span class="cta">Open Builds Page <span aria-hidden="true">→</span></span>
-            </a>
-        </div>
+        <section class="section" style="background:#FFFFFF; border-top: 1px solid #E5E7EB;">
+            <div class="wrap">
+                <h2>Other Funnel Pages</h2>
+                <div class="cards">
+                    <article class="card"><h3>Business Launchpad Checkout</h3><a class="btn btn-primary" href="business-launchpad-checkout.html">Open</a></article>
+                    <article class="card"><h3>Business Accelerator VSL</h3><a class="btn btn-primary" href="business-accelerator-vsl.html">Open</a></article>
+                    <article class="card"><h3>GenAI Builders Club VSL</h3><a class="btn btn-primary" href="genai-builders-club-vsl.html">Open</a></article>
+                    <article class="card"><h3>AI Strike Team</h3><a class="btn btn-primary" href="ai-strike-team.html">Open</a></article>
+                    <article class="card"><h3>Executive Audio</h3><a class="btn btn-primary" href="executive-audio.html">Open</a></article>
+                    <article class="card"><h3>Builders Club Downsell</h3><a class="btn btn-primary" href="builders-club-downsell.html">Open</a></article>
+                    <article class="card"><h3>Workforce Suite Downsell</h3><a class="btn btn-primary" href="workforce-suite-downsell.html">Open</a></article>
+                    <article class="card"><h3>Thank You A</h3><a class="btn btn-primary" href="thank-you-a.html">Open</a></article>
+                    <article class="card"><h3>Thank You B</h3><a class="btn btn-primary" href="thank-you-b.html">Open</a></article>
+                    <article class="card"><h3>Thank You C</h3><a class="btn btn-primary" href="thank-you-c.html">Open</a></article>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="wrap">
-            <p>Fast Track GenAI © 2026 · <a href="site-directory.html">Full site directory</a> · <a href="brand-resource-center/">Brand Resource Center</a></p>
-        </div>
+    <footer class="footer">
+        <p>Fast Track GenAI © 2026 · <a href="index.html">Page Mockups</a> · <a href="brand-resource-center/">Brand Resource Center</a></p>
     </footer>
 </body>
 </html>
