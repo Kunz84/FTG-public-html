@@ -47,7 +47,11 @@ Thank you page variant C (additional confirmation variant).
 ## Live Demo
 🌐 **GitHub Pages URL**: [https://kunz84.github.io/FTG-public-html/](https://kunz84.github.io/FTG-public-html/)
 
-Visit the index page to access all POC pages with descriptions.
+The root `index.html` is a page-mockup selector linking to:
+- **home.html** — Fast Track GenAI Home Page
+- **webapp-builds.html** — Website & Web App Builds services page (images in `images/webapp-builds/`)
+
+The full list of funnel pages and resources lives at **site-directory.html** (linked from the selector footer).
 
 ## Technical Details
 - **Format**: Pure HTML with embedded CSS and JavaScript
