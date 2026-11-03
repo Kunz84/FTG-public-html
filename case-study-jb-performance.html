@@ -4,9 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JB Performance LLC Case Study | Fast Track GenAI</title>
-<meta name="description" content="How Fast Track GenAI built JB Performance LLC a custom e-commerce web app for motorcycle performance parts: online shop, secure checkout, customer accounts, dyno results, media and an owner admin dashboard.">
+<meta name="description" content="Fast Track GenAI built Joe Benner’s JB Performance a working shop, dyno results, blog and reviews that Joe manages himself. Want a website like this for your business?">
 <!--
   MOCKUP FOR GHL IMPLEMENTATION: Fast Track GenAI case study, JB Performance LLC.
+  Content mirrors the live case-study page at https://jbperformancellc.com/website-by-fast-track-genai (captured Nov 3, 2026):
+  hero -> live metrics -> 9 included features -> how it works / who it's for -> inquiry form + FTG sidebar.
+  Live metric counts are a snapshot from that date, not evergreen numbers.
   Design system matches webapp-builds.html (FTG navy / turquoise / emerald, not JB's orange).
   Inquiry form at #inquiry is shared with webapp-builds.html and case-study-dexter-salaverria.html.
   No pricing on this page by design.
@@ -27,6 +30,8 @@
   .card { background: linear-gradient(180deg, rgba(19,42,79,.55), rgba(15,33,64,.55)); border:1px solid rgba(148,163,184,.16); }
   .eyebrow { letter-spacing: .22em; }
   .grid-bg { background-image: linear-gradient(rgba(7,230,222,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,230,222,.045) 1px, transparent 1px); background-size: 56px 56px; }
+  .metric-card { transition: border-color .25s, transform .25s, box-shadow .25s; }
+  .metric-card:hover { border-color: rgba(7,230,222,.55); transform: translateY(-2px); box-shadow: 0 18px 40px -22px rgba(7,230,222,.45); }
   /* Inquiry form */
   .ftg-form-card { background:#0f1729; border:1px solid #2a3a5c; }
   .ftg-label { display:block; margin-bottom:8px; font-size:15px; font-weight:600; color:#FFFFFF; }
@@ -37,7 +42,7 @@
   select.ftg-input:invalid { color:#8391AD; }
   select.ftg-input option { color:#FFFFFF; background:#1a2744; }
   textarea.ftg-input { min-height:150px; resize:vertical; }
-  @media (prefers-reduced-motion: reduce) { .btn-turq, .btn-ghost, .ftg-input { transition:none; } }
+  @media (prefers-reduced-motion: reduce) { .btn-turq, .btn-ghost, .ftg-input, .metric-card { transition:none; } .metric-card:hover { transform:none; } }
 </style>
 </head>
 <body class="min-w-[1280px] bg-navy font-sans text-white antialiased">
@@ -69,16 +74,12 @@
       <div class="inline-flex items-center gap-2 rounded-full border border-turq/40 bg-turq/10 px-5 py-2 text-[14px] font-semibold text-turq eyebrow uppercase">
         <i class="fa-solid fa-code"></i> Built by Fast Track GenAI
       </div>
-      <h1 class="mt-8 text-[68px] leading-[1.08] font-extrabold tracking-tight">JB Performance LLC</h1>
-      <p class="mt-5 text-[26px] leading-snug font-semibold text-turq">Custom E-Commerce Web App — Motorcycle Performance Parts</p>
-      <p class="mt-7 max-w-[920px] mx-auto text-[21px] leading-[1.6] text-sub">JB Performance sells performance parts and maps for the KTM 690, Husqvarna 701 and GasGas 700. We built the shop a complete web app on its own domain: an online store with secure checkout, customer accounts, automatic emails, dyno result charts, a media library, blog, reviews and an admin dashboard the owner runs day to day.</p>
+      <p class="mt-8 eyebrow uppercase text-[15px] font-semibold text-turq">Case Study · JB Performance LLC</p>
+      <h1 class="mt-5 max-w-[1000px] mx-auto text-[64px] leading-[1.08] font-extrabold tracking-tight">Want a Website Like This for Your Business?</h1>
+      <p class="mt-7 max-w-[900px] mx-auto text-[21px] leading-[1.6] text-sub">The site below was built by Fast Track GenAI for Joe Benner’s JB Performance — a working shop, dyno results, blog and reviews that Joe manages himself. We build the same kind of site for other small businesses.</p>
       <div class="mt-10 flex items-center justify-center gap-5">
-        <a href="#inquiry" class="btn-turq rounded-xl px-9 py-[18px] text-[18px] font-bold inline-flex items-center gap-3">Tell Us What You Want to Build <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#built" class="btn-ghost rounded-xl px-8 py-[17px] text-[18px] font-semibold">See What We Built</a>
-      </div>
-      <div class="mt-9 flex items-center justify-center gap-3">
-        <span class="rounded-full bg-turq/10 border border-turq/30 text-turq text-[13px] font-semibold px-3 py-1">Online Store</span>
-        <span class="rounded-full bg-emer/10 border border-emer/30 text-emer text-[13px] font-semibold px-3 py-1">Motorcycle Performance Parts</span>
+        <a href="#inquiry" class="btn-turq rounded-xl px-9 py-[18px] text-[18px] font-bold inline-flex items-center gap-3">Ask about your website <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="https://jbperformancellc.com" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-8 py-[17px] text-[18px] font-semibold inline-flex items-center gap-3">See the Live Site <i class="fa-solid fa-arrow-up-right-from-square text-[15px]"></i></a>
       </div>
     </div>
 
@@ -93,146 +94,179 @@
   </div>
 </section>
 
-<!-- ============ 3. WHAT WE BUILT ============ -->
-<section id="built" class="bg-navy py-[110px]">
-  <div class="max-w-[1440px] mx-auto px-12">
-    <div class="text-center max-w-[960px] mx-auto">
-      <p class="eyebrow uppercase text-[14px] font-semibold text-turq">What We Built</p>
-      <h2 class="mt-4 text-[46px] font-extrabold leading-tight">A Complete Online Store the Owner Runs Day to Day</h2>
-      <p class="mt-6 text-[20px] leading-relaxed text-sub">JB Performance needed more than a storefront. Customers shop by bike, so the site is organized around fitment for the LC4 platform, with product pages, add-on suggestions and secure checkout that takes cards, Apple Pay and other wallets. Buyers can check out as guests or create an account to track orders. Dyno results, videos, photos and customer reviews show the parts' performance, and every order and message lands in an admin dashboard where the owner updates products, content and orders without a developer.</p>
-    </div>
-
-    <div class="mt-14 max-w-[1040px] mx-auto grid grid-cols-5 gap-4">
-      <div class="rounded-xl bg-navy2/70 border border-white/10 py-6 text-center"><div class="text-[38px] font-extrabold text-turq">15</div><div class="text-[15px] text-gray-400 mt-1">Products</div></div>
-      <div class="rounded-xl bg-navy2/70 border border-white/10 py-6 text-center"><div class="text-[38px] font-extrabold text-turq">5</div><div class="text-[15px] text-gray-400 mt-1">Dyno Results</div></div>
-      <div class="rounded-xl bg-navy2/70 border border-white/10 py-6 text-center"><div class="text-[38px] font-extrabold text-turq">9</div><div class="text-[15px] text-gray-400 mt-1">Videos</div></div>
-      <div class="rounded-xl bg-navy2/70 border border-white/10 py-6 text-center"><div class="text-[38px] font-extrabold text-turq">35</div><div class="text-[15px] text-gray-400 mt-1">Photos</div></div>
-      <div class="rounded-xl bg-navy2/70 border border-white/10 py-6 text-center"><div class="text-[38px] font-extrabold text-turq">5</div><div class="text-[15px] text-gray-400 mt-1">Reviews</div></div>
-    </div>
-    <p class="mt-4 text-center text-[14px] text-gray-500">Approximate content at launch.</p>
-
-    <div class="mt-12 flex flex-wrap items-center justify-center gap-2">
-      <span class="text-[14px] font-semibold text-gray-400 mr-2 eyebrow uppercase">Site sections</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Shop</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Dyno Results</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Media</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Blog</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">About</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Reviews</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Contact</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Customer Accounts</span>
-      <span class="rounded-md bg-white/5 border border-white/10 px-3 py-1.5 text-[14px] text-sub">Cart &amp; Checkout</span>
+<!-- ============ 3. LIVE METRICS ============ -->
+<!-- Snapshot counts from the live JB site (Nov 3, 2026). Each card links to that section of jbperformancellc.com. -->
+<section id="live" class="bg-navy py-[90px]">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <p class="text-center eyebrow uppercase text-[14px] font-semibold text-turq">Live on the JB Performance Site Right Now</p>
+    <div class="mt-10 grid grid-cols-5 gap-5">
+      <a href="https://jbperformancellc.com/shop" target="_blank" rel="noopener" class="metric-card rounded-xl bg-navy2/70 border border-white/10 py-8 text-center block">
+        <div class="text-[46px] leading-none font-extrabold text-white tabular-nums">16</div>
+        <div class="mt-3 text-[14px] font-semibold eyebrow uppercase text-gray-400">Products</div>
+      </a>
+      <a href="https://jbperformancellc.com/dyno" target="_blank" rel="noopener" class="metric-card rounded-xl bg-navy2/70 border border-white/10 py-8 text-center block">
+        <div class="text-[46px] leading-none font-extrabold text-white tabular-nums">5</div>
+        <div class="mt-3 text-[14px] font-semibold eyebrow uppercase text-gray-400">Dyno Results</div>
+      </a>
+      <a href="https://jbperformancellc.com/blog" target="_blank" rel="noopener" class="metric-card rounded-xl bg-navy2/70 border border-white/10 py-8 text-center block">
+        <div class="text-[46px] leading-none font-extrabold text-white tabular-nums">3</div>
+        <div class="mt-3 text-[14px] font-semibold eyebrow uppercase text-gray-400">Blog Posts</div>
+      </a>
+      <a href="https://jbperformancellc.com/media" target="_blank" rel="noopener" class="metric-card rounded-xl bg-navy2/70 border border-white/10 py-8 text-center block">
+        <div class="text-[46px] leading-none font-extrabold text-white tabular-nums">46</div>
+        <div class="mt-3 text-[14px] font-semibold eyebrow uppercase text-gray-400">Photos &amp; Videos</div>
+      </a>
+      <a href="https://jbperformancellc.com/reviews" target="_blank" rel="noopener" class="metric-card rounded-xl bg-navy2/70 border border-white/10 py-8 text-center block">
+        <div class="text-[46px] leading-none font-extrabold text-white tabular-nums">5</div>
+        <div class="mt-3 text-[14px] font-semibold eyebrow uppercase text-gray-400">Customer Reviews</div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ 4. FEATURE GRID ============ -->
-<section class="bg-gradient-to-b from-navy2 to-navy py-[110px]">
+<!-- ============ 4. WHAT'S INCLUDED (9 FEATURES) ============ -->
+<section id="included" class="bg-gradient-to-b from-navy2 to-navy py-[110px]">
   <div class="max-w-[1440px] mx-auto px-12">
     <div class="text-center max-w-[920px] mx-auto">
-      <p class="eyebrow uppercase text-[14px] font-semibold text-turq">Inside the Build</p>
-      <h2 class="mt-4 text-[46px] font-extrabold leading-tight">Everything JB Performance Runs On</h2>
-      <p class="mt-5 text-[20px] leading-relaxed text-sub">Six parts of the build, all live on the shop's own domain.</p>
+      <p class="eyebrow uppercase text-[14px] font-semibold text-turq">What’s Included</p>
+      <h2 class="mt-4 text-[46px] font-extrabold leading-tight">Everything Joe’s Business Needed</h2>
     </div>
 
     <div class="mt-16 grid grid-cols-3 gap-7">
 
       <div class="card rounded-2xl p-9">
         <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-cart-shopping"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Online Shop &amp; Secure Checkout</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Shop by bike: fitment for KTM 690, Husqvarna 701 and GasGas 700</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Categories, filters, keyword search and fitment badges</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Product pages with galleries, related products and add-on suggestions</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Secure card checkout through Stripe, with Apple Pay, Link and wallets</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Affirm pay-over-time messaging on eligible products</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Inventory tracking, bundles and shipping rules</li>
-        </ul>
+        <h3 class="mt-6 text-[22px] font-bold">Shop &amp; Secure Checkout</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Product pages, a cart and secure card checkout with Apple Pay and other wallets, plus Affirm monthly payments on eligible parts.</p>
       </div>
 
       <div class="card rounded-2xl p-9">
-        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-user-check"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Customer Accounts &amp; Orders</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Create account, email verification, login and forgot password</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Saved billing and shipping addresses</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Order history and tracking in one place</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Guest checkout, with no account required to buy</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Privacy requests: data export and account closure</li>
-        </ul>
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-regular fa-circle-user"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">Customer Accounts</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Customers save billing and shipping addresses, track their orders and add their bike details. Guest checkout still works.</p>
       </div>
 
       <div class="card rounded-2xl p-9">
-        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-envelope-open-text"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Automatic Emails</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Order confirmation, payment received, and shipped with tracking</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Account emails: verification, password reset and security alerts</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Owner alerts for every new order and new contact message</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Each email sends once, with no duplicates</li>
-        </ul>
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-envelope-circle-check"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">Automatic Emails</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Order, payment and shipping emails with tracking, a reminder when a checkout isn’t finished, and an alert to Joe for every order.</p>
       </div>
 
       <div class="card rounded-2xl p-9">
         <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-chart-line"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Results, Media &amp; Content</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Dyno results with interactive before-and-after charts</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Photo gallery with full-screen viewer and captions</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Video library with hosted playback and YouTube/Shorts embeds</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Blog with categories and tags</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Customer reviews with star ratings and source attribution</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>An About page that tells the shop's story</li>
-        </ul>
+        <h3 class="mt-6 text-[22px] font-bold">Interactive Dyno Charts</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Horsepower and torque curves that draw themselves. Hover or tap to see the numbers at any RPM.</p>
       </div>
 
       <div class="card rounded-2xl p-9">
         <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-gauge-high"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Owner Admin Dashboard</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>At-a-glance badges for new orders and messages</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Manage products, photos, content, orders and customers</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Contact inbox with message status tracking</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Staff invitations with an approval step</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Site settings: business info, hours, social links, shipping and payment options</li>
-        </ul>
+        <h3 class="mt-6 text-[22px] font-bold">A Homepage That Moves</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">The bikes roll in and the results count up. Motion turns off for visitors who prefer less movement.</p>
       </div>
 
       <div class="card rounded-2xl p-9">
-        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-mobile-screen-button"></i></div>
-        <h3 class="mt-6 text-[23px] font-bold">Mobile, Fast &amp; Search Ready</h3>
-        <ul class="mt-5 space-y-3 text-[16px] leading-[1.55] text-sub">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Designed for phones first, polished on every screen</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Fast first load on the shop's own domain, with a secure connection</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Page titles, descriptions and sharing previews for search engines</li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-emer mt-[5px] text-[13px]"></i>Card details never touch the site; Stripe handles them</li>
-        </ul>
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-truck-fast"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">Smart Shipping</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Shipping rates set per product, discounts for multiple items and add-ons that ship free with their package.</p>
+      </div>
+
+      <div class="card rounded-2xl p-9">
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-regular fa-newspaper"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">Blog, Media &amp; Reviews</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Build stories, photo and video galleries and reviews, launched with Joe’s real content from Facebook and eBay.</p>
+      </div>
+
+      <div class="card rounded-2xl p-9">
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-table-cells-large"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">An Admin Joe Runs Himself</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Products, orders, customers, messages, posts and settings in one simple dashboard — no developer needed.</p>
+      </div>
+
+      <div class="card rounded-2xl p-9">
+        <div class="w-14 h-14 rounded-xl bg-turq/10 border border-turq/30 flex items-center justify-center text-turq text-[24px]"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="mt-6 text-[22px] font-bold">Secure, Mobile &amp; Search-Ready</h3>
+        <p class="mt-3 text-[17px] leading-[1.6] text-sub">Protected accounts, California warnings built in, fast on phones and set up so customers find it on Google.</p>
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ============ 5. SEE THE LIVE SITE ============ -->
-<section class="bg-[#081222] py-[100px]">
-  <div class="max-w-[900px] mx-auto px-8 text-center">
-    <p class="eyebrow uppercase text-[14px] font-semibold text-turq">See It Live</p>
-    <h2 class="mt-4 text-[46px] font-extrabold leading-tight">Browse JB Performance Like a Customer</h2>
-    <p class="mt-5 text-[20px] leading-relaxed text-sub">Shop by bike, open the dyno results and look through the media library on the live site.</p>
-    <div class="mt-10 flex items-center justify-center gap-5">
-      <a href="https://jbperformancellc.com" target="_blank" rel="noopener" class="btn-turq rounded-xl px-9 py-[18px] text-[18px] font-bold inline-flex items-center gap-3">See the Live Site <i class="fa-solid fa-arrow-up-right-from-square text-[15px]"></i></a>
-      <a href="webapp-builds.html" class="btn-ghost rounded-xl px-8 py-[17px] text-[18px] font-semibold inline-flex items-center gap-3"><i class="fa-solid fa-arrow-left text-[15px]"></i> All Builds</a>
+    <div class="mt-14 flex items-center justify-center gap-5">
+      <a href="https://jbperformancellc.com/shop" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-7 py-4 text-[17px] font-semibold inline-flex items-center gap-2">See the shop <i class="fa-solid fa-arrow-right text-[14px]"></i></a>
+      <a href="https://jbperformancellc.com/dyno" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-7 py-4 text-[17px] font-semibold inline-flex items-center gap-2">See dyno results <i class="fa-solid fa-arrow-right text-[14px]"></i></a>
+      <a href="https://jbperformancellc.com/reviews" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-7 py-4 text-[17px] font-semibold inline-flex items-center gap-2">See reviews <i class="fa-solid fa-arrow-right text-[14px]"></i></a>
     </div>
   </div>
 </section>
 
-<!-- ============ 6. FINAL CTA + INQUIRY FORM ============ -->
+<!-- ============ 5. HOW IT WORKS / WHO IT'S FOR ============ -->
+<section class="bg-[#081222] py-[110px]">
+  <div class="max-w-[1240px] mx-auto px-8 grid grid-cols-2 gap-14">
+
+    <div>
+      <p class="eyebrow uppercase text-[14px] font-semibold text-turq">How It Works</p>
+      <h2 class="mt-4 text-[38px] font-extrabold leading-tight whitespace-nowrap">Three Simple Steps</h2>
+      <div class="mt-10 space-y-5">
+        <div class="card rounded-2xl p-7 flex items-start gap-6">
+          <div class="w-16 shrink-0 text-[42px] leading-none font-extrabold text-turq tabular-nums">01</div>
+          <div>
+            <h3 class="text-[21px] font-bold">Tell Us About Your Business</h3>
+            <p class="mt-2 text-[17px] leading-[1.6] text-sub">Share what you sell, who your customers are and where your content lives today.</p>
+          </div>
+        </div>
+        <div class="card rounded-2xl p-7 flex items-start gap-6">
+          <div class="w-16 shrink-0 text-[42px] leading-none font-extrabold text-turq tabular-nums">02</div>
+          <div>
+            <h3 class="text-[21px] font-bold">Review a Live Preview</h3>
+            <p class="mt-2 text-[17px] leading-[1.6] text-sub">We build a working preview with your real content and refine it with you.</p>
+          </div>
+        </div>
+        <div class="card rounded-2xl p-7 flex items-start gap-6">
+          <div class="w-16 shrink-0 text-[42px] leading-none font-extrabold text-turq tabular-nums">03</div>
+          <div>
+            <h3 class="text-[21px] font-bold">Launch on Your Domain</h3>
+            <p class="mt-2 text-[17px] leading-[1.6] text-sub">Go live on your own web address, with an admin you can update yourself.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="eyebrow uppercase text-[14px] font-semibold text-turq">Who It’s For</p>
+      <h2 class="mt-4 text-[38px] font-extrabold leading-tight whitespace-nowrap">Built for Hands-On Businesses</h2>
+      <ul class="mt-10 space-y-4">
+        <li class="card rounded-xl px-6 py-5 flex items-center gap-4">
+          <span class="w-11 h-11 shrink-0 rounded-lg bg-turq/10 border border-turq/30 text-turq text-[18px] flex items-center justify-center"><i class="fa-solid fa-wrench"></i></span>
+          <span class="text-[18px] font-semibold">Performance, repair and fabrication shops</span>
+        </li>
+        <li class="card rounded-xl px-6 py-5 flex items-center gap-4">
+          <span class="w-11 h-11 shrink-0 rounded-lg bg-turq/10 border border-turq/30 text-turq text-[18px] flex items-center justify-center"><i class="fa-solid fa-hammer"></i></span>
+          <span class="text-[18px] font-semibold">Trades and contractors</span>
+        </li>
+        <li class="card rounded-xl px-6 py-5 flex items-center gap-4">
+          <span class="w-11 h-11 shrink-0 rounded-lg bg-turq/10 border border-turq/30 text-turq text-[18px] flex items-center justify-center"><i class="fa-solid fa-flag-checkered"></i></span>
+          <span class="text-[18px] font-semibold">Racers with a side business</span>
+        </li>
+        <li class="card rounded-xl px-6 py-5 flex items-center gap-4">
+          <span class="w-11 h-11 shrink-0 rounded-lg bg-turq/10 border border-turq/30 text-turq text-[18px] flex items-center justify-center"><i class="fa-solid fa-store"></i></span>
+          <span class="text-[18px] font-semibold">Local makers and small retailers</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 6. INQUIRY FORM + FTG SIDEBAR ============ -->
 <section id="inquiry" class="relative overflow-hidden bg-gradient-to-b from-navy2 to-[#06101F] py-[120px] border-t border-turq/15">
   <div class="absolute inset-0 grid-bg opacity-80"></div>
-  <div class="relative max-w-[900px] mx-auto px-8 text-center">
-    <h2 class="text-[54px] font-extrabold leading-[1.1]">Ready to Build Something <span class="text-turq">Real?</span></h2>
-    <p class="mt-6 text-[21px] leading-relaxed text-sub">Tell us what you sell, who you serve and what you want your site to do. We'll come back with a plan built around your business.</p>
+  <div class="relative max-w-[1240px] mx-auto px-8">
+    <div class="text-center max-w-[900px] mx-auto">
+      <h2 class="text-[50px] font-extrabold leading-[1.1]">Tell Us About Your <span class="text-turq">Business</span></h2>
+      <p class="mt-5 text-[21px] leading-relaxed text-sub">This goes straight to Fast Track GenAI — not to JB Performance.</p>
+    </div>
 
+    <div class="grid grid-cols-[1fr_380px] gap-8 items-start">
+      <div>
     <!-- GHL developer: replace this form action with your GHL form handler -->
     <form action="#" method="post" data-mockup-form class="ftg-form-card mt-12 rounded-2xl p-10 text-left grid grid-cols-2 gap-x-6 gap-y-6 shadow-[0_24px_60px_-20px_rgba(0,0,0,.7)]">
       <div>
@@ -279,9 +313,31 @@
         <p class="mt-6 text-[14px] text-gray-500">Mockup preview: nothing was sent. The GHL form handler will process real submissions.</p>
       </div>
     </div>
+        <p class="mt-5 text-[15px] text-gray-400"><i class="fa-solid fa-shield-halved text-turq mr-2"></i>Your details are only used to reply to your inquiry.</p>
+      </div>
 
-    <p class="mt-8 text-[17px] text-gray-400">Have questions? Reach out to <a href="mailto:david@fasttrackgenai.com" class="text-turq font-semibold hover:underline">david@fasttrackgenai.com</a></p>
-    <p class="mt-2 text-[17px] text-gray-400">Or call <a href="tel:+19256280585" class="text-turq font-semibold hover:underline">(925) 628-0585</a></p>
+      <!-- FTG sidebar -->
+      <aside class="mt-12 space-y-5">
+        <div class="rounded-2xl border border-turq/25 bg-gradient-to-b from-navy3 to-navy2 p-8">
+          <img src="images/ftg-logo-light.png" alt="Fast Track GenAI" class="h-[38px] w-auto">
+          <p class="mt-5 text-[17px] leading-[1.6] text-sub">Fast Track GenAI builds practical websites and AI tools for small businesses — sites owners can actually run themselves.</p>
+          <ul class="mt-6 space-y-3 text-[16px] text-white">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-turq mt-[3px]"></i>Built around your real products and content</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-turq mt-[3px]"></i>An admin you can update yourself</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-turq mt-[3px]"></i>Launch on your own domain</li>
+          </ul>
+          <a href="webapp-builds.html" class="btn-ghost mt-7 rounded-xl px-6 py-3.5 text-[16px] font-semibold inline-flex items-center gap-2">See All Builds <i class="fa-solid fa-arrow-right text-[13px]"></i></a>
+        </div>
+
+        <div class="rounded-2xl bg-[#0f1729] border border-[#2a3a5c] p-7">
+          <p class="eyebrow uppercase text-[13px] font-semibold text-gray-400">Prefer Email?</p>
+          <a href="mailto:david@fasttrackgenai.com" class="mt-3 inline-flex items-center gap-3 text-[18px] font-semibold text-turq hover:underline"><i class="fa-regular fa-envelope"></i>david@fasttrackgenai.com</a>
+          <p class="mt-4 text-[16px] text-gray-400">Or call <a href="tel:+19256280585" class="text-turq font-semibold hover:underline">(925) 628-0585</a></p>
+        </div>
+
+        <p class="px-1 text-[15px] leading-[1.6] text-gray-400">Looking for JB Performance parts or tuning? <a href="https://jbperformancellc.com/contact" target="_blank" rel="noopener" class="text-turq font-semibold hover:underline">Contact Joe here</a>.</p>
+      </aside>
+    </div>
   </div>
 </section>
 
